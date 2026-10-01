@@ -18,7 +18,7 @@ Components only use the standard shadcn variables (`--primary`, `--secondary`, `
 
 Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://ui.shadcn.com/r/styles/base-nova/registry.json). Tick a box when the component is in `registry/ui/`, in `registry.json` and on the landing page.
 
-**Progress: 14 / 63**
+**Progress: 17 / 63**
 
 - [ ] Accordion (`accordion`)
 - [x] Alert (`alert`)
@@ -35,7 +35,7 @@ Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://
 - [x] Card (`card`)
 - [ ] Carousel (`carousel`)
 - [ ] Chart (`chart`)
-- [ ] Checkbox (`checkbox`)
+- [x] Checkbox (`checkbox`)
 - [ ] Collapsible (`collapsible`)
 - [ ] Combobox (`combobox`)
 - [ ] Command (`command`)
@@ -64,7 +64,7 @@ Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://
 - [ ] Popover (`popover`)
 - [ ] Progress (`progress`)
 - [ ] Questionnaire (`questionnaire`)
-- [ ] Radio Group (`radio-group`)
+- [x] Radio Group (`radio-group`)
 - [ ] Resizable (`resizable`)
 - [ ] Scroll Area (`scroll-area`)
 - [ ] Select (`select`)
@@ -75,7 +75,7 @@ Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://
 - [ ] Slider (`slider`)
 - [ ] Sonner (`sonner`)
 - [ ] Spinner (`spinner`)
-- [ ] Switch (`switch`)
+- [x] Switch (`switch`)
 - [ ] Table (`table`)
 - [ ] Tabs (`tabs`)
 - [x] Textarea (`textarea`)

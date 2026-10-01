@@ -3,6 +3,7 @@ import { AlertDialogDemo } from "./_demos/alert-dialog-demo"
 import { BadgeDemo } from "./_demos/badge-demo"
 import { ButtonDemo } from "./_demos/button-demo"
 import { CardDemo } from "./_demos/card-demo"
+import { CheckboxDemo } from "./_demos/checkbox-demo"
 import { DialogDemo } from "./_demos/dialog-demo"
 import { FieldDemo } from "./_demos/field-demo"
 import { InputDemo } from "./_demos/input-demo"
@@ -10,7 +11,9 @@ import { InputGroupDemo } from "./_demos/input-group-demo"
 import { ItemDemo } from "./_demos/item-demo"
 import { KbdDemo } from "./_demos/kbd-demo"
 import { LabelDemo } from "./_demos/label-demo"
+import { RadioGroupDemo } from "./_demos/radio-group-demo"
 import { SeparatorDemo } from "./_demos/separator-demo"
+import { SwitchDemo } from "./_demos/switch-demo"
 import { TextareaDemo } from "./_demos/textarea-demo"
 import { ComponentSection } from "./_components/showcase"
 import { ThemeToggle } from "./_components/theme-toggle"
@@ -46,6 +49,13 @@ const components = [
     title: "Card",
     description: "Displays a card with header, content, and footer.",
     demo: <CardDemo />,
+  },
+  {
+    name: "checkbox",
+    title: "Checkbox",
+    description:
+      "A control that allows the user to toggle between checked and not checked.",
+    demo: <CheckboxDemo />,
   },
   {
     name: "dialog",
@@ -94,10 +104,24 @@ const components = [
     demo: <LabelDemo />,
   },
   {
+    name: "radio-group",
+    title: "Radio Group",
+    description:
+      "A set of checkable buttons where no more than one can be checked at a time.",
+    demo: <RadioGroupDemo />,
+  },
+  {
     name: "separator",
     title: "Separator",
     description: "Visually or semantically separates content.",
     demo: <SeparatorDemo />,
+  },
+  {
+    name: "switch",
+    title: "Switch",
+    description:
+      "A control that allows the user to toggle between checked and not checked.",
+    demo: <SwitchDemo />,
   },
   {
     name: "textarea",

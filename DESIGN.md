@@ -228,7 +228,30 @@ shadcn `Badge` (renders through `useRender`, so `render={<a />}` works). 20px ta
 
 ### Switch
 
-shadcn `Switch`, keeping its `size` prop: `default` is the design track below; `sm` scales it down to 20×12 with an 8px thumb. Track 24×14, fully round; thumb 10px, white in both themes, 2px inset, slides 10px. Unchecked track `input`, checked track `primary`. For settings that apply immediately.
+shadcn `Switch`, `size` `default` / `sm`. A raised thumb in a recessed track: the button and the key in one control.
+
+- `default`: track 32×18, thumb 14px, 2px inset, 14px travel. `sm`: 24×14, thumb 10px, 10px travel.
+- Track, off: the Kbd recipe (`input` + 12% `foreground` at the top fading to `input`, an inner shadow under the lip) with a 3:1 inner hairline (`input` + 48% `foreground`; dark 35%). On: a recessed `primary` channel (`primary` + 14% black at the top), cross-fading in on a ::before.
+- Thumb: white in both themes, the secondary button's raised skin (white → 5% darker, a soft drop shadow, a faint bottom edge).
+- Hit area 56×42 via ::after. Press: the whole switch scales to 0.95.
+
+### Checkbox and Radio Group
+
+shadcn `Checkbox` and `RadioGroup` / `RadioGroupItem`.
+
+- 16px; the checkbox has a 4px radius, the radio is round. Hit area 40×40 via ::after.
+- Unchecked: the secondary button in miniature (`background` → `secondary` gradient, soft lift, faint bottom edge) with a 3:1 border (`input` + 48% `foreground`; dark 35%).
+- Checked: the default button's skin (`primary` + 15% white → `primary`, inner top highlight, blue-tinted lift, `primary` + 15% black border) cross-fades in on a ::before. The tick is a 12px, 3px-stroke check; the radio dot is 6px, white, with a hairline shadow.
+- Beside `FieldContent`, every control centers on the label's first line (no 1px nudge for the 16px controls; the 18px switch moves up 1px, the 14px one down 1px).
+
+### Toggle motion
+
+Toggles are used tens of times a day, so motion is short, purposeful and built from CSS transitions (interruptible: a fast double-click reverses smoothly). Easing is `cubic-bezier(0.23, 1, 0.32, 1)`.
+
+- Switch: the thumb slides in 200ms; the on-channel fades in step with it.
+- Checkbox: the fill fades in 150ms; the tick draws itself from the short stroke to the long one in 200ms, starting 50ms in. Unchecking erases it in 100ms.
+- Radio: the dot grows from 0.5× (never from 0) and fades in over 200ms; out in 100ms.
+- Press: 0.95 scale on every toggle. Reduced motion keeps the fades and drops scale and drawing.
 
 ### Input and Textarea
 
@@ -350,7 +373,8 @@ Lucide (`iconLibrary: "lucide"`): 16px line icons on a 24-unit grid, 1.75 stroke
 
 - Keyboard behavior, roles and ARIA come from Base UI; don't reimplement them.
 - Every control has a visible focus ring and an accessible name.
-- All text meets WCAG AA (4.5:1) in both themes, including hover states; icons and control borders meet 3:1. Check new pairs with the browser's own `color-mix()` output, not by eye.
+- All text meets WCAG AA (4.5:1) in both themes, including hover states. Check new pairs with the browser's own `color-mix()` output, not by eye.
+- Controls that are nothing but their outline (checkbox, radio, switch track) meet 3:1 against their surroundings. Text fields use the softer `input` border (#e0e0e0, about 1.3:1) and rely on their label and placeholder; that is a known gap, not a 3:1 pass.
 - Still never carry meaning by color alone: badges are worded, a granted permission has a shield icon.
 
 ---
