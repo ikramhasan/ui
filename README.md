@@ -18,11 +18,11 @@ Components only use the standard shadcn variables (`--primary`, `--secondary`, `
 
 Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://ui.shadcn.com/r/styles/base-nova/registry.json). Tick a box when the component is in `registry/ui/`, in `registry.json` and on the landing page.
 
-**Progress: 6 / 63**
+**Progress: 8 / 63**
 
 - [ ] Accordion (`accordion`)
 - [x] Alert (`alert`)
-- [ ] Alert Dialog (`alert-dialog`)
+- [x] Alert Dialog (`alert-dialog`)
 - [ ] Aspect Ratio (`aspect-ratio`)
 - [ ] Attachment (`attachment`)
 - [ ] Avatar (`avatar`)
@@ -40,7 +40,7 @@ Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://
 - [ ] Combobox (`combobox`)
 - [ ] Command (`command`)
 - [ ] Context Menu (`context-menu`)
-- [ ] Dialog (`dialog`)
+- [x] Dialog (`dialog`)
 - [ ] Direction (`direction`)
 - [ ] Drawer (`drawer`)
 - [ ] Dropdown Menu (`dropdown-menu`)
@@ -106,4 +106,6 @@ pnpm registry:build # writes public/r/*.json
 3. Add an item to `registry.json` with the same `dependencies` as upstream.
 4. Add a demo and register it on the landing page.
 
-When deploying, replace `http://localhost:3000` (`homepage` in `registry.json` and the install commands on the landing page).
+When deploying, replace `http://localhost:3000` everywhere: `homepage` and every `registryDependencies` URL in `registry.json`, plus the install commands on the landing page.
+
+A component that uses another one of ours (e.g. Dialog uses Button) lists it in `registryDependencies` by **full URL**. A bare name like `"button"` resolves to shadcn's own registry and would install shadcn's button instead of ours.

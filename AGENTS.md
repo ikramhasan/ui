@@ -20,7 +20,7 @@ A component library distributed through the **shadcn CLI**: every shadcn/ui comp
 
 1. Install the upstream one for reference: `pnpm exec shadcn add <name>` (writes to `src/components/ui/`). Read it closely (variants, parts, data attributes, accessibility, keyboard support), then delete it. The raw item is also at `https://ui.shadcn.com/r/styles/base-nova/<name>.json`.
 2. Recreate it in `registry/ui/<name>.tsx` with the identical API, restyled per `DESIGN.md`. Match the surrounding code style (upstream formatting, no semicolons).
-3. Add an item to `registry.json` (`type: "registry:ui"`, upstream's `dependencies`; for other registry components use `registryDependencies`).
+3. Add an item to `registry.json` (`type: "registry:ui"`, upstream's `dependencies`; for our own components use `registryDependencies` with the full URL, e.g. `http://localhost:3000/r/button.json`; a bare `"button"` installs shadcn's button). Import our components as `@/registry/ui/<name>`; the CLI rewrites it to the user's alias.
 4. Add `src/app/_demos/<name>-demo.tsx` covering every variant, size and state (disabled, invalid, `render` composition), and register it in the `components` list in `src/app/page.tsx`. Tick the component in the README checklist and update its progress count.
 5. Verify: `pnpm registry:build`, `pnpm exec tsc --noEmit`, `pnpm lint`, then check the page in light and dark, including keyboard focus. For a real install test, use a throwaway project in the scratchpad (with its own `pnpm install`, not a symlinked `node_modules`) and run `shadcn add http://localhost:3000/r/<name>.json`.
 

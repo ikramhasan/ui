@@ -177,6 +177,19 @@ shadcn `Alert` (`AlertTitle`, `AlertDescription`, `AlertAction`), variants `defa
 - `AlertAction`: 8px from the top and right, sized for `size="sm"` / `icon-sm` buttons (28px), which then center on the title line.
 - `destructive`: title and icon in `destructive`, description in `destructive/90`. Same neutral container.
 
+### Dialog and Alert Dialog
+
+shadcn `Dialog` and `AlertDialog`, same parts and props. Both share one frame: a muted shell holding an inset card, with the footer on the shell.
+
+- Shell: `muted` fill (dark: `popover` + 20% black, so the card still reads raised), `rounded-xl` (14px), 1px `border` ring, menu shadow. Width `sm:max-w-sm` (384px); Alert Dialog `size="sm"` is 320px.
+- Card: inset 4px, `rounded-lg` (10px = 14 − 4), `popover` fill, 1px `border`, a faint lift. Content padding 16px, so content sits 20px from the shell edge; 16px between content blocks.
+- Footer: on the shell, buttons 4px below the card and 4px from the shell's right and bottom edges (10px button radius + 4px = the shell's 14px). Buttons 8px apart, stacked on mobile; Alert Dialog `size="sm"` splits them into two columns. Without a footer, the shell shows 4px below the card.
+- Title: `heading` (20/28 Medium). Description: `body` in `muted-foreground`, 4px below.
+- Dialog close button: `ghost` `icon-sm`, 20px from the top and right, so its 28px box lines up with the title line; the header reserves 32px on the right for it.
+- Alert Dialog media: 40px `muted` tile, `rounded-lg`, 20px icon.
+- Overlay: `black/10` (dark: `black/40`) with a slight backdrop blur.
+- Motion: opacity + scale from 0.96, 250ms `cubic-bezier(0.23, 1, 0.32, 1)` in, 150ms out; the backdrop fades with it. Reduced motion keeps the fade and drops the scale.
+
 ### Badge
 
 20px tall (`h-5`), padding 0 6px, `rounded-sm` (6px), 13/16 Medium. One or two words. Sits 8px after a title. Uses shadcn's variants:

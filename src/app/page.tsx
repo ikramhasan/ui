@@ -1,5 +1,7 @@
 import { AlertDemo } from "./_demos/alert-demo"
+import { AlertDialogDemo } from "./_demos/alert-dialog-demo"
 import { ButtonDemo } from "./_demos/button-demo"
+import { DialogDemo } from "./_demos/dialog-demo"
 import { InputDemo } from "./_demos/input-demo"
 import { LabelDemo } from "./_demos/label-demo"
 import { SeparatorDemo } from "./_demos/separator-demo"
@@ -15,10 +17,24 @@ const components = [
     demo: <AlertDemo />,
   },
   {
+    name: "alert-dialog",
+    title: "Alert Dialog",
+    description:
+      "A modal dialog that interrupts the user with important content and expects a response.",
+    demo: <AlertDialogDemo />,
+  },
+  {
     name: "button",
     title: "Button",
     description: "Displays a button or a component that looks like a button.",
     demo: <ButtonDemo />,
+  },
+  {
+    name: "dialog",
+    title: "Dialog",
+    description:
+      "A window overlaid on either the primary window or another dialog window, rendering the content underneath inert.",
+    demo: <DialogDemo />,
   },
   {
     name: "input",
