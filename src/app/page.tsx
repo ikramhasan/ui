@@ -2,10 +2,12 @@ import { AlertDemo } from "./_demos/alert-demo"
 import { AlertDialogDemo } from "./_demos/alert-dialog-demo"
 import { BadgeDemo } from "./_demos/badge-demo"
 import { ButtonDemo } from "./_demos/button-demo"
+import { CardDemo } from "./_demos/card-demo"
 import { DialogDemo } from "./_demos/dialog-demo"
 import { FieldDemo } from "./_demos/field-demo"
 import { InputDemo } from "./_demos/input-demo"
 import { InputGroupDemo } from "./_demos/input-group-demo"
+import { ItemDemo } from "./_demos/item-demo"
 import { KbdDemo } from "./_demos/kbd-demo"
 import { LabelDemo } from "./_demos/label-demo"
 import { SeparatorDemo } from "./_demos/separator-demo"
@@ -40,6 +42,12 @@ const components = [
     demo: <ButtonDemo />,
   },
   {
+    name: "card",
+    title: "Card",
+    description: "Displays a card with header, content, and footer.",
+    demo: <CardDemo />,
+  },
+  {
     name: "dialog",
     title: "Dialog",
     description:
@@ -65,6 +73,13 @@ const components = [
     title: "Input Group",
     description: "Add addons, buttons, and helper content to inputs.",
     demo: <InputGroupDemo />,
+  },
+  {
+    name: "item",
+    title: "Item",
+    description:
+      "A versatile component that you can use to display any content.",
+    demo: <ItemDemo />,
   },
   {
     name: "kbd",

@@ -9,16 +9,16 @@ const badgeVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-primary/10 text-[color-mix(in_oklch,var(--primary),black_12%)] dark:bg-primary/20 dark:text-[color-mix(in_oklch,var(--primary),white_35%)] [a]:hover:bg-primary/15 dark:[a]:hover:bg-primary/25",
+          "[--badge-fill:color-mix(in_oklch,var(--primary)_10%,transparent)] [--badge-text:color-mix(in_oklch,var(--primary),black_12%)] dark:[--badge-fill:color-mix(in_oklch,var(--primary)_20%,transparent)] dark:[--badge-text:color-mix(in_oklch,var(--primary),white_35%)] bg-(--badge-fill) text-(--badge-text) [a]:hover:bg-[color-mix(in_oklch,currentColor_15%,transparent)]",
         secondary:
           "bg-muted text-muted-foreground [a]:hover:bg-[color-mix(in_oklch,var(--muted),var(--foreground)_5%)]",
         destructive:
-          "bg-destructive/10 text-[color-mix(in_oklch,var(--destructive),black_12%)] focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:text-[color-mix(in_oklch,var(--destructive),white_25%)] dark:focus-visible:ring-destructive/40 [a]:hover:bg-destructive/20",
+          "[--badge-fill:color-mix(in_oklch,var(--destructive)_10%,transparent)] [--badge-text:color-mix(in_oklch,var(--destructive),black_12%)] dark:[--badge-fill:color-mix(in_oklch,var(--destructive)_20%,transparent)] dark:[--badge-text:color-mix(in_oklch,var(--destructive),white_25%)] bg-(--badge-fill) text-(--badge-text) [a]:hover:bg-[color-mix(in_oklch,currentColor_15%,transparent)] focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40",
         outline:
           "border-border text-foreground [a]:hover:bg-accent [a]:hover:text-accent-foreground",
         ghost:
           "text-muted-foreground [a]:hover:bg-accent [a]:hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline dark:text-[color-mix(in_oklch,var(--primary),white_35%)]",
+        link: "[--badge-text:var(--primary)] dark:[--badge-text:color-mix(in_oklch,var(--primary),white_35%)] text-(--badge-text) underline-offset-4 hover:underline",
       },
     },
     defaultVariants: {

@@ -179,6 +179,26 @@ shadcn `Alert` (`AlertTitle`, `AlertDescription`, `AlertAction`), variants `defa
 - `AlertAction`: 8px from the top and right, sized for `size="sm"` / `icon-sm` buttons (28px), which then center on the title line.
 - `destructive`: title and icon in `destructive`, description in `destructive/90`. Same neutral container.
 
+### Card
+
+shadcn `Card` (`CardHeader`, `CardTitle`, `CardDescription`, `CardAction`, `CardContent`, `CardFooter`), `size` `default` / `sm`.
+
+- `card` fill, 1px `border` ring, `rounded-2xl` (18px), no shadow at rest. Spacing (padding and the gap between parts) is 20px; `sm` is 16px.
+- `CardTitle`: `title` (16/20 Medium); `sm`: 14/20. `CardDescription`: `body` `muted-foreground`, 4px below.
+- `CardAction`: a 20px row (the title line) that centers whatever it holds, so a badge, a 28px button or an icon button all line up with the title.
+- `CardFooter`: `muted/50` strip under a hairline; content-aligned horizontal padding, 16px vertical (12px for `sm`).
+- Interactive cards (the **Action card** block) are links: hover adds the card shadow and an `input` ring; focus uses the standard ring.
+
+### Item
+
+shadcn `Item` and its parts, `variant` `default` / `outline` / `muted`, `size` `default` / `sm` / `xs`; renders through `useRender`, so `render={<a />}` makes a link row.
+
+- `rounded-lg`, 1px border (transparent except `outline`), `muted` fill for `muted`. A one-line text row is 40 / 36 / 32px for `default` / `sm` / `xs`.
+- `ItemTitle`: `body-medium`, one line. `ItemDescription`: `body` `muted-foreground`, two lines max, 2px below the title (`xs`: 12/16).
+- `ItemMedia`: `icon` is 16px `muted-foreground`, centered on the title line. `image` is a 40 / 32 / 24px tile (10 / 8 / 6px radius) with a 1px low-opacity outline; it top-aligns with the title when there is a description.
+- Link rows take the `accent` hover fill and the standard focus ring.
+- Lists (store list, key/value rows) are an `ItemGroup` inside a `rounded-xl` bordered container, rows separated by `ItemSeparator`.
+
 ### Dialog and Alert Dialog
 
 shadcn `Dialog` and `AlertDialog`, same parts and props. Both share one frame: a muted shell holding an inset card, with the footer on the shell.
