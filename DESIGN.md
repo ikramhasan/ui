@@ -212,6 +212,15 @@ shadcn `Dialog` and `AlertDialog`, same parts and props. Both share one frame: a
 - Overlay: `black/10` (dark: `black/40`) with a slight backdrop blur.
 - Motion: opacity + scale from 0.96, 250ms `cubic-bezier(0.23, 1, 0.32, 1)` in, 150ms out; the backdrop fades with it. Reduced motion keeps the fade and drops the scale.
 
+### Popover
+
+shadcn `Popover` (`PopoverTrigger`, `PopoverContent`, `PopoverHeader`, `PopoverTitle`, `PopoverDescription`). The plain floating surface that menus, selects and hover cards share.
+
+- `popover` fill, 1px `border` ring, `rounded-xl` (14px), menu shadow. 288px wide (`w-72`), 16px padding, 16px between blocks.
+- 4px from the trigger, centered by default (`side`, `align`, `sideOffset`, `alignOffset` as upstream).
+- `PopoverTitle`: `body-medium`. `PopoverDescription`: `body` in `muted-foreground`, 4px below.
+- Motion: scales from the trigger (`--transform-origin`), opacity + scale 0.96 → 1 in 200ms, out in 150ms, ease `cubic-bezier(0.23, 1, 0.32, 1)`. Reduced motion keeps the fade.
+
 ### Badge
 
 shadcn `Badge` (renders through `useRender`, so `render={<a />}` works). 20px tall, `rounded-sm` (6px), 13/16 Medium, 6px side padding (5px + a 1px border that is transparent except on `outline`). One or two words; sits 8px after a title.

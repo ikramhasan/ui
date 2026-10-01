@@ -24,6 +24,37 @@ A component library distributed through the **shadcn CLI**: every shadcn/ui comp
 4. Add `src/app/_demos/<name>-demo.tsx` covering every variant, size and state (disabled, invalid, `render` composition), and register it in the `components` list in `src/app/page.tsx`. Tick the component in the README checklist and update its progress count.
 5. Verify: `pnpm registry:build`, `pnpm exec tsc --noEmit`, `pnpm lint`, then check the page in light and dark, including keyboard focus. For a real install test, use a throwaway project in the scratchpad (with its own `pnpm install`, not a symlinked `node_modules`) and run `shadcn add http://localhost:3000/r/<name>.json`.
 
+## Working with the user
+
+- **Commit only when asked.** Commits go on `main` once the user says "commit". Never push.
+- **Design taste.** The user loves the textured pieces: the Button protrudes (gradient, hairline, lift, inner highlight), the Kbd is recessed (the inverse), the Dialog is a muted shell holding a raised card with the footer on the shell, and the toggles reuse those skins. Variations on that language are welcome. The user rejected two Card redesigns (a gray tray with a sheet, and a raised card with a recessed footer well), so the Card stays plain.
+- **Experiments are cheap.** When asked to "try" a look, change only the component file, show it, and restore it with `git checkout` if it's rejected. Don't update DESIGN.md until the look is kept.
+- **Precision matters.** "This is a design library": a 1px misalignment is a bug. Before calling anything done, do the box math (control height − borders − padding vs child size, line heights, radii) and measure it in the browser (insets on every side, centers vs the text line, concentric radii = outer − inset). Report numbers, not impressions.
+- **Ask before changing shipped tokens or many components.** Present the measured trade-off (e.g. a contrast table) and let the user decide.
+
+## Design rules learned (beyond DESIGN.md)
+
+- **Contrast:** all text ≥ 4.5:1 in both themes, hover states included. Controls that are only their outline (checkbox, radio, switch track) need ≥ 3:1. Measure with the browser's own `color-mix()` output against the real background. Text on its own tint (primary/destructive) is darkened 12% in light and lifted in dark; see "Text on tints" in DESIGN.md. Open gap: text-field borders (`input`, #e0e0e0) are about 1.3:1, and darkening them is the user's call.
+- **Motion:** CSS transitions, not keyframes, so interactions are interruptible. Ease `cubic-bezier(0.23, 1, 0.32, 1)`. Dialogs 250ms in / 150ms out with scale 0.96; toggles 150–200ms; press scale 0.95. Never scale from 0. Always ship a `motion-reduce:` variant that keeps the fades.
+- **Hit areas** ≥ 40px via an `after:` pseudo-element on small controls.
+
+## Technical gotchas
+
+- **Dev server misses new files.** The user's `pnpm dev` sometimes doesn't generate Tailwind classes for files created after it started. Don't restart it yourself (it's the user's process, and `next dev` refuses a second instance in this directory). Verify on a production build instead: `pnpm exec next build && pnpm exec next start -p 3001`, then load with a cache-busting query (`?v=N`).
+- **Hidden Chrome tabs freeze transitions and `requestAnimationFrame`.** The test tab is usually in the background: computed styles show mid-transition values, and Base UI popups never finish opening or unmounting. Measure with `*{transition:none!important}` injected, or with `offsetTop` / `offsetWidth`, and use `document.visibilityState` to tell. Ask the user to feel-check motion themselves.
+- **`cn` won't let an unprefixed override replace a `dark:` class.** If a variant is meant to be recolored with `className` (e.g. a success Badge), put the per-theme colors in CSS variables and apply them with a single unprefixed `bg-(--x)` / `text-(--y)`, as Badge does. Button `destructive` still has the old pattern.
+- **Gradients can't transition.** Cross-fade a second skin on `::before` with opacity, as Checkbox, Radio and the Switch track do.
+- **Pseudo-elements don't get the global `border-border`.** Set `before:border-border` explicitly.
+- **shadcn's `data-checked` / `data-unchecked` variants don't compose with `group-`.** Style the child from the element that carries the attribute (e.g. `data-unchecked:*:…` on Base UI's Indicator, which gets the same attributes).
+- **Absolutely positioned grid children** use their grid area as their containing block without occupying cells (the Dialog's card is a `::before` spanning `row-[1/footer]`). Give the grid an explicit column (`grid-cols-1`), or an `auto` end line stretches to the padding edge.
+- **The Chrome screenshot frame** is scaled relative to CSS pixels. Get coordinates from a fresh screenshot before clicking.
+
+## Open items
+
+- Replace `http://localhost:3000` on deploy: `homepage` and every `registryDependencies` URL in `registry.json`, plus the landing-page install commands.
+- The design catalog artifact still lists the old `muted-foreground` (#777777) and `success` (#15B042); the shipped values are #6e6e6e and #0a772a.
+- Suggested next: Tooltip (reuse the Popover motion; Kbd inside for shortcuts), then Dropdown Menu and Select on the Popover surface.
+
 ## Layout
 
 - `registry/ui/*.tsx`: component sources the CLI installs (imported in the app as `@/registry/ui/<name>`).

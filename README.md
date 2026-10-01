@@ -18,7 +18,7 @@ Components only use the standard shadcn variables (`--primary`, `--secondary`, `
 
 Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://ui.shadcn.com/r/styles/base-nova/registry.json). Tick a box when the component is in `registry/ui/`, in `registry.json` and on the landing page.
 
-**Progress: 17 / 63**
+**Progress: 18 / 63**
 
 - [ ] Accordion (`accordion`)
 - [x] Alert (`alert`)
@@ -61,7 +61,7 @@ Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://
 - [ ] Native Select (`native-select`)
 - [ ] Navigation Menu (`navigation-menu`)
 - [ ] Pagination (`pagination`)
-- [ ] Popover (`popover`)
+- [x] Popover (`popover`)
 - [ ] Progress (`progress`)
 - [ ] Questionnaire (`questionnaire`)
 - [x] Radio Group (`radio-group`)

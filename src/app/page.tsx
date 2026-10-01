@@ -11,6 +11,7 @@ import { InputGroupDemo } from "./_demos/input-group-demo"
 import { ItemDemo } from "./_demos/item-demo"
 import { KbdDemo } from "./_demos/kbd-demo"
 import { LabelDemo } from "./_demos/label-demo"
+import { PopoverDemo } from "./_demos/popover-demo"
 import { RadioGroupDemo } from "./_demos/radio-group-demo"
 import { SeparatorDemo } from "./_demos/separator-demo"
 import { SwitchDemo } from "./_demos/switch-demo"
@@ -102,6 +103,12 @@ const components = [
     title: "Label",
     description: "Renders an accessible label associated with controls.",
     demo: <LabelDemo />,
+  },
+  {
+    name: "popover",
+    title: "Popover",
+    description: "Displays rich content in a portal, triggered by a button.",
+    demo: <PopoverDemo />,
   },
   {
     name: "radio-group",
