@@ -10,7 +10,7 @@ Use this file as the source of truth when building techshoi UI. It is written ag
 
 1. **Neutral first.** Almost everything is gray, white and #333 text. Color is a signal: blue (`primary`) means _act_ or _on_, green (`success`) means _connected / allowed_, red (`destructive`) means _fix this_ or _this can't be undone_.
 2. **Depth from surfaces and hairlines, not shadows.** Separate regions with surface steps (`sidebar` → `background` → `muted`) and 1px `border` lines. Shadows are only for buttons, floating cards and menus.
-3. **Buttons carry the texture.** They are the most tactile elements: a vertical gradient, a 1px border, a faint lift and (default variant) an inner top highlight. Everything else stays flat.
+3. **Buttons carry the texture; keys sink in.** Buttons are the most tactile elements: a vertical gradient, a 1px border, a faint lift and (default variant) an inner top highlight, so they protrude. `Kbd` is the inverse, recessed into the surface. Everything else stays flat.
 4. **One size of control.** Buttons, inputs, select triggers and sidebar menu buttons are 32px (`h-8`) with a 10px radius (`rounded-lg`), so anything can sit in a row together.
 5. **Medium, never Bold.** Emphasis comes from weight 500 and from `foreground` vs `muted-foreground`, not from size jumps or bold.
 
@@ -272,7 +272,9 @@ shadcn `Breadcrumb`. `body` in `muted-foreground`, slash separators (`Breadcrumb
 
 ### Kbd
 
-shadcn `Kbd` / `KbdGroup`. 20px tall, min 20px wide, `rounded-sm`, `muted` fill, 12/16 Medium `muted-foreground`, 12px icons; keys in a group are 4px apart.
+shadcn `Kbd` / `KbdGroup`. 20px tall, min 20px wide, `rounded-sm`, 12/16 Medium `muted-foreground`, 12px icons; keys in a group are 4px apart.
+
+- Recessed, the inverse of the raised button: a gradient from `muted` + 7% `foreground` at the top to `muted` at the bottom; an inner shadow under the top lip (`inset 0 1px 1.5px` black 12%), a 1px inner hairline (black 5%) and a 1px white catch-light just below the bottom edge (90%). Dark: top `muted` + 35% black, inner shadow 60%, hairline 25%, catch-light 7%. The hairline is an inset shadow, so the key's size never changes.
 
 - Inside an `InputGroup` addon it is inset 5px from the top, bottom and side, with a 4px radius (10 − 1 − 5).
 
