@@ -206,18 +206,34 @@ shadcn `Dialog` and `AlertDialog`, same parts and props. Both share one frame: a
 
 shadcn `Switch`, keeping its `size` prop: `default` is the design track below; `sm` scales it down to 20×12 with an 8px thumb. Track 24×14, fully round; thumb 10px, white in both themes, 2px inset, slides 10px. Unchecked track `input`, checked track `primary`. For settings that apply immediately.
 
-### Input, Textarea and Field
+### Input and Textarea
 
 - `Input`: 32px, `background` fill, 1px `input`, radius 10px, `shadow-xs`, padding 0 10px, text `body`, placeholder `muted-foreground`. For a leading icon or a trailing hint, use `InputGroup`.
 - Hover border: `input` + 10% `foreground`. Focus: border `ring` + a 3px `ring/30` ring (`ring/40` in dark).
 - Invalid (`aria-invalid`): border `destructive`; on focus a 3px `destructive/25` ring (`/40` in dark).
 - File inputs: the "Choose file" button is a chip inset 3px inside the field (24px tall, `rounded-sm`, 1px `input` border, `secondary` fill, 13px Medium `secondary-foreground`, 10px gap before the file name), so it reads as a button apart from the file name.
-- `Textarea`: same frame, min 60px tall, resizes vertically only.
-- Labels and messages use `Field`: `FieldLabel` 13/16 Medium in `foreground`, 6px above the control; `FieldDescription` one line of 13/16 `muted-foreground` under it; `FieldError` in `destructive`, saying what to do ("Enter a URL ending in .myshopify.com"). Description or error, never both.
+- `Textarea`: same frame, min 60px tall, grows with its content, resizes vertically only.
+- Wrap a control with `Field` for its label and messages (see Field). Error messages say what to do ("Enter a URL ending in .myshopify.com"). Description or error, never both.
 
-### Quick actions field
+### Field
 
-The sidebar's command field: an `InputGroup` (32px, `background`, 1px `border`, radius 10px, `shadow-xs`) with a command icon addon, placeholder "Quick actions", and a `Kbd` ("K", 12px Medium) as the trailing addon.
+shadcn `Field` and its parts (`FieldLabel`, `FieldDescription`, `FieldError`, `FieldGroup`, `FieldSet`, `FieldLegend`, `FieldSeparator`, `FieldContent`, `FieldTitle`).
+
+- Vertical fields: label, control, then description or error, 6px apart. Horizontal fields: 8px between label and control, centered.
+- `FieldLabel` / `FieldTitle`: 13/16 Medium `foreground`. `FieldDescription`: 13/16 `muted-foreground`. `FieldError`: 13/16 `destructive`. An invalid field turns its control and message red, never its label.
+- `FieldLegend`: `title` (16/20 Medium); a description right after it sits 4px below. `FieldGroup`: 20px between fields.
+- `FieldSeparator`: 21px row, 1px `border` line and the optional text sharing one center line.
+- Choice cards (a `FieldLabel` wrapping a `Field`): `rounded-lg`, 1px `input` border, `accent/50` hover, the input focus ring; checked: `primary/30` border on a `primary/5` fill.
+
+### Input Group
+
+shadcn `InputGroup` (`InputGroupAddon`, `InputGroupButton`, `InputGroupText`, `InputGroupInput`, `InputGroupTextarea`). The group is the field frame (identical to `Input`: fill, border, `shadow-xs`, hover, focus ring, invalid), and the control inside it is borderless.
+
+- Inline addons line up with plain input text: an icon or text sits 11px from the outer edge (1px border + 10px), 8px from the control's text. Inline-end mirrors it.
+- Buttons inside: `xs` / `icon-xs` (24px) are inset 3px top, bottom and side with a 6px radius (10 − 1 − 3); `sm` / `icon-sm` (28px) are inset 1px with an 8px radius.
+- Block addons (above or below a textarea): text at the same 11px; buttons at the edges inset 8px from the side and bottom.
+- Disabled: the whole group at 50%, once.
+- The sidebar's **Quick actions** field is an `InputGroup` with a command icon addon and a trailing `Kbd` ("K", 12px Medium).
 
 ### Select
 

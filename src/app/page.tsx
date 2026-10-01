@@ -2,7 +2,9 @@ import { AlertDemo } from "./_demos/alert-demo"
 import { AlertDialogDemo } from "./_demos/alert-dialog-demo"
 import { ButtonDemo } from "./_demos/button-demo"
 import { DialogDemo } from "./_demos/dialog-demo"
+import { FieldDemo } from "./_demos/field-demo"
 import { InputDemo } from "./_demos/input-demo"
+import { InputGroupDemo } from "./_demos/input-group-demo"
 import { LabelDemo } from "./_demos/label-demo"
 import { SeparatorDemo } from "./_demos/separator-demo"
 import { TextareaDemo } from "./_demos/textarea-demo"
@@ -37,11 +39,24 @@ const components = [
     demo: <DialogDemo />,
   },
   {
+    name: "field",
+    title: "Field",
+    description:
+      "Combine labels, controls, and help text to compose accessible form fields and grouped inputs.",
+    demo: <FieldDemo />,
+  },
+  {
     name: "input",
     title: "Input",
     description:
       "Displays a form input field or a component that looks like an input field.",
     demo: <InputDemo />,
+  },
+  {
+    name: "input-group",
+    title: "Input Group",
+    description: "Add addons, buttons, and helper content to inputs.",
+    demo: <InputGroupDemo />,
   },
   {
     name: "label",
