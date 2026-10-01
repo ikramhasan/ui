@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import { Geist_Mono, Inter } from "next/font/google"
 import "./globals.css"
 
+import { TooltipProvider } from "@/registry/ui/tooltip"
+
 const inter = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
@@ -31,7 +33,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className="flex min-h-full flex-col bg-sidebar">{children}</body>
+      <body className="flex min-h-full flex-col bg-sidebar">
+        <TooltipProvider>{children}</TooltipProvider>
+      </body>
     </html>
   )
 }

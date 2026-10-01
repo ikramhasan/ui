@@ -16,6 +16,7 @@ import { RadioGroupDemo } from "./_demos/radio-group-demo"
 import { SeparatorDemo } from "./_demos/separator-demo"
 import { SwitchDemo } from "./_demos/switch-demo"
 import { TextareaDemo } from "./_demos/textarea-demo"
+import { TooltipDemo } from "./_demos/tooltip-demo"
 import { ComponentSection } from "./_components/showcase"
 import { ThemeToggle } from "./_components/theme-toggle"
 
@@ -136,6 +137,13 @@ const components = [
     description:
       "Displays a form textarea or a component that looks like a textarea.",
     demo: <TextareaDemo />,
+  },
+  {
+    name: "tooltip",
+    title: "Tooltip",
+    description:
+      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
+    demo: <TooltipDemo />,
   },
 ]
 

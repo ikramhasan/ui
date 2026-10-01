@@ -221,6 +221,15 @@ shadcn `Popover` (`PopoverTrigger`, `PopoverContent`, `PopoverHeader`, `PopoverT
 - `PopoverTitle`: `body-medium`. `PopoverDescription`: `body` in `muted-foreground`, 4px below.
 - Motion: scales from the trigger (`--transform-origin`), opacity + scale 0.96 → 1 in 200ms, out in 150ms, ease `cubic-bezier(0.23, 1, 0.32, 1)`. Reduced motion keeps the fade.
 
+### Tooltip
+
+shadcn `Tooltip` (`TooltipProvider`, `TooltipTrigger`, `TooltipContent`). Wrap the app in `TooltipProvider`.
+
+- Inverted chip: `foreground` fill, `background` text, `caption` (12/16), `rounded-md` (8px), padding 6px 10px, so one line is 28px. Soft drop shadow (`0 1px 2px` + `0 4px 12px`, black 10%; dark 50% / 40%). `max-w-xs`, wraps beyond that.
+- Arrow: a 10px square turned 45°, centered 4px inside the edge, so its tip shows 3px and stops short of the trigger at the 4px offset. Base UI points it at the trigger.
+- With a `Kbd`: the key is inset 4px from the top, bottom and right, with a 4px radius (8 − 4). It is recessed into the tooltip's own surface, so it uses the opposite theme's Kbd recipe on `foreground`.
+- Motion: from the trigger, opacity + scale 0.96, 150ms in / 100ms out. No motion when Base UI marks the open `data-instant` (moving along a toolbar, keyboard focus). Reduced motion keeps the fade.
+
 ### Badge
 
 shadcn `Badge` (renders through `useRender`, so `render={<a />}` works). 20px tall, `rounded-sm` (6px), 13/16 Medium, 6px side padding (5px + a 1px border that is transparent except on `outline`). One or two words; sits 8px after a title.
