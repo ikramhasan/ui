@@ -14,8 +14,8 @@ export function ComponentSection({
   return (
     <section id={name} className="flex scroll-mt-10 flex-col gap-4">
       <div className="flex flex-col gap-1">
-        <h2 className="text-xl leading-7 font-medium">{title}</h2>
-        <p className="text-muted-foreground">{description}</p>
+        <h2 className="text-xl leading-7 font-medium text-balance">{title}</h2>
+        <p className="text-pretty text-muted-foreground">{description}</p>
       </div>
       <InstallCommand name={name} />
       {children && <div className="flex flex-col gap-3">{children}</div>}

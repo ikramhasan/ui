@@ -139,7 +139,7 @@ Family: **Inter**, through `--font-sans` (the `style` item installs shadcn's `fo
 | Card           | `0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.05)`              | `0 1px 2px rgba(0,0,0,0.4), 0 4px 12px rgba(0,0,0,0.3)`            | Floating cards (Getting started, the composer).        |
 | Menu           | `0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.10)`              | `0 1px 2px rgba(0,0,0,0.5), 0 8px 24px rgba(0,0,0,0.5)`            | Select, dropdown menu, popover content.                |
 
-**Focus**: `focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background` (a 2px gap and a 2px `ring` outline) on every control. Text inputs use a soft halo instead (see Input).
+**Focus**: `focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background` (a 2px gap and a 2px `ring` outline) on every control. Text inputs use a 3px soft ring around a `ring` border instead (see Input).
 
 ---
 
@@ -186,8 +186,9 @@ shadcn `Switch`, keeping its `size` prop: `default` is the design track below; `
 ### Input, Textarea and Field
 
 - `Input`: 32px, `background` fill, 1px `input`, radius 10px, `shadow-xs`, padding 0 10px, text `body`, placeholder `muted-foreground`. For a leading icon or a trailing hint, use `InputGroup`.
-- Hover border: `input` + 10% `foreground`. Focus: border `ring` + 3px `ring/20` halo.
-- Invalid (`aria-invalid`): border `destructive`, focus halo `destructive/20`.
+- Hover border: `input` + 10% `foreground`. Focus: border `ring` + a 3px `ring/30` ring (`ring/40` in dark).
+- Invalid (`aria-invalid`): border `destructive`; on focus a 3px `destructive/25` ring (`/40` in dark).
+- File inputs: the "Choose file" button is a chip inset 3px inside the field (24px tall, `rounded-sm`, 1px `input` border, `secondary` fill, 13px Medium `secondary-foreground`, 10px gap before the file name), so it reads as a button apart from the file name.
 - `Textarea`: same frame, min 60px tall, resizes vertically only.
 - Labels and messages use `Field`: `FieldLabel` 13/16 Medium in `foreground`, 6px above the control; `FieldDescription` one line of 13/16 `muted-foreground` under it; `FieldError` in `destructive`, saying what to do ("Enter a URL ending in .myshopify.com"). Description or error, never both.
 

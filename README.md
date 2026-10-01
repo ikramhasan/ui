@@ -18,7 +18,7 @@ Components only use the standard shadcn variables (`--primary`, `--secondary`, `
 
 Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://ui.shadcn.com/r/styles/base-nova/registry.json). Tick a box when the component is in `registry/ui/`, in `registry.json` and on the landing page.
 
-**Progress: 1 / 63**
+**Progress: 5 / 63**
 
 - [ ] Accordion (`accordion`)
 - [ ] Alert (`alert`)
@@ -48,12 +48,12 @@ Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://
 - [ ] Field (`field`)
 - [ ] Form (`form`)
 - [ ] Hover Card (`hover-card`)
-- [ ] Input (`input`)
+- [x] Input (`input`)
 - [ ] Input Group (`input-group`)
 - [ ] Input OTP (`input-otp`)
 - [ ] Item (`item`)
 - [ ] Kbd (`kbd`)
-- [ ] Label (`label`)
+- [x] Label (`label`)
 - [ ] Marker (`marker`)
 - [ ] Menubar (`menubar`)
 - [ ] Message (`message`)
@@ -68,7 +68,7 @@ Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://
 - [ ] Resizable (`resizable`)
 - [ ] Scroll Area (`scroll-area`)
 - [ ] Select (`select`)
-- [ ] Separator (`separator`)
+- [x] Separator (`separator`)
 - [ ] Sheet (`sheet`)
 - [ ] Sidebar (`sidebar`)
 - [ ] Skeleton (`skeleton`)
@@ -78,7 +78,7 @@ Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://
 - [ ] Switch (`switch`)
 - [ ] Table (`table`)
 - [ ] Tabs (`tabs`)
-- [ ] Textarea (`textarea`)
+- [x] Textarea (`textarea`)
 - [ ] Toast (`toast`)
 - [ ] Toggle (`toggle`)
 - [ ] Toggle Group (`toggle-group`)
