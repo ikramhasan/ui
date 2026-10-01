@@ -1,3 +1,4 @@
+import { AlertDemo } from "./_demos/alert-demo"
 import { ButtonDemo } from "./_demos/button-demo"
 import { InputDemo } from "./_demos/input-demo"
 import { LabelDemo } from "./_demos/label-demo"
@@ -7,6 +8,12 @@ import { ComponentSection } from "./_components/showcase"
 import { ThemeToggle } from "./_components/theme-toggle"
 
 const components = [
+  {
+    name: "alert",
+    title: "Alert",
+    description: "Displays a callout for user attention.",
+    demo: <AlertDemo />,
+  },
   {
     name: "button",
     title: "Button",

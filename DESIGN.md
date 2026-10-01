@@ -167,6 +167,16 @@ Every component is the shadcn component of the same name (base-nova, on Base UI)
 - **Icon buttons** are `size="icon"` (32×32, one 16px icon): `secondary` for "+ connect" on app rows, `ghost` in toolbars and message actions (`icon-sm`, 28px). Always give them an `aria-label`.
 - **Send button**: `<Button size="icon" className="rounded-full">`, the default (primary) variant.
 
+### Alert
+
+shadcn `Alert` (`AlertTitle`, `AlertDescription`, `AlertAction`), variants `default` and `destructive`.
+
+- Container: `card` fill, 1px `border`, `rounded-xl`, padding 12px, no shadow. A one-line alert is 44px, the same as a list row.
+- Optional 16px icon, 10px before the text, nudged down 2px to center on the title line.
+- `AlertTitle`: `body-medium` in `foreground`. `AlertDescription`: `body` in `muted-foreground`, 2px below the title. Links are underlined.
+- `AlertAction`: 8px from the top and right, sized for `size="sm"` / `icon-sm` buttons (28px), which then center on the title line.
+- `destructive`: title and icon in `destructive`, description in `destructive/90`. Same neutral container.
+
 ### Badge
 
 20px tall (`h-5`), padding 0 6px, `rounded-sm` (6px), 13/16 Medium. One or two words. Sits 8px after a title. Uses shadcn's variants:
