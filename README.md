@@ -18,7 +18,7 @@ Components only use the standard shadcn variables (`--primary`, `--secondary`, `
 
 Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://ui.shadcn.com/r/styles/base-nova/registry.json). Tick a box when the component is in `registry/ui/`, in `registry.json` and on the landing page.
 
-**Progress: 10 / 63**
+**Progress: 12 / 63**
 
 - [ ] Accordion (`accordion`)
 - [x] Alert (`alert`)
@@ -26,7 +26,7 @@ Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://
 - [ ] Aspect Ratio (`aspect-ratio`)
 - [ ] Attachment (`attachment`)
 - [ ] Avatar (`avatar`)
-- [ ] Badge (`badge`)
+- [x] Badge (`badge`)
 - [ ] Breadcrumb (`breadcrumb`)
 - [ ] Bubble (`bubble`)
 - [x] Button (`button`)
@@ -52,7 +52,7 @@ Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://
 - [x] Input Group (`input-group`)
 - [ ] Input OTP (`input-otp`)
 - [ ] Item (`item`)
-- [ ] Kbd (`kbd`)
+- [x] Kbd (`kbd`)
 - [x] Label (`label`)
 - [ ] Marker (`marker`)
 - [ ] Menubar (`menubar`)

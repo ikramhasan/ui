@@ -1,10 +1,12 @@
 import { AlertDemo } from "./_demos/alert-demo"
 import { AlertDialogDemo } from "./_demos/alert-dialog-demo"
+import { BadgeDemo } from "./_demos/badge-demo"
 import { ButtonDemo } from "./_demos/button-demo"
 import { DialogDemo } from "./_demos/dialog-demo"
 import { FieldDemo } from "./_demos/field-demo"
 import { InputDemo } from "./_demos/input-demo"
 import { InputGroupDemo } from "./_demos/input-group-demo"
+import { KbdDemo } from "./_demos/kbd-demo"
 import { LabelDemo } from "./_demos/label-demo"
 import { SeparatorDemo } from "./_demos/separator-demo"
 import { TextareaDemo } from "./_demos/textarea-demo"
@@ -24,6 +26,12 @@ const components = [
     description:
       "A modal dialog that interrupts the user with important content and expects a response.",
     demo: <AlertDialogDemo />,
+  },
+  {
+    name: "badge",
+    title: "Badge",
+    description: "Displays a badge or a component that looks like a badge.",
+    demo: <BadgeDemo />,
   },
   {
     name: "button",
@@ -57,6 +65,12 @@ const components = [
     title: "Input Group",
     description: "Add addons, buttons, and helper content to inputs.",
     demo: <InputGroupDemo />,
+  },
+  {
+    name: "kbd",
+    title: "Kbd",
+    description: "Used to display textual user input from keyboard.",
+    demo: <KbdDemo />,
   },
   {
     name: "label",

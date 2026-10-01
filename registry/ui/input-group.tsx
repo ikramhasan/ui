@@ -23,14 +23,14 @@ function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 const inputGroupAddonVariants = cva(
-  "flex h-auto cursor-text items-center justify-center gap-2 py-1.5 text-sm font-medium text-muted-foreground select-none group-data-[disabled=true]/input-group:opacity-50 [&>kbd]:rounded-[calc(var(--radius)-5px)] [&>svg:not([class*='size-'])]:size-4",
+  "flex h-auto cursor-text items-center justify-center gap-2 py-1.5 text-sm font-medium text-muted-foreground select-none group-data-[disabled=true]/input-group:opacity-50 [&>kbd]:rounded-[4px] [&>svg:not([class*='size-'])]:size-4",
   {
     variants: {
       align: {
         "inline-start":
-          "order-first pl-2.5 has-[>button]:pl-[3px] has-[>[data-size=icon-sm]]:pl-px has-[>[data-size=sm]]:pl-px has-[>kbd]:pl-1",
+          "order-first pl-2.5 has-[>button]:pl-[3px] has-[>[data-size=icon-sm]]:pl-px has-[>[data-size=sm]]:pl-px has-[>kbd]:pl-[5px]",
         "inline-end":
-          "order-last pr-2.5 has-[>button]:pr-[3px] has-[>[data-size=icon-sm]]:pr-px has-[>[data-size=sm]]:pr-px has-[>kbd]:pr-1",
+          "order-last pr-2.5 has-[>button]:pr-[3px] has-[>[data-size=icon-sm]]:pr-px has-[>[data-size=sm]]:pr-px has-[>kbd]:pr-[5px]",
         "block-start":
           "order-first w-full justify-start px-2.5 pt-2 group-has-[>input]/input-group:pt-2 [.border-b]:pb-2 [&>button:first-child]:-ml-0.5 [&>button:last-child]:-mr-0.5",
         "block-end":

@@ -31,7 +31,7 @@ Themes: light (default) and dark, toggled with the `dark` class on `<html>` (sha
 | `secondary`                  | `#f5f5f5` | `#242424` | Bottom of the secondary button gradient, segmented tab track.                                                                                         |
 | `secondary-foreground`       | `#1a1a1a` | `#f5f5f5` | Label and icon on the secondary button, sampled from the reference buttons.                                                                           |
 | `muted`                      | `#f5f5f5` | `#242424` | Nested panels (Tool permissions), attachment chips, the sources pill, the composer upsell strip, neutral badges.                                     |
-| `muted-foreground`           | `#777777` | `#9a9a9a` | Descriptions, row keys, section labels, nav icons, meta ("1 of 5"), placeholders. 4.48:1 on `background`, just under AA for small text: keep it to secondary information, never body copy. Dark: 6:1. |
+| `muted-foreground`           | `#6e6e6e` | `#9a9a9a` | Descriptions, row keys, section labels, nav icons, meta ("1 of 5"), placeholders. 5.1:1 on `background`, 4.7:1 on `muted`, 4.55:1 on the `accent` hover fill (darkened from the reference #777777 to pass AA). Dark: 6:1. |
 | `accent`                     | `#f2f2f2` | `#2a2a2a` | Hover and highlighted fills: ghost and outline buttons, menu items, list rows. (shadcn's `accent` is a hover fill, not a brand color.)               |
 | `accent-foreground`          | `#333333` | `#ececec` | Text on `accent`.                                                                                                                                     |
 | `destructive`                | `#d42f2f` | `#ff6b6b` | Errors and destructive actions: invalid field borders and messages, the destructive button. 4.9:1 on `background` (light), 6.5:1 (dark). Soft fills use `destructive/10`–`/20`. |
@@ -45,7 +45,7 @@ Themes: light (default) and dark, toggled with the `dark` class on `<html>` (sha
 | `sidebar-border`             | `#ebebeb` | `#2e2e2e` | Sidebar edge and rules.                                                                                                                               |
 | `sidebar-ring`               | `#0077e6` | `#3d9bff` | Focus inside the sidebar.                                                                                                                             |
 | `chart-1` … `chart-5`        | shadcn neutral | shadcn neutral | Charts (unchanged from shadcn's neutral base).                                                                                               |
-| `success` _(added color)_    | `#15b042` | `#3ddc6e` | Positive status (Connected) and the granted-permission shield. Added the way shadcn's theming docs add a color (`--success` + `--color-success`); no shadcn component uses it, so apply it with `className`. Soft fill: `bg-success/15`. Light text-on-fill is ~2.5:1, so always pair it with a word. |
+| `success` _(added color)_    | `#0a772a` | `#3ddc6e` | Positive status (Connected) and the granted-permission shield. Added the way shadcn's theming docs add a color (`--success` + `--color-success`); no shadcn component uses it, so apply it with `className`. Soft fill: `bg-success/15` (text on it 4.6:1). Darkened from the reference #15B042, which was 2.5:1 on its fill and 2.6:1 as an icon on white. |
 
 ### Color rules
 
@@ -65,6 +65,8 @@ Some design colors aren't tokens; components derive them from tokens with `color
 | Default button border         | `primary` + 15% black                              | `#3054b5` | `#3054b5` |
 | Secondary button gradient top | `background` (light); `secondary` + 4% `foreground` (dark) | `#ffffff` | `#2b2b2b` |
 | Secondary button hover bottom | `secondary` + 5% `foreground` (light), 8% (dark)   | `#ebebeb` | `#333333` |
+
+**Text on tints.** `primary` and `destructive` text on their own 10–20% tints (Badge `default` / `destructive`, Button `destructive`) is darkened with 12% black in light mode, and lifted in dark mode (`primary` + 35% white, `destructive` + 25% white), so it passes 4.5:1 at rest and on hover. Button and Badge `link` text is lifted the same way in dark.
 
 ---
 
@@ -192,14 +194,16 @@ shadcn `Dialog` and `AlertDialog`, same parts and props. Both share one frame: a
 
 ### Badge
 
-20px tall (`h-5`), padding 0 6px, `rounded-sm` (6px), 13/16 Medium. One or two words. Sits 8px after a title. Uses shadcn's variants:
+shadcn `Badge` (renders through `useRender`, so `render={<a />}` works). 20px tall, `rounded-sm` (6px), 13/16 Medium, 6px side padding (5px + a 1px border that is transparent except on `outline`). One or two words; sits 8px after a title.
 
+- With a 12px icon (`data-icon="inline-start"` / `"inline-end"`): 4px from the icon to the edge (matching the 4px above and below it) and 4px to the text.
+- `default`: `primary/10` fill (`/20` in dark), `primary` text darkened/lifted per **Text on tints** ("New").
 - `secondary`: `muted` fill, `muted-foreground` text ("Disconnected").
-- `default`: `primary/10` fill, `primary` text ("New").
-- `destructive`: `destructive/10` fill, `destructive` text.
+- `destructive`: `destructive/10` fill (`/20` in dark), `destructive` text per **Text on tints**.
 - `outline`: 1px `border`, `foreground` text.
-- `ghost`: no fill, `muted-foreground` text; `accent` fill on hover when it is a link.
-- `link`: `primary` text, underline on hover.
+- `ghost`: no fill, `muted-foreground` text.
+- `link`: `primary` text (lifted in dark like `default`), underline on hover.
+- As links, filled badges darken slightly on hover; `outline` and `ghost` take the `accent` fill. Focus uses the standard ring.
 - Positive status has no shadcn variant: `className="bg-success/15 text-success"` ("Connected").
 
 ### Switch
@@ -268,7 +272,9 @@ shadcn `Breadcrumb`. `body` in `muted-foreground`, slash separators (`Breadcrumb
 
 ### Kbd
 
-shadcn `Kbd`. 12/16 Medium, `muted-foreground`.
+shadcn `Kbd` / `KbdGroup`. 20px tall, min 20px wide, `rounded-sm`, `muted` fill, 12/16 Medium `muted-foreground`, 12px icons; keys in a group are 4px apart.
+
+- Inside an `InputGroup` addon it is inset 5px from the top, bottom and side, with a 4px radius (10 − 1 − 5).
 
 ---
 
@@ -322,7 +328,8 @@ Lucide (`iconLibrary: "lucide"`): 16px line icons on a 24-unit grid, 1.75 stroke
 
 - Keyboard behavior, roles and ARIA come from Base UI; don't reimplement them.
 - Every control has a visible focus ring and an accessible name.
-- Light theme, kept as specified and flagged: `success` on its soft fill is ~2.5:1, `muted-foreground` on white 4.48:1. Keep badges worded and keep `muted-foreground` for secondary text only. Both pass in dark.
+- All text meets WCAG AA (4.5:1) in both themes, including hover states; icons and control borders meet 3:1. Check new pairs with the browser's own `color-mix()` output, not by eye.
+- Still never carry meaning by color alone: badges are worded, a granted permission has a shield icon.
 
 ---
 
