@@ -5,6 +5,7 @@ import { ButtonDemo } from "./_demos/button-demo"
 import { CardDemo } from "./_demos/card-demo"
 import { CheckboxDemo } from "./_demos/checkbox-demo"
 import { DialogDemo } from "./_demos/dialog-demo"
+import { DropdownMenuDemo } from "./_demos/dropdown-menu-demo"
 import { FieldDemo } from "./_demos/field-demo"
 import { InputDemo } from "./_demos/input-demo"
 import { InputGroupDemo } from "./_demos/input-group-demo"
@@ -65,6 +66,13 @@ const components = [
     description:
       "A window overlaid on either the primary window or another dialog window, rendering the content underneath inert.",
     demo: <DialogDemo />,
+  },
+  {
+    name: "dropdown-menu",
+    title: "Dropdown Menu",
+    description:
+      "Displays a menu to the user, such as a set of actions or functions, triggered by a button.",
+    demo: <DropdownMenuDemo />,
   },
   {
     name: "field",

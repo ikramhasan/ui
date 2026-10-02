@@ -221,6 +221,19 @@ shadcn `Popover` (`PopoverTrigger`, `PopoverContent`, `PopoverHeader`, `PopoverT
 - `PopoverTitle`: `body-medium`. `PopoverDescription`: `body` in `muted-foreground`, 4px below.
 - Motion: scales from the trigger (`--transform-origin`), opacity + scale 0.96 → 1 in 200ms, out in 150ms, ease `cubic-bezier(0.23, 1, 0.32, 1)`. Reduced motion keeps the fade.
 
+### Dropdown Menu
+
+shadcn `DropdownMenu` (all upstream parts; `DropdownMenuItem` `variant` `default` · `destructive`, `inset` on items and labels). The Dialog's muted shell holding 32px rows; the highlighted row lifts out of it as a raised card.
+
+- Content: `muted` (dark: `popover` + 20% black, like the Dialog shell), 1px `border` ring, `rounded-xl` (14px), menu shadow plus a 1px inner top highlight, 4px padding, 4px below the trigger, start-aligned, at least the trigger's width.
+- Items: 32px (`body` 20px line + 6px top and bottom), padding 0 8px, `rounded-lg` (10px = 14 − 4), 8px gap, 16px `muted-foreground` icons. Highlighted (hover or keyboard): a raised card, the secondary Button skin (`background` → `secondary` gradient, 1px hairline, 1px drop shadow, inner highlight), with the icon going to `foreground`. Disabled: 50%.
+- `inset`: 32px left padding (8 + 16 icon + 8 gap), so inset text lines up with text after an icon.
+- `destructive`: text and icon in `destructive` per **Text on tints**; highlighted, the raised card tinted with `destructive` (4% → 9% over `background`; 16% → 11% over `secondary` in dark) and a `destructive`-tinted hairline.
+- Checkbox and radio items: a 16px `primary` check (2.5 stroke) 8px from the right (dark: `primary` + 35% white). The check is the only state mark, for both, and draws itself in like Checkbox's tick.
+- `DropdownMenuLabel`: `caption` Medium in `muted-foreground`, 28px. `DropdownMenuShortcut`: a recessed keycap (the Kbd recipe), 20px on the 20px text line, `caption` Medium in `muted-foreground`, right-aligned, wide tracking. Separator: engraved, a 1px `border` line (dark: black/40) with a 1px highlight under it, edge to edge, 4px above and below.
+- Sub-menus open to the right with the first item level with its trigger; the trigger keeps the raised card while open and ends in a `muted-foreground` chevron.
+- Motion: from the trigger, opacity + scale 0.96, 150ms in / 100ms out. Keyboard opens and Escape closes are instant (Base UI's `data-instant`). Reduced motion keeps the fade.
+
 ### Tooltip
 
 shadcn `Tooltip` (`TooltipProvider`, `TooltipTrigger`, `TooltipContent`). Wrap the app in `TooltipProvider`.
