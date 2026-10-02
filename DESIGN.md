@@ -300,7 +300,7 @@ shadcn `Field` and its parts (`FieldLabel`, `FieldDescription`, `FieldError`, `F
 - Vertical fields: label, control, then description or error, 6px apart. Horizontal fields: 8px between label and control, centered.
 - `FieldLabel` / `FieldTitle`: 13/16 Medium `foreground`. `FieldDescription`: 13/16 `muted-foreground`. `FieldError`: 13/16 `destructive`. An invalid field turns its control and message red, never its label.
 - `FieldLegend`: `title` (16/20 Medium); a description right after it sits 4px below. `FieldGroup`: 20px between fields.
-- `FieldSeparator`: 21px row, 1px `border` line and the optional text sharing one center line.
+- `FieldSeparator`: 21px row, the engraved `Separator` line and the optional text sharing one center line.
 - Choice cards (a `FieldLabel` wrapping a `Field`): `rounded-lg`, 1px `input` border, `accent/50` hover, the input focus ring; checked: `primary/30` border on a `primary/5` fill.
 
 ### Input Group
@@ -343,6 +343,10 @@ shadcn `Sidebar` with `--sidebar-width: 17rem` (272px).
 ### Breadcrumb
 
 shadcn `Breadcrumb`. `body` in `muted-foreground`, slash separators (`BreadcrumbSeparator` with a slash), 8px gaps; `BreadcrumbPage` is `foreground` Medium; only the first crumb has an icon.
+
+### Separator
+
+shadcn `Separator` (`orientation` `horizontal` · `vertical`). Engraved: a 1px `border` line (dark: black/40) with a 1px highlight under it, or to its right when vertical (white 80%; dark: 5%). The highlight is a shadow, so the separator takes 1px of layout. `FieldSeparator`, `ItemSeparator` and `DropdownMenuSeparator` use the same groove.
 
 ### Kbd
 
