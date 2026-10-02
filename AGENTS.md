@@ -54,7 +54,7 @@ A component library distributed through the **shadcn CLI**: every shadcn/ui comp
 
 - Replace `http://localhost:3000` on deploy: `homepage` and every `registryDependencies` URL in `registry.json`, plus the landing-page install commands.
 - The design catalog artifact still lists the old `muted-foreground` (#777777) and `success` (#15B042); the shipped values are #6e6e6e and #0a772a.
-- Suggested next: Toggle and Toggle Group (reuse the Tabs track and chip), then Slider, then Context Menu and Menubar (reuse the Dropdown Menu items).
+- Suggested next: Slider (Switch-style recessed groove, raised thumb), then Context Menu and Menubar (reuse the Dropdown Menu items), then Button Group.
 
 ## Layout
 

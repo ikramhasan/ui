@@ -19,6 +19,8 @@ import { SeparatorDemo } from "./_demos/separator-demo"
 import { SwitchDemo } from "./_demos/switch-demo"
 import { TabsDemo } from "./_demos/tabs-demo"
 import { TextareaDemo } from "./_demos/textarea-demo"
+import { ToggleDemo } from "./_demos/toggle-demo"
+import { ToggleGroupDemo } from "./_demos/toggle-group-demo"
 import { TooltipDemo } from "./_demos/tooltip-demo"
 import { ComponentSection } from "./_components/showcase"
 import { ThemeToggle } from "./_components/theme-toggle"
@@ -161,6 +163,18 @@ const components = [
     description:
       "Displays a form textarea or a component that looks like a textarea.",
     demo: <TextareaDemo />,
+  },
+  {
+    name: "toggle",
+    title: "Toggle",
+    description: "A two-state button that can be either on or off.",
+    demo: <ToggleDemo />,
+  },
+  {
+    name: "toggle-group",
+    title: "Toggle Group",
+    description: "A set of two-state buttons that can be toggled on or off.",
+    demo: <ToggleGroupDemo />,
   },
   {
     name: "tooltip",

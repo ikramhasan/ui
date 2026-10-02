@@ -18,7 +18,7 @@ Components only use the standard shadcn variables (`--primary`, `--secondary`, `
 
 Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://ui.shadcn.com/r/styles/base-nova/registry.json). Tick a box when the component is in `registry/ui/`, in `registry.json` and on the landing page.
 
-**Progress: 22 / 63**
+**Progress: 24 / 63**
 
 - [ ] Accordion (`accordion`)
 - [x] Alert (`alert`)
@@ -80,8 +80,8 @@ Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://
 - [x] Tabs (`tabs`)
 - [x] Textarea (`textarea`)
 - [ ] Toast (`toast`)
-- [ ] Toggle (`toggle`)
-- [ ] Toggle Group (`toggle-group`)
+- [x] Toggle (`toggle`)
+- [x] Toggle Group (`toggle-group`)
 - [x] Tooltip (`tooltip`)
 
 ## Development

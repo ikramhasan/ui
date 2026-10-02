@@ -323,6 +323,17 @@ shadcn `Select` (`SelectTrigger` `size` `default` · `sm`, `SelectValue`, `Selec
 - Motion: below the trigger, opacity + scale 0.96 from the trigger, 150ms in / 100ms out; laid over the trigger it only fades, since the item lands on the value. Reduced motion keeps the fade.
 - Closes on pick, outside click, Escape (Base UI behavior).
 
+### Toggle and Toggle Group
+
+shadcn `Toggle` (`variant` `default` · `outline`, `size` `sm` · `default` · `lg`) and `ToggleGroup` / `ToggleGroupItem` (plus `spacing`, `orientation`, `multiple`). On is pressed into the surface: the inverse of the raised Button.
+
+- Off: `default` is flat with an `accent` hover; `outline` is the secondary Button skin. Text and icons `muted-foreground`, `foreground` on hover.
+- On (`data-pressed`): the Kbd's recessed well fades in on `::before` (150ms), the text goes to `foreground`, and an `outline` toggle drops its lift (the well covers its border). Pressed text measures 10:1+ in both themes.
+- Sizes: 32px (`default`), 28px (`sm`, 13px text, 14px icons), 36px (`lg`), at least square. Press: scale 0.95 (reduced motion drops it).
+- `ToggleGroup` with `spacing={0}` and the default variant is the Tabs track: recessed, 3px padding, the same outer height as a Toggle. Items are 6px shorter (26 / 22 / 30px), rounded 7px (`sm` 5px: 10 / 8 − 3, concentric), and the pressed item rises as the Tabs chip. Inactive text is `muted-foreground` + 20% `foreground` in light (4.9:1 on the track), the focus ring is inset. Vertical stacks the same track.
+- `spacing={0}` with `outline` is a joined button strip: shared 1px borders, outer corners only; the pressed cell is the well.
+- Arrow keys move between items (Base UI behavior).
+
 ### Tabs
 
 shadcn `Tabs` (`TabsList` `variant` `default` · `line`, `TabsTrigger`, `TabsContent`; `orientation` `horizontal` · `vertical`). The active tab's skin is Base UI's `Tabs.Indicator`, rendered inside `TabsList`, so it slides between tabs.
