@@ -261,6 +261,19 @@ shadcn `Popover` (`PopoverTrigger`, `PopoverContent`, `PopoverHeader`, `PopoverT
 - `PopoverTitle`: `body-medium`. `PopoverDescription`: `body` in `muted-foreground`, 4px below.
 - Motion: scales from the trigger (`--transform-origin`), opacity + scale 0.96 → 1 in 200ms, out in 150ms, ease `cubic-bezier(0.23, 1, 0.32, 1)`. Reduced motion keeps the fade.
 
+### Calendar and Date Picker
+
+shadcn `Calendar` (react-day-picker: `mode` `single` · `multiple` · `range`, `captionLayout`, `numberOfMonths`, `showWeekNumber`, `buttonVariant`; `CalendarDayButton`). A date picker is shadcn's composition: a `Button` trigger opening `PopoverContent className="w-auto p-0"` with a `Calendar` inside. Every day is a key on a keyboard.
+
+- Cells 32px (`--cell-size`), `rounded-md` (8px = the popover's 14px − 6px padding, concentric). 4px between weeks. Weekdays `caption` Medium `muted-foreground`; days `body`, tabular.
+- Hover: a white key lifts out of the surface (the secondary Button skin, cross-fading in on `::before`).
+- Today: recessed into the surface (the Kbd's well).
+- Selected, and both ends of a range: the default Button skin (blue gradient, inner highlight, blue lift), popping in from 0.9 scale on `::after`, 150ms. Hover brightens it 6%.
+- Range: a recessed groove (the Slider track) runs between the two blue keys, 2px shorter than the key top and bottom, from the center of the start key to the center of the end key, rounded at week edges. Hard-edged shadows only, so cells join without a seam. Outside days on the groove lift `muted-foreground` 20% toward `foreground` in light (4.5:1).
+- Nav: `ghost` 32px chevron buttons, 6px from the edges, centered on the caption line. `captionLayout="dropdown"`: each month/year is a 28px secondary key with a native select laid over it; focus shows the Button ring on the key.
+- Press: 0.95 scale. Focus: the 2px `ring`, no offset, so it stays inside the cell. Disabled days 50%; booked days add `line-through` via `modifiersClassNames`.
+- Arrow keys, Page Up / Down, Home / End (react-day-picker behavior).
+
 ### Hover Card
 
 shadcn `HoverCard` (`HoverCardTrigger`, `HoverCardContent`), on Base UI's Preview Card. The Popover surface: `popover`, 1px `border` ring, `rounded-xl` (14px), menu shadow, 16px padding, 256px wide, 4px from the trigger. Opens on hover or keyboard focus after Base UI's delay. The trigger is an `<a>`; style it with `buttonVariants` rather than `render={<Button />}`, which would turn the link into a button.

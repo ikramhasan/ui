@@ -4,6 +4,7 @@ import { AlertDialogDemo } from "./_demos/alert-dialog-demo"
 import { BadgeDemo } from "./_demos/badge-demo"
 import { ButtonDemo } from "./_demos/button-demo"
 import { ButtonGroupDemo } from "./_demos/button-group-demo"
+import { CalendarDemo } from "./_demos/calendar-demo"
 import { CardDemo } from "./_demos/card-demo"
 import { CheckboxDemo } from "./_demos/checkbox-demo"
 import { CollapsibleDemo } from "./_demos/collapsible-demo"
@@ -74,6 +75,13 @@ const components = [
     description:
       "A container that groups related buttons together with consistent styling.",
     demo: <ButtonGroupDemo />,
+  },
+  {
+    name: "calendar",
+    title: "Calendar",
+    description:
+      "A date field component that allows users to enter and edit date. Pair it with a Popover for a date picker.",
+    demo: <CalendarDemo />,
   },
   {
     name: "card",
