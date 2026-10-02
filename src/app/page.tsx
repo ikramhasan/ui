@@ -16,6 +16,7 @@ import { KbdDemo } from "./_demos/kbd-demo"
 import { LabelDemo } from "./_demos/label-demo"
 import { MenubarDemo } from "./_demos/menubar-demo"
 import { PopoverDemo } from "./_demos/popover-demo"
+import { ProgressDemo } from "./_demos/progress-demo"
 import { RadioGroupDemo } from "./_demos/radio-group-demo"
 import { SelectDemo } from "./_demos/select-demo"
 import { SeparatorDemo } from "./_demos/separator-demo"
@@ -147,6 +148,13 @@ const components = [
     title: "Popover",
     description: "Displays rich content in a portal, triggered by a button.",
     demo: <PopoverDemo />,
+  },
+  {
+    name: "progress",
+    title: "Progress",
+    description:
+      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+    demo: <ProgressDemo />,
   },
   {
     name: "radio-group",

@@ -279,6 +279,14 @@ shadcn `Badge` (renders through `useRender`, so `render={<a />}` works). 20px ta
 - As links, filled badges darken slightly on hover; `outline` and `ghost` take the `accent` fill. Focus uses the standard ring.
 - Positive status has no shadcn variant: `className="bg-success/15 text-success"` ("Connected").
 
+### Progress
+
+shadcn `Progress` (`ProgressTrack`, `ProgressIndicator`, `ProgressLabel`, `ProgressValue`). The Slider without a thumb.
+
+- Track: the Slider's 6px recessed groove, fully round, with its 3:1 inner hairline (3.5:1 measured in both themes) drawn above the fill, so the channel stays inside the groove's lip.
+- Indicator: the Slider's `primary` channel, rounded at its leading end. Width eases in 500ms, ease `cubic-bezier(0.23, 1, 0.32, 1)`; reduced motion jumps.
+- Label (`body` Medium) and value (`body` `muted-foreground`, tabular, right-aligned) sit 12px above the track.
+
 ### Slider
 
 shadcn `Slider` (one thumb per value; `orientation` `horizontal` · `vertical`, `min`, `max`, `step`, `disabled`). The Switch's parts laid flat: a recessed groove, a `primary` channel and a raised white thumb.
