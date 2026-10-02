@@ -17,6 +17,7 @@ import { RadioGroupDemo } from "./_demos/radio-group-demo"
 import { SelectDemo } from "./_demos/select-demo"
 import { SeparatorDemo } from "./_demos/separator-demo"
 import { SwitchDemo } from "./_demos/switch-demo"
+import { TabsDemo } from "./_demos/tabs-demo"
 import { TextareaDemo } from "./_demos/textarea-demo"
 import { TooltipDemo } from "./_demos/tooltip-demo"
 import { ComponentSection } from "./_components/showcase"
@@ -146,6 +147,13 @@ const components = [
     description:
       "A control that allows the user to toggle between checked and not checked.",
     demo: <SwitchDemo />,
+  },
+  {
+    name: "tabs",
+    title: "Tabs",
+    description:
+      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
+    demo: <TabsDemo />,
   },
   {
     name: "textarea",

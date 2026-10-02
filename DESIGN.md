@@ -325,11 +325,14 @@ shadcn `Select` (`SelectTrigger` `size` `default` · `sm`, `SelectValue`, `Selec
 
 ### Tabs
 
-shadcn `Tabs` (`TabsList`, `TabsTrigger`, `TabsContent`), using `TabsList`'s `variant`:
+shadcn `Tabs` (`TabsList` `variant` `default` · `line`, `TabsTrigger`, `TabsContent`; `orientation` `horizontal` · `vertical`). The active tab's skin is Base UI's `Tabs.Indicator`, rendered inside `TabsList`, so it slides between tabs.
 
-- `variant="default"` (filters, view toggles): 32px track, `muted` fill, 1px `border`, `rounded-lg`, 2px padding. Triggers `rounded-md`; the active one looks like a secondary button (gradient, secondary shadow, `secondary-foreground`).
-- `variant="line"` (page sections): 14/16 Medium triggers in `muted-foreground`, 20px apart, 36px tall, over a 1px `border` line. Active: `foreground` with a 2px `foreground` bar on the line. An optional count is a `secondary` badge.
-- 2–5 tabs, arrow keys move between them (Base UI behavior).
+- `variant="default"`: a recessed 32px track (the Kbd recipe: `muted` + 7% `foreground` under the top lip → `muted`, inner shadow, hairline, white catch-light below), `rounded-lg`, 3px padding. Triggers are 26px, `rounded-[7px]` (10 − 3, concentric). The active tab sits on a raised chip (white gradient, hairline, 1px drop shadow, inner highlight). Inactive text is `muted-foreground` + 20% `foreground` in light (4.9:1 on the track's darkest stop; plain `muted-foreground` is 4.1:1), `muted-foreground` in dark (5.5:1).
+- `variant="line"`: transparent, a 1px `border` hairline under the triggers (right of them when vertical) and a 2px `foreground` bar riding it under the active tab. Inactive text `muted-foreground`. An optional count is a `secondary` badge.
+- Vertical: triggers stack at 26px, full width, start-aligned.
+- Focus: 2px `ring`, inset inside the track so it never covers a neighbor or the lip. Hit areas reach 40px on the free axis. Disabled: 50%.
+- Motion: the indicator slides (translate, width, height) in 200ms, ease `cubic-bezier(0.23, 1, 0.32, 1)`; text color fades in 150ms. Reduced motion jumps.
+- Arrow keys move between tabs (Base UI behavior).
 
 ### Sidebar
 
