@@ -42,6 +42,7 @@ A component library distributed through the **shadcn CLI**: every shadcn/ui comp
 
 - **Dev server misses new files.** The user's `pnpm dev` sometimes doesn't generate Tailwind classes for files created after it started. Don't restart it yourself (it's the user's process, and `next dev` refuses a second instance in this directory). Verify on a production build instead: `pnpm exec next build && pnpm exec next start -p 3001`, then load with a cache-busting query (`?v=N`).
 - **Hidden Chrome tabs freeze transitions and `requestAnimationFrame`.** The test tab is usually in the background: computed styles show mid-transition values, and Base UI popups never finish opening or unmounting. Measure with `*{transition:none!important}` injected, or with `offsetTop` / `offsetWidth`, and use `document.visibilityState` to tell. Ask the user to feel-check motion themselves.
+- **Tailwind's `data-selected` variant is shadcn's `[data-selected=true]`.** Base UI sets an empty `data-selected` on Select items, so use the arbitrary `data-[selected]:` / `not-data-[selected]:` form there.
 - **`cn` won't let an unprefixed override replace a `dark:` class.** If a variant is meant to be recolored with `className` (e.g. a success Badge), put the per-theme colors in CSS variables and apply them with a single unprefixed `bg-(--x)` / `text-(--y)`, as Badge does. Button `destructive` still has the old pattern.
 - **Gradients can't transition.** Cross-fade a second skin on `::before` with opacity, as Checkbox, Radio and the Switch track do.
 - **Pseudo-elements don't get the global `border-border`.** Set `before:border-border` explicitly.
@@ -53,7 +54,7 @@ A component library distributed through the **shadcn CLI**: every shadcn/ui comp
 
 - Replace `http://localhost:3000` on deploy: `homepage` and every `registryDependencies` URL in `registry.json`, plus the landing-page install commands.
 - The design catalog artifact still lists the old `muted-foreground` (#777777) and `success` (#15B042); the shipped values are #6e6e6e and #0a772a.
-- Suggested next: Select (Popover surface + Dropdown Menu's item rows), then Context Menu and Menubar (reuse the Dropdown Menu items), then Hover Card.
+- Suggested next: Tabs (recessed track, raised sliding indicator), then Toggle and Toggle Group, then Slider, then Context Menu and Menubar (reuse the Dropdown Menu items).
 
 ## Layout
 

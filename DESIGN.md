@@ -315,11 +315,12 @@ shadcn `InputGroup` (`InputGroupAddon`, `InputGroupButton`, `InputGroupText`, `I
 
 ### Select
 
-shadcn `Select` (`SelectTrigger`, `SelectContent`, `SelectItem`, `SelectSeparator`).
+shadcn `Select` (`SelectTrigger` `size` `default` · `sm`, `SelectValue`, `SelectContent` with `alignItemWithTrigger`, `SelectGroup`, `SelectLabel`, `SelectItem`, `SelectSeparator`, scroll buttons). A secondary-button trigger opening the Dropdown Menu's shell and rows.
 
-- `SelectTrigger`: styled like a secondary button, value left, `muted-foreground` chevron right, min width 160px.
-- `SelectContent`: 4px below, `popover`, 1px `border`, `rounded-xl`, menu shadow, 4px padding.
-- `SelectItem`: 32px, `rounded-md`, `body`, optional 16px `muted-foreground` icon; highlighted `accent`; selected item Medium with a `primary` check on the right. Separators are 1px `border`.
+- `SelectTrigger`: the secondary Button skin (gradient, `input` hairline, secondary shadow; hover and open deepen the bottom stop), 32px (`sm` 28px, 13px text), `rounded-lg`. Text and leading icons sit 11px in (1px border + 10px), like `Input`; 8px gap; `muted-foreground` chevron 8px from the right. Placeholder in `muted-foreground`. Focus: the Button's 2px `ring` with a 2px offset. Invalid: `destructive` border + ring.
+- `SelectContent`: the Dropdown Menu shell (`muted`, `rounded-xl`, ring, menu shadow, inner top highlight), groups pad 4px, at least the trigger's width. By default (`alignItemWithTrigger`) it is laid over the trigger with the selected item's text exactly on the value (measured 0px both axes) and the popup flush with the trigger's edges; with `alignItemWithTrigger={false}` it opens 4px below. Thin scrollbar in `muted-foreground`/50.
+- `SelectItem`: the Dropdown Menu row (32px, `rounded-lg`, the raised card when highlighted) with 7px left padding, so its text lands 11px from the popup edge like the trigger's. The selected item has a 16px `primary` check (2.5 stroke) 8px from the right that draws itself in. `SelectLabel`: `caption` Medium in `muted-foreground`. `SelectSeparator`: engraved, like `Separator`.
+- Motion: below the trigger, opacity + scale 0.96 from the trigger, 150ms in / 100ms out; laid over the trigger it only fades, since the item lands on the value. Reduced motion keeps the fade.
 - Closes on pick, outside click, Escape (Base UI behavior).
 
 ### Tabs

@@ -14,6 +14,7 @@ import { KbdDemo } from "./_demos/kbd-demo"
 import { LabelDemo } from "./_demos/label-demo"
 import { PopoverDemo } from "./_demos/popover-demo"
 import { RadioGroupDemo } from "./_demos/radio-group-demo"
+import { SelectDemo } from "./_demos/select-demo"
 import { SeparatorDemo } from "./_demos/separator-demo"
 import { SwitchDemo } from "./_demos/switch-demo"
 import { TextareaDemo } from "./_demos/textarea-demo"
@@ -125,6 +126,13 @@ const components = [
     description:
       "A set of checkable buttons where no more than one can be checked at a time.",
     demo: <RadioGroupDemo />,
+  },
+  {
+    name: "select",
+    title: "Select",
+    description:
+      "Displays a list of options for the user to pick from, triggered by a button.",
+    demo: <SelectDemo />,
   },
   {
     name: "separator",
