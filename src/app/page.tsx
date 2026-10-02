@@ -1,3 +1,4 @@
+import { AccordionDemo } from "./_demos/accordion-demo"
 import { AlertDemo } from "./_demos/alert-demo"
 import { AlertDialogDemo } from "./_demos/alert-dialog-demo"
 import { BadgeDemo } from "./_demos/badge-demo"
@@ -5,6 +6,7 @@ import { ButtonDemo } from "./_demos/button-demo"
 import { ButtonGroupDemo } from "./_demos/button-group-demo"
 import { CardDemo } from "./_demos/card-demo"
 import { CheckboxDemo } from "./_demos/checkbox-demo"
+import { CollapsibleDemo } from "./_demos/collapsible-demo"
 import { ContextMenuDemo } from "./_demos/context-menu-demo"
 import { DialogDemo } from "./_demos/dialog-demo"
 import { DropdownMenuDemo } from "./_demos/dropdown-menu-demo"
@@ -32,6 +34,13 @@ import { ComponentSection } from "./_components/showcase"
 import { ThemeToggle } from "./_components/theme-toggle"
 
 const components = [
+  {
+    name: "accordion",
+    title: "Accordion",
+    description:
+      "A vertically stacked set of interactive headings that each reveal a section of content.",
+    demo: <AccordionDemo />,
+  },
   {
     name: "alert",
     title: "Alert",
@@ -76,6 +85,12 @@ const components = [
     description:
       "A control that allows the user to toggle between checked and not checked.",
     demo: <CheckboxDemo />,
+  },
+  {
+    name: "collapsible",
+    title: "Collapsible",
+    description: "An interactive component which expands/collapses a panel.",
+    demo: <CollapsibleDemo />,
   },
   {
     name: "context-menu",

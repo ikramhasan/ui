@@ -18,9 +18,9 @@ Components only use the standard shadcn variables (`--primary`, `--secondary`, `
 
 Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://ui.shadcn.com/r/styles/base-nova/registry.json). Tick a box when the component is in `registry/ui/`, in `registry.json` and on the landing page.
 
-**Progress: 30 / 63**
+**Progress: 32 / 63**
 
-- [ ] Accordion (`accordion`)
+- [x] Accordion (`accordion`)
 - [x] Alert (`alert`)
 - [x] Alert Dialog (`alert-dialog`)
 - [ ] Aspect Ratio (`aspect-ratio`)
@@ -36,7 +36,7 @@ Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://
 - [ ] Carousel (`carousel`)
 - [ ] Chart (`chart`)
 - [x] Checkbox (`checkbox`)
-- [ ] Collapsible (`collapsible`)
+- [x] Collapsible (`collapsible`)
 - [ ] Combobox (`combobox`)
 - [ ] Command (`command`)
 - [x] Context Menu (`context-menu`)

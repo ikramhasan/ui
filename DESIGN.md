@@ -177,6 +177,18 @@ shadcn `ButtonGroup` (`orientation` `horizontal` · `vertical`), `ButtonGroupTex
 - `ButtonGroupText`: recessed into the row (the Kbd recipe at a lighter depth), 1px `input` border, `body` Medium in `muted-foreground` + 20% `foreground` (5:1 on the recess; dark `muted-foreground`, 5.5:1).
 - `ButtonGroupSeparator`: the engraved `Separator`, `input` in light (black/40 in dark), inset 1px from the top and bottom; used for split buttons.
 
+### Accordion
+
+shadcn `Accordion` (`AccordionItem`, `AccordionTrigger`, `AccordionContent`; `multiple`, `disabled`).
+
+- Items are divided by the engraved `Separator` line (`border` with a 1px highlight under it; dark black/40).
+- `AccordionTrigger`: 40px (20px line + 2 × 10px), `body` Medium, underlined on hover. The chevron rides a 20px round raised chip (the secondary Button skin) centered on the text line; open, the chip is pressed in (the Toggle's well) and the 14px chevron turns over (200ms). Focus: the Button's 2px `ring` with a 2px offset. Disabled: 50%.
+- `AccordionContent`: `body` in `muted-foreground` (5.1:1 light, 6.1:1 dark), 10px below. The height transitions on Base UI's `--accordion-panel-height` (200ms, ease `cubic-bezier(0.23, 1, 0.32, 1)`), so it is interruptible; reduced motion jumps.
+
+### Collapsible
+
+shadcn `Collapsible` (`CollapsibleTrigger`, `CollapsibleContent`). Unstyled apart from the Accordion's height transition on `--collapsible-panel-height`. Put spacing above the revealed content inside the panel (padding), not as a gap on the parent, so it grows with the height instead of appearing at once.
+
 ### Alert
 
 shadcn `Alert` (`AlertTitle`, `AlertDescription`, `AlertAction`), variants `default` and `destructive`.
