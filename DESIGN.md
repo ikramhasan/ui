@@ -169,6 +169,14 @@ Every component is the shadcn component of the same name (base-nova, on Base UI)
 - **Icon buttons** are `size="icon"` (32×32, one 16px icon): `secondary` for "+ connect" on app rows, `ghost` in toolbars and message actions (`icon-sm`, 28px). Always give them an `aria-label`.
 - **Send button**: `<Button size="icon" className="rounded-full">`, the default (primary) variant.
 
+### Button Group
+
+shadcn `ButtonGroup` (`orientation` `horizontal` · `vertical`), `ButtonGroupText`, `ButtonGroupSeparator`. Joined raised Buttons: they keep their own skins; the group only squares the inner corners and drops the doubled border, so seams are one 1px `input` line.
+
+- Children (Buttons, Inputs, Select triggers, nested groups) share one height; only the outer corners keep `rounded-lg`. Nested groups sit 8px apart. A focused child rises above its neighbors (z-10) so its ring is never clipped.
+- `ButtonGroupText`: recessed into the row (the Kbd recipe at a lighter depth), 1px `input` border, `body` Medium in `muted-foreground` + 20% `foreground` (5:1 on the recess; dark `muted-foreground`, 5.5:1).
+- `ButtonGroupSeparator`: the engraved `Separator`, `input` in light (black/40 in dark), inset 1px from the top and bottom; used for split buttons.
+
 ### Alert
 
 shadcn `Alert` (`AlertTitle`, `AlertDescription`, `AlertAction`), variants `default` and `destructive`.

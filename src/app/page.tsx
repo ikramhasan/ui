@@ -2,6 +2,7 @@ import { AlertDemo } from "./_demos/alert-demo"
 import { AlertDialogDemo } from "./_demos/alert-dialog-demo"
 import { BadgeDemo } from "./_demos/badge-demo"
 import { ButtonDemo } from "./_demos/button-demo"
+import { ButtonGroupDemo } from "./_demos/button-group-demo"
 import { CardDemo } from "./_demos/card-demo"
 import { CheckboxDemo } from "./_demos/checkbox-demo"
 import { ContextMenuDemo } from "./_demos/context-menu-demo"
@@ -53,6 +54,13 @@ const components = [
     title: "Button",
     description: "Displays a button or a component that looks like a button.",
     demo: <ButtonDemo />,
+  },
+  {
+    name: "button-group",
+    title: "Button Group",
+    description:
+      "A container that groups related buttons together with consistent styling.",
+    demo: <ButtonGroupDemo />,
   },
   {
     name: "card",
