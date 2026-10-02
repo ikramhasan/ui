@@ -16,6 +16,7 @@ import { PopoverDemo } from "./_demos/popover-demo"
 import { RadioGroupDemo } from "./_demos/radio-group-demo"
 import { SelectDemo } from "./_demos/select-demo"
 import { SeparatorDemo } from "./_demos/separator-demo"
+import { SliderDemo } from "./_demos/slider-demo"
 import { SwitchDemo } from "./_demos/switch-demo"
 import { TabsDemo } from "./_demos/tabs-demo"
 import { TextareaDemo } from "./_demos/textarea-demo"
@@ -142,6 +143,13 @@ const components = [
     title: "Separator",
     description: "Visually or semantically separates content.",
     demo: <SeparatorDemo />,
+  },
+  {
+    name: "slider",
+    title: "Slider",
+    description:
+      "An input where the user selects a value from within a given range.",
+    demo: <SliderDemo />,
   },
   {
     name: "switch",

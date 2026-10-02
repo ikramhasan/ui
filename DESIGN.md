@@ -257,6 +257,16 @@ shadcn `Badge` (renders through `useRender`, so `render={<a />}` works). 20px ta
 - As links, filled badges darken slightly on hover; `outline` and `ghost` take the `accent` fill. Focus uses the standard ring.
 - Positive status has no shadcn variant: `className="bg-success/15 text-success"` ("Connected").
 
+### Slider
+
+shadcn `Slider` (one thumb per value; `orientation` `horizontal` · `vertical`, `min`, `max`, `step`, `disabled`). The Switch's parts laid flat: a recessed groove, a `primary` channel and a raised white thumb.
+
+- Track: 6px recessed groove (`input` + 12% `foreground` under the lip → `input`, inner shadow, a 3:1 inner hairline: 3.5:1 measured in both themes), fully round. The range fills it with the Switch's checked channel (`primary` gradient, inner shadow) and ends at the thumb's center.
+- Thumb: 16px raised white (the Switch thumb), centered on the groove, edge-aligned (at the min / max it sits flush with the track's ends). Hover deepens the shadow; press scales 0.95 (reduced motion drops it). 40px hit area. Focus (keyboard, on Base UI's hidden range input): the Button's 2px `ring` with a 2px offset.
+- The control is 16px on the cross axis, so the thumb never overflows its row. Vertical: the same, rotated, min height 160px.
+- Disabled: the whole control at 50%.
+- Arrow keys, Page Up / Down, Home / End (Base UI behavior).
+
 ### Switch
 
 shadcn `Switch`, `size` `default` / `sm`. A raised thumb in a recessed track: the button and the key in one control.
