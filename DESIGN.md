@@ -229,6 +229,13 @@ shadcn `Popover` (`PopoverTrigger`, `PopoverContent`, `PopoverHeader`, `PopoverT
 - `PopoverTitle`: `body-medium`. `PopoverDescription`: `body` in `muted-foreground`, 4px below.
 - Motion: scales from the trigger (`--transform-origin`), opacity + scale 0.96 → 1 in 200ms, out in 150ms, ease `cubic-bezier(0.23, 1, 0.32, 1)`. Reduced motion keeps the fade.
 
+### Hover Card
+
+shadcn `HoverCard` (`HoverCardTrigger`, `HoverCardContent`), on Base UI's Preview Card. The Popover surface: `popover`, 1px `border` ring, `rounded-xl` (14px), menu shadow, 16px padding, 256px wide, 4px from the trigger. Opens on hover or keyboard focus after Base UI's delay. The trigger is an `<a>`; style it with `buttonVariants` rather than `render={<Button />}`, which would turn the link into a button.
+
+- Motion: scales from the trigger, opacity + scale 0.96 → 1 in 200ms, out in 150ms, ease `cubic-bezier(0.23, 1, 0.32, 1)`. Reduced motion keeps the fade.
+- Upstream's `alignOffset` default of 4px is kept, so a centered card sits 4px past the trigger's center; pass `alignOffset={0}` to center it exactly.
+
 ### Dropdown Menu
 
 shadcn `DropdownMenu` (all upstream parts; `DropdownMenuItem` `variant` `default` · `destructive`, `inset` on items and labels). The Dialog's muted shell holding 32px rows; the highlighted row lifts out of it as a raised card.

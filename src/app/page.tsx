@@ -9,6 +9,7 @@ import { ContextMenuDemo } from "./_demos/context-menu-demo"
 import { DialogDemo } from "./_demos/dialog-demo"
 import { DropdownMenuDemo } from "./_demos/dropdown-menu-demo"
 import { FieldDemo } from "./_demos/field-demo"
+import { HoverCardDemo } from "./_demos/hover-card-demo"
 import { InputDemo } from "./_demos/input-demo"
 import { InputGroupDemo } from "./_demos/input-group-demo"
 import { ItemDemo } from "./_demos/item-demo"
@@ -103,6 +104,13 @@ const components = [
     description:
       "Combine labels, controls, and help text to compose accessible form fields and grouped inputs.",
     demo: <FieldDemo />,
+  },
+  {
+    name: "hover-card",
+    title: "Hover Card",
+    description:
+      "For sighted users to preview content available behind a link.",
+    demo: <HoverCardDemo />,
   },
   {
     name: "input",
