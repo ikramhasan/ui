@@ -4,6 +4,7 @@ import { BadgeDemo } from "./_demos/badge-demo"
 import { ButtonDemo } from "./_demos/button-demo"
 import { CardDemo } from "./_demos/card-demo"
 import { CheckboxDemo } from "./_demos/checkbox-demo"
+import { ContextMenuDemo } from "./_demos/context-menu-demo"
 import { DialogDemo } from "./_demos/dialog-demo"
 import { DropdownMenuDemo } from "./_demos/dropdown-menu-demo"
 import { FieldDemo } from "./_demos/field-demo"
@@ -12,6 +13,7 @@ import { InputGroupDemo } from "./_demos/input-group-demo"
 import { ItemDemo } from "./_demos/item-demo"
 import { KbdDemo } from "./_demos/kbd-demo"
 import { LabelDemo } from "./_demos/label-demo"
+import { MenubarDemo } from "./_demos/menubar-demo"
 import { PopoverDemo } from "./_demos/popover-demo"
 import { RadioGroupDemo } from "./_demos/radio-group-demo"
 import { SelectDemo } from "./_demos/select-demo"
@@ -66,6 +68,13 @@ const components = [
     demo: <CheckboxDemo />,
   },
   {
+    name: "context-menu",
+    title: "Context Menu",
+    description:
+      "Displays a menu to the user, such as a set of actions or functions, triggered by a right click.",
+    demo: <ContextMenuDemo />,
+  },
+  {
     name: "dialog",
     title: "Dialog",
     description:
@@ -117,6 +126,13 @@ const components = [
     title: "Label",
     description: "Renders an accessible label associated with controls.",
     demo: <LabelDemo />,
+  },
+  {
+    name: "menubar",
+    title: "Menubar",
+    description:
+      "A visually persistent menu common in desktop applications that provides quick access to a consistent set of commands.",
+    demo: <MenubarDemo />,
   },
   {
     name: "popover",

@@ -88,7 +88,9 @@ export function DropdownMenuDemo() {
                   </DropdownMenuItem>
                 </DropdownMenuSubContent>
               </DropdownMenuSub>
-              <DropdownMenuItem disabled>API</DropdownMenuItem>
+              <DropdownMenuItem inset disabled>
+                API
+              </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem>

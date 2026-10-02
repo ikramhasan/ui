@@ -201,6 +201,23 @@
       ]
     },
     {
+      "name": "context-menu",
+      "type": "registry:ui",
+      "title": "Context Menu",
+      "description": "Displays a menu to the user, such as a set of actions or functions, triggered by a right click.",
+      "dependencies": [
+        "@base-ui/react",
+        "cn",
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/context-menu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "dialog",
       "type": "registry:ui",
       "title": "Dialog",
@@ -389,6 +406,26 @@
       "files": [
         {
           "path": "registry/ui/switch.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "menubar",
+      "type": "registry:ui",
+      "title": "Menubar",
+      "description": "A visually persistent menu common in desktop applications that provides quick access to a consistent set of commands.",
+      "dependencies": [
+        "@base-ui/react",
+        "cn",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/r/dropdown-menu.json"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/menubar.tsx",
           "type": "registry:ui"
         }
       ]

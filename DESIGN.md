@@ -234,6 +234,20 @@ shadcn `DropdownMenu` (all upstream parts; `DropdownMenuItem` `variant` `default
 - Sub-menus open to the right with the first item level with its trigger; the trigger keeps the raised card while open and ends in a `muted-foreground` chevron.
 - Motion: from the trigger, opacity + scale 0.96, 150ms in / 100ms out. Keyboard opens and Escape closes are instant (Base UI's `data-instant`). Reduced motion keeps the fade.
 
+### Context Menu
+
+shadcn `ContextMenu` (the same parts as Dropdown Menu, opened by right-click or long-press on `ContextMenuTrigger`). Identical shell, rows, keycap shortcuts, engraved separators, raised highlight and drawing ticks; it opens at the pointer (to its right, the first row level with it) and scales from there.
+
+### Menubar
+
+shadcn `Menubar` (`MenubarMenu`, `MenubarTrigger`, `MenubarContent` and the Dropdown Menu parts, which it composes).
+
+- Bar: a raised 32px strip (the secondary Button skin), `rounded-lg`. 1px border + 3px padding leave 24px triggers, `rounded-md` 6px (10 − 4, concentric), 8px side padding, 2px apart.
+- Triggers: `body` Medium; hover `accent`; the open menu's trigger is pressed into the strip (the Toggle's recessed well). Focus: an inset 2px `ring`.
+- Content: the Dropdown Menu shell, 4px below the strip, its edge level with the trigger's (alignOffset −4 = border + padding).
+- Checkbox and radio items put the check on the left, 8px in (upstream's layout), so their text lands at 32px, level with `inset` items. The check draws itself in.
+- Arrow keys move along the bar and into menus (Base UI behavior).
+
 ### Tooltip
 
 shadcn `Tooltip` (`TooltipProvider`, `TooltipTrigger`, `TooltipContent`). Wrap the app in `TooltipProvider`.
