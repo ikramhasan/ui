@@ -27,7 +27,6 @@ A component library distributed through the **shadcn CLI**: every shadcn/ui comp
 ## Working with the user
 
 - **Commit only when asked.** Commits go on `main` once the user says "commit". Never push.
-- **Notify when done.** Whenever you finish something and need the user's attention (a change ready for review, a question, a blocker), send a macOS notification with a brief summary: `osascript -e 'display notification "A brief suitable text." with title "pi" sound name "Glass"'; echo $?`.
 - **Design taste.** The user loves the textured pieces: the Button protrudes (gradient, hairline, lift, inner highlight), the Kbd is recessed (the inverse), the Dialog is a muted shell holding a raised card with the footer on the shell, and the toggles reuse those skins. Variations on that language are welcome. The user rejected two Card redesigns (a gray tray with a sheet, and a raised card with a recessed footer well), so the Card stays plain.
 - **Experiments are cheap.** When asked to "try" a look, change only the component file, show it, and restore it with `git checkout` if it's rejected. Don't update DESIGN.md until the look is kept.
 - **Precision matters.** "This is a design library": a 1px misalignment is a bug. Before calling anything done, do the box math (control height − borders − padding vs child size, line heights, radii) and measure it in the browser (insets on every side, centers vs the text line, concentric radii = outer − inset). Report numbers, not impressions.
@@ -55,7 +54,7 @@ A component library distributed through the **shadcn CLI**: every shadcn/ui comp
 
 - Replace `http://localhost:3000` on deploy: `homepage` and every `registryDependencies` URL in `registry.json`, plus the landing-page install commands.
 - The design catalog artifact still lists the old `muted-foreground` (#777777) and `success` (#15B042); the shipped values are #6e6e6e and #0a772a.
-- Suggested next: Sheet and Drawer (the Dialog shell), then Avatar and Skeleton.
+- Suggested next: Avatar and Skeleton, then Spinner and Empty.
 
 ## Layout
 

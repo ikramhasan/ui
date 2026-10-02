@@ -9,6 +9,7 @@ import { CheckboxDemo } from "./_demos/checkbox-demo"
 import { CollapsibleDemo } from "./_demos/collapsible-demo"
 import { ContextMenuDemo } from "./_demos/context-menu-demo"
 import { DialogDemo } from "./_demos/dialog-demo"
+import { DrawerDemo } from "./_demos/drawer-demo"
 import { DropdownMenuDemo } from "./_demos/dropdown-menu-demo"
 import { FieldDemo } from "./_demos/field-demo"
 import { HoverCardDemo } from "./_demos/hover-card-demo"
@@ -23,6 +24,7 @@ import { ProgressDemo } from "./_demos/progress-demo"
 import { RadioGroupDemo } from "./_demos/radio-group-demo"
 import { SelectDemo } from "./_demos/select-demo"
 import { SeparatorDemo } from "./_demos/separator-demo"
+import { SheetDemo } from "./_demos/sheet-demo"
 import { SliderDemo } from "./_demos/slider-demo"
 import { SwitchDemo } from "./_demos/switch-demo"
 import { TabsDemo } from "./_demos/tabs-demo"
@@ -105,6 +107,12 @@ const components = [
     description:
       "A window overlaid on either the primary window or another dialog window, rendering the content underneath inert.",
     demo: <DialogDemo />,
+  },
+  {
+    name: "drawer",
+    title: "Drawer",
+    description: "A drawer component for React, built on Base UI's Drawer.",
+    demo: <DrawerDemo />,
   },
   {
     name: "dropdown-menu",
@@ -198,6 +206,13 @@ const components = [
     title: "Separator",
     description: "Visually or semantically separates content.",
     demo: <SeparatorDemo />,
+  },
+  {
+    name: "sheet",
+    title: "Sheet",
+    description:
+      "Extends the Dialog component to display content that complements the main content of the screen.",
+    demo: <SheetDemo />,
   },
   {
     name: "slider",

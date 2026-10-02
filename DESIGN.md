@@ -232,6 +232,26 @@ shadcn `Dialog` and `AlertDialog`, same parts and props. Both share one frame: a
 - Overlay: `black/10` (dark: `black/40`) with a slight backdrop blur.
 - Motion: opacity + scale from 0.96, 250ms `cubic-bezier(0.23, 1, 0.32, 1)` in, 150ms out; the backdrop fades with it. Reduced motion keeps the fade and drops the scale.
 
+### Sheet
+
+shadcn `Sheet` (`SheetContent` `side` `top` · `right` · `bottom` · `left`, `showCloseButton`; `SheetHeader`, `SheetFooter`, `SheetTitle`, `SheetDescription`, `SheetClose`). The Dialog's frame on an edge: a muted shell (1px `border` on the open side, a wide soft shadow) holding a raised `popover` card inset 4px, `rounded-lg`.
+
+- The card is the shell's `::before`, spanning every grid row above `footer`, with a `1fr` filler row so it reaches down to the footer. `SheetFooter` sits on the shell: buttons 4px below the card and 4px from the edges. Without a footer the card fills the panel.
+- Content sits 16px inside the card (20px from the panel edge, plus the border on the open side). Blocks are 16px apart.
+- Close button: `ghost` `icon-sm`, 16px from the card's top-right corner, centered on the title line (0.25px measured). The header reserves 48px on the right for it.
+- `left` / `right`: 75% wide, `sm:max-w-sm` (384px). `top` / `bottom`: full width, as tall as the content.
+- Overlay: the Dialog's (`black/10`, dark `black/40`, slight blur).
+- Motion: slides 40px in from its edge with opacity, 250ms in / 150ms out, ease `cubic-bezier(0.23, 1, 0.32, 1)`. Reduced motion keeps the fade.
+
+### Drawer
+
+shadcn `Drawer` on Base UI's Drawer (`swipeDirection` `down` · `up` · `left` · `right`, `snapPoints`, `showSwipeHandle`, nested drawers). One calm surface, no shell or inner card: a drawer is touch-first and full-bleed, so it reads as a single sheet of paper.
+
+- Surface: `popover`, rounded 18px (`rounded-2xl`) on its open side, a 1px `border` hairline on that edge, a soft 40px shadow. Dark adds a 1px top highlight so it lifts off the dimmed page. The overscroll bleed is the same `popover`.
+- Swipe handle: a quiet 40×4px pill (`input` + 15% `foreground`; dark + 20%), 16px from the open edge and 16px before the content (the header's padding), centered on the cross axis. Decorative only.
+- Header and footer: upstream's 16px padding; bottom and top drawers center the header text.
+- Motion and swipe physics are upstream's (450ms `cubic-bezier(0.22, 1, 0.36, 1)`, release scaled by swipe strength).
+
 ### Popover
 
 shadcn `Popover` (`PopoverTrigger`, `PopoverContent`, `PopoverHeader`, `PopoverTitle`, `PopoverDescription`). The plain floating surface that menus, selects and hover cards share.
