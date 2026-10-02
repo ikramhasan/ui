@@ -2,6 +2,7 @@ import { AccordionDemo } from "./_demos/accordion-demo"
 import { AlertDemo } from "./_demos/alert-demo"
 import { AlertDialogDemo } from "./_demos/alert-dialog-demo"
 import { BadgeDemo } from "./_demos/badge-demo"
+import { BreadcrumbDemo } from "./_demos/breadcrumb-demo"
 import { ButtonDemo } from "./_demos/button-demo"
 import { ButtonGroupDemo } from "./_demos/button-group-demo"
 import { CalendarDemo } from "./_demos/calendar-demo"
@@ -62,6 +63,13 @@ const components = [
     title: "Badge",
     description: "Displays a badge or a component that looks like a badge.",
     demo: <BadgeDemo />,
+  },
+  {
+    name: "breadcrumb",
+    title: "Breadcrumb",
+    description:
+      "Displays the path to the current resource using a hierarchy of links.",
+    demo: <BreadcrumbDemo />,
   },
   {
     name: "button",

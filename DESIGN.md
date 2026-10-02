@@ -449,7 +449,14 @@ shadcn `Sidebar` with `--sidebar-width: 17rem` (272px).
 
 ### Breadcrumb
 
-shadcn `Breadcrumb`. `body` in `muted-foreground`, slash separators (`BreadcrumbSeparator` with a slash), 8px gaps; `BreadcrumbPage` is `foreground` Medium; only the first crumb has an icon.
+shadcn `Breadcrumb` (`BreadcrumbList`, `BreadcrumbItem`, `BreadcrumbLink` with `render`, `BreadcrumbPage`, `BreadcrumbSeparator`, `BreadcrumbEllipsis`). Links rise as keys on hover; the current page stays plain text.
+
+- `body` in `muted-foreground`, 20px line. Separators: upstream's 14px chevron (pass a `SlashIcon` as children for slashes), 12px from the text on each side.
+- `BreadcrumbLink`: hover, keyboard focus and an open menu (`aria-expanded`) fade in the secondary Button skin (white gradient, `input` hairline, soft lift) and turn the text `foreground`. Press drops it 0.5px and loses the lift, like the Button. Focus adds the 2px `ring` on the key. Icons are 16px, 6px from the text.
+- `BreadcrumbPage`: plain `body-medium` `foreground`, no fill: it is where you are, not something to press.
+- The link skin bleeds 6px left/right and 2px up/down from the text box (24px tall, `rounded-md`), so the crumb text stays on the text line and never shifts. Links get a 40px hit area via `::after`.
+- A dropdown on a crumb renders the trigger as `BreadcrumbLink` (`render={<button />}`), with the menu at `sideOffset={6}` and `alignOffset={-6}`, so it lines up 4px below the key and flush with its left edge.
+- Motion: the skin fades in 150ms, ease `cubic-bezier(0.23, 1, 0.32, 1)`; reduced motion drops the press.
 
 ### Separator
 
