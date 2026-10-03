@@ -360,6 +360,16 @@ shadcn `Slider` (one thumb per value; `orientation` `horizontal` · `vertical`, 
 - Disabled: the whole control at 50%.
 - Arrow keys, Page Up / Down, Home / End (Base UI behavior).
 
+### Sonner
+
+shadcn `Toaster` on Sonner (every `Toaster` and `toast()` option as upstream). Toasts are `unstyled` and restyled part by part: the Dialog's frame on its side, a muted shell holding the message on a raised card, with the buttons on the shell to its right.
+
+- Shell: the Dropdown Menu shell (`muted`, dark `popover` + 20% black, `rounded-xl`, 1px `border` ring, menu shadow plus inner top highlight), 4px padding, Sonner's 356px width.
+- Card: a `::before` spanning the icon and content columns, inset 4px, `rounded-[10px]` (14 − 4), `popover` fill, 1px `border`, the faint card lift. Content padding 12px; title `body-medium`, description `body` `muted-foreground`, 2px apart. A one-line toast is 52px (card 44px, the Alert's one-line height).
+- Icon: a 24px `rounded-md` tile, 10px inside the card, the title line centered on it (measured 0px). Success: `success/15` + `success`. Error: `destructive/10` + text-on-tints red (dark /20, lifted). Info, warning, loading: `muted` + `muted-foreground`. The promise spinner sits in the tile.
+- Buttons on the shell: `action` is the default Button, `cancel` the secondary Button, `closeButton` a 44px-wide secondary key with a 16px X. They stretch to the card's height, 4px from the card, each other and the shell's top, right and bottom, so their 10px radius is concentric with the shell. Focus: the 2px `ring` without offset, so it stays inside the shell.
+- Stacked toasts behind the front one show the shell and card with their content hidden. Motion is Sonner's own.
+
 ### Switch
 
 shadcn `Switch`, `size` `default` / `sm`. A raised thumb in a recessed track: the button and the key in one control.

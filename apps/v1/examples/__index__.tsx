@@ -594,6 +594,31 @@ export const ExamplesIndex: Record<
     filePath: "examples/slider-vertical.tsx",
     component: () => import("./slider-vertical"),
   },
+  "sonner-actions": {
+    name: "sonner-actions",
+    filePath: "examples/sonner-actions.tsx",
+    component: () => import("./sonner-actions"),
+  },
+  "sonner-demo": {
+    name: "sonner-demo",
+    filePath: "examples/sonner-demo.tsx",
+    component: () => import("./sonner-demo"),
+  },
+  "sonner-description": {
+    name: "sonner-description",
+    filePath: "examples/sonner-description.tsx",
+    component: () => import("./sonner-description"),
+  },
+  "sonner-position": {
+    name: "sonner-position",
+    filePath: "examples/sonner-position.tsx",
+    component: () => import("./sonner-position"),
+  },
+  "sonner-types": {
+    name: "sonner-types",
+    filePath: "examples/sonner-types.tsx",
+    component: () => import("./sonner-types"),
+  },
   "switch-demo": {
     name: "switch-demo",
     filePath: "examples/switch-demo.tsx",
