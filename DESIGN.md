@@ -252,6 +252,15 @@ shadcn `Drawer` on Base UI's Drawer (`swipeDirection` `down` · `up` · `left` �
 - Header and footer: upstream's 16px padding; bottom and top drawers center the header text.
 - Motion and swipe physics are upstream's (450ms `cubic-bezier(0.22, 1, 0.36, 1)`, release scaled by swipe strength).
 
+### Pagination
+
+shadcn `Pagination` (`PaginationContent`, `PaginationItem`, `PaginationLink` with `isActive` and `size`, `PaginationPrevious`, `PaginationNext`, `PaginationEllipsis`). A pager set into the Tabs track.
+
+- `PaginationContent`: the recessed Tabs track (32px, `rounded-lg`, 3px padding, Kbd-recipe gradient and inner shadow). Text `muted-foreground` + 20% `foreground` in light (4.9:1), `muted-foreground` in dark.
+- Links: 26px, `rounded-[7px]` (10 − 3), Medium, tabular numbers, measured 3px from the track on top and bottom. Number links are at least 26px wide. Hover: text to `foreground`. The current page (`isActive`) rises as the Tabs chip.
+- `PaginationPrevious` / `PaginationNext`: 2px padding on the chevron side, so the chevron's ink and the label each sit 9px from the link edge. Labels hide below `sm`.
+- `PaginationEllipsis`: 26px, 16px icon. Disabled links (`aria-disabled`): 50%. Focus: the 2px `ring`, inset. Hit areas reach 40px tall.
+
 ### Popover
 
 shadcn `Popover` (`PopoverTrigger`, `PopoverContent`, `PopoverHeader`, `PopoverTitle`, `PopoverDescription`). The plain floating surface that menus, selects and hover cards share.
@@ -370,6 +379,10 @@ shadcn `Toaster` on Sonner (every `Toaster` and `toast()` option as upstream). T
 - Buttons on the shell: `action` is the default Button, `cancel` the secondary Button, `closeButton` a 44px-wide secondary key with a 16px X. They stretch to the card's height, 4px from the card, each other and the shell's top, right and bottom, so their 10px radius is concentric with the shell. Focus: the 2px `ring` without offset, so it stays inside the shell.
 - Stacked toasts behind the front one show the shell and card with their content hidden. Motion is Sonner's own.
 
+### Spinner
+
+shadcn `Spinner`: an `svg` with `role="status"`. Eight round-capped spokes (2px on the 24 grid) stepping from 1/8 to full opacity clockwise; the mark turns a full circle in eight ticks every 0.8s, so the brightest spoke steps forward and the rest trail. Reduced motion halves the speed (1.6s) instead of stopping, since it's the only sign of progress. 16px by default, `currentColor`.
+
 ### Switch
 
 shadcn `Switch`, `size` `default` / `sm`. A raised thumb in a recessed track: the button and the key in one control.
@@ -405,6 +418,14 @@ Toggles are used tens of times a day, so motion is short, purposeful and built f
 - File inputs: the "Choose file" button is a chip inset 3px inside the field (24px tall, `rounded-sm`, 1px `input` border, `secondary` fill, 13px Medium `secondary-foreground`, 10px gap before the file name), so it reads as a button apart from the file name.
 - `Textarea`: same frame, min 60px tall, grows with its content, resizes vertically only.
 - Wrap a control with `Field` for its label and messages (see Field). Error messages say what to do ("Enter a URL ending in .myshopify.com"). Description or error, never both.
+
+### Empty
+
+shadcn `Empty` (`EmptyHeader`, `EmptyMedia` `variant` `default` · `icon`, `EmptyTitle`, `EmptyDescription`, `EmptyContent`).
+
+- Container: centered, 24px padding, `rounded-xl`, 20px between header and content. `border-dashed` is set, so adding `border` gives a dashed outline.
+- `EmptyMedia variant="icon"`: a 40px raised key (the secondary Button skin, `rounded-lg`, 20px icon in `foreground`) with two blank `muted` tiles fanned out behind it (±12°, 9px apart, hairline). The tiles sit at z −1 inside `EmptyHeader`'s stacking context, under the key's fill. 16px below.
+- `EmptyTitle`: `title` (16/20 Medium). `EmptyDescription`: `body` `muted-foreground`, 4px below; links underlined, `foreground` on hover.
 
 ### Field
 

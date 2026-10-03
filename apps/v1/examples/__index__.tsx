@@ -309,6 +309,26 @@ export const ExamplesIndex: Record<
     filePath: "examples/dropdown-menu-radio-group.tsx",
     component: () => import("./dropdown-menu-radio-group"),
   },
+  "empty-background": {
+    name: "empty-background",
+    filePath: "examples/empty-background.tsx",
+    component: () => import("./empty-background"),
+  },
+  "empty-demo": {
+    name: "empty-demo",
+    filePath: "examples/empty-demo.tsx",
+    component: () => import("./empty-demo"),
+  },
+  "empty-input-group": {
+    name: "empty-input-group",
+    filePath: "examples/empty-input-group.tsx",
+    component: () => import("./empty-input-group"),
+  },
+  "empty-outline": {
+    name: "empty-outline",
+    filePath: "examples/empty-outline.tsx",
+    component: () => import("./empty-outline"),
+  },
   "field-demo": {
     name: "field-demo",
     filePath: "examples/field-demo.tsx",
@@ -448,6 +468,21 @@ export const ExamplesIndex: Record<
     name: "menubar-demo",
     filePath: "examples/menubar-demo.tsx",
     component: () => import("./menubar-demo"),
+  },
+  "pagination-demo": {
+    name: "pagination-demo",
+    filePath: "examples/pagination-demo.tsx",
+    component: () => import("./pagination-demo"),
+  },
+  "pagination-disabled": {
+    name: "pagination-disabled",
+    filePath: "examples/pagination-disabled.tsx",
+    component: () => import("./pagination-disabled"),
+  },
+  "pagination-icons-only": {
+    name: "pagination-icons-only",
+    filePath: "examples/pagination-icons-only.tsx",
+    component: () => import("./pagination-icons-only"),
   },
   "popover-align": {
     name: "popover-align",
@@ -618,6 +653,36 @@ export const ExamplesIndex: Record<
     name: "sonner-types",
     filePath: "examples/sonner-types.tsx",
     component: () => import("./sonner-types"),
+  },
+  "spinner-badge": {
+    name: "spinner-badge",
+    filePath: "examples/spinner-badge.tsx",
+    component: () => import("./spinner-badge"),
+  },
+  "spinner-button": {
+    name: "spinner-button",
+    filePath: "examples/spinner-button.tsx",
+    component: () => import("./spinner-button"),
+  },
+  "spinner-color": {
+    name: "spinner-color",
+    filePath: "examples/spinner-color.tsx",
+    component: () => import("./spinner-color"),
+  },
+  "spinner-demo": {
+    name: "spinner-demo",
+    filePath: "examples/spinner-demo.tsx",
+    component: () => import("./spinner-demo"),
+  },
+  "spinner-input-group": {
+    name: "spinner-input-group",
+    filePath: "examples/spinner-input-group.tsx",
+    component: () => import("./spinner-input-group"),
+  },
+  "spinner-sizes": {
+    name: "spinner-sizes",
+    filePath: "examples/spinner-sizes.tsx",
+    component: () => import("./spinner-sizes"),
   },
   "switch-demo": {
     name: "switch-demo",
