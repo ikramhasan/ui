@@ -59,6 +59,36 @@ export const ExamplesIndex: Record<
     filePath: "examples/alert-without-icon.tsx",
     component: () => import("./alert-without-icon"),
   },
+  "attachment-demo": {
+    name: "attachment-demo",
+    filePath: "examples/attachment-demo.tsx",
+    component: () => import("./attachment-demo"),
+  },
+  "attachment-group": {
+    name: "attachment-group",
+    filePath: "examples/attachment-group.tsx",
+    component: () => import("./attachment-group"),
+  },
+  "attachment-image": {
+    name: "attachment-image",
+    filePath: "examples/attachment-image.tsx",
+    component: () => import("./attachment-image"),
+  },
+  "attachment-sizes": {
+    name: "attachment-sizes",
+    filePath: "examples/attachment-sizes.tsx",
+    component: () => import("./attachment-sizes"),
+  },
+  "attachment-states": {
+    name: "attachment-states",
+    filePath: "examples/attachment-states.tsx",
+    component: () => import("./attachment-states"),
+  },
+  "attachment-trigger": {
+    name: "attachment-trigger",
+    filePath: "examples/attachment-trigger.tsx",
+    component: () => import("./attachment-trigger"),
+  },
   "badge-after-a-title": {
     name: "badge-after-a-title",
     filePath: "examples/badge-after-a-title.tsx",
@@ -568,6 +598,11 @@ export const ExamplesIndex: Record<
     name: "message-actions",
     filePath: "examples/message-actions.tsx",
     component: () => import("./message-actions"),
+  },
+  "message-attachment": {
+    name: "message-attachment",
+    filePath: "examples/message-attachment.tsx",
+    component: () => import("./message-attachment"),
   },
   "message-avatar": {
     name: "message-avatar",

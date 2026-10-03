@@ -550,6 +550,18 @@ shadcn `Kbd` / `KbdGroup`. 20px tall, min 20px wide, `rounded-sm`, 12/16 Medium 
 
 - Inside an `InputGroup` addon it is inset 5px from the top, bottom and side, with a 4px radius (10 − 1 − 5).
 
+### Attachment
+
+shadcn `Attachment` (`state` `idle` · `uploading` · `processing` · `error` · `done`, `size` `default` · `sm` · `xs`, `orientation` `horizontal` · `vertical`; `AttachmentMedia` `variant` `icon` · `image`, `AttachmentContent`, `AttachmentTitle`, `AttachmentDescription`, `AttachmentActions`, `AttachmentAction`, `AttachmentTrigger`, `AttachmentGroup`). A muted chip holding a raised tile, like the Dialog's shell and card.
+
+- Chip: `muted` fill, 1px `border`. Horizontal chips are 56 / 44 / 36px tall with or without media. The radius and the tile inset are paired so the tile is concentric: 18px − 8px = 10px (`default`), 14 − 6 = 8 (`sm`), 10 − 4 = 6 (`xs`). Tiles are 40 / 32 / 28px; without media the text sits 12 / 10 / 8px in.
+- `icon` media: the secondary Button skin (white key, `input` hairline, soft lift) with a 16px `foreground` icon (14px for `xs`, 24px when vertical). `image` media: the picture with a 1px black/10 outline (white/10 in dark), dimmed to 60% while uploading or processing.
+- Title `body-medium` (`sm` / `xs`: 12/16 Medium), truncated; description `caption` in `muted-foreground` (4.7:1 on the chip, 5.5:1 dark), 2px below (flush for `sm` / `xs`). `uploading` and `processing` shimmer the title.
+- `idle`: a dashed `input` + 15% `foreground` outline. `error`: `destructive/30` outline; the tile flattens to the `destructive/10` tint and the icon and description take the text-on-tints red (6:1 light, 7.3:1 dark).
+- Actions: ghost `icon-xs`, 8px from the end, centered; 40px-tall hit areas. Vertical: over the image's top-right corner.
+- With an `AttachmentTrigger`: hover lifts the chip toward `background` with an `input` outline (dark: `muted` + 4% `foreground`), keeping the description ≥ 4.5:1; keyboard focus draws the 2px `ring` inset on the chip edge, so a scrolling group never clips it.
+- `AttachmentGroup`: a snapping, horizontally scrolling row, 12px gaps, faded edges.
+
 ### Bubble
 
 shadcn `Bubble` (`BubbleContent` with `render`, `BubbleReactions` `side` / `align`, `BubbleGroup`), `variant` `default` · `secondary` · `muted` · `tinted` · `outline` · `ghost` · `destructive`, `align` `start` · `end`.

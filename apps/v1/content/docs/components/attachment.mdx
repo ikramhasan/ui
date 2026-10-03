@@ -1,0 +1,172 @@
+---
+title: Attachment
+description: Displays a file or image attachment with media, metadata, upload state, and actions.
+---
+
+<ComponentPreview name="attachment-demo" />
+
+`Attachment` shows a file or image with its name, metadata, upload state and actions. Use it for files in chat composers, message threads and upload lists.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/attachment.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @base-ui/react class-variance-authority cn
+```
+
+<Step>
+  Add the [Button](/docs/components/button) component to your project.
+</Step>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="attachment" title="components/ui/attachment.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  Attachment,
+  AttachmentAction,
+  AttachmentActions,
+  AttachmentContent,
+  AttachmentDescription,
+  AttachmentMedia,
+  AttachmentTitle,
+} from "@/components/ui/attachment"
+```
+
+```tsx
+<Attachment>
+  <AttachmentMedia>
+    <FileTextIcon />
+  </AttachmentMedia>
+  <AttachmentContent>
+    <AttachmentTitle>sales-dashboard.pdf</AttachmentTitle>
+    <AttachmentDescription>PDF · 2.4 MB</AttachmentDescription>
+  </AttachmentContent>
+  <AttachmentActions>
+    <AttachmentAction aria-label="Remove sales-dashboard.pdf">
+      <XIcon />
+    </AttachmentAction>
+  </AttachmentActions>
+</Attachment>
+```
+
+## Composition
+
+```text
+Attachment
+├── AttachmentMedia
+├── AttachmentContent
+│   ├── AttachmentTitle
+│   └── AttachmentDescription
+├── AttachmentActions
+│   └── AttachmentAction
+└── AttachmentTrigger
+```
+
+Use `AttachmentGroup` to lay out several attachments in a scrollable row:
+
+```text
+AttachmentGroup
+├── Attachment
+└── Attachment
+```
+
+## Examples
+
+### Image
+
+Set `variant="image"` on `AttachmentMedia` and put an `<img>` inside it. Use `orientation="vertical"` to stack the media above the content.
+
+<ComponentPreview name="attachment-image" />
+
+### States
+
+`state` follows the upload: `idle` draws a dashed outline, `uploading` and `processing` shimmer the title (and dim an image), and `error` turns the media and description `destructive`.
+
+<ComponentPreview name="attachment-states" />
+
+### Sizes
+
+`default`, `sm` and `xs` are 56, 44 and 36px tall, with or without media.
+
+<ComponentPreview name="attachment-sizes" />
+
+### Group
+
+`AttachmentGroup` lays attachments out in a horizontally scrolling, snapping row with faded edges.
+
+<ComponentPreview name="attachment-group" />
+
+### Trigger
+
+`AttachmentTrigger` makes the whole card open a link or dialog. It sits behind the actions, so they stay clickable.
+
+<ComponentPreview name="attachment-trigger" />
+
+```tsx
+<Dialog>
+  <Attachment>
+    {/* media, content, actions */}
+    <DialogTrigger
+      render={<AttachmentTrigger aria-label="Preview research-summary.pdf" />}
+    />
+  </Attachment>
+  <DialogContent>{/* ... */}</DialogContent>
+</Dialog>
+```
+
+### In a Message
+
+<ComponentPreview name="message-attachment" />
+
+## Accessibility
+
+- `AttachmentAction` is usually icon-only, so give it an `aria-label` naming the action and the file ("Remove sales-dashboard.pdf").
+- `AttachmentTrigger` has no text of its own: give it an `aria-label` for what it opens. It is a real `<button>` (or your element via `render`), and focus draws the ring on the edge of the whole card.
+- In an `AttachmentGroup` of non-interactive attachments, make the group itself focusable (`tabIndex={0}`, `role="group"`, `aria-label`) so keyboard users can scroll it.
+- Keep the reason for an `error` in `AttachmentDescription`; the color alone doesn't say what failed.
+
+## API Reference
+
+| Part                    | Element  | Props / notes                                                                                                                                                                   |
+| ----------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Attachment`            | `div`    | `state`: `idle` · `uploading` · `processing` · `error` · `done` (default `done`). `size`: `default` · `sm` · `xs` (default `default`). `orientation`: `horizontal` · `vertical`. |
+| `AttachmentMedia`       | `div`    | `variant`: `icon` (a raised tile) · `image` (default `icon`).                                                                                                                  |
+| `AttachmentContent`     | `div`    | Wraps the title and description.                                                                                                                                                |
+| `AttachmentTitle`       | `span`   | The file name, truncated. Shimmers while `uploading` or `processing`.                                                                                                           |
+| `AttachmentDescription` | `span`   | Metadata such as type, size or upload status.                                                                                                                                   |
+| `AttachmentActions`     | `div`    | Holds the actions at the end (over the image when vertical).                                                                                                                    |
+| `AttachmentAction`      | `button` | A [`Button`](/docs/components/button), `ghost` `icon-xs` by default, with all Button props.                                                                                     |
+| `AttachmentTrigger`     | `button` | A full-card overlay; `render` to use a link.                                                                                                                                    |
+| `AttachmentGroup`       | `div`    | A horizontally scrolling, snapping row.                                                                                                                                         |
