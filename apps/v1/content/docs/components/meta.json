@@ -14,6 +14,7 @@
     "collapsible",
     "command",
     "context-menu",
+    "data-table",
     "dialog",
     "drawer",
     "dropdown-menu",
