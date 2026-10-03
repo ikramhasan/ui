@@ -28,7 +28,6 @@ A component library distributed through the **shadcn CLI**: every shadcn/ui comp
 
 ## Working with the user
 
-- **Commit only when asked.** Commits go on `main` once the user says "commit". Never push. (Cloud sessions run on an assigned branch and push it, because the container is discarded.)
 - **Design taste.** The user loves the textured pieces: the Button protrudes (gradient, hairline, lift, inner highlight), the Kbd is recessed (the inverse), the Dialog is a muted shell holding a raised card with the footer on the shell, and the toggles reuse those skins. Variations on that language are welcome. The user rejected two Card redesigns (a gray tray with a sheet, and a raised card with a recessed footer well), so the Card stays plain.
 - **Experiments are cheap.** When asked to "try" a look, change only the component file, show it, and restore it with `git checkout` if it's rejected. Don't update DESIGN.md until the look is kept.
 - **Precision matters.** "This is a design library": a 1px misalignment is a bug. Before calling anything done, do the box math (control height − borders − padding vs child size, line heights, radii) and measure it in the browser (insets on every side, centers vs the text line, concentric radii = outer − inset). Report numbers, not impressions.
