@@ -4,6 +4,8 @@ import { notFound } from "next/navigation"
 import { findNeighbour } from "fumadocs-core/page-tree"
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react"
 
+import { siteConfig } from "@/lib/config"
+import { socialMetadata } from "@/lib/metadata"
 import { source } from "@/lib/source"
 import { absoluteUrl } from "@/lib/utils"
 import { DocsTableOfContents } from "@/components/docs-toc"
@@ -35,12 +37,12 @@ export async function generateMetadata(
     alternates: {
       canonical: page.url,
     },
-    openGraph: {
-      title: doc.title,
+    ...socialMetadata({
+      title: `${doc.title} - ${siteConfig.name}`,
       description: doc.description,
-      type: "article",
       url: absoluteUrl(page.url),
-    },
+      type: "article",
+    }),
   }
 }
 
