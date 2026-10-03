@@ -88,7 +88,7 @@ Family: **Inter**, through `--font-sans` (the `style` item installs shadcn's `fo
 - Default text on any page is `body` (14/20 Regular, `foreground`).
 - One `display` per screen at most (empty states). `heading` titles a page or panel. `title` heads sections and cards.
 - Button labels are 14/16 Medium (13px on `size="sm"`).
-- Sentence case for everything except product nouns ("Explore Moodboards").
+- Sentence case for everything except product nouns ("Connect Shopify").
 
 ---
 
@@ -151,7 +151,7 @@ Every component is the shadcn component of the same name (base-nova, on Base UI)
 
 ### Button
 
-`variant`: `default` · `secondary` · `outline` · `ghost` · `destructive` · `link`. `size`: `xs` · `sm` · `default` · `lg` · `icon` · `icon-xs` · `icon-sm` · `icon-lg`. The reference pair is **Explore Moodboards** (`default`) and **Surprise me** (`secondary`).
+`variant`: `default` · `secondary` · `outline` · `ghost` · `destructive` · `link`. `size`: `xs` · `sm` · `default` · `lg` · `icon` · `icon-xs` · `icon-sm` · `icon-lg`. The reference pair is **Launch campaign** (`default`) and **Shuffle** (`secondary`).
 
 |              | `default`                                      | `secondary`                                         | `outline`                 | `ghost`                       | `destructive`              | `link`               |
 | ------------ | ---------------------------------------------- | --------------------------------------------------- | ------------------------- | ----------------------------- | -------------------------- | -------------------- |

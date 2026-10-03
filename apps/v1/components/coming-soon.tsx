@@ -9,7 +9,7 @@ import {
 } from "@/components/page-header"
 import { buttonVariants } from "@/registry/ui/button"
 
-// Home, Blocks and Charts are filled in once every component has shipped.
+// Blocks and Charts are filled in once every component has shipped.
 export function ComingSoon({
   title,
   description,

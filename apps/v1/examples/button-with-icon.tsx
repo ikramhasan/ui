@@ -1,8 +1,8 @@
 import {
   ArrowRightIcon,
   ChevronDownIcon,
-  DicesIcon,
-  LayersIcon,
+  RocketIcon,
+  ShuffleIcon,
   Trash2Icon,
 } from "lucide-react"
 
@@ -12,12 +12,12 @@ export function ButtonWithIcon() {
   return (
     <div className="flex flex-wrap items-center gap-2">
       <Button variant="secondary">
-        <DicesIcon data-icon="inline-start" />
-        Surprise me
+        <ShuffleIcon data-icon="inline-start" />
+        Shuffle
       </Button>
       <Button>
-        <LayersIcon data-icon="inline-start" />
-        Explore Moodboards
+        <RocketIcon data-icon="inline-start" />
+        Launch campaign
       </Button>
       <Button variant="ghost">
         Auto
