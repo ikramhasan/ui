@@ -18,7 +18,7 @@ Components only use the standard shadcn variables (`--primary`, `--secondary`, `
 
 Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://ui.shadcn.com/r/styles/base-nova/registry.json). Tick a box when the component is in `registry/ui/`, in `registry.json` and has a docs page.
 
-**Progress: 40 / 63**
+**Progress: 41 / 63**
 
 - [x] Accordion (`accordion`)
 - [x] Alert (`alert`)
@@ -73,7 +73,7 @@ Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://
 - [x] Sidebar (`sidebar`)
 - [x] Skeleton (`skeleton`)
 - [x] Slider (`slider`)
-- [ ] Sonner (`sonner`)
+- [x] Sonner (`sonner`)
 - [ ] Spinner (`spinner`)
 - [x] Switch (`switch`)
 - [x] Table (`table`)

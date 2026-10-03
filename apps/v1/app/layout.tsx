@@ -3,6 +3,7 @@ import { Geist_Mono, Inter } from "next/font/google"
 
 import { META_THEME_COLORS, siteConfig } from "@/lib/config"
 import { ThemeProvider } from "@/components/theme-provider"
+import { Toaster } from "@/registry/ui/sonner"
 import { TooltipProvider } from "@/registry/ui/tooltip"
 
 import "./globals.css"
@@ -49,6 +50,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="overscroll-none bg-background">
         <ThemeProvider>
           <TooltipProvider>{children}</TooltipProvider>
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
