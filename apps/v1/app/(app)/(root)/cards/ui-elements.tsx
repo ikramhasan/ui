@@ -23,8 +23,8 @@ export function UIElements() {
     <Card>
       <CardContent className="flex flex-col gap-5">
         <div className="flex flex-wrap items-center gap-2">
-          <Button>Explore</Button>
-          <Button variant="secondary">Surprise me</Button>
+          <Button>Launch</Button>
+          <Button variant="secondary">Shuffle</Button>
           <Button variant="secondary" size="icon" aria-label="Add">
             <PlusIcon />
           </Button>
