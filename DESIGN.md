@@ -294,6 +294,17 @@ shadcn `DropdownMenu` (all upstream parts; `DropdownMenuItem` `variant` `default
 - Sub-menus open to the right with the first item level with its trigger; the trigger keeps the raised card while open and ends in a `muted-foreground` chevron.
 - Motion: from the trigger, opacity + scale 0.96, 150ms in / 100ms out. Keyboard opens and Escape closes are instant (Base UI's `data-instant`). Reduced motion keeps the fade.
 
+### Command
+
+shadcn `Command` on cmdk (`CommandDialog`, `CommandInput`, `CommandList`, `CommandEmpty`, `CommandGroup`, `CommandItem`, `CommandShortcut`, `CommandSeparator`). The Dropdown Menu's shell and rows, with the query typed into a recessed well.
+
+- Shell: `muted` (dark: `popover` + 20% black), `rounded-xl` (14px), 6px padding (a touch roomier than the menus: the palette is a destination, not a flyout). Inline it takes a `ring-1 ring-border` from `className`; `CommandDialog` uses the Dialog frame without its inner card, so the Command is the shell, 1/3 down the screen.
+- `CommandInput`: a 32px `InputGroup` pressed into the shell (the Kbd's well: `muted` + 7% `foreground` at the top, inner shadow, hairline, catch-light), `rounded-md` (8px = 14 − 6), 6px from the shell edges and 6px above the list. It holds focus the whole time, so no ring; the caret is `primary`. Placeholder is `muted-foreground` + 20% `foreground` in light (5:1 on the well).
+- Search icon, row icons, heading text: one 14px column from the shell edge; query text and row text share the 38px column.
+- `CommandItem`: the Dropdown Menu row (32px, `rounded-md`, concentric with the shell, 16px `muted-foreground` icons). The highlighted row (pointer or arrows) lifts out as the raised card, instantly; press sinks it 0.5px. The list is a scroller, which clips at its padding edge, so it extends over the shell's 6px padding (sides and bottom) and pads itself back in: the raised row's hairline and shadow are never cut. `data-checked` rows end in a 16px `primary` check (2.5 stroke) that draws itself. Disabled 50%.
+- `CommandShortcut`: the recessed keycap, 8px from the row's right edge, centered on the text line. Group headings: `caption` Medium `muted-foreground`, 28px. Separator: engraved, edge to edge, 6px above and below.
+- Empty state: `body` `muted-foreground`, centered, 24px above and below.
+
 ### Context Menu
 
 shadcn `ContextMenu` (the same parts as Dropdown Menu, opened by right-click or long-press on `ContextMenuTrigger`). Identical shell, rows, keycap shortcuts, engraved separators, raised highlight and drawing ticks; it opens at the pointer (to its right, the first row level with it) and scales from there.

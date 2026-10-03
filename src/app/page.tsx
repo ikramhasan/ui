@@ -9,6 +9,7 @@ import { CalendarDemo } from "./_demos/calendar-demo"
 import { CardDemo } from "./_demos/card-demo"
 import { CheckboxDemo } from "./_demos/checkbox-demo"
 import { CollapsibleDemo } from "./_demos/collapsible-demo"
+import { CommandDemo } from "./_demos/command-demo"
 import { ContextMenuDemo } from "./_demos/context-menu-demo"
 import { DialogDemo } from "./_demos/dialog-demo"
 import { DrawerDemo } from "./_demos/drawer-demo"
@@ -109,6 +110,12 @@ const components = [
     title: "Collapsible",
     description: "An interactive component which expands/collapses a panel.",
     demo: <CollapsibleDemo />,
+  },
+  {
+    name: "command",
+    title: "Command",
+    description: "Fast, composable, unstyled command menu for React.",
+    demo: <CommandDemo />,
   },
   {
     name: "context-menu",
