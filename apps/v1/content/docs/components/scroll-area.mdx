@@ -1,0 +1,88 @@
+---
+title: Scroll Area
+description: Augments native scroll functionality for custom, cross-browser styling.
+---
+
+<ComponentPreview name="scroll-area-demo" previewClassName="h-96" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/scroll-area.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @base-ui/react cn
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="scroll-area" title="components/ui/scroll-area.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+```
+
+```tsx
+<ScrollArea className="h-[200px] w-[350px] rounded-lg border p-4">
+  Your scrollable content here.
+</ScrollArea>
+```
+
+The scrollbar is a 6px thumb in a 10px track, in `muted-foreground` at 50% like the menus' scrollbars. It widens to 8px and darkens while you hover or drag it. The track sits inside the border, and its round ends clear corners up to `rounded-lg`. For a rounder container, inset the bar with `className` (e.g. `data-vertical:py-2`).
+
+## Composition
+
+Use the following composition to build a `ScrollArea`:
+
+```text
+ScrollArea
+└── ScrollBar
+```
+
+## Examples
+
+### Horizontal
+
+Use `ScrollBar` with `orientation="horizontal"` for horizontal scrolling.
+
+<ComponentPreview name="scroll-area-horizontal-demo" />
+
+### Both directions
+
+`ScrollArea` always renders a vertical bar. Add a horizontal `ScrollBar` for content that overflows both ways.
+
+<ComponentPreview name="scroll-area-both" />
+
+## API Reference
+
+`ScrollArea` wraps Base UI's `ScrollArea.Root` (`data-slot="scroll-area"`), with a `Viewport` (`scroll-area-viewport`), a vertical `ScrollBar` and a `Corner` inside it. `ScrollBar` wraps `ScrollArea.Scrollbar` (`scroll-area-scrollbar`) and its `Thumb` (`scroll-area-thumb`) and takes `orientation` (`"vertical"` by default, or `"horizontal"`).
+
+See the [Base UI Scroll Area](https://base-ui.com/react/components/scroll-area#api-reference) documentation for every prop.

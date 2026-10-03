@@ -448,6 +448,15 @@ shadcn `InputGroup` (`InputGroupAddon`, `InputGroupButton`, `InputGroupText`, `I
 - Disabled: the whole group at 50%, once.
 - The sidebar's **Quick actions** field is an `InputGroup` with a command icon addon and a trailing `Kbd` ("K", 12px Medium).
 
+### Scroll Area
+
+shadcn `ScrollArea` and `ScrollBar` (`orientation` `vertical` · `horizontal`) on Base UI's Scroll Area. Bars overlay the content, inside the root's border, and only render when there is overflow.
+
+- Track 10px; the thumb is 6px, `rounded-full`, `muted-foreground` at 50% (the menus' thin scrollbar), 2px in from the edge and the track's ends. 2.0:1 on `background` (dark 2.5:1).
+- Hover or drag: the thumb widens to 8px on the cross axis only (the ends keep their 2px gap) and darkens to `muted-foreground` at 75%, 3.1:1 (dark 4.0:1). 150ms, ease `cubic-bezier(0.23, 1, 0.32, 1)`; reduced motion keeps the color change and drops the width change.
+- Corners: the 2px end gap keeps the thumb's round ends inside a `rounded-lg` container (measured: 8.66px of the 9px inner radius at rest, tangent on hover). Rounder containers inset the bar with `className`.
+- Keyboard focus on the viewport: a 2px `ring` outline inset 2px (an outline, so it paints above the scrolled content).
+
 ### Select
 
 shadcn `Select` (`SelectTrigger` `size` `default` · `sm`, `SelectValue`, `SelectContent` with `alignItemWithTrigger`, `SelectGroup`, `SelectLabel`, `SelectItem`, `SelectSeparator`, scroll buttons). A secondary-button trigger opening the Dropdown Menu's shell and rows.
