@@ -1,0 +1,254 @@
+---
+title: Questionnaire
+description: A multi-step questionnaire with single-choice, multiple-choice, freeform, and skippable questions.
+---
+
+<ComponentPreview name="questionnaire-demo" previewClassName="min-h-[480px]" />
+
+`Questionnaire` asks one question at a time: fixed choices as Field-style choice cards with the Checkbox and Radio skins, an optional freeform input, progress and navigation. The behavior comes from `@shadcn/react`.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/questionnaire.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @shadcn/react cn lucide-react
+```
+
+<Step>
+  Add the [Button](/docs/components/button) component to your project.
+</Step>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="questionnaire" title="components/ui/questionnaire.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  Questionnaire,
+  QuestionnaireActions,
+  QuestionnaireChoice,
+  QuestionnaireChoices,
+  QuestionnaireDescription,
+  QuestionnaireError,
+  QuestionnaireInput,
+  QuestionnaireItem,
+  QuestionnaireNext,
+  QuestionnairePrevious,
+  QuestionnaireProgress,
+  QuestionnaireSkip,
+  QuestionnaireSubmit,
+  QuestionnaireTitle,
+} from "@/components/ui/questionnaire"
+```
+
+```tsx
+const items = [
+  {
+    name: "direction",
+    required: true,
+    prompt: "What should we prototype next?",
+    description: "Choose a direction or write your own.",
+    choices: [
+      { value: "delegation", label: "Delegation" },
+      { value: "questions", label: "Question prompts" },
+    ],
+  },
+] as const
+```
+
+Define the items once: pass them to `Questionnaire` for server-rendered progress, actions and shortcuts, then map them into the parts.
+
+```tsx
+<Questionnaire items={items} onSubmit={handleSubmit}>
+  <QuestionnaireProgress />
+  {items.map((question) => (
+    <QuestionnaireItem
+      key={question.name}
+      name={question.name}
+      required={question.required}
+    >
+      <QuestionnaireTitle>{question.prompt}</QuestionnaireTitle>
+      <QuestionnaireDescription>{question.description}</QuestionnaireDescription>
+      <QuestionnaireChoices>
+        {question.choices.map((choice) => (
+          <QuestionnaireChoice key={choice.value} value={choice.value}>
+            {choice.label}
+          </QuestionnaireChoice>
+        ))}
+      </QuestionnaireChoices>
+      <QuestionnaireError />
+    </QuestionnaireItem>
+  ))}
+  <QuestionnaireActions>
+    <QuestionnairePrevious />
+    <QuestionnaireSkip />
+    <QuestionnaireNext />
+    <QuestionnaireSubmit />
+  </QuestionnaireActions>
+</Questionnaire>
+```
+
+```tsx
+function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  event.preventDefault()
+  const answers = new FormData(event.currentTarget)
+  // answers.get("direction"), answers.getAll(...) for multiple items.
+}
+```
+
+## Composition
+
+```text
+Questionnaire
+├── QuestionnaireProgress
+├── QuestionnaireItem
+│   ├── QuestionnaireTitle
+│   ├── QuestionnaireDescription
+│   ├── QuestionnaireChoices
+│   │   ├── QuestionnaireChoice
+│   │   │   └── QuestionnaireChoiceDescription
+│   │   └── QuestionnaireInput
+│   └── QuestionnaireError
+└── QuestionnaireActions
+    ├── QuestionnairePrevious
+    ├── QuestionnaireSkip
+    ├── QuestionnaireNext
+    └── QuestionnaireSubmit
+```
+
+Questionnaire owns the ordered items, the active item, answers, validation, progress and navigation. The page, card, dialog or drawer around it owns closing, persistence, transport and branching.
+
+## Examples
+
+### Multiple Selection
+
+Use `multiple` on an item that accepts more than one answer. Its choices take the Checkbox skin.
+
+<ComponentPreview name="questionnaire-multiple" previewClassName="min-h-[420px]" />
+
+### Freeform Answer
+
+Add a `QuestionnaireInput` next to the fixed choices for another answer.
+
+<ComponentPreview name="questionnaire-freeform" previewClassName="min-h-[420px]" />
+
+### Explicit Skip
+
+Add `QuestionnaireSkip` when an optional item may be left unanswered.
+
+<ComponentPreview name="questionnaire-skip" previewClassName="min-h-[480px]" />
+
+### Shortcuts
+
+Give each answer a letter or number key with `shortcuts`. The key shows as a recessed keycap at the end of the choice.
+
+<ComponentPreview name="questionnaire-shortcuts" previewClassName="min-h-[420px]" />
+
+### Custom Validation
+
+Combine controlled navigation with your own validation (or a schema library such as Zod) to return to an invalid item and show its error.
+
+<ComponentPreview name="questionnaire-validation" previewClassName="min-h-[480px]" />
+
+### Controlled
+
+Control the active item from your own state.
+
+<ComponentPreview name="questionnaire-controlled" previewClassName="min-h-[480px]" />
+
+### Resume
+
+Restore a saved active item and default answers, and reset back to them.
+
+<ComponentPreview name="questionnaire-resume" previewClassName="min-h-[480px]" />
+
+### Conditional Items
+
+Disable items that don't apply to earlier answers.
+
+<ComponentPreview name="questionnaire-conditional" previewClassName="min-h-[480px]" />
+
+### Navigation State
+
+Read an item's status to disable navigation or restyle the actions.
+
+<ComponentPreview name="questionnaire-navigation-state" previewClassName="min-h-[420px]" />
+
+### Custom Progress
+
+Use the Progress render state to build your own indicator.
+
+<ComponentPreview name="questionnaire-progress" previewClassName="min-h-[480px]" />
+
+### Animated Items
+
+Animate the active item while progress and navigation stay put.
+
+<ComponentPreview name="questionnaire-animated" previewClassName="min-h-[480px]" />
+
+### Card
+
+<ComponentPreview name="questionnaire-card" previewClassName="min-h-[520px]" />
+
+### Dialog
+
+Closing and cancelling stay with the dialog.
+
+<ComponentPreview name="questionnaire-dialog" />
+
+## Accessibility
+
+- `QuestionnaireItem` is a `fieldset` and `QuestionnaireTitle` its `legend`. The description and the active error are associated with the item; invalid items and answers expose `aria-invalid`.
+- Choices are native radios and checkboxes laid over the card, so arrow keys, Space and form submission work as usual. Focus shows the input ring on the card.
+- Progress is a named progressbar, navigation uses real buttons, and inactive items and actions are hidden and inert. Moving to an item focuses it; failed validation focuses an answer.
+- Give `QuestionnaireInput` a visible label, `aria-label` or `aria-labelledby`. A placeholder is not a label.
+
+## API Reference
+
+| Part                             | Element    | Props / notes                                                                                                                       |
+| -------------------------------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `Questionnaire`                  | `form`     | `items`, `item` / `defaultItem` / `onItemChange`, `shortcuts`: `letters` · `numbers`, plus form props such as `onSubmit`.            |
+| `QuestionnaireProgress`          | `div`      | `render` with `{ current, total, first, last }`. Defaults to "1 of 3".                                                              |
+| `QuestionnaireItem`              | `fieldset` | `name`, `required`, `multiple`, `invalid`, `disabled`, `onStatusChange`. Exposes `data-status`: `unanswered` · `answered` · `skipped`. |
+| `QuestionnaireTitle`             | `legend`   | The question, 16/20 Medium.                                                                                                         |
+| `QuestionnaireDescription`       | `p`        | 4px below the title.                                                                                                                |
+| `QuestionnaireChoices`           | `div`      | The choice list, 8px apart.                                                                                                         |
+| `QuestionnaireChoice`            | `label`    | `value`, `checked` / `defaultChecked`, `disabled`, `onChange`. Exposes `data-checked`, `data-type`, `data-shortcut`.                |
+| `QuestionnaireChoiceDescription` | `span`     | A `muted-foreground` line under the choice label.                                                                                   |
+| `QuestionnaireInput`             | `input`    | `type` and input props. Needs an accessible name.                                                                                   |
+| `QuestionnaireError`             | `p`        | The item's error, 6px under the choices.                                                                                            |
+| `QuestionnaireActions`           | `div`      | Lays out the navigation: Previous at the start, Skip and Next or Submit at the end.                                                 |
+| `QuestionnairePrevious`          | `button`   | Button `variant` (default `outline`) and `size`.                                                                                    |
+| `QuestionnaireSkip`              | `button`   | Button `variant` (default `outline`) and `size`.                                                                                    |
+| `QuestionnaireNext`              | `button`   | Button `variant` (default `default`) and `size`.                                                                                    |
+| `QuestionnaireSubmit`            | `button`   | Button `variant` (default `default`) and `size`.                                                                                    |

@@ -1,0 +1,182 @@
+---
+title: Message Scroller
+description: A chat scroll container that anchors turns, opens saved transcripts, follows streamed responses, loads history without jumping, and jumps to any message.
+---
+
+<ComponentPreview name="message-scroller-demo" />
+
+`MessageScroller` is the scroll container for a chat transcript. It follows a streamed reply only while the reader is at the live edge, settles each new turn near the top with a peek of the previous one, keeps the reader's place when history loads above, and can jump to any message. It owns scrolling only: messages, AI state, transport and persistence stay in your code.
+
+The behavior comes from `@shadcn/react`; this component is the styled frame around it.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/message-scroller.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @shadcn/react cn lucide-react
+```
+
+<Step>
+  Add the [Button](/docs/components/button) component to your project.
+</Step>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  name="message-scroller"
+  title="components/ui/message-scroller.tsx"
+/>
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Message } from "@/components/ui/message"
+import {
+  MessageScroller,
+  MessageScrollerButton,
+  MessageScrollerContent,
+  MessageScrollerItem,
+  MessageScrollerProvider,
+  MessageScrollerViewport,
+} from "@/components/ui/message-scroller"
+```
+
+```tsx
+<MessageScrollerProvider>
+  <MessageScroller>
+    <MessageScrollerViewport>
+      <MessageScrollerContent>
+        {messages.map((message) => (
+          <MessageScrollerItem
+            key={message.id}
+            messageId={message.id}
+            scrollAnchor={message.role === "user"}
+          >
+            <Message />
+          </MessageScrollerItem>
+        ))}
+      </MessageScrollerContent>
+    </MessageScrollerViewport>
+    <MessageScrollerButton />
+  </MessageScroller>
+</MessageScrollerProvider>
+```
+
+`MessageScroller` fills its parent, so put it in a container with a height.
+
+## Composition
+
+```text
+MessageScrollerProvider
+└── MessageScroller
+    ├── MessageScrollerViewport
+    │   └── MessageScrollerContent
+    │       └── MessageScrollerItem
+    └── MessageScrollerButton
+```
+
+- **`MessageScrollerProvider`**: the headless root. Owns the scroll state and the behavior props. The hooks work anywhere inside it, including outside the frame.
+- **`MessageScroller`**: the frame that holds the viewport and the button.
+- **`MessageScrollerViewport`**: the scrolling element, with the thin scrollbar and a fade at the bottom edge.
+- **`MessageScrollerContent`**: the transcript, a `role="log"` live region. Rows are 24px apart.
+- **`MessageScrollerItem`**: one row (a message, marker, typing indicator or "load earlier" row). Wrap every direct child of the content.
+- **`MessageScrollerButton`**: a round raised key, 16px from the edge, that scrolls to the end (or start) and only appears when there is something there.
+
+## Examples
+
+### Anchoring and Streaming
+
+Mark the row that starts a turn with `scrollAnchor`. When one is appended, the viewport settles it near the top, keeping `scrollPreviousItemPeek` pixels of the previous row in view, and the reply streams into the space below. With `autoScroll`, the view follows the reply while the reader is at the live edge; scrolling away (wheel, touch, keys, scrollbar) releases it, and `MessageScrollerButton` or `scrollToEnd` brings it back. The demo above uses both.
+
+```tsx
+<MessageScrollerProvider autoScroll scrollPreviousItemPeek={64}>
+  {/* … */}
+</MessageScrollerProvider>
+```
+
+### Loading Earlier Messages
+
+Prepending rows keeps the visible row in place (`preserveScrollOnPrepend`, on by default). Give rows stable `messageId`s so the scroller knows which one to keep.
+
+<ComponentPreview name="message-scroller-load-history" />
+
+### Jumping to Messages
+
+`useMessageScroller` returns `scrollToMessage`, `scrollToStart` and `scrollToEnd`. `useMessageScrollerVisibility` reports `currentAnchorId` (the turn you are in) and `visibleMessageIds`, so an outline can follow along.
+
+<ComponentPreview name="message-scroller-commands" />
+
+### Scroll State
+
+`useMessageScrollerScrollable` reports whether the viewport can still scroll toward each edge. For styling, prefer the `data-scrollable` attribute on the root and viewport.
+
+<ComponentPreview name="message-scroller-scrollable" />
+
+### Opening Saved Threads
+
+`defaultScrollPosition` sets where a transcript opens: `"start"`, `"end"`, or `"last-anchor"` (the last anchored turn with its reply below, falling back to `"end"`). Until that position is applied the viewport carries `data-pending-scroll` and stays hidden, so the reader never sees the jump. The Scroll State example above opens at `"last-anchor"`.
+
+## Accessibility
+
+- The viewport is a focusable, labeled region (`role="region"`, `aria-label="Messages"`, `tabIndex={0}`), so keyboard users can scroll it. Focus shows a 2px `ring` outline inset 2px.
+- The content is a `role="log"` with `aria-relevant="additions"`: new rows are announced, streamed text is not read token by token. Pass `aria-busy` while a turn streams to hold announcements until it is complete.
+- The button is a real button with a "Scroll to end" / "Scroll to start" label. When there is nothing to scroll to, it is `inert`, out of the tab order and `data-active="false"`.
+- Reduced motion keeps the button's fade and drops its rise and scale.
+
+## API Reference
+
+### MessageScrollerProvider
+
+| Prop                     | Type                                | Default   | Description                                                        |
+| ------------------------ | ----------------------------------- | --------- | ------------------------------------------------------------------ |
+| `autoScroll`             | `boolean`                           | `false`   | Follow streamed output while the reader is at the live edge.       |
+| `defaultScrollPosition`  | `"start" \| "end" \| "last-anchor"` | `"end"`   | Where the transcript opens.                                        |
+| `scrollPreviousItemPeek` | `number`                            | `64`      | Pixels of the previous row kept visible above a new anchor.        |
+| `scrollMargin`           | `number`                            | `0`       | Space kept between a scrolled-to row and the viewport edge.        |
+| `scrollEdgeThreshold`    | `number`                            | `8`       | How close to an edge counts as being at it.                        |
+
+### Parts
+
+| Part                      | Props                                                                                                                                  |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `MessageScroller`         | `div` props.                                                                                                                           |
+| `MessageScrollerViewport` | `preserveScrollOnPrepend` (default `true`). Exposes `data-scrollable`, `data-autoscrolling`, `data-pending-scroll`.                     |
+| `MessageScrollerContent`  | `spacerClassName`.                                                                                                                     |
+| `MessageScrollerItem`     | `messageId`, `scrollAnchor` (default `false`).                                                                                         |
+| `MessageScrollerButton`   | `direction`: `start` · `end` (default `end`), `behavior`, `render`, plus Button `variant` (default `secondary`) and `size` (default `icon-sm`). Exposes `data-active`, `data-direction`. |
+
+### Hooks
+
+| Hook                           | Returns                                                         |
+| ------------------------------ | --------------------------------------------------------------- |
+| `useMessageScroller`           | `{ scrollToMessage(id, options), scrollToStart(options), scrollToEnd(options) }`; options take `align`, `behavior`, `scrollMargin`. |
+| `useMessageScrollerScrollable` | `{ start, end }`: whether the viewport can scroll toward each edge. |
+| `useMessageScrollerVisibility` | `{ currentAnchorId, visibleMessageIds }`.                        |
