@@ -52,12 +52,13 @@ A component library distributed through the **shadcn CLI**: every shadcn/ui comp
 - **fumadocs' remark-structure is off** (`source.config.ts`): its stringifier overflows the stack on bold text once enough pages build. Search uses the page tree instead.
 - **`CommandDialog` needs a `Command` inside it** (base-nova's doesn't include one); without it cmdk throws on open. The site's search owns ⌘K, so the command-dialog example uses ⌘J.
 - **Docs code shows the user's paths.** `ComponentSource` and previews rewrite `@/registry/ui/` to `@/components/ui/`, as the CLI does on install.
+- **`@shadcn/react` primitives** (Message Scroller, Questionnaire) turn their render state into data attributes (`data-checked`, `data-type`, `data-active`, …). Style them with the arbitrary `data-[checked]:` / `group-data-[checked]/name:` forms, as with Base UI's Select.
 - **The Chrome screenshot frame** is scaled relative to CSS pixels. Get coordinates from a fresh screenshot before clicking.
 
 ## Open items
 
 - The design catalog artifact still lists the old `muted-foreground` (#777777) and `success` (#15B042); the shipped values are #6e6e6e and #0a772a.
-- Suggested next: Avatar, then Combobox.
+- Suggested next: Avatar, then Combobox. The Message examples use plain initials in `MessageAvatar` until Avatar ships; swap them for `<Avatar>` then.
 
 ## Layout
 

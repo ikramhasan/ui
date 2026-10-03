@@ -59,6 +59,36 @@ export const ExamplesIndex: Record<
     filePath: "examples/alert-without-icon.tsx",
     component: () => import("./alert-without-icon"),
   },
+  "attachment-demo": {
+    name: "attachment-demo",
+    filePath: "examples/attachment-demo.tsx",
+    component: () => import("./attachment-demo"),
+  },
+  "attachment-group": {
+    name: "attachment-group",
+    filePath: "examples/attachment-group.tsx",
+    component: () => import("./attachment-group"),
+  },
+  "attachment-image": {
+    name: "attachment-image",
+    filePath: "examples/attachment-image.tsx",
+    component: () => import("./attachment-image"),
+  },
+  "attachment-sizes": {
+    name: "attachment-sizes",
+    filePath: "examples/attachment-sizes.tsx",
+    component: () => import("./attachment-sizes"),
+  },
+  "attachment-states": {
+    name: "attachment-states",
+    filePath: "examples/attachment-states.tsx",
+    component: () => import("./attachment-states"),
+  },
+  "attachment-trigger": {
+    name: "attachment-trigger",
+    filePath: "examples/attachment-trigger.tsx",
+    component: () => import("./attachment-trigger"),
+  },
   "badge-after-a-title": {
     name: "badge-after-a-title",
     filePath: "examples/badge-after-a-title.tsx",
@@ -108,6 +138,51 @@ export const ExamplesIndex: Record<
     name: "breadcrumb-separator",
     filePath: "examples/breadcrumb-separator.tsx",
     component: () => import("./breadcrumb-separator"),
+  },
+  "bubble-alignment": {
+    name: "bubble-alignment",
+    filePath: "examples/bubble-alignment.tsx",
+    component: () => import("./bubble-alignment"),
+  },
+  "bubble-collapsible": {
+    name: "bubble-collapsible",
+    filePath: "examples/bubble-collapsible.tsx",
+    component: () => import("./bubble-collapsible"),
+  },
+  "bubble-demo": {
+    name: "bubble-demo",
+    filePath: "examples/bubble-demo.tsx",
+    component: () => import("./bubble-demo"),
+  },
+  "bubble-group-demo": {
+    name: "bubble-group-demo",
+    filePath: "examples/bubble-group-demo.tsx",
+    component: () => import("./bubble-group-demo"),
+  },
+  "bubble-link-button": {
+    name: "bubble-link-button",
+    filePath: "examples/bubble-link-button.tsx",
+    component: () => import("./bubble-link-button"),
+  },
+  "bubble-popover": {
+    name: "bubble-popover",
+    filePath: "examples/bubble-popover.tsx",
+    component: () => import("./bubble-popover"),
+  },
+  "bubble-reactions": {
+    name: "bubble-reactions",
+    filePath: "examples/bubble-reactions.tsx",
+    component: () => import("./bubble-reactions"),
+  },
+  "bubble-tooltip": {
+    name: "bubble-tooltip",
+    filePath: "examples/bubble-tooltip.tsx",
+    component: () => import("./bubble-tooltip"),
+  },
+  "bubble-variants": {
+    name: "bubble-variants",
+    filePath: "examples/bubble-variants.tsx",
+    component: () => import("./bubble-variants"),
   },
   "button-as-link": {
     name: "button-as-link",
@@ -474,10 +549,100 @@ export const ExamplesIndex: Record<
     filePath: "examples/label-disabled-control.tsx",
     component: () => import("./label-disabled-control"),
   },
+  "marker-border": {
+    name: "marker-border",
+    filePath: "examples/marker-border.tsx",
+    component: () => import("./marker-border"),
+  },
+  "marker-demo": {
+    name: "marker-demo",
+    filePath: "examples/marker-demo.tsx",
+    component: () => import("./marker-demo"),
+  },
+  "marker-icon": {
+    name: "marker-icon",
+    filePath: "examples/marker-icon.tsx",
+    component: () => import("./marker-icon"),
+  },
+  "marker-link-button": {
+    name: "marker-link-button",
+    filePath: "examples/marker-link-button.tsx",
+    component: () => import("./marker-link-button"),
+  },
+  "marker-separator": {
+    name: "marker-separator",
+    filePath: "examples/marker-separator.tsx",
+    component: () => import("./marker-separator"),
+  },
+  "marker-shimmer": {
+    name: "marker-shimmer",
+    filePath: "examples/marker-shimmer.tsx",
+    component: () => import("./marker-shimmer"),
+  },
+  "marker-status": {
+    name: "marker-status",
+    filePath: "examples/marker-status.tsx",
+    component: () => import("./marker-status"),
+  },
+  "marker-variants": {
+    name: "marker-variants",
+    filePath: "examples/marker-variants.tsx",
+    component: () => import("./marker-variants"),
+  },
   "menubar-demo": {
     name: "menubar-demo",
     filePath: "examples/menubar-demo.tsx",
     component: () => import("./menubar-demo"),
+  },
+  "message-actions": {
+    name: "message-actions",
+    filePath: "examples/message-actions.tsx",
+    component: () => import("./message-actions"),
+  },
+  "message-attachment": {
+    name: "message-attachment",
+    filePath: "examples/message-attachment.tsx",
+    component: () => import("./message-attachment"),
+  },
+  "message-avatar": {
+    name: "message-avatar",
+    filePath: "examples/message-avatar.tsx",
+    component: () => import("./message-avatar"),
+  },
+  "message-demo": {
+    name: "message-demo",
+    filePath: "examples/message-demo.tsx",
+    component: () => import("./message-demo"),
+  },
+  "message-group": {
+    name: "message-group",
+    filePath: "examples/message-group.tsx",
+    component: () => import("./message-group"),
+  },
+  "message-header-footer": {
+    name: "message-header-footer",
+    filePath: "examples/message-header-footer.tsx",
+    component: () => import("./message-header-footer"),
+  },
+  "message-scroller-commands": {
+    name: "message-scroller-commands",
+    filePath: "examples/message-scroller-commands.tsx",
+    component: () => import("./message-scroller-commands"),
+  },
+  "message-scroller-demo": {
+    name: "message-scroller-demo",
+    filePath: "examples/message-scroller-demo.tsx",
+    component: () => import("./message-scroller-demo"),
+  },
+  "message-scroller-load-history": {
+    name: "message-scroller-load-history",
+    filePath: "examples/message-scroller-load-history.tsx",
+    component: () => import("./message-scroller-load-history"),
+  },
+  "message-scroller-scrollable": {
+    name: "message-scroller-scrollable",
+    filePath: "examples/message-scroller-scrollable.tsx",
+    component: () => import("./message-scroller-scrollable"),
   },
   "pagination-demo": {
     name: "pagination-demo",
@@ -528,6 +693,76 @@ export const ExamplesIndex: Record<
     name: "progress-with-label-and-value",
     filePath: "examples/progress-with-label-and-value.tsx",
     component: () => import("./progress-with-label-and-value"),
+  },
+  "questionnaire-animated": {
+    name: "questionnaire-animated",
+    filePath: "examples/questionnaire-animated.tsx",
+    component: () => import("./questionnaire-animated"),
+  },
+  "questionnaire-card": {
+    name: "questionnaire-card",
+    filePath: "examples/questionnaire-card.tsx",
+    component: () => import("./questionnaire-card"),
+  },
+  "questionnaire-conditional": {
+    name: "questionnaire-conditional",
+    filePath: "examples/questionnaire-conditional.tsx",
+    component: () => import("./questionnaire-conditional"),
+  },
+  "questionnaire-controlled": {
+    name: "questionnaire-controlled",
+    filePath: "examples/questionnaire-controlled.tsx",
+    component: () => import("./questionnaire-controlled"),
+  },
+  "questionnaire-demo": {
+    name: "questionnaire-demo",
+    filePath: "examples/questionnaire-demo.tsx",
+    component: () => import("./questionnaire-demo"),
+  },
+  "questionnaire-dialog": {
+    name: "questionnaire-dialog",
+    filePath: "examples/questionnaire-dialog.tsx",
+    component: () => import("./questionnaire-dialog"),
+  },
+  "questionnaire-freeform": {
+    name: "questionnaire-freeform",
+    filePath: "examples/questionnaire-freeform.tsx",
+    component: () => import("./questionnaire-freeform"),
+  },
+  "questionnaire-multiple": {
+    name: "questionnaire-multiple",
+    filePath: "examples/questionnaire-multiple.tsx",
+    component: () => import("./questionnaire-multiple"),
+  },
+  "questionnaire-navigation-state": {
+    name: "questionnaire-navigation-state",
+    filePath: "examples/questionnaire-navigation-state.tsx",
+    component: () => import("./questionnaire-navigation-state"),
+  },
+  "questionnaire-progress": {
+    name: "questionnaire-progress",
+    filePath: "examples/questionnaire-progress.tsx",
+    component: () => import("./questionnaire-progress"),
+  },
+  "questionnaire-resume": {
+    name: "questionnaire-resume",
+    filePath: "examples/questionnaire-resume.tsx",
+    component: () => import("./questionnaire-resume"),
+  },
+  "questionnaire-shortcuts": {
+    name: "questionnaire-shortcuts",
+    filePath: "examples/questionnaire-shortcuts.tsx",
+    component: () => import("./questionnaire-shortcuts"),
+  },
+  "questionnaire-skip": {
+    name: "questionnaire-skip",
+    filePath: "examples/questionnaire-skip.tsx",
+    component: () => import("./questionnaire-skip"),
+  },
+  "questionnaire-validation": {
+    name: "questionnaire-validation",
+    filePath: "examples/questionnaire-validation.tsx",
+    component: () => import("./questionnaire-validation"),
   },
   "radio-group-choice-cards": {
     name: "radio-group-choice-cards",

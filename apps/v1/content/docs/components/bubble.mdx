@@ -1,0 +1,153 @@
+---
+title: Bubble
+description: Displays conversational content in a message bubble. Supports variants, alignment, grouping, reactions, and collapsible content.
+---
+
+<ComponentPreview name="bubble-demo" />
+
+`Bubble` is the framed surface of a chat message: text, short structured output, quoted replies, suggestions and reactions. Avatars, names, timestamps and message actions belong to [`Message`](/docs/components/message).
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/bubble.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @base-ui/react class-variance-authority cn
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="bubble" title="components/ui/bubble.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Bubble, BubbleContent, BubbleReactions } from "@/components/ui/bubble"
+```
+
+```tsx
+<Bubble>
+  <BubbleContent>
+    I checked the registry output and removed the stale route.
+  </BubbleContent>
+  <BubbleReactions>
+    <span>👍</span>
+  </BubbleReactions>
+</Bubble>
+```
+
+## Composition
+
+```text
+Bubble
+├── BubbleContent
+└── BubbleReactions
+```
+
+Use `BubbleGroup` for consecutive bubbles from the same sender:
+
+```text
+BubbleGroup
+├── Bubble
+│   └── BubbleContent
+└── Bubble
+    └── BubbleContent
+```
+
+## Examples
+
+### Variants
+
+<ComponentPreview name="bubble-variants" />
+
+| Variant       | Description                                                       |
+| ------------- | ----------------------------------------------------------------- |
+| `default`     | The person's own turn: a raised ink bubble (`foreground` fill).    |
+| `secondary`   | A raised white bubble, the secondary Button skin.                 |
+| `muted`       | A flat `muted` bubble for the other side of the conversation.     |
+| `tinted`      | A soft `primary` tint.                                            |
+| `outline`     | A hairline frame on `background`.                                 |
+| `ghost`       | Unframed, full-width content for assistant text and rich output. |
+| `destructive` | A `destructive` tint for errors and failed actions.               |
+
+A bubble sizes to its content, up to 80% of the row. `ghost` drops the limit so a reply can use the full width.
+
+### Alignment
+
+Use `align` to put a bubble at the start or end of the conversation. Inside a [`Message`](/docs/components/message), set `align` on the message instead.
+
+<ComponentPreview name="bubble-alignment" />
+
+### Bubble Group
+
+`BubbleGroup` stacks consecutive bubbles 4px apart and tucks their corners on the sender's side, so the run reads as one turn. Set `align` on each `Bubble`, not on the group.
+
+<ComponentPreview name="bubble-group-demo" />
+
+### Links and Buttons
+
+Render `BubbleContent` as a link or button with `render`. Interactive bubbles get a hover state and the focus ring.
+
+<ComponentPreview name="bubble-link-button" />
+
+### Reactions
+
+`BubbleReactions` pins a small raised chip over the bubble's edge. Use `side` and `align` to place it, and leave room between rows for the overlap.
+
+<ComponentPreview name="bubble-reactions" />
+
+### Collapsible
+
+Compose long content with [`Collapsible`](/docs/components/collapsible) for a show more / show less toggle.
+
+<ComponentPreview name="bubble-collapsible" />
+
+### Tooltip
+
+<ComponentPreview name="bubble-tooltip" />
+
+### Popover
+
+<ComponentPreview name="bubble-popover" />
+
+## Accessibility
+
+- Give a row of emoji reactions `role="img"` and an `aria-label` ("Reactions: thumbs up, fire, and 8 more"), so it is announced once instead of glyph by glyph. Interactive reactions are buttons with their own labels.
+- Clickable bubbles must be real `<button>` or `<a>` elements via `render`; the bubble text is the accessible name.
+- Variants signal tone with color, so keep the meaning in the text too (say what failed in a `destructive` bubble).
+
+## API Reference
+
+| Part              | Element | Props                                                                                                                                                  |
+| ----------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Bubble`          | `div`   | `variant`: `default` · `secondary` · `muted` · `tinted` · `outline` · `ghost` · `destructive` (default `default`). `align`: `start` · `end` (default `start`). |
+| `BubbleContent`   | `div`   | `render` to use a different element, such as a link or button. 36px for one line, `rounded-2xl`, text 14px from the edge.                              |
+| `BubbleReactions` | `div`   | `side`: `top` · `bottom` (default `bottom`). `align`: `start` · `end` (default `end`).                                                                 |
+| `BubbleGroup`     | `div`   | Groups consecutive bubbles from the same sender.                                                                                                       |

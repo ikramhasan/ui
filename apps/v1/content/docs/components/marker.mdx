@@ -1,0 +1,131 @@
+---
+title: Marker
+description: Displays an inline status, system note, bordered row, or labeled separator in a conversation.
+---
+
+<ComponentPreview name="marker-demo" />
+
+`Marker` shows the notes between messages in a conversation: status updates, system notes, bordered rows and labeled separators. Compose it with [`Message`](/docs/components/message) in a thread.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/marker.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @base-ui/react class-variance-authority cn
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="marker" title="components/ui/marker.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Marker, MarkerContent, MarkerIcon } from "@/components/ui/marker"
+```
+
+```tsx
+<Marker>
+  <MarkerIcon>
+    <CheckIcon />
+  </MarkerIcon>
+  <MarkerContent>Explored 4 files</MarkerContent>
+</Marker>
+```
+
+## Composition
+
+```text
+Marker
+├── MarkerIcon
+└── MarkerContent
+```
+
+## Examples
+
+### Variants
+
+<ComponentPreview name="marker-variants" />
+
+| Variant     | Description                                                   |
+| ----------- | ------------------------------------------------------------- |
+| `default`   | An inline marker for status, notes and actions.               |
+| `border`    | The default marker with an engraved line under the row.       |
+| `separator` | A centered label between two engraved lines.                  |
+
+### Status
+
+Set `role="status"` and add a [`Spinner`](/docs/components/spinner) for streaming or in-progress markers, so updates are announced.
+
+<ComponentPreview name="marker-status" />
+
+### Shimmer
+
+Add the `shimmer` utility (from `shadcn/tailwind.css`) to `MarkerContent` for streaming text.
+
+<ComponentPreview name="marker-shimmer" />
+
+### Separator
+
+Use `separator` for dates and section breaks.
+
+<ComponentPreview name="marker-separator" />
+
+### Border
+
+<ComponentPreview name="marker-border" />
+
+### With Icon
+
+`MarkerIcon` holds a 16px icon. Add `flex-col` to stack it above the text.
+
+<ComponentPreview name="marker-icon" />
+
+### Links and Buttons
+
+Render the marker as a link or button with `render`. The text goes to `foreground` on hover, and focus shows the ring.
+
+<ComponentPreview name="marker-link-button" />
+
+## Accessibility
+
+- Streaming or progress markers ("Thinking…", a running tool) take `role="status"`.
+- A labeled separator needs no role: the lines are decorative pseudo-elements and the label reads as text. Don't add `role="separator"`, which would hide the label.
+- `MarkerIcon` is `aria-hidden`; give an icon-only marker an `aria-label`.
+- Interactive markers are real `<a>` or `<button>` elements via `render`.
+
+## API Reference
+
+| Part            | Element | Props / notes                                                                                                                     |
+| --------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `Marker`        | `div`   | `variant`: `default` · `border` · `separator` (default `default`). `render` to use a different element. Also exports `markerVariants`. |
+| `MarkerIcon`    | `span`  | A decorative 16px icon slot, hidden from assistive tech.                                                                          |
+| `MarkerContent` | `span`  | The marker text.                                                                                                                  |

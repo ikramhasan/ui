@@ -1,0 +1,133 @@
+---
+title: Message
+description: Displays a message in a conversation, with optional avatar, header, footer, and alignment.
+---
+
+<ComponentPreview name="message-demo" />
+
+`Message` lays out one row of a conversation: the avatar, alignment, header and footer around the message surface. Render the surface itself with [`Bubble`](/docs/components/bubble), and put the conversation in a [`MessageScroller`](/docs/components/message-scroller).
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/message.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install cn
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="message" title="components/ui/message.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Bubble, BubbleContent } from "@/components/ui/bubble"
+import { Message, MessageAvatar, MessageContent } from "@/components/ui/message"
+```
+
+```tsx
+<Message>
+  <MessageAvatar>
+    <Avatar>
+      <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+      <AvatarFallback>CN</AvatarFallback>
+    </Avatar>
+  </MessageAvatar>
+  <MessageContent>
+    <Bubble>
+      <BubbleContent>How can I help you today?</BubbleContent>
+    </Bubble>
+  </MessageContent>
+</Message>
+```
+
+## Composition
+
+```text
+Message
+├── MessageAvatar
+└── MessageContent
+    ├── MessageHeader
+    ├── Bubble
+    └── MessageFooter
+```
+
+Use `MessageGroup` to stack consecutive messages from the same sender:
+
+```text
+MessageGroup
+├── Message
+└── Message
+```
+
+## Examples
+
+### Avatar
+
+`MessageAvatar` sits at the bottom of the row, centered on a one-line bubble. Set `align="end"` on the message to move it to the other side.
+
+<ComponentPreview name="message-avatar" />
+
+### Group
+
+Render an empty `MessageAvatar` on the earlier messages so they stay aligned with the avatar on the last one.
+
+<ComponentPreview name="message-group" />
+
+### Header and Footer
+
+`MessageHeader` holds a sender name and `MessageFooter` metadata such as a delivery status. Both line their text up with the bubble's.
+
+<ComponentPreview name="message-header-footer" />
+
+### Actions
+
+Put message actions in `MessageFooter`: ghost `icon-sm` buttons, whose first icon lines up with the bubble text.
+
+<ComponentPreview name="message-actions" />
+
+## Accessibility
+
+`Message` is a layout wrapper; accessibility comes from what you put in it.
+
+- Icon-only actions in `MessageFooter` need an `aria-label`.
+- For in-progress messages, use a [`Marker`](/docs/components/marker) with `role="status"` so the update is announced.
+
+## API Reference
+
+| Part             | Element | Props / notes                                                                                                                     |
+| ---------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `Message`        | `div`   | `align`: `start` · `end` (default `start`).                                                                                        |
+| `MessageGroup`   | `div`   | Stacks consecutive messages from the same sender, 8px apart.                                                                       |
+| `MessageAvatar`  | `div`   | Bottom-aligned, centered on a one-line bubble. With a `MessageFooter`, it rises past the footer to stay level with the bubble.    |
+| `MessageContent` | `div`   | Wraps the header, the bubble and the footer, 8px apart.                                                                            |
+| `MessageHeader`  | `div`   | Above the message, such as a sender name. Stays at the start.                                                                      |
+| `MessageFooter`  | `div`   | A 28px row below the message for status or actions. Follows the message's side.                                                    |

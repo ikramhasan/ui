@@ -18,17 +18,17 @@ Components only use the standard shadcn variables (`--primary`, `--secondary`, `
 
 Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://ui.shadcn.com/r/styles/base-nova/registry.json). Tick a box when the component is in `registry/ui/`, in `registry.json` and has a docs page.
 
-**Progress: 45 / 63**
+**Progress: 51 / 63**
 
 - [x] Accordion (`accordion`)
 - [x] Alert (`alert`)
 - [x] Alert Dialog (`alert-dialog`)
 - [ ] Aspect Ratio (`aspect-ratio`)
-- [ ] Attachment (`attachment`)
+- [x] Attachment (`attachment`)
 - [ ] Avatar (`avatar`)
 - [x] Badge (`badge`)
 - [x] Breadcrumb (`breadcrumb`)
-- [ ] Bubble (`bubble`)
+- [x] Bubble (`bubble`)
 - [x] Button (`button`)
 - [x] Button Group (`button-group`)
 - [x] Calendar (`calendar`)
@@ -54,16 +54,16 @@ Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://
 - [x] Item (`item`)
 - [x] Kbd (`kbd`)
 - [x] Label (`label`)
-- [ ] Marker (`marker`)
+- [x] Marker (`marker`)
 - [x] Menubar (`menubar`)
-- [ ] Message (`message`)
-- [ ] Message Scroller (`message-scroller`)
+- [x] Message (`message`)
+- [x] Message Scroller (`message-scroller`)
 - [ ] Native Select (`native-select`)
 - [ ] Navigation Menu (`navigation-menu`)
 - [x] Pagination (`pagination`)
 - [x] Popover (`popover`)
 - [x] Progress (`progress`)
-- [ ] Questionnaire (`questionnaire`)
+- [x] Questionnaire (`questionnaire`)
 - [x] Radio Group (`radio-group`)
 - [ ] Resizable (`resizable`)
 - [x] Scroll Area (`scroll-area`)

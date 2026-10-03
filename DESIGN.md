@@ -550,6 +550,63 @@ shadcn `Kbd` / `KbdGroup`. 20px tall, min 20px wide, `rounded-sm`, 12/16 Medium 
 
 - Inside an `InputGroup` addon it is inset 5px from the top, bottom and side, with a 4px radius (10 − 1 − 5).
 
+### Attachment
+
+shadcn `Attachment` (`state` `idle` · `uploading` · `processing` · `error` · `done`, `size` `default` · `sm` · `xs`, `orientation` `horizontal` · `vertical`; `AttachmentMedia` `variant` `icon` · `image`, `AttachmentContent`, `AttachmentTitle`, `AttachmentDescription`, `AttachmentActions`, `AttachmentAction`, `AttachmentTrigger`, `AttachmentGroup`). A muted chip holding a raised tile, like the Dialog's shell and card.
+
+- Chip: `muted` fill, 1px `border`. Horizontal chips are 56 / 44 / 36px tall with or without media. The radius and the tile inset are paired so the tile is concentric: 18px − 8px = 10px (`default`), 14 − 6 = 8 (`sm`), 10 − 4 = 6 (`xs`). Tiles are 40 / 32 / 28px; without media the text sits 12 / 10 / 8px in.
+- `icon` media: the secondary Button skin (white key, `input` hairline, soft lift) with a 16px `foreground` icon (14px for `xs`, 24px when vertical). `image` media: the picture with a 1px black/10 outline (white/10 in dark), dimmed to 60% while uploading or processing.
+- Title `body-medium` (`sm` / `xs`: 12/16 Medium), truncated; description `caption` in `muted-foreground` (4.7:1 on the chip, 5.5:1 dark), 2px below (flush for `sm` / `xs`). `uploading` and `processing` shimmer the title.
+- `idle`: a dashed `input` + 15% `foreground` outline. `error`: `destructive/30` outline; the tile flattens to the `destructive/10` tint and the icon and description take the text-on-tints red (6:1 light, 7.3:1 dark).
+- Actions: ghost `icon-xs`, 8px from the end, centered; 40px-tall hit areas. Vertical: over the image's top-right corner.
+- With an `AttachmentTrigger`: hover lifts the chip toward `background` with an `input` outline (dark: `muted` + 4% `foreground`), keeping the description ≥ 4.5:1; keyboard focus draws the 2px `ring` inset on the chip edge, so a scrolling group never clips it.
+- `AttachmentGroup`: a snapping, horizontally scrolling row, 12px gaps, faded edges.
+
+### Bubble
+
+shadcn `Bubble` (`BubbleContent` with `render`, `BubbleReactions` `side` / `align`, `BubbleGroup`), `variant` `default` · `secondary` · `muted` · `tinted` · `outline` · `ghost` · `destructive`, `align` `start` · `end`.
+
+- `BubbleContent`: `rounded-2xl` (18px), `body` (14/20), padding 7px 13px inside a 1px border (transparent unless the variant draws one), so text sits 8px / 14px from the edge and one line is 36px: a pill. Up to 80% of the row (`ghost`: full width).
+- `default` is the person's own turn, an ink key raised like the default Button: `foreground` + 12% `background` at the top → `foreground`, `foreground` + 20% black hairline, soft lift and inner highlight, `background` text (9:1 light, 11.5:1 dark). It inverts with the theme. `primary` stays reserved for actions.
+- `secondary`: the secondary Button skin. `muted`: flat `muted`, for the other side. `tinted`: `primary` 8% over `background` (dark 18%), `foreground` text. `outline`: 1px `border` on `background`. `ghost`: unframed, no padding. `destructive`: `destructive/10` (dark /20) with text per **Text on tints** (5.6:1 light, 5.9:1 dark).
+- As links or buttons: `default` brightens (dark: dims), `secondary` deepens its bottom stop, flat fills step 5% toward `foreground`, `outline` / `ghost` take `accent`. Focus: the 2px `ring` with a 2px offset.
+- `BubbleGroup`: bubbles 4px apart; the corners between them on the sender's side tuck to 6px (`rounded-sm`), so a run reads as one turn. "Sender's side" follows the bubble's or its Message's `end` alignment.
+- `BubbleReactions`: a 24px raised chip (secondary Button skin, `rounded-full`), 12px in from the bubble's side and hanging 3/4 of its height past the edge.
+
+### Message
+
+shadcn `Message` (`align` `start` · `end`; `MessageGroup`, `MessageAvatar`, `MessageContent`, `MessageHeader`, `MessageFooter`). Pure layout around a `Bubble`.
+
+- Avatar and content 8px apart. `MessageAvatar` (32px, `muted`, `rounded-full`, a low-opacity outline like Item image tiles) sits 2px above the row's bottom, so it centers on a one-line bubble and on the last line of a longer one (measured 0px). With a footer it rises 36px (footer 28px + gap 8px) to stay level with the bubble.
+- `MessageContent`: header, bubble and footer 8px apart. `MessageGroup`: messages 8px apart.
+- `MessageHeader` / `MessageFooter`: `caption` Medium in `muted-foreground`, text 14px in, level with the bubble text. The footer is a 28px row for ghost `icon-sm` actions; with buttons it pads 8px, so the first icon's ink lands on the bubble's text line (measured 0px). On `ghost` bubbles both drop their padding. The footer follows the message's side.
+
+### Marker
+
+shadcn `Marker` (`variant` `default` · `border` · `separator`, `render`; `MarkerIcon`, `MarkerContent`). Notes between messages.
+
+- `body` in `muted-foreground`, 20px line, 16px icon 8px before the text.
+- `separator`: the engraved Separator line on both sides (hairline + 1px highlight; dark black/40), 12px from the label. `border`: the same engraved line under the row, 8px below the text.
+- As links or buttons the text goes to `foreground` on hover; focus is the 2px `ring` with a 2px offset. Streaming text takes the `shimmer` utility; status markers take a `Spinner`.
+
+### Message Scroller
+
+shadcn `MessageScroller` on `@shadcn/react` (`MessageScrollerProvider`, `MessageScrollerViewport`, `MessageScrollerContent`, `MessageScrollerItem`, `MessageScrollerButton`, the three hooks). Behavior is upstream's; only the frame is styled.
+
+- Viewport: the Scroll Area's thin thumb (`muted-foreground`/50, transparent track) with a stable gutter, a fade at the bottom edge, and keyboard focus as a 2px `ring` outline inset 2px. Rows 24px apart.
+- `MessageScrollerButton`: a round `secondary` `icon-sm` key (28px) with a down arrow, centered 16px from the edge, with a 40px hit area. It rises in from 8px past its spot at 0.95 scale with opacity, 200ms; out in 150ms; ease `cubic-bezier(0.23, 1, 0.32, 1)`. Reduced motion keeps the fade.
+
+### Questionnaire
+
+shadcn `Questionnaire` on `@shadcn/react` (every upstream part; navigation buttons take Button `variant` and `size`). One question at a time, answered with Field choice cards.
+
+- `QuestionnaireTitle`: `title` (16/20 Medium); the description 4px below in `muted-foreground`; choices 16px below that, 8px apart.
+- `QuestionnaireChoice`: the Field choice card: `rounded-lg`, 1px `input` border on `background`, `shadow-xs`, 12px in, 44px for one line (1 + 11 + 20 + 11 + 1). Hover `accent/50`; checked `primary/30` border on `primary` 5% (dark /20 on 10%); keyboard focus is the input ring on the card. Invalid: `destructive` border. Disabled: 50%.
+- Indicator: the Checkbox (`multiple`) or Radio skin at 16px, centered on the first text line (measured 0px); the checked skin fades in, the tick draws itself, the dot grows from half size. Press scales 0.95.
+- Shortcut: the recessed Kbd keycap (20px, `caption` Medium in `muted-foreground` + 20% `foreground`; 4.9:1 light, 5.5:1 dark at the darkest stop), at the end of the first line, 13px from the edge like the indicator.
+- `QuestionnaireInput`: the Input. `QuestionnaireError`: the Field error (13/16 `destructive`), 6px under the choices. `QuestionnaireProgress`: `caption` Medium `muted-foreground`, tabular.
+- Actions: Previous at the start (`outline`), Skip (`outline`) and Next / Submit (`default`) at the end, 8px apart. 44px tall on touch screens, 32px from `sm`.
+
 ---
 
 ## 6. Blocks
