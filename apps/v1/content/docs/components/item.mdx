@@ -1,0 +1,205 @@
+---
+title: Item
+description: A versatile component that you can use to display any content.
+---
+
+<ComponentPreview name="item-demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/item.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @base-ui/react class-variance-authority cn
+```
+
+<Step>Add the components it builds on:</Step>
+
+- [Separator](/docs/components/separator)
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="item" title="components/ui/item.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  Item,
+  ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemMedia,
+  ItemTitle,
+} from "@/components/ui/item"
+```
+
+```tsx
+<Item>
+  <ItemMedia variant="icon">
+    <Icon />
+  </ItemMedia>
+  <ItemContent>
+    <ItemTitle>Title</ItemTitle>
+    <ItemDescription>Description</ItemDescription>
+  </ItemContent>
+  <ItemActions>
+    <Button>Action</Button>
+  </ItemActions>
+</Item>
+```
+
+## Examples
+
+### App list
+
+<ComponentPreview name="item-app-list" />
+
+### Store list (links, separators)
+
+<ComponentPreview name="item-links" />
+
+### Sizes
+
+<ComponentPreview name="item-sizes" />
+
+## API Reference
+
+### Item
+
+The main component for displaying content with media, title, description, and actions.
+
+| Prop      | Type                                | Default     |
+| --------- | ----------------------------------- | ----------- |
+| `variant` | `"default" \| "outline" \| "muted"` | `"default"` |
+| `size`    | `"default" \| "sm" \| "xs"`         | `"default"` |
+| `render`  | `React.ReactElement`                |             |
+
+### ItemGroup
+
+A container that groups related items together with consistent styling.
+
+```tsx
+<ItemGroup>
+  <Item />
+  <Item />
+</ItemGroup>
+```
+
+### ItemSeparator
+
+A separator between items in a group.
+
+```tsx
+<ItemGroup>
+  <Item />
+  <ItemSeparator />
+  <Item />
+</ItemGroup>
+```
+
+### ItemMedia
+
+Use `ItemMedia` to display media content such as icons, images, or avatars.
+
+| Prop      | Type                             | Default     |
+| --------- | -------------------------------- | ----------- |
+| `variant` | `"default" \| "icon" \| "image"` | `"default"` |
+
+```tsx
+<ItemMedia variant="icon">
+  <Icon />
+</ItemMedia>
+```
+
+```tsx
+<ItemMedia variant="image">
+  <img src="..." alt="..." />
+</ItemMedia>
+```
+
+### ItemContent
+
+Wraps the title and description of the item.
+
+```tsx
+<ItemContent>
+  <ItemTitle>Title</ItemTitle>
+  <ItemDescription>Description</ItemDescription>
+</ItemContent>
+```
+
+### ItemTitle
+
+Displays the title of the item.
+
+```tsx
+<ItemTitle>Item Title</ItemTitle>
+```
+
+### ItemDescription
+
+Displays the description of the item.
+
+```tsx
+<ItemDescription>Item description</ItemDescription>
+```
+
+### ItemActions
+
+Container for action buttons or other interactive elements.
+
+```tsx
+<ItemActions>
+  <Button>Action</Button>
+</ItemActions>
+```
+
+### ItemHeader
+
+Displays a header above the item content.
+
+```tsx
+<Item>
+  <ItemHeader>Header</ItemHeader>
+  <ItemContent>...</ItemContent>
+</Item>
+```
+
+### ItemFooter
+
+Displays a footer below the item content.
+
+```tsx
+<Item>
+  <ItemContent>...</ItemContent>
+  <ItemFooter>Footer</ItemFooter>
+</Item>
+```

@@ -1,0 +1,111 @@
+---
+title: Sidebar
+description: A composable, themeable and customizable sidebar component.
+---
+
+<ComponentPreview name="sidebar-demo" previewClassName="p-0 sm:p-0" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/sidebar.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @base-ui/react class-variance-authority cn lucide-react
+```
+
+<Step>Add the components it builds on:</Step>
+
+- [Button](/docs/components/button)
+- [Input](/docs/components/input)
+- [Separator](/docs/components/separator)
+- [Sheet](/docs/components/sheet)
+- [Skeleton](/docs/components/skeleton)
+- [Tooltip](/docs/components/tooltip)
+- [Use Mobile](/docs/components/use-mobile)
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="sidebar" title="components/ui/sidebar.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx title="app/layout.tsx"
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { AppSidebar } from "@/components/app-sidebar"
+
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <SidebarProvider>
+      <AppSidebar />
+      <main>
+        <SidebarTrigger />
+        {children}
+      </main>
+    </SidebarProvider>
+  )
+}
+```
+
+```tsx title="components/app-sidebar.tsx"
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarHeader,
+} from "@/components/ui/sidebar"
+
+export function AppSidebar() {
+  return (
+    <Sidebar>
+      <SidebarHeader />
+      <SidebarContent>
+        <SidebarGroup />
+        <SidebarGroup />
+      </SidebarContent>
+      <SidebarFooter />
+    </Sidebar>
+  )
+}
+```
+
+## Examples
+
+### Floating, with search and sub-menus
+
+<ComponentPreview name="sidebar-floating" previewClassName="p-0 sm:p-0" />
+
+### Loading
+
+<ComponentPreview name="sidebar-loading" previewClassName="p-0 sm:p-0" />
+
+## API Reference
+
+The Sidebar has the same parts and props as shadcn/ui's. See the [shadcn/ui Sidebar documentation](https://ui.shadcn.com/docs/components/base/sidebar) for the full reference.

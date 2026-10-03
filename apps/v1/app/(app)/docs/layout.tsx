@@ -1,0 +1,21 @@
+import { getDocsNav } from "@/lib/docs"
+import { DocsSidebar } from "@/components/docs-sidebar"
+import { SidebarProvider } from "@/registry/ui/sidebar"
+
+export default function DocsLayout({ children }: LayoutProps<"/docs">) {
+  return (
+    <div className="container-wrapper flex flex-1 flex-col">
+      <SidebarProvider
+        className="min-h-min flex-1 items-start lg:grid lg:grid-cols-[var(--sidebar-width)_minmax(0,1fr)]"
+        style={
+          {
+            "--sidebar-width": "calc(var(--spacing) * 60)",
+          } as React.CSSProperties
+        }
+      >
+        <DocsSidebar nav={getDocsNav()} />
+        <div className="h-full w-full">{children}</div>
+      </SidebarProvider>
+    </div>
+  )
+}

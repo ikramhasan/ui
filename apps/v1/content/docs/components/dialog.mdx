@@ -1,0 +1,95 @@
+---
+title: Dialog
+description: A window overlaid on either the primary window or another dialog window, rendering the content underneath inert.
+---
+
+<ComponentPreview name="dialog-demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/dialog.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @base-ui/react cn lucide-react
+```
+
+<Step>Add the components it builds on:</Step>
+
+- [Button](/docs/components/button)
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="dialog" title="components/ui/dialog.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+```
+
+```tsx
+<Dialog>
+  <DialogTrigger>Open</DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Are you absolutely sure?</DialogTitle>
+      <DialogDescription>
+        This action cannot be undone. This will permanently delete your account
+        and remove your data from our servers.
+      </DialogDescription>
+    </DialogHeader>
+  </DialogContent>
+</Dialog>
+```
+
+## Examples
+
+### Form
+
+<ComponentPreview name="dialog-form" />
+
+### Without footer
+
+<ComponentPreview name="dialog-without-footer" />
+
+### Footer close button
+
+<ComponentPreview name="dialog-footer-close-button" />
+
+## API Reference
+
+Dialog is built on the Base UI [Dialog](https://base-ui.com/react/components/dialog#api-reference) primitive. See the Base UI documentation for every prop.

@@ -1,0 +1,56 @@
+import type { Metadata } from "next"
+import { Geist_Mono, Inter } from "next/font/google"
+
+import { META_THEME_COLORS, siteConfig } from "@/lib/config"
+import { ThemeProvider } from "@/components/theme-provider"
+import { TooltipProvider } from "@/registry/ui/tooltip"
+
+import "./globals.css"
+
+const inter = Inter({
+  variable: "--font-sans",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+})
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+})
+
+export const metadata: Metadata = {
+  title: {
+    default: siteConfig.name,
+    template: `%s - ${siteConfig.name}`,
+  },
+  metadataBase: new URL(siteConfig.url),
+  description: siteConfig.description,
+  keywords: ["shadcn", "Base UI", "React", "Tailwind CSS", "Components"],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteConfig.url,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+  },
+}
+
+export default function RootLayout({ children }: LayoutProps<"/">) {
+  return (
+    <html
+      lang="en"
+      className={`${inter.variable} ${geistMono.variable} antialiased`}
+      suppressHydrationWarning
+    >
+      <head>
+        <meta name="theme-color" content={META_THEME_COLORS.light} />
+      </head>
+      <body className="overscroll-none bg-background">
+        <ThemeProvider>
+          <TooltipProvider>{children}</TooltipProvider>
+        </ThemeProvider>
+      </body>
+    </html>
+  )
+}

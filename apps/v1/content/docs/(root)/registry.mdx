@@ -1,0 +1,51 @@
+---
+title: Registry
+description: How the registry is served, and what the CLI downloads.
+---
+
+Every component is a registry item: a JSON file with the component's source, its npm dependencies and the other items it needs. The shadcn CLI downloads the item and writes the files into your project.
+
+## Items
+
+Items are served from `/r`:
+
+| Item          | URL                                     |
+| ------------- | --------------------------------------- |
+| Style         | `http://localhost:3000/r/style.json`    |
+| A component   | `http://localhost:3000/r/{name}.json`   |
+| The registry  | `http://localhost:3000/r/registry.json` |
+
+The `{name}` of a component is its file name, the same as in shadcn/ui: `button`, `dropdown-menu`, `input-group`.
+
+## Dependencies
+
+An item lists two kinds of dependencies:
+
+- **npm packages** (`dependencies`), like `@base-ui/react` and `cn`. The CLI installs them with your package manager.
+- **Other items** (`registryDependencies`), like the Button a Dialog uses. They point at this registry by URL, so the CLI installs our Button, not shadcn's.
+
+## Namespace
+
+Register the registry in `components.json` to add items by name:
+
+```json title="components.json"
+{
+  "registries": {
+    "@ui": "http://localhost:3000/r/{name}.json"
+  }
+}
+```
+
+```bash
+npx shadcn@latest add @ui/dialog
+```
+
+You can also view an item before installing it:
+
+```bash
+npx shadcn@latest view @ui/dialog
+```
+
+## Inspect an item
+
+Every item is plain JSON. Open one to see exactly what the CLI will write: [button.json](http://localhost:3000/r/button.json).

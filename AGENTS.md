@@ -6,7 +6,8 @@ A component library distributed through the **shadcn CLI**: every shadcn/ui comp
 
 - Design source of truth: `DESIGN.md` (the full catalog also lives at https://claude.ai/artifact/BMTLLMNNtjn6hQjR9JR6wr).
 - Every shadcn component will be replicated. The README's Components checklist tracks what is done and what remains.
-- Every component is shown on the landing page (`src/app/page.tsx`), served at http://localhost:3000. The page is an app shell built from our own Sidebar (`src/app/_components/app-sidebar.tsx`), which lists every entry of the `components` array. The user usually has `pnpm dev` running already, so check port 3000 before starting a server.
+- The repo is a pnpm workspace structured like shadcn/ui (whose site is `apps/v4`); ours is `apps/v1`. Run commands from `apps/v1`, or from the root, which delegates (`pnpm dev`, `pnpm build`, `pnpm lint`, `pnpm typecheck`, `pnpm registry:build`).
+- Every component has a docs page (`apps/v1/content/docs/components/<name>.mdx`) at http://localhost:3000/docs/components/<name>, with a preview, install commands (CLI and manual), usage, one preview per example and the API reference, like shadcn's docs. The docs are built from our own components. Home, Blocks and Charts are placeholders until every component ships. The user usually has `pnpm dev` running already, so check port 3000 before starting a server.
 
 ## Rules
 
@@ -18,15 +19,16 @@ A component library distributed through the **shadcn CLI**: every shadcn/ui comp
 
 ## How to add a component
 
-1. Install the upstream one for reference: `pnpm exec shadcn add <name>` (writes to `src/components/ui/`). Read it closely (variants, parts, data attributes, accessibility, keyboard support), then delete it. The raw item is also at `https://ui.shadcn.com/r/styles/base-nova/<name>.json`.
-2. Recreate it in `registry/ui/<name>.tsx` with the identical API, restyled per `DESIGN.md`. Match the surrounding code style (upstream formatting, no semicolons).
-3. Add an item to `registry.json` (`type: "registry:ui"`, upstream's `dependencies`; for our own components use `registryDependencies` with the full URL, e.g. `http://localhost:3000/r/button.json`; a bare `"button"` installs shadcn's button). Import our components as `@/registry/ui/<name>`; the CLI rewrites it to the user's alias.
-4. Add `src/app/_demos/<name>-demo.tsx` covering every variant, size and state (disabled, invalid, `render` composition), and register it in the `components` list in `src/app/page.tsx`. Tick the component in the README checklist and update its progress count.
-5. Verify: `pnpm registry:build`, `pnpm exec tsc --noEmit`, `pnpm lint`, then check the page in light and dark, including keyboard focus. For a real install test, use a throwaway project in the scratchpad (with its own `pnpm install`, not a symlinked `node_modules`) and run `shadcn add http://localhost:3000/r/<name>.json`.
+1. Install the upstream one for reference: `pnpm exec shadcn add <name>` (run in `apps/v1`; writes to `apps/v1/components/ui/`). Read it closely (variants, parts, data attributes, accessibility, keyboard support), then delete it. The raw item is also at `https://ui.shadcn.com/r/styles/base-nova/<name>.json`.
+2. Recreate it in `apps/v1/registry/ui/<name>.tsx` with the identical API, restyled per `DESIGN.md`. Match the surrounding code style (upstream formatting, no semicolons).
+3. Add an item to `registry.json` (`type: "registry:ui"`, upstream's `dependencies`; for our own components use `registryDependencies` with the full URL, e.g. `http://localhost:3000/r/button.json`, which the build rewrites to the deployed URL; a bare `"button"` installs shadcn's button). Import our components as `@/registry/ui/<name>`; the CLI rewrites it to the user's alias.
+4. Add examples to `apps/v1/examples/`, one exported component per file: `<name>-demo.tsx` (the top preview) plus `<name>-<variant>.tsx` files covering every variant, size and state (disabled, invalid, `render` composition). Run `pnpm registry:build` to regenerate `examples/__index__.tsx`.
+5. Write `apps/v1/content/docs/components/<name>.mdx` (copy an existing page: preview, Installation tabs, Usage, Examples, API Reference) and add the name to `content/docs/components/meta.json` in title order. Tick the component in the README checklist and update its progress count.
+6. Verify: `pnpm registry:build`, `pnpm typecheck`, `pnpm lint`, then check the docs page in light and dark, including keyboard focus. For a real install test, use a throwaway project in the scratchpad (with its own `pnpm install`, not a symlinked `node_modules`) and run `shadcn add http://localhost:3000/r/<name>.json`.
 
 ## Working with the user
 
-- **Commit only when asked.** Commits go on `main` once the user says "commit". Never push.
+- **Commit only when asked.** Commits go on `main` once the user says "commit". Never push. (Cloud sessions run on an assigned branch and push it, because the container is discarded.)
 - **Design taste.** The user loves the textured pieces: the Button protrudes (gradient, hairline, lift, inner highlight), the Kbd is recessed (the inverse), the Dialog is a muted shell holding a raised card with the footer on the shell, and the toggles reuse those skins. Variations on that language are welcome. The user rejected two Card redesigns (a gray tray with a sheet, and a raised card with a recessed footer well), so the Card stays plain.
 - **Experiments are cheap.** When asked to "try" a look, change only the component file, show it, and restore it with `git checkout` if it's rejected. Don't update DESIGN.md until the look is kept.
 - **Precision matters.** "This is a design library": a 1px misalignment is a bug. Before calling anything done, do the box math (control height − borders − padding vs child size, line heights, radii) and measure it in the browser (insets on every side, centers vs the text line, concentric radii = outer − inset). Report numbers, not impressions.
@@ -48,21 +50,28 @@ A component library distributed through the **shadcn CLI**: every shadcn/ui comp
 - **Pseudo-elements don't get the global `border-border`.** Set `before:border-border` explicitly.
 - **shadcn's `data-checked` / `data-unchecked` variants don't compose with `group-`.** Style the child from the element that carries the attribute (e.g. `data-unchecked:*:…` on Base UI's Indicator, which gets the same attributes).
 - **Absolutely positioned grid children** use their grid area as their containing block without occupying cells (the Dialog's card is a `::before` spanning `row-[1/footer]`). Give the grid an explicit column (`grid-cols-1`), or an `auto` end line stretches to the padding edge.
+- **fumadocs' remark-structure is off** (`source.config.ts`): its stringifier overflows the stack on bold text once enough pages build. Search uses the page tree instead.
+- **`CommandDialog` needs a `Command` inside it** (base-nova's doesn't include one); without it cmdk throws on open. The site's search owns ⌘K, so the command-dialog example uses ⌘J.
+- **Docs code shows the user's paths.** `ComponentSource` and previews rewrite `@/registry/ui/` to `@/components/ui/`, as the CLI does on install.
 - **The Chrome screenshot frame** is scaled relative to CSS pixels. Get coordinates from a fresh screenshot before clicking.
 
 ## Open items
 
-- Replace `http://localhost:3000` on deploy: `homepage` and every `registryDependencies` URL in `registry.json`, plus the landing-page install commands.
 - The design catalog artifact still lists the old `muted-foreground` (#777777) and `success` (#15B042); the shipped values are #6e6e6e and #0a772a.
 - Suggested next: Combobox, then Sonner and Table.
 
 ## Layout
 
+Everything lives in `apps/v1`; `@/` resolves to that folder.
+
 - `registry/ui/*.tsx`: component sources the CLI installs (imported in the app as `@/registry/ui/<name>`).
 - `registry.json`: items. `style` (`registry:style`) holds the theme variables and depends on shadcn's `font-inter`. Users install it once: `npx shadcn@latest add http://localhost:3000/r/style.json`.
-- `src/app/globals.css`: this app's copy of the `style` variables. Keep the two in sync.
-- `src/app/_components/`: landing page chrome (theme toggle, install command, section/example frames).
-- `src/app/_demos/`: one demo per component.
+- `app/globals.css`: this app's copy of the `style` variables (keep the two in sync), followed by docs-site-only CSS (header height, code blocks, steps).
+- `app/(app)/`: routes. `(root)` is Home, `docs/[[...slug]]` renders `content/docs` with fumadocs-mdx, `blocks` and `charts` are placeholders.
+- `content/docs/`: MDX. `(root)/` holds Getting Started (Introduction, Installation, Theming, Dark Mode, Registry); `components/` one page per component. `meta.json` files set the sidebar order.
+- `examples/`: one file per docs example; `__index__.tsx` is generated by `scripts/build-registry.mjs`.
+- `components/`: site chrome (header, mobile nav, ⌘K search, docs sidebar, TOC) and MDX pieces (`ComponentPreview`, `ComponentSource`, `CodeTabs`, `CodeBlockCommand`, `Callout`). `mdx-components.tsx` maps them into MDX.
+- `lib/site-url.mjs`: the site URL (`NEXT_PUBLIC_APP_URL`, then Vercel's production or deployment URL, then `http://localhost:3000`). `scripts/build-registry.mjs` writes it into `public/r/*.json`, and `lib/registry-url.ts` swaps it into the docs at render time, so source files keep `http://localhost:3000`.
 - `public/r/`: build output (gitignored).
 
 ## Skills

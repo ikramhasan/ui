@@ -1,0 +1,121 @@
+---
+title: Alert
+description: Displays a callout for user attention.
+---
+
+<ComponentPreview name="alert-demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/alert.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install class-variance-authority cn
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="alert" title="components/ui/alert.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  Alert,
+  AlertAction,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/ui/alert"
+```
+
+```tsx
+<Alert>
+  <InfoIcon />
+  <AlertTitle>Heads up!</AlertTitle>
+  <AlertDescription>
+    You can add components and dependencies to your app using the cli.
+  </AlertDescription>
+  <AlertAction>
+    <Button variant="outline">Enable</Button>
+  </AlertAction>
+</Alert>
+```
+
+## Examples
+
+### Title only
+
+<ComponentPreview name="alert-title-only" />
+
+### Destructive
+
+<ComponentPreview name="alert-destructive" />
+
+### With action
+
+<ComponentPreview name="alert-with-action" />
+
+### Without icon
+
+<ComponentPreview name="alert-without-icon" />
+
+## API Reference
+
+### Alert
+
+The `Alert` component displays a callout for user attention.
+
+| Prop      | Type                         | Default     |
+| --------- | ---------------------------- | ----------- |
+| `variant` | `"default" \| "destructive"` | `"default"` |
+
+### AlertTitle
+
+The `AlertTitle` component displays the title of the alert.
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+### AlertDescription
+
+The `AlertDescription` component displays the description or content of the alert.
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+### AlertAction
+
+The `AlertAction` component displays an action element (like a button) positioned absolutely in the top-right corner of the alert.
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |

@@ -1,0 +1,89 @@
+---
+title: Menubar
+description: A visually persistent menu common in desktop applications that provides quick access to a consistent set of commands.
+---
+
+<ComponentPreview name="menubar-demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/menubar.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @base-ui/react cn lucide-react
+```
+
+<Step>Add the components it builds on:</Step>
+
+- [Dropdown Menu](/docs/components/dropdown-menu)
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="menubar" title="components/ui/menubar.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  Menubar,
+  MenubarContent,
+  MenubarGroup,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarTrigger,
+} from "@/components/ui/menubar"
+```
+
+```tsx
+<Menubar>
+  <MenubarMenu>
+    <MenubarTrigger>File</MenubarTrigger>
+    <MenubarContent>
+      <MenubarGroup>
+        <MenubarItem>
+          New Tab <MenubarShortcut>⌘T</MenubarShortcut>
+        </MenubarItem>
+        <MenubarItem>New Window</MenubarItem>
+      </MenubarGroup>
+      <MenubarSeparator />
+      <MenubarGroup>
+        <MenubarItem>Share</MenubarItem>
+        <MenubarItem>Print</MenubarItem>
+      </MenubarGroup>
+    </MenubarContent>
+  </MenubarMenu>
+</Menubar>
+```
+
+## API Reference
+
+Menubar is built on the Base UI [Menubar](https://base-ui.com/react/components/menubar#api-reference) primitive. See the Base UI documentation for every prop.

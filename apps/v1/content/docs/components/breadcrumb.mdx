@@ -1,0 +1,155 @@
+---
+title: Breadcrumb
+description: Displays the path to the current resource using a hierarchy of links.
+---
+
+<ComponentPreview name="breadcrumb-demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/breadcrumb.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @base-ui/react cn lucide-react
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="breadcrumb" title="components/ui/breadcrumb.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
+```
+
+```tsx
+<Breadcrumb>
+  <BreadcrumbList>
+    <BreadcrumbItem>
+      <BreadcrumbLink render={<a href="/" />}>Home</BreadcrumbLink>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbLink render={<a href="/components" />}>
+        Components
+      </BreadcrumbLink>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+    </BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>
+```
+
+## Examples
+
+### Slash separator, icon
+
+<ComponentPreview name="breadcrumb-separator" />
+
+### Collapsed, with dropdown
+
+<ComponentPreview name="breadcrumb-collapsed" />
+
+### Dropdown on a crumb
+
+<ComponentPreview name="breadcrumb-dropdown" />
+
+### Router link (render)
+
+<ComponentPreview name="breadcrumb-link" />
+
+## API Reference
+
+### Breadcrumb
+
+The `Breadcrumb` component is the root navigation element that wraps all breadcrumb components.
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+### BreadcrumbList
+
+The `BreadcrumbList` component displays the ordered list of breadcrumb items.
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+### BreadcrumbItem
+
+The `BreadcrumbItem` component wraps individual breadcrumb items.
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+### BreadcrumbLink
+
+The `BreadcrumbLink` component displays a clickable link in the breadcrumb.
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+### BreadcrumbPage
+
+The `BreadcrumbPage` component displays the current page in the breadcrumb (non-clickable).
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+### BreadcrumbSeparator
+
+The `BreadcrumbSeparator` component displays a separator between breadcrumb items. You can pass custom children to override the default separator icon.
+
+| Prop        | Type              | Default |
+| ----------- | ----------------- | ------- |
+| `children`  | `React.ReactNode` | -       |
+| `className` | `string`          | -       |
+
+### BreadcrumbEllipsis
+
+The `BreadcrumbEllipsis` component displays an ellipsis indicator for collapsed breadcrumb items.
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |

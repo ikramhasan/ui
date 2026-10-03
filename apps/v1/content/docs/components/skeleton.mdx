@@ -1,0 +1,69 @@
+---
+title: Skeleton
+description: Use to show a placeholder while content is loading.
+---
+
+<ComponentPreview name="skeleton-demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/skeleton.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install cn
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="skeleton" title="components/ui/skeleton.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Skeleton } from "@/components/ui/skeleton"
+```
+
+```tsx
+<Skeleton className="h-[20px] w-[100px] rounded-full" />
+```
+
+## Examples
+
+### Card
+
+<ComponentPreview name="skeleton-card" />
+
+### Form
+
+<ComponentPreview name="skeleton-form" />
+
+## API Reference
+
+`Skeleton` renders a `div` and accepts all of its props. Size and shape it with `className`.

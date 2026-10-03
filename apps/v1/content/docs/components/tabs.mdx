@@ -1,0 +1,80 @@
+---
+title: Tabs
+description: A set of layered sections of content—known as tab panels—that are displayed one at a time.
+---
+
+<ComponentPreview name="tabs-demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/tabs.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @base-ui/react class-variance-authority cn
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="tabs" title="components/ui/tabs.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+```
+
+```tsx
+<Tabs defaultValue="account" className="w-[400px]">
+  <TabsList>
+    <TabsTrigger value="account">Account</TabsTrigger>
+    <TabsTrigger value="password">Password</TabsTrigger>
+  </TabsList>
+  <TabsContent value="account">Make changes to your account here.</TabsContent>
+  <TabsContent value="password">Change your password here.</TabsContent>
+</Tabs>
+```
+
+## Examples
+
+### Icons and a disabled tab
+
+<ComponentPreview name="tabs-icons" />
+
+### Line
+
+<ComponentPreview name="tabs-line" />
+
+### Vertical
+
+<ComponentPreview name="tabs-vertical" />
+
+## API Reference
+
+Tabs is built on the Base UI [Tabs](https://base-ui.com/react/components/tabs#api-reference) primitive. See the Base UI documentation for every prop.

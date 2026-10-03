@@ -1,0 +1,47 @@
+---
+title: Introduction
+description: shadcn/ui components rebuilt on Base UI, with a design of their own. Install them with the shadcn CLI.
+---
+
+This is a component registry for the [shadcn CLI](https://ui.shadcn.com/docs/cli). Every component is a **drop-in replacement** for its shadcn/ui counterpart in the `base-nova` style: same file name, exports, parts, props, variants, sizes, `data-slot` attributes, keyboard behavior and accessibility. **Only the styling differs.**
+
+If you already use shadcn/ui, you know how to use this. Add a component from this registry instead of shadcn's and your code keeps working.
+
+<ComponentPreview name="button-demo" />
+
+## Why another registry?
+
+shadcn/ui gives you great, accessible components with deliberately quiet styling. This registry keeps all of that and adds a design with more texture:
+
+- **Buttons protrude.** A vertical gradient, a hairline, a faint lift and an inner highlight.
+- **Keys sink in.** `Kbd` and the tab track are recessed into the surface, the inverse of a button.
+- **Dialogs are layered.** A muted shell holds a raised card, with the footer on the shell.
+- **Motion is interruptible.** CSS transitions with a strong ease-out, and a `motion-reduce` variant on everything that moves.
+
+## Principles
+
+### Same API as shadcn/ui
+
+No invented variants, sizes, props or parts. If shadcn's component has it, ours has it, with the same name. Looks the design needs beyond that are done with `className`.
+
+### Base UI does the behavior
+
+Components wrap the same [Base UI](https://base-ui.com) primitives upstream uses. Focus management, keyboard support and ARIA come from Base UI, never reimplemented.
+
+### Standard tokens
+
+Components only use shadcn's CSS variables (`--background`, `--primary`, `--muted`, `--accent`, `--ring`, …). Colors beyond those, like the button gradients, are derived in the component with `color-mix()`. They work with any shadcn theme, ours or yours. See [Theming](/docs/theming).
+
+### Open code
+
+Like shadcn/ui, this isn't a package you install from npm. The CLI copies each component's source into your project, so it's yours to read and change.
+
+## Status
+
+This is the first version. Most of shadcn/ui's components are here, and the rest are on the way. See the [components](/docs/components) for what's available today. Until a component lands here, use shadcn's: the APIs match, so you can swap it in later without touching your code.
+
+## Next steps
+
+- [Installation](/docs/installation): set up a project and add your first component.
+- [Theming](/docs/theming): the CSS variables and how to change them.
+- [Components](/docs/components): browse everything in the registry.

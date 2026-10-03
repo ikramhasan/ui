@@ -1,0 +1,85 @@
+---
+title: Toggle Group
+description: A set of two-state buttons that can be toggled on or off.
+---
+
+<ComponentPreview name="toggle-group-demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/toggle-group.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @base-ui/react class-variance-authority cn
+```
+
+<Step>Add the components it builds on:</Step>
+
+- [Toggle](/docs/components/toggle)
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="toggle-group" title="components/ui/toggle-group.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
+```
+
+```tsx
+<ToggleGroup type="single">
+  <ToggleGroupItem value="a">A</ToggleGroupItem>
+  <ToggleGroupItem value="b">B</ToggleGroupItem>
+  <ToggleGroupItem value="c">C</ToggleGroupItem>
+</ToggleGroup>
+```
+
+## Examples
+
+### Spaced, multiple
+
+<ComponentPreview name="toggle-group-spaced-multiple" />
+
+### Outline
+
+<ComponentPreview name="toggle-group-outline" />
+
+### Sizes
+
+<ComponentPreview name="toggle-group-sizes" />
+
+### Vertical and disabled
+
+<ComponentPreview name="toggle-group-vertical" />
+
+## API Reference
+
+Toggle Group is built on the Base UI [Toggle Group](https://base-ui.com/react/components/toggle-group#api-reference) primitive. See the Base UI documentation for every prop.
