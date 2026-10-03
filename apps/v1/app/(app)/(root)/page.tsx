@@ -3,6 +3,7 @@ import Link from "next/link"
 import { ArrowRightIcon } from "lucide-react"
 
 import { siteConfig } from "@/lib/config"
+import { socialMetadata } from "@/lib/metadata"
 import {
   PageActions,
   PageHeader,
@@ -18,11 +19,17 @@ const title = "Components with texture"
 const description =
   "Every shadcn component rebuilt on Base UI, with buttons that protrude and keys that sink in. Same API, same CLI, a design of its own."
 
+const metadataTitle = `${siteConfig.name} - ${title}`
+
 export const metadata: Metadata = {
   title: {
-    absolute: `${siteConfig.name} - ${title}`,
+    absolute: metadataTitle,
   },
   description,
+  alternates: {
+    canonical: "/",
+  },
+  ...socialMetadata({ title: metadataTitle, description }),
 }
 
 export default function IndexPage() {

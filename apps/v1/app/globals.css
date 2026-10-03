@@ -203,7 +203,9 @@
   }
 
   /* Shiki writes both themes; pick one. */
-  html:not(.dark) [data-rehype-pretty-code-figure] span[style*="--shiki-light:"],
+  html:not(.dark)
+    [data-rehype-pretty-code-figure]
+    span[style*="--shiki-light:"],
   html:not(.dark) .shiki span[style*="--shiki-light:"] {
     color: var(--shiki-light) !important;
   }
