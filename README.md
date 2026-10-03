@@ -84,6 +84,10 @@ Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://
 - [x] Toggle Group (`toggle-group`)
 - [x] Tooltip (`tooltip`)
 
+Guides built from those components (shadcn ships them as docs pages, not registry items):
+
+- [x] Data Table (`data-table`, on Table with TanStack Table v9)
+
 ## Structure
 
 A pnpm workspace laid out like [shadcn/ui](https://github.com/shadcn-ui/ui), whose site lives in `apps/v4`. This is the first version, so the site is `apps/v1`.

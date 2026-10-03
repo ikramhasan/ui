@@ -399,6 +399,7 @@ shadcn `Checkbox` and `RadioGroup` / `RadioGroupItem`.
 - 16px; the checkbox has a 4px radius, the radio is round. Hit area 40×40 via ::after.
 - Unchecked: the secondary button in miniature (`background` → `secondary` gradient, soft lift, faint bottom edge) with a 3:1 border (`input` + 48% `foreground`; dark 35%).
 - Checked: the default button's skin (`primary` + 15% white → `primary`, inner top highlight, blue-tinted lift, `primary` + 15% black border) cross-fades in on a ::before. The tick is a 12px, 3px-stroke check; the radio dot is 6px, white, with a hairline shadow.
+- Indeterminate (`indeterminate`, Base UI's `data-indeterminate`): the checked skin with an 8×2px white dash in place of the tick, centered on whole pixels (4px in from the sides, 7px from the top).
 - Beside `FieldContent`, every control centers on the label's first line (no 1px nudge for the 16px controls; the 18px switch moves up 1px, the 14px one down 1px).
 
 ### Toggle motion
@@ -479,6 +480,14 @@ shadcn `Table` (`TableHeader`, `TableBody`, `TableFooter`, `TableRow`, `TableHea
 - Hover (and a row whose menu is open): `muted`, corner cells rounded 9px to follow the card. Selected (`data-state="selected"`): `primary` 6% over `background` (dark 14%), 9% / 18% on hover; `muted-foreground` text stays ≥ 4.5:1 on all of them.
 - `TableFooter` and `TableCaption`: on the shell below the card, line box 10px from the card and 10px from the shell's bottom edge. Footer is `body-medium`; caption `body` `muted-foreground`.
 - Fills sit on the cells (the table uses `border-separate`), so they round with the card's corners. Don't wrap the table in another bordered container.
+
+### Data Table
+
+shadcn's Data Table guide (TanStack Table v9 on `Table`; a docs page, not a registry item). It takes the Table's frame as is, so there is no outer bordered `div`.
+
+- Sortable header: a ghost `sm` Button (28px, 13px type, the label size) with `-my-1.5` so the header band stays 36px and `-ml-[9px]` (8px padding + 1px transparent border) so its text lines up with the cells. On the muted shell `accent` barely shows, so the hover/open fill is `foreground` 5%; the text goes to `accent-foreground` (≥ 10:1 in both themes).
+- Row actions: a ghost `icon-sm` Button wrapped in `-my-1 -mr-1.5`, so the row stays 40px and the icon's box ends on the cell's text edge.
+- Toolbar (filter `Input`, column toggle) 16px above the table; pagination 16px below. The reusable pagination is a container query: first/last buttons from 672px, the page-size Select from 512px.
 
 ### Tabs
 

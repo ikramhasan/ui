@@ -254,6 +254,16 @@ export const ExamplesIndex: Record<
     filePath: "examples/context-menu-demo.tsx",
     component: () => import("./context-menu-demo"),
   },
+  "data-table-demo": {
+    name: "data-table-demo",
+    filePath: "examples/data-table-demo.tsx",
+    component: () => import("./data-table-demo"),
+  },
+  "data-table-reusable": {
+    name: "data-table-reusable",
+    filePath: "examples/data-table-reusable.tsx",
+    component: () => import("./data-table-reusable"),
+  },
   "dialog-demo": {
     name: "dialog-demo",
     filePath: "examples/dialog-demo.tsx",

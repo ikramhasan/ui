@@ -1,0 +1,825 @@
+---
+title: Data Table
+description: Powerful table and datagrids built using TanStack Table.
+---
+
+<ComponentPreview name="data-table-demo" align="start" hideCode />
+
+## Introduction
+
+Every data table or datagrid is unique. They behave differently, have specific sorting and filtering requirements, and work with different data sources.
+
+It doesn't make sense to combine all of these variations into a single component. If we do that, we lose the flexibility that [headless UI](https://tanstack.com/table/latest/docs/overview#what-is-headless-ui) provides.
+
+So instead of a data-table component, this is a guide on how to build your own. We'll start with the basic [`<Table />`](/docs/components/table) component and build a complex data table from scratch. The table brings the frame (the muted shell, the raised card for the rows, the hover and selected fills), so your data table inherits the design without any extra styling.
+
+<Callout>
+
+**Tip:** If you find yourself using the same table in multiple places in your app, you can always extract it into a reusable component.
+
+</Callout>
+
+## Table of Contents
+
+This guide shows how to use [TanStack Table](https://tanstack.com/table) and the `<Table />` component to build your own data table. We'll cover the following topics:
+
+- [Set up Table Features](#set-up-table-features)
+- [Basic Table](#basic-table)
+- [Row Actions](#row-actions)
+- [Pagination](#pagination)
+- [Sorting](#sorting)
+- [Filtering](#filtering)
+- [Visibility](#visibility)
+- [Row Selection](#row-selection)
+- [Reusable Components](#reusable-components)
+
+## Installation
+
+<Steps>
+
+<Step>
+  Add the `<Table />` component to your project:
+</Step>
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/table.json
+```
+
+<Step>
+  Add the `@tanstack/react-table` dependency. This guide uses **TanStack Table
+  v9**:
+</Step>
+
+```bash
+npm install @tanstack/react-table
+```
+
+</Steps>
+
+## Prerequisites
+
+We are going to build a table to show recent payments. Here's what our data looks like:
+
+```tsx
+type Payment = {
+  id: string
+  amount: number
+  status: "pending" | "processing" | "success" | "failed"
+  email: string
+}
+
+export const payments: Payment[] = [
+  {
+    id: "728ed52f",
+    amount: 100,
+    status: "pending",
+    email: "m@example.com",
+  },
+  {
+    id: "489e1d42",
+    amount: 125,
+    status: "processing",
+    email: "example@gmail.com",
+  },
+  // ...
+]
+```
+
+## Project Structure
+
+Start by creating the following file structure:
+
+```txt
+app
+└── payments
+    ├── columns.tsx
+    ├── data-table-features.ts
+    ├── data-table.tsx
+    └── page.tsx
+```
+
+This example uses Next.js, but it works with any other React framework.
+
+- `columns.tsx` (client component) contains our column definitions.
+- `data-table-features.ts` contains the shared `features` object that tells TanStack Table which behavior to enable.
+- `data-table.tsx` (client component) contains our `<DataTable />` component.
+- `page.tsx` (server component) is where we fetch data and render our table.
+
+## Set up Table Features
+
+TanStack Table v9 is feature-based: you opt into the behavior you want (sorting, filtering, pagination, and so on) by declaring it with `tableFeatures()`. Anything you don't list is tree-shaken out of your bundle. That includes the built-in filter and sort functions: register the ones your columns rely on under `filterFns` and `sortFns` (our email filter uses `includesString`, and string columns sort with `text` / `alphanumeric`).
+
+<ComponentSource
+  src="examples/data-table/data-table-features.ts"
+  title="app/payments/data-table-features.ts"
+  collapsible={false}
+/>
+
+<Callout>
+
+**Note:** The core row model is always included, so you never register it yourself. Row models for optional features are created with `create*RowModel()` and registered on the features object. There are no `get*RowModel` table options.
+
+</Callout>
+
+## Basic Table
+
+Let's start by building a basic table.
+
+<Steps>
+
+<Step>Column Definitions</Step>
+
+First, we'll define our columns.
+
+```tsx title="app/payments/columns.tsx"
+"use client"
+
+import { createColumnHelper } from "@tanstack/react-table"
+
+import { type DataTableFeatures } from "./data-table-features"
+
+// This type is used to define the shape of our data.
+// You can use a Zod schema here if you want.
+export type Payment = {
+  id: string
+  amount: number
+  status: "pending" | "processing" | "success" | "failed"
+  email: string
+}
+
+// Use `accessor` for data columns and `display` for columns without one.
+const columnHelper = createColumnHelper<DataTableFeatures, Payment>()
+
+export const columns = columnHelper.columns([
+  columnHelper.accessor("status", {
+    header: "Status",
+  }),
+  columnHelper.accessor("email", {
+    header: "Email",
+  }),
+  columnHelper.accessor("amount", {
+    header: "Amount",
+  }),
+])
+```
+
+Columns are where you define the core of what your table will look like. They define the data that will be displayed, how it will be formatted, sorted and filtered.
+
+<Step>
+  `<DataTable />` component
+</Step>
+
+Next, we'll create a `<DataTable />` component to render our table.
+
+```tsx title="app/payments/data-table.tsx"
+"use client"
+
+import { useTable, type ColumnDef, type RowData } from "@tanstack/react-table"
+
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+
+import { features, type DataTableFeatures } from "./data-table-features"
+
+interface DataTableProps<TData extends RowData> {
+  columns: ColumnDef<DataTableFeatures, TData>[]
+  data: TData[]
+}
+
+export function DataTable<TData extends RowData>({
+  columns,
+  data,
+}: DataTableProps<TData>) {
+  const table = useTable({
+    features,
+    data,
+    columns,
+  })
+
+  return (
+    <Table>
+      <TableHeader>
+        {table.getHeaderGroups().map((headerGroup) => (
+          <TableRow key={headerGroup.id}>
+            {headerGroup.headers.map((header) => {
+              return (
+                <TableHead key={header.id}>
+                  {header.isPlaceholder ? null : (
+                    <table.FlexRender header={header} />
+                  )}
+                </TableHead>
+              )
+            })}
+          </TableRow>
+        ))}
+      </TableHeader>
+      <TableBody>
+        {table.getRowModel().rows?.length ? (
+          table.getRowModel().rows.map((row) => (
+            <TableRow
+              key={row.id}
+              data-state={row.getIsSelected() && "selected"}
+            >
+              {row.getVisibleCells().map((cell) => (
+                <TableCell key={cell.id}>
+                  <table.FlexRender cell={cell} />
+                </TableCell>
+              ))}
+            </TableRow>
+          ))
+        ) : (
+          <TableRow>
+            <TableCell
+              colSpan={columns.length}
+              className="h-24 text-center text-muted-foreground"
+            >
+              No results.
+            </TableCell>
+          </TableRow>
+        )}
+      </TableBody>
+    </Table>
+  )
+}
+```
+
+The `<Table />` is its own frame, so it isn't wrapped in a bordered `div` like upstream's guide.
+
+<Callout>
+
+**`<table.FlexRender />` vs `flexRender`:** This guide uses v9's `<table.FlexRender header={header} />` and `<table.FlexRender cell={cell} />`, available right on the table instance. The classic `flexRender(component, context)` helper still works too, if you prefer the function form.
+
+</Callout>
+
+<Step>Render the table</Step>
+
+Finally, we'll render our table in our page component.
+
+```tsx title="app/payments/page.tsx"
+import { columns, Payment } from "./columns"
+import { DataTable } from "./data-table"
+
+async function getData(): Promise<Payment[]> {
+  // Fetch data from your API here.
+  return [
+    {
+      id: "728ed52f",
+      amount: 100,
+      status: "pending",
+      email: "m@example.com",
+    },
+    // ...
+  ]
+}
+
+export default async function DemoPage() {
+  const data = await getData()
+
+  return (
+    <div className="container mx-auto py-10">
+      <DataTable columns={columns} data={data} />
+    </div>
+  )
+}
+```
+
+</Steps>
+
+## Cell Formatting
+
+Let's format the amount cell to display the dollar amount. We'll also align the cell to the right.
+
+Update the `header` and `cell` definitions for amount as follows:
+
+```tsx title="app/payments/columns.tsx"
+export const columns = columnHelper.columns([
+  columnHelper.accessor("amount", {
+    header: () => <div className="text-right">Amount</div>,
+    cell: ({ row }) => {
+      const amount = parseFloat(row.getValue("amount"))
+      const formatted = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      }).format(amount)
+
+      return <div className="text-right font-medium">{formatted}</div>
+    },
+  }),
+])
+```
+
+You can use the same approach to format other cells and headers. Numbers line up on their own: the table sets `tabular-nums`.
+
+## Row Actions
+
+Let's add row actions to our table. We'll use a [`<DropdownMenu />`](/docs/components/dropdown-menu) for this.
+
+Add a new `actions` column whose cell returns a `<DropdownMenu />`:
+
+```tsx title="app/payments/columns.tsx"
+"use client"
+
+import { createColumnHelper } from "@tanstack/react-table"
+import { MoreHorizontal } from "lucide-react"
+
+import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
+export const columns = columnHelper.columns([
+  // ...
+  columnHelper.display({
+    id: "actions",
+    cell: ({ row }) => {
+      const payment = row.original
+
+      return (
+        <div className="-my-1 -mr-1.5 flex justify-end">
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              render={<Button variant="ghost" size="icon-sm" />}
+            >
+              <span className="sr-only">Open menu</span>
+              <MoreHorizontal />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuGroup>
+                <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                <DropdownMenuItem
+                  onClick={() => navigator.clipboard.writeText(payment.id)}
+                >
+                  Copy payment ID
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuItem>View customer</DropdownMenuItem>
+                <DropdownMenuItem>View payment details</DropdownMenuItem>
+              </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+      )
+    },
+  }),
+  // ...
+])
+```
+
+The 28px button takes `-my-1` so the row stays exactly 40px, and `-mr-1.5` so the dots line up with the right edge of the text above them. The row keeps its hover fill while the menu is open.
+
+You can access the row data using `row.original` in the `cell` function. Use this to handle actions for your row, e.g. use the `id` to make a DELETE call to your API.
+
+## Pagination
+
+Next, we'll add pagination to our table.
+
+<Steps>
+
+<Step>Pagination is already enabled</Step>
+
+Because our features object includes `rowPaginationFeature` and `createPaginatedRowModel()`, the table paginates rows into pages of 10. There's nothing to add to `useTable`. See the [pagination docs](https://tanstack.com/table/latest/docs/framework/react/guide/pagination) to customize the page size or paginate on the server.
+
+<Step>Add pagination controls</Step>
+
+Add controls with the `<Button />` component and the `table.previousPage()` and `table.nextPage()` APIs.
+
+```tsx title="app/payments/data-table.tsx"
+import { Button } from "@/components/ui/button"
+
+export function DataTable<TData extends RowData>({
+  columns,
+  data,
+}: DataTableProps<TData>) {
+  const table = useTable({
+    features,
+    data,
+    columns,
+  })
+
+  return (
+    <div>
+      <Table>{/* ... */}</Table>
+      <div className="flex items-center justify-end gap-2 pt-4">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => table.previousPage()}
+          disabled={!table.getCanPreviousPage()}
+        >
+          Previous
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => table.nextPage()}
+          disabled={!table.getCanNextPage()}
+        >
+          Next
+        </Button>
+      </div>
+    </div>
+  )
+}
+```
+
+See [Reusable Components](#reusable-components) for a more advanced pagination component.
+
+</Steps>
+
+## Sorting
+
+Let's make the email column sortable. The `rowSortingFeature` and sorted row model are already registered in our features object, so all that's left is wiring up the sorting state.
+
+<Steps>
+
+<Step>Update `<DataTable>`</Step>
+
+```tsx title="app/payments/data-table.tsx"
+"use client"
+
+import * as React from "react"
+import {
+  useTable,
+  type ColumnDef,
+  type RowData,
+  type SortingState,
+} from "@tanstack/react-table"
+
+export function DataTable<TData extends RowData>({
+  columns,
+  data,
+}: DataTableProps<TData>) {
+  const [sorting, setSorting] = React.useState<SortingState>([])
+
+  const table = useTable({
+    features,
+    data,
+    columns,
+    onSortingChange: setSorting,
+    state: {
+      sorting,
+    },
+  })
+
+  return (
+    <div>
+      <Table>{/* ... */}</Table>
+    </div>
+  )
+}
+```
+
+<Step>Make header cell sortable</Step>
+
+We can now update the `email` header cell to add sorting controls.
+
+```tsx title="app/payments/columns.tsx"
+"use client"
+
+import { createColumnHelper } from "@tanstack/react-table"
+import { ArrowUpDown } from "lucide-react"
+
+export const columns = columnHelper.columns([
+  columnHelper.accessor("email", {
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          size="sm"
+          className="-my-1.5 -ml-[9px] hover:bg-foreground/5"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Email
+          <ArrowUpDown data-icon="inline-end" />
+        </Button>
+      )
+    },
+  }),
+])
+```
+
+This sorts the table (asc and desc) when the user toggles the header cell.
+
+The `sm` ghost button has the header's 13px type. `-my-1.5` keeps the header band at its 36px, and `-ml-[9px]` cancels the button's padding and transparent border so "Email" lines up with the column's cells. The header sits on the muted shell, where the neutral `accent` hover would barely show, so the hover is a 5% `foreground` tint instead.
+
+</Steps>
+
+## Filtering
+
+Let's add a search input to filter emails in our table. The `columnFilteringFeature` and filtered row model are already part of our features object, so we only need to wire up the filter state and render an input.
+
+```tsx title="app/payments/data-table.tsx"
+"use client"
+
+import * as React from "react"
+import {
+  useTable,
+  type ColumnDef,
+  type ColumnFiltersState,
+  type RowData,
+  type SortingState,
+} from "@tanstack/react-table"
+
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+
+export function DataTable<TData extends RowData>({
+  columns,
+  data,
+}: DataTableProps<TData>) {
+  const [sorting, setSorting] = React.useState<SortingState>([])
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    []
+  )
+
+  const table = useTable({
+    features,
+    data,
+    columns,
+    onSortingChange: setSorting,
+    onColumnFiltersChange: setColumnFilters,
+    state: {
+      sorting,
+      columnFilters,
+    },
+  })
+
+  return (
+    <div>
+      <div className="flex items-center pb-4">
+        <Input
+          placeholder="Filter emails..."
+          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+          onChange={(event) =>
+            table.getColumn("email")?.setFilterValue(event.target.value)
+          }
+          className="max-w-sm"
+        />
+      </div>
+      <Table>{/* ... */}</Table>
+    </div>
+  )
+}
+```
+
+Filtering is now enabled for the `email` column. You can add filters to other columns as well. See the [filtering docs](https://tanstack.com/table/latest/docs/framework/react/guide/column-filtering) for more information on customizing filters.
+
+## Visibility
+
+Adding column visibility is fairly simple using the `@tanstack/react-table` visibility API.
+
+```tsx title="app/payments/data-table.tsx"
+"use client"
+
+import * as React from "react"
+import {
+  useTable,
+  type ColumnDef,
+  type ColumnFiltersState,
+  type ColumnVisibilityState,
+  type RowData,
+  type SortingState,
+} from "@tanstack/react-table"
+import { ChevronDown } from "lucide-react"
+
+import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
+export function DataTable<TData extends RowData>({
+  columns,
+  data,
+}: DataTableProps<TData>) {
+  const [sorting, setSorting] = React.useState<SortingState>([])
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    []
+  )
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<ColumnVisibilityState>({})
+
+  const table = useTable({
+    features,
+    data,
+    columns,
+    onSortingChange: setSorting,
+    onColumnFiltersChange: setColumnFilters,
+    onColumnVisibilityChange: setColumnVisibility,
+    state: {
+      sorting,
+      columnFilters,
+      columnVisibility,
+    },
+  })
+
+  return (
+    <div>
+      <div className="flex items-center gap-2 pb-4">
+        <Input
+          placeholder="Filter emails..."
+          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+          onChange={(event) =>
+            table.getColumn("email")?.setFilterValue(event.target.value)
+          }
+          className="max-w-sm"
+        />
+        <DropdownMenu>
+          <DropdownMenuTrigger
+            render={<Button variant="outline" className="ml-auto" />}
+          >
+            Columns <ChevronDown data-icon="inline-end" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuGroup>
+              {table
+                .getAllColumns()
+                .filter((column) => column.getCanHide())
+                .map((column) => {
+                  return (
+                    <DropdownMenuCheckboxItem
+                      key={column.id}
+                      className="capitalize"
+                      checked={column.getIsVisible()}
+                      onCheckedChange={(value) =>
+                        column.toggleVisibility(!!value)
+                      }
+                    >
+                      {column.id}
+                    </DropdownMenuCheckboxItem>
+                  )
+                })}
+            </DropdownMenuGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+      <Table>{/* ... */}</Table>
+    </div>
+  )
+}
+```
+
+This adds a dropdown menu that you can use to toggle column visibility.
+
+## Row Selection
+
+Next, we're going to add row selection to our table.
+
+<Steps>
+
+<Step>Update column definitions</Step>
+
+```tsx title="app/payments/columns.tsx"
+"use client"
+
+import { createColumnHelper } from "@tanstack/react-table"
+
+import { Checkbox } from "@/components/ui/checkbox"
+
+export const columns = columnHelper.columns([
+  columnHelper.display({
+    id: "select",
+    header: ({ table }) => (
+      <Checkbox
+        checked={table.getIsAllPageRowsSelected()}
+        indeterminate={
+          table.getIsSomePageRowsSelected() && !table.getIsAllPageRowsSelected()
+        }
+        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+        aria-label="Select all"
+      />
+    ),
+    cell: ({ row }) => (
+      <Checkbox
+        checked={row.getIsSelected()}
+        onCheckedChange={(value) => row.toggleSelected(!!value)}
+        aria-label="Select row"
+      />
+    ),
+    enableSorting: false,
+    enableHiding: false,
+  }),
+])
+```
+
+<Step>Update `<DataTable>`</Step>
+
+```tsx title="app/payments/data-table.tsx"
+export function DataTable<TData extends RowData>({
+  columns,
+  data,
+}: DataTableProps<TData>) {
+  const [sorting, setSorting] = React.useState<SortingState>([])
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    []
+  )
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<ColumnVisibilityState>({})
+  const [rowSelection, setRowSelection] = React.useState({})
+
+  const table = useTable({
+    features,
+    data,
+    columns,
+    onSortingChange: setSorting,
+    onColumnFiltersChange: setColumnFilters,
+    onColumnVisibilityChange: setColumnVisibility,
+    onRowSelectionChange: setRowSelection,
+    state: {
+      sorting,
+      columnFilters,
+      columnVisibility,
+      rowSelection,
+    },
+  })
+
+  return (
+    <div>
+      <Table>{/* ... */}</Table>
+    </div>
+  )
+}
+```
+
+This adds a checkbox to each row and a checkbox in the header to select all rows. Selected rows get the table's selected tint from `data-state="selected"`, which the `<DataTable />` already sets.
+
+<Step>Show selected rows</Step>
+
+You can show the number of selected rows using the `table.getFilteredSelectedRowModel()` API.
+
+```tsx
+<div className="flex-1 text-sm text-muted-foreground">
+  {table.getFilteredSelectedRowModel().rows.length} of{" "}
+  {table.getFilteredRowModel().rows.length} row(s) selected.
+</div>
+```
+
+</Steps>
+
+## Reusable Components
+
+Here are some components you can use to build your data tables. They share the features object (and its `DataTableFeatures` type) from [Set up Table Features](#set-up-table-features).
+
+<ComponentPreview name="data-table-reusable" align="start" hideCode />
+
+### Column header
+
+Make any column header sortable and hideable.
+
+<ComponentSource
+  src="examples/data-table/data-table-column-header.tsx"
+  title="components/data-table-column-header.tsx"
+/>
+
+```tsx
+export const columns = columnHelper.columns([
+  columnHelper.accessor("email", {
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Email" />
+    ),
+  }),
+])
+```
+
+### Pagination
+
+Add pagination controls to your table including page size and selection count.
+
+<ComponentSource
+  src="examples/data-table/data-table-pagination.tsx"
+  title="components/data-table-pagination.tsx"
+/>
+
+```tsx
+<DataTablePagination table={table} />
+```
+
+### Column toggle
+
+A component to toggle column visibility.
+
+<ComponentSource
+  src="examples/data-table/data-table-view-options.tsx"
+  title="components/data-table-view-options.tsx"
+/>
+
+```tsx
+<DataTableViewOptions table={table} />
+```
