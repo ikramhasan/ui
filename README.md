@@ -18,7 +18,7 @@ Components only use the standard shadcn variables (`--primary`, `--secondary`, `
 
 Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://ui.shadcn.com/r/styles/base-nova/registry.json). Tick a box when the component is in `registry/ui/`, in `registry.json` and has a docs page.
 
-**Progress: 44 / 63**
+**Progress: 45 / 63**
 
 - [x] Accordion (`accordion`)
 - [x] Alert (`alert`)
@@ -66,7 +66,7 @@ Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://
 - [ ] Questionnaire (`questionnaire`)
 - [x] Radio Group (`radio-group`)
 - [ ] Resizable (`resizable`)
-- [ ] Scroll Area (`scroll-area`)
+- [x] Scroll Area (`scroll-area`)
 - [x] Select (`select`)
 - [x] Separator (`separator`)
 - [x] Sheet (`sheet`)

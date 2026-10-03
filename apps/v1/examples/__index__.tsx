@@ -539,6 +539,21 @@ export const ExamplesIndex: Record<
     filePath: "examples/radio-group-demo.tsx",
     component: () => import("./radio-group-demo"),
   },
+  "scroll-area-both": {
+    name: "scroll-area-both",
+    filePath: "examples/scroll-area-both.tsx",
+    component: () => import("./scroll-area-both"),
+  },
+  "scroll-area-demo": {
+    name: "scroll-area-demo",
+    filePath: "examples/scroll-area-demo.tsx",
+    component: () => import("./scroll-area-demo"),
+  },
+  "scroll-area-horizontal-demo": {
+    name: "scroll-area-horizontal-demo",
+    filePath: "examples/scroll-area-horizontal-demo.tsx",
+    component: () => import("./scroll-area-horizontal-demo"),
+  },
   "select-demo": {
     name: "select-demo",
     filePath: "examples/select-demo.tsx",
