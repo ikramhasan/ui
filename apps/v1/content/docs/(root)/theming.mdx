@@ -1,0 +1,124 @@
+---
+title: Theming
+description: The CSS variables behind the design, and how to make them your own.
+---
+
+Theming follows shadcn/ui: components read **CSS variables**, and Tailwind exposes them as utilities like `bg-background` and `text-muted-foreground`. The [style](/docs/installation#install-the-style) item installs our values; change them and every component follows.
+
+## Convention
+
+A color has a background variable and a `-foreground` variable for the text on it:
+
+```css
+--primary: #3e6ae1;
+--primary-foreground: #ffffff;
+```
+
+```tsx
+<div className="bg-primary text-primary-foreground">Hello</div>
+```
+
+## Variables
+
+Components only use shadcn's standard variables, so they also work with any other shadcn theme.
+
+```css title="app/globals.css"
+:root {
+  --radius: 0.625rem;
+  --background: #ffffff;
+  --foreground: #333333;
+  --card: #ffffff;
+  --card-foreground: #333333;
+  --popover: #ffffff;
+  --popover-foreground: #333333;
+  --primary: #3e6ae1;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f5f5;
+  --secondary-foreground: #1a1a1a;
+  --muted: #f5f5f5;
+  --muted-foreground: #6e6e6e;
+  --accent: #f2f2f2;
+  --accent-foreground: #333333;
+  --destructive: #d42f2f;
+  --border: #ebebeb;
+  --input: #e0e0e0;
+  --ring: #0077e6;
+  --sidebar: #f9f9f9;
+  --sidebar-foreground: #333333;
+  --sidebar-primary: #3e6ae1;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ededed;
+  --sidebar-accent-foreground: #333333;
+  --sidebar-border: #ebebeb;
+  --sidebar-ring: #0077e6;
+  --success: #0a772a;
+}
+
+.dark {
+  --background: #1c1c1c;
+  --foreground: #ececec;
+  --card: #1c1c1c;
+  --card-foreground: #ececec;
+  --popover: #1c1c1c;
+  --popover-foreground: #ececec;
+  --primary: #3e6ae1;
+  --primary-foreground: #ffffff;
+  --secondary: #242424;
+  --secondary-foreground: #f5f5f5;
+  --muted: #242424;
+  --muted-foreground: #9a9a9a;
+  --accent: #2a2a2a;
+  --accent-foreground: #ececec;
+  --destructive: #ff6b6b;
+  --border: #2e2e2e;
+  --input: #3a3a3a;
+  --ring: #3d9bff;
+  --sidebar: #151515;
+  --sidebar-foreground: #ececec;
+  --sidebar-primary: #3e6ae1;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #313131;
+  --sidebar-accent-foreground: #ececec;
+  --sidebar-border: #2e2e2e;
+  --sidebar-ring: #3d9bff;
+  --success: #3ddc6e;
+}
+```
+
+A few notes on how they're used:
+
+- `primary` is the one blue for things you act on: the default button, links, checked controls. `ring` is brighter, and only for keyboard focus.
+- `accent` is a neutral hover fill, not a brand color.
+- `input` is the border of controls, `border` the hairline between regions.
+
+## Derived colors
+
+Some colors in the design aren't variables. The button's gradient, its border and the tab track are mixed from variables in the component with `color-mix()`, the way shadcn's `base-nova` style does it:
+
+```tsx
+"from-[color-mix(in_oklch,var(--primary),white_15%)] to-primary"
+```
+
+Change `--primary` and the gradient, border and hover states all follow.
+
+## Success color
+
+The design adds one color, `success`, for positive status. It follows shadcn's pattern for [adding new colors](https://ui.shadcn.com/docs/theming#adding-new-colors): a variable, plus a theme entry so Tailwind generates `bg-success` and `text-success`.
+
+```css title="app/globals.css"
+@theme inline {
+  --color-success: var(--success);
+}
+```
+
+No component uses it on its own. Apply it with `className`:
+
+<ComponentPreview name="badge-status" />
+
+## Radius
+
+`--radius` is the base of shadcn's radius scale (`rounded-sm` to `rounded-4xl`). Controls use `rounded-lg`, which is `--radius` itself (10px by default). Nested pieces stay concentric: a part inset by 4px inside a `rounded-xl` frame uses a radius 4px smaller.
+
+## Using another theme
+
+Every component works with any shadcn theme. Skip the style item, or overwrite its variables with your own: the textures, gradients and shadows are derived from whatever your variables are.

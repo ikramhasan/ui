@@ -1,0 +1,73 @@
+---
+title: Slider
+description: An input where the user selects a value from within a given range.
+---
+
+<ComponentPreview name="slider-demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/slider.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @base-ui/react cn
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="slider" title="components/ui/slider.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Slider } from "@/components/ui/slider"
+```
+
+```tsx
+<Slider defaultValue={[33]} max={100} step={1} />
+```
+
+## Examples
+
+### Range and steps
+
+<ComponentPreview name="slider-range-and-steps" />
+
+### Vertical
+
+<ComponentPreview name="slider-vertical" />
+
+### Disabled
+
+<ComponentPreview name="slider-disabled" />
+
+## API Reference
+
+Slider is built on the Base UI [Slider](https://base-ui.com/react/components/slider#api-reference) primitive. See the Base UI documentation for every prop.

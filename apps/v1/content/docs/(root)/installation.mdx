@@ -1,0 +1,84 @@
+---
+title: Installation
+description: Set up a project, install the style, then add components with the shadcn CLI.
+---
+
+Components install into any project the shadcn CLI supports: Next.js, Vite, React Router, TanStack Start, Astro and more.
+
+<Steps>
+
+<Step>Create a project</Step>
+
+Create a project with the shadcn CLI. Pick the **Base UI** component library: these components are built on [Base UI](https://base-ui.com).
+
+```bash
+npx shadcn@latest init
+```
+
+Already have a shadcn/ui project on Base UI? Skip this step. See shadcn's [installation guides](https://ui.shadcn.com/docs/installation) for framework-specific setup.
+
+<Step>Install the style</Step>
+
+The style holds the theme: the CSS variables for light and dark mode, the radius, and the Inter font. Install it once, before any component.
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/style.json
+```
+
+It writes the variables into your global CSS file. Components also work with your own theme; see [Theming](/docs/theming).
+
+<Step>Add components</Step>
+
+Add components by URL:
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/button.json
+```
+
+Components that build on others (a Dialog uses the Button) bring those along automatically.
+
+<Step>Use them</Step>
+
+```tsx title="app/page.tsx"
+import { Button } from "@/components/ui/button"
+
+export default function Home() {
+  return <Button>Click me</Button>
+}
+```
+
+</Steps>
+
+## Use a namespace
+
+Typing the full URL gets old. Register the registry under a namespace in your `components.json`:
+
+```json title="components.json"
+{
+  "registries": {
+    "@ui": "http://localhost:3000/r/{name}.json"
+  }
+}
+```
+
+Then add components by name:
+
+```bash
+npx shadcn@latest add @ui/button @ui/dialog
+```
+
+See [Registry](/docs/registry) for more on how the registry is served.
+
+## Switching from shadcn/ui
+
+Components share shadcn's file names and APIs, so switching is reinstalling. Add a component from this registry with `--overwrite` and the file in `components/ui` is replaced in place:
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/button.json --overwrite
+```
+
+<Callout title="Base UI, not Radix">
+  These components are the `base-nova` versions, built on Base UI. If your
+  project uses the Radix versions, a few props differ (Base UI uses `render`
+  where Radix uses `asChild`). Update call sites as you switch.
+</Callout>

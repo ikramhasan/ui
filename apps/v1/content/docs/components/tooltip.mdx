@@ -1,0 +1,86 @@
+---
+title: Tooltip
+description: A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
+---
+
+<ComponentPreview name="tooltip-demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/tooltip.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @base-ui/react cn
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="tooltip" title="components/ui/tooltip.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+```
+
+```tsx
+<Tooltip>
+  <TooltipTrigger>Hover</TooltipTrigger>
+  <TooltipContent>
+    <p>Add to library</p>
+  </TooltipContent>
+</Tooltip>
+```
+
+## Examples
+
+### Sides
+
+<ComponentPreview name="tooltip-sides" />
+
+### With shortcut
+
+<ComponentPreview name="tooltip-with-shortcut" />
+
+### Long content
+
+<ComponentPreview name="tooltip-long-content" />
+
+### Disabled
+
+<ComponentPreview name="tooltip-disabled" />
+
+## API Reference
+
+Tooltip is built on the Base UI [Tooltip](https://base-ui.com/react/components/tooltip#api-reference) primitive. See the Base UI documentation for every prop.

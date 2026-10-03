@@ -1,0 +1,96 @@
+---
+title: Calendar
+description: A date field component that allows users to enter and edit date.
+---
+
+<ComponentPreview name="calendar-demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/calendar.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install cn react-day-picker@10.0.2 date-fns@4.1.0 lucide-react
+```
+
+<Step>Add the components it builds on:</Step>
+
+- [Button](/docs/components/button)
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="calendar" title="components/ui/calendar.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Calendar } from "@/components/ui/calendar"
+```
+
+```tsx
+const [date, setDate] = React.useState<Date | undefined>(new Date())
+
+return (
+  <Calendar
+    mode="single"
+    selected={date}
+    onSelect={setDate}
+    className="rounded-lg border"
+  />
+)
+```
+
+See the [React DayPicker](https://react-day-picker.js.org) documentation for more information.
+
+## Examples
+
+### Single
+
+<ComponentPreview name="calendar-single" />
+
+### Range
+
+<ComponentPreview name="calendar-range" />
+
+### Multiple, week numbers
+
+<ComponentPreview name="calendar-multiple-week-numbers" />
+
+### Disabled days
+
+<ComponentPreview name="calendar-disabled-days" />
+
+### With presets
+
+<ComponentPreview name="calendar-with-presets" />
+
+## API Reference
+
+Calendar is built on the Base UI [Calendar](https://react-day-picker.js.org) primitive. See the Base UI documentation for every prop.

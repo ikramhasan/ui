@@ -1,0 +1,102 @@
+---
+title: Dark Mode
+description: Add dark mode to your app with the dark class.
+---
+
+Dark mode works the shadcn/ui way: the `dark` class on `<html>` switches the variables to their dark values. The style installs both sets, so components need nothing more.
+
+```css title="app/globals.css"
+@custom-variant dark (&:is(.dark *));
+```
+
+## Next.js
+
+Use [next-themes](https://github.com/pacocoursey/next-themes) to set the class and remember the choice.
+
+<Steps>
+
+<Step>Install next-themes</Step>
+
+```bash
+npm install next-themes
+```
+
+<Step>Create a theme provider</Step>
+
+```tsx title="components/theme-provider.tsx"
+"use client"
+
+import * as React from "react"
+import { ThemeProvider as NextThemesProvider } from "next-themes"
+
+export function ThemeProvider({
+  children,
+  ...props
+}: React.ComponentProps<typeof NextThemesProvider>) {
+  return <NextThemesProvider {...props}>{children}</NextThemesProvider>
+}
+```
+
+<Step>Wrap your root layout</Step>
+
+Add `suppressHydrationWarning` to `<html>`: next-themes updates it before React hydrates.
+
+```tsx title="app/layout.tsx"
+import { ThemeProvider } from "@/components/theme-provider"
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
+      </body>
+    </html>
+  )
+}
+```
+
+<Step>Add a mode toggle</Step>
+
+```tsx title="components/mode-toggle.tsx"
+"use client"
+
+import { MoonIcon, SunIcon } from "lucide-react"
+import { useTheme } from "next-themes"
+
+import { Button } from "@/components/ui/button"
+
+export function ModeToggle() {
+  const { resolvedTheme, setTheme } = useTheme()
+
+  return (
+    <Button
+      variant="ghost"
+      size="icon"
+      aria-label="Toggle theme"
+      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+    >
+      <SunIcon className="hidden dark:block" />
+      <MoonIcon className="dark:hidden" />
+    </Button>
+  )
+}
+```
+
+</Steps>
+
+For other frameworks, follow shadcn's [dark mode guides](https://ui.shadcn.com/docs/dark-mode): they apply as is.
+
+<Callout>
+  Try it here: press <Kbd>D</Kbd> to toggle the theme of this site.
+</Callout>

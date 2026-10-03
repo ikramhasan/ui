@@ -1,0 +1,84 @@
+---
+title: Badge
+description: Displays a badge or a component that looks like a badge.
+---
+
+<ComponentPreview name="badge-demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/badge.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @base-ui/react class-variance-authority cn
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="badge" title="components/ui/badge.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Badge } from "@/components/ui/badge"
+```
+
+```tsx
+<Badge variant="default | outline | secondary | destructive">Badge</Badge>
+```
+
+## Examples
+
+### Status
+
+<ComponentPreview name="badge-status" />
+
+### With icon
+
+<ComponentPreview name="badge-with-icon" />
+
+### After a title
+
+<ComponentPreview name="badge-after-a-title" />
+
+### As link
+
+<ComponentPreview name="badge-as-link" />
+
+## API Reference
+
+### Badge
+
+The `Badge` component displays a badge or a component that looks like a badge.
+
+| Prop        | Type                                                                          | Default     |
+| ----------- | ----------------------------------------------------------------------------- | ----------- |
+| `variant`   | `"default" \| "secondary" \| "destructive" \| "outline" \| "ghost" \| "link"` | `"default"` |
+| `className` | `string`                                                                      | -           |

@@ -1,0 +1,65 @@
+---
+title: Label
+description: Renders an accessible label associated with controls.
+---
+
+<ComponentPreview name="label-demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/label.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install cn
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="label" title="components/ui/label.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Label } from "@/components/ui/label"
+```
+
+```tsx
+<Label htmlFor="email">Your email address</Label>
+```
+
+## Examples
+
+### Disabled control
+
+<ComponentPreview name="label-disabled-control" />
+
+## API Reference
+
+Label is built on the Base UI [Label](https://base-ui.com/react/components/label#api-reference) primitive. See the Base UI documentation for every prop.

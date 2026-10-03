@@ -1,0 +1,88 @@
+---
+title: Button
+description: Displays a button or a component that looks like a button.
+---
+
+<ComponentPreview name="button-demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/button.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @base-ui/react class-variance-authority cn
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="button" title="components/ui/button.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Button } from "@/components/ui/button"
+```
+
+```tsx
+<Button variant="outline">Button</Button>
+```
+
+## Examples
+
+### With icon
+
+<ComponentPreview name="button-with-icon" />
+
+### Sizes
+
+<ComponentPreview name="button-sizes" />
+
+### Icon
+
+<ComponentPreview name="button-icon" />
+
+### States
+
+<ComponentPreview name="button-states" />
+
+### As link
+
+<ComponentPreview name="button-as-link" />
+
+## API Reference
+
+### Button
+
+The `Button` component is a wrapper around the `button` element that adds a variety of styles and functionality.
+
+| Prop      | Type                                                                                 | Default     |
+| --------- | ------------------------------------------------------------------------------------ | ----------- |
+| `variant` | `"default" \| "outline" \| "ghost" \| "destructive" \| "secondary" \| "link"`        | `"default"` |
+| `size`    | `"default" \| "xs" \| "sm" \| "lg" \| "icon" \| "icon-xs" \| "icon-sm" \| "icon-lg"` | `"default"` |

@@ -1,0 +1,73 @@
+---
+title: Toggle
+description: A two-state button that can be either on or off.
+---
+
+<ComponentPreview name="toggle-demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/toggle.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @base-ui/react class-variance-authority cn
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="toggle" title="components/ui/toggle.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Toggle } from "@/components/ui/toggle"
+```
+
+```tsx
+<Toggle>Toggle</Toggle>
+```
+
+## Examples
+
+### Outline
+
+<ComponentPreview name="toggle-outline" />
+
+### Sizes
+
+<ComponentPreview name="toggle-sizes" />
+
+### Disabled
+
+<ComponentPreview name="toggle-disabled" />
+
+## API Reference
+
+Toggle is built on the Base UI [Toggle](https://base-ui.com/react/components/toggle#api-reference) primitive. See the Base UI documentation for every prop.
