@@ -14,7 +14,7 @@ import { buttonVariants } from "@/registry/ui/button"
 
 import { CardsDemo } from "./cards"
 
-const title = "shadcn/ui, with texture"
+const title = "Components with texture"
 const description =
   "Every shadcn component rebuilt on Base UI, with buttons that protrude and keys that sink in. Same API, same CLI, a design of its own."
 

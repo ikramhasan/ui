@@ -1,4 +1,4 @@
-# UI Registry
+# Embossed UI
 
 ## What we're building
 
