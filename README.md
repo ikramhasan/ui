@@ -1,5 +1,7 @@
 # UI Registry
 
+[![UI Registry: shadcn/ui, with texture. ui.ikramhasan.com](apps/v1/public/banner.png)](https://ui.ikramhasan.com)
+
 shadcn components rebuilt on [Base UI](https://base-ui.com) with our own design (see `DESIGN.md`), distributed through the [shadcn CLI](https://ui.shadcn.com/docs/registry/getting-started). Each component is a drop-in for its shadcn `base-nova` counterpart: same file name, exports, props, variants, sizes, `data-slot` attributes and Base UI primitive. Only the styling changes.
 
 ## Installing
