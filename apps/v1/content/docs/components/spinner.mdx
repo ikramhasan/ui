@@ -1,0 +1,89 @@
+---
+title: Spinner
+description: An indicator that can be used to show a loading state.
+---
+
+<ComponentPreview name="spinner-demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/spinner.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install cn
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="spinner" title="components/ui/spinner.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Spinner } from "@/components/ui/spinner"
+```
+
+```tsx
+<Spinner />
+```
+
+Eight spokes, each a step brighter, turn in eight ticks. Reduced motion halves the speed rather than stopping it, since the spinner is the only sign that work is happening.
+
+## Examples
+
+### Size
+
+Use the `size-*` utilities to change the size of the spinner.
+
+<ComponentPreview name="spinner-sizes" />
+
+### Color
+
+The spinner draws in `currentColor`. Use `text-*` utilities to change it.
+
+<ComponentPreview name="spinner-color" />
+
+### Button
+
+Add `data-icon="inline-start"` or `data-icon="inline-end"` to place a spinner in a button.
+
+<ComponentPreview name="spinner-button" />
+
+### Badge
+
+<ComponentPreview name="spinner-badge" />
+
+### Input Group
+
+<ComponentPreview name="spinner-input-group" />
+
+## API Reference
+
+`Spinner` renders an `svg` with `role="status"` and `aria-label="Loading"`, and accepts all of its props.

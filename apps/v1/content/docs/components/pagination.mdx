@@ -1,0 +1,112 @@
+---
+title: Pagination
+description: Pagination with page navigation, next and previous links.
+---
+
+<ComponentPreview name="pagination-demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/pagination.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install cn lucide-react
+```
+
+<Step>
+  Add the [Button](/docs/components/button) component to your project.
+</Step>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="pagination" title="components/ui/pagination.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination"
+```
+
+```tsx
+<Pagination>
+  <PaginationContent>
+    <PaginationItem>
+      <PaginationPrevious href="#" />
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#">1</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationEllipsis />
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationNext href="#" />
+    </PaginationItem>
+  </PaginationContent>
+</Pagination>
+```
+
+`PaginationContent` is a recessed track, like the Tabs list; the link with `isActive` rises out of it as the raised chip.
+
+## Examples
+
+### Disabled
+
+Set `aria-disabled` (and `tabIndex={-1}`) on a link that leads nowhere, such as Previous on the first page.
+
+<ComponentPreview name="pagination-disabled" />
+
+### Icons only
+
+<ComponentPreview name="pagination-icons-only" />
+
+### Next.js
+
+To use Next.js's `<Link />`, update `PaginationLink`'s `render` prop to render a `Link` instead of an `<a>`.
+
+## API Reference
+
+| Part                 | Element | Notes                                                                                  |
+| -------------------- | ------- | -------------------------------------------------------------------------------------- |
+| `Pagination`         | `nav`   | `aria-label="pagination"`.                                                             |
+| `PaginationContent`  | `ul`    | The recessed track.                                                                    |
+| `PaginationItem`     | `li`    |                                                                                        |
+| `PaginationLink`     | `a`     | `isActive` sets `aria-current="page"`. `size` takes the Button sizes (default `icon`). |
+| `PaginationPrevious` | `a`     | `text` (default `"Previous"`), hidden below `sm`.                                      |
+| `PaginationNext`     | `a`     | `text` (default `"Next"`), hidden below `sm`.                                          |
+| `PaginationEllipsis` | `span`  | `aria-hidden`; a decorative gap between page links.                                    |
