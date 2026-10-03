@@ -437,6 +437,18 @@ shadcn `Toggle` (`variant` `default` · `outline`, `size` `sm` · `default` · `
 - `spacing={0}` with `outline` is a joined button strip: shared 1px borders, outer corners only; the pressed cell is the well.
 - Arrow keys move between items (Base UI behavior).
 
+### Table
+
+shadcn `Table` (`TableHeader`, `TableBody`, `TableFooter`, `TableRow`, `TableHead`, `TableCell`, `TableCaption`). The Dialog's frame laid flat: a muted shell holding the rows on a raised card, with the header, footer and caption on the shell.
+
+- Shell (`table-container`, scrolls horizontally): `muted` (dark: `background` + 20% black, like the Dialog shell), `rounded-xl` (14px), 1px `border` ring, 4px around the card. Without a `TableHeader`, the card fills the shell.
+- Card: drawn behind `TableBody` on `::before`, `background` fill, 1px `border`, `rounded-[10px]` (14 − 4, concentric), a faint lift (`0 1px 2px` black/4%; dark /40%).
+- `TableHead`: `label` (13/16 Medium) in `muted-foreground` (4.7:1 on the shell), 12px side padding. The header band is 36px above the card: the label's line box sits 10px from the shell's top edge and 10px from the card.
+- Body rows: exactly 40px, divided by 1px `border` lines; the last row has none. `body` text, 12px side padding, so header and cell text line up 16px from the shell's inner edge. Numbers are tabular.
+- Hover (and a row whose menu is open): `muted`, corner cells rounded 9px to follow the card. Selected (`data-state="selected"`): `primary` 6% over `background` (dark 14%), 9% / 18% on hover; `muted-foreground` text stays ≥ 4.5:1 on all of them.
+- `TableFooter` and `TableCaption`: on the shell below the card, line box 10px from the card and 10px from the shell's bottom edge. Footer is `body-medium`; caption `body` `muted-foreground`.
+- Fills sit on the cells (the table uses `border-separate`), so they round with the card's corners. Don't wrap the table in another bordered container.
+
 ### Tabs
 
 shadcn `Tabs` (`TabsList` `variant` `default` · `line`, `TabsTrigger`, `TabsContent`; `orientation` `horizontal` · `vertical`). The active tab's skin is Base UI's `Tabs.Indicator`, rendered inside `TabsList`, so it slides between tabs.
@@ -497,7 +509,7 @@ App-level compositions built from the components above. They are not shadcn comp
 
 - **App header:** 40px app tile (`background`, `border`, `rounded-lg`, `shadow-xs`, holds the partner's own logo) → title in `heading` + status `Badge` → one-line description in `muted-foreground`. 12px gaps.
 - **Section:** `title` heading, 12px above its content. 32px between sections.
-- **Key/value table** (`Table` or `Item`s): 1px `border`, `rounded-xl`, `background`. Rows exactly 40px, divided by `border`. Two equal columns; the key column has a right hairline. Key: 16px icon + `body` `muted-foreground`. Value: `body` `foreground`; counts that open a list are underlined.
+- **Key/value table** (`Table` without a header, or `Item`s): the Table shell and card. Rows exactly 40px, divided by `border`. Two equal columns; the key column has a right hairline. Key: 16px icon + `body` `muted-foreground`. Value: `body` `foreground`; counts that open a list are underlined.
 - **Store list** (`ItemGroup` of `Item`s): same container as the table. Rows 44px: 20px mark, name in 14 Medium, URL as an underlined `primary` link, 12px gaps. An expanded row holds an inset panel with 8px padding.
 - **Inset panel (Tool permissions):** `muted`, `rounded-xl`, padding 16px, `title` heading. Items 16px apart: title 14 Medium + filled `success` shield when granted; description `body` `muted-foreground`; optional `Switch` on the right.
 - **App list item** (`Item`): 40px tile, 16px gap, name in `title`, one-line description in `muted-foreground` with an ellipsis. Trailing: a `secondary` `size="icon"` "+" button when not connected, a plain `muted-foreground` check when connected. Two-column grid, 40px gutter.
