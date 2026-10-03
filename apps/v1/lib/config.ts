@@ -3,7 +3,7 @@ import { getSiteUrl } from "@/lib/site-url.mjs"
 const url = getSiteUrl()
 
 export const siteConfig = {
-  name: "UI Registry",
+  name: "Embossed UI",
   url,
   registryUrl: `${url}/r`,
   description:
