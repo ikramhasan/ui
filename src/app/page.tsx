@@ -28,6 +28,8 @@ import { RadioGroupDemo } from "./_demos/radio-group-demo"
 import { SelectDemo } from "./_demos/select-demo"
 import { SeparatorDemo } from "./_demos/separator-demo"
 import { SheetDemo } from "./_demos/sheet-demo"
+import { SidebarDemo } from "./_demos/sidebar-demo"
+import { SkeletonDemo } from "./_demos/skeleton-demo"
 import { SliderDemo } from "./_demos/slider-demo"
 import { SwitchDemo } from "./_demos/switch-demo"
 import { TabsDemo } from "./_demos/tabs-demo"
@@ -35,8 +37,15 @@ import { TextareaDemo } from "./_demos/textarea-demo"
 import { ToggleDemo } from "./_demos/toggle-demo"
 import { ToggleGroupDemo } from "./_demos/toggle-group-demo"
 import { TooltipDemo } from "./_demos/tooltip-demo"
+import { AppSidebar } from "./_components/app-sidebar"
 import { ComponentSection } from "./_components/showcase"
 import { ThemeToggle } from "./_components/theme-toggle"
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/registry/ui/sidebar"
+import { Separator } from "@/registry/ui/separator"
 
 const components = [
   {
@@ -238,6 +247,18 @@ const components = [
     demo: <SheetDemo />,
   },
   {
+    name: "sidebar",
+    title: "Sidebar",
+    description: "A composable, themeable and customizable sidebar component.",
+    demo: <SidebarDemo />,
+  },
+  {
+    name: "skeleton",
+    title: "Skeleton",
+    description: "Use to show a placeholder while content is loading.",
+    demo: <SkeletonDemo />,
+  },
+  {
     name: "slider",
     title: "Slider",
     description:
@@ -288,45 +309,52 @@ const components = [
 
 export default function Home() {
   return (
-    <main className="mx-auto flex w-full max-w-3xl flex-col gap-10 px-4 py-10 sm:px-6">
-      <header className="flex flex-col gap-4">
-        <div className="flex items-center justify-between gap-4">
-          <h1 className="text-[28px] leading-9 font-medium text-balance">UI Registry</h1>
-          <ThemeToggle />
-        </div>
-        <p className="text-pretty text-muted-foreground">
-          shadcn components rebuilt on Base UI with our own design. Install the
-          style once, then add components with the shadcn CLI.
-        </p>
-        <nav aria-label="Components" className="flex flex-wrap gap-1">
-          {components.map((c) => (
-            <a
-              key={c.name}
-              href={`#${c.name}`}
-              className="rounded-md px-2 py-1 text-sm outline-none hover:bg-accent hover:text-accent-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-            >
-              {c.title}
-            </a>
-          ))}
-        </nav>
-      </header>
-
-      <ComponentSection
-        name="style"
-        title="Style"
-        description="The design as a shadcn style: theme variables and the Inter font. Install it once, before any component."
+    <SidebarProvider
+      style={{ "--sidebar-width": "17rem" } as React.CSSProperties}
+    >
+      <AppSidebar
+        components={components.map(({ name, title }) => ({ name, title }))}
       />
+      <SidebarInset className="bg-sidebar">
+        <header className="sticky top-0 z-20 flex h-12 items-center gap-2 border-b bg-sidebar/80 px-3 backdrop-blur-sm">
+          <SidebarTrigger />
+          <Separator orientation="vertical" className="my-3.5" />
+          <span className="text-sm text-muted-foreground">
+            {components.length} components
+          </span>
+          <div className="ml-auto">
+            <ThemeToggle />
+          </div>
+        </header>
+        <div className="mx-auto flex w-full max-w-3xl flex-col gap-10 px-4 py-10 sm:px-6">
+          <header className="flex flex-col gap-4">
+            <h1 className="text-[28px] leading-9 font-medium text-balance">
+              UI Registry
+            </h1>
+            <p className="text-pretty text-muted-foreground">
+              shadcn components rebuilt on Base UI with our own design. Install
+              the style once, then add components with the shadcn CLI.
+            </p>
+          </header>
 
-      {components.map((c) => (
-        <ComponentSection
-          key={c.name}
-          name={c.name}
-          title={c.title}
-          description={c.description}
-        >
-          {c.demo}
-        </ComponentSection>
-      ))}
-    </main>
+          <ComponentSection
+            name="style"
+            title="Style"
+            description="The design as a shadcn style: theme variables and the Inter font. Install it once, before any component."
+          />
+
+          {components.map((c) => (
+            <ComponentSection
+              key={c.name}
+              name={c.name}
+              title={c.title}
+              description={c.description}
+            >
+              {c.demo}
+            </ComponentSection>
+          ))}
+        </div>
+      </SidebarInset>
+    </SidebarProvider>
   )
 }

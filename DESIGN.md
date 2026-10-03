@@ -450,13 +450,21 @@ shadcn `Tabs` (`TabsList` `variant` `default` · `line`, `TabsTrigger`, `TabsCon
 
 ### Sidebar
 
-shadcn `Sidebar` with `--sidebar-width: 17rem` (272px).
+shadcn `Sidebar` (`SidebarProvider`, `variant` `sidebar` · `floating` · `inset`, `collapsible` `offcanvas` · `icon` · `none`, every upstream part, `useSidebar`, ⌘B, the cookie). Upstream's width is 16rem; the design's app shell sets `--sidebar-width: 17rem` (272px) on `SidebarProvider`.
 
-- `sidebar` background, 1px `sidebar-border` on the right; `SidebarHeader` padding 16px top / 12px sides.
-- Header: workspace switcher (20px mark, name in `title`, chevron, ghost `SidebarTrigger`), then the Quick actions field.
-- `SidebarMenuButton`: 32px, `rounded-md`, padding 0 8px, 16px `muted-foreground` icon, 10px gap, `body`. Hover `sidebar-accent`. Active (`isActive`): `sidebar-accent` + Medium.
-- `SidebarGroupLabel` ("Tools", "Pinned", "Chat"): 13/16 Medium `muted-foreground`, 20px above, 8px below. Chat history items have no icon and truncate with an ellipsis.
-- `SidebarFooter`: a "Getting started" card (40px, `card`, `border`, `rounded-xl`, card shadow, `primary` progress ring, "1 of 5" in `muted-foreground`), then a trial row above a `border` rule ("14 days left" + `size="sm"` default button "Upgrade").
+- `sidebar` background with a 1px `sidebar-border` on its edge. `floating` is the card surface (`rounded-xl`, ring, card shadow); `inset` lifts `SidebarInset` into a card (`rounded-xl`, ring, card shadow) 8px from the edges.
+- `SidebarMenuButton`: 32px (`sm` 28px with 13px text, `lg` 48px), `rounded-md`, padding 8px, 16px `muted-foreground` icon, 10px gap, `body`. Hover: flat `sidebar-accent`, icon to `foreground`. Active (`isActive`): the raised key, the Dropdown Menu's highlighted row (white gradient, hairline, 1px drop shadow, inner highlight) + Medium. Press sinks it 0.5px. `outline`: the secondary Button skin.
+- Collapsed to icons: 32px squares with the icon 8px in on both axes; labels give way to a tooltip on the right.
+- `SidebarGroupLabel`: 13/16 Medium `muted-foreground`, 32px row. `SidebarGroupAction` / `SidebarMenuAction`: 20px, `muted-foreground`, 6px from the row's right edge, centered on it.
+- `SidebarMenuBadge`: a count in the recessed keycap (the Kbd), 6px from the right, centered on the row.
+- `SidebarMenuSub`: hangs off the parent icon's center on an engraved line (hairline + 1px highlight); sub buttons are 28px, `muted-foreground`, and the active one is the raised key.
+- `SidebarMenuSkeleton`: Skeleton bars; widths come from `useId`, so server and client match.
+- Mobile (< 768px): the Sheet from the left, without the Sheet's shell and card, so it is the same flat `sidebar` surface.
+- Motion: width and position slide in 200ms, ease `cubic-bezier(0.23, 1, 0.32, 1)`; reduced motion jumps.
+
+### Skeleton
+
+shadcn `Skeleton`. An empty slot pressed into the surface: the Kbd's well at a whisper (`muted` + 5% `foreground` → `muted`, a soft inner lip, a faint hairline), `rounded-md`. It pulses; reduced motion holds it still. Size and shape come from `className`.
 
 ### Breadcrumb
 

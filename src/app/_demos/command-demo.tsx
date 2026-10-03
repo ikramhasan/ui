@@ -30,7 +30,35 @@ import {
 } from "@/registry/ui/command"
 import { Kbd, KbdGroup } from "@/registry/ui/kbd"
 
+// cmdk scrolls its first item into view when it mounts. On a long page that
+// drags the whole window down to an inline Command below the fold, so for a
+// moment after mount, undo any scroll the person didn't make.
+function useHoldScrollOnMount() {
+  React.useLayoutEffect(() => {
+    const y = window.scrollY
+    let user = false
+    const mark = () => (user = true)
+    const hold = () => {
+      if (!user && window.scrollY !== y) window.scrollTo(0, y)
+    }
+    const input = ["wheel", "touchstart", "keydown", "pointerdown"] as const
+    input.forEach((e) => window.addEventListener(e, mark, { passive: true }))
+    window.addEventListener("scroll", hold)
+    const stop = window.setTimeout(release, 1000)
+    function release() {
+      input.forEach((e) => window.removeEventListener(e, mark))
+      window.removeEventListener("scroll", hold)
+    }
+    return () => {
+      window.clearTimeout(stop)
+      release()
+    }
+  }, [])
+}
+
 export function CommandDemo() {
+  useHoldScrollOnMount()
+
   return (
     <>
       <Example title="Inline">

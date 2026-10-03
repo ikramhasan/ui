@@ -118,7 +118,13 @@ function CommandEmpty({
   return (
     <CommandPrimitive.Empty
       data-slot="command-empty"
-      className={cn("py-6 text-center text-sm text-muted-foreground", className)}
+      // cmdk counts items in effects, so server HTML always shows the empty
+      // state and the page shifts once it hydrates. Hide it while real items
+      // follow it; cmdk only renders it with none, so behavior is unchanged.
+      className={cn(
+        "py-6 text-center text-sm text-muted-foreground has-[~[cmdk-group]_[cmdk-item]]:hidden has-[~[cmdk-item]]:hidden",
+        className
+      )}
       {...props}
     />
   )

@@ -6,7 +6,7 @@ A component library distributed through the **shadcn CLI**: every shadcn/ui comp
 
 - Design source of truth: `DESIGN.md` (the full catalog also lives at https://claude.ai/artifact/BMTLLMNNtjn6hQjR9JR6wr).
 - Every shadcn component will be replicated. The README's Components checklist tracks what is done and what remains.
-- Every component is shown on the landing page (`src/app/page.tsx`), served at http://localhost:3000. The user usually has `pnpm dev` running already, so check port 3000 before starting a server.
+- Every component is shown on the landing page (`src/app/page.tsx`), served at http://localhost:3000. The page is an app shell built from our own Sidebar (`src/app/_components/app-sidebar.tsx`), which lists every entry of the `components` array. The user usually has `pnpm dev` running already, so check port 3000 before starting a server.
 
 ## Rules
 
@@ -54,7 +54,7 @@ A component library distributed through the **shadcn CLI**: every shadcn/ui comp
 
 - Replace `http://localhost:3000` on deploy: `homepage` and every `registryDependencies` URL in `registry.json`, plus the landing-page install commands.
 - The design catalog artifact still lists the old `muted-foreground` (#777777) and `success` (#15B042); the shipped values are #6e6e6e and #0a772a.
-- Suggested next: Avatar and Skeleton, then Spinner and Empty.
+- Suggested next: Combobox, then Sonner and Table.
 
 ## Layout
 
