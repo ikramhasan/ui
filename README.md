@@ -106,7 +106,7 @@ apps/v1
 └── scripts/build-registry.mjs
 ```
 
-Home, Blocks and Charts are placeholders until every component has shipped. The docs are complete.
+Blocks and Charts are placeholders until every component has shipped. The docs are complete.
 
 ## Development
 
