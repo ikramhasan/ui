@@ -7,10 +7,11 @@
 import { execFileSync } from "node:child_process"
 import { promises as fs } from "node:fs"
 import path from "node:path"
+import { fileURLToPath } from "node:url"
 
 import { getSiteUrl, REGISTRY_URL_PLACEHOLDER } from "../lib/site-url.mjs"
 
-const root = path.resolve(import.meta.dirname, "..")
+const root = fileURLToPath(new URL("..", import.meta.url))
 
 async function buildExamplesIndex() {
   const dir = path.join(root, "examples")

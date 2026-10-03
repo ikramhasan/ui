@@ -125,6 +125,10 @@ pnpm typecheck
 
 That covers the JSON the CLI downloads (`homepage` and every `registryDependencies` URL) and every install command and link in the docs. On another host, set `NEXT_PUBLIC_APP_URL=https://your-domain` for the build.
 
+## Deploying
+
+Deploy `apps/v1` as a Next.js app. On Vercel, set the project's **Root Directory** to `apps/v1` (Settings → Build and Deployment) and keep "Include files outside the root directory" on, so the workspace lockfile is used. The build command is the app's `pnpm build`, which builds the registry first.
+
 ## Adding a component
 
 1. Install the upstream one for reference: `pnpm exec shadcn add <name>` (base-nova, from `apps/v1`). Read it, then delete it.
