@@ -1,0 +1,115 @@
+---
+title: Table
+description: A responsive table component.
+---
+
+<ComponentPreview name="table-demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/table.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install cn
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="table" title="components/ui/table.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+```
+
+```tsx
+<Table>
+  <TableCaption>A list of your recent invoices.</TableCaption>
+  <TableHeader>
+    <TableRow>
+      <TableHead className="w-[100px]">Invoice</TableHead>
+      <TableHead>Status</TableHead>
+      <TableHead>Method</TableHead>
+      <TableHead className="text-right">Amount</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell className="font-medium">INV001</TableCell>
+      <TableCell>Paid</TableCell>
+      <TableCell>Credit card</TableCell>
+      <TableCell className="text-right">$250.00</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+```
+
+The table is its own frame: the header, footer and caption sit on a muted shell, and the body rows on a raised card inside it. Don't wrap it in another bordered container.
+
+## Examples
+
+### Actions
+
+A row action menu with a `DropdownMenu`. The row keeps its hover fill while the menu is open.
+
+<ComponentPreview name="table-actions" />
+
+### Selection
+
+Set `data-state="selected"` on a `TableRow` to tint it.
+
+<ComponentPreview name="table-selection" />
+
+### Key/value
+
+Without a `TableHeader`, the card fills the shell.
+
+<ComponentPreview name="table-key-value" />
+
+### Data Table
+
+For sorting, filtering and pagination, build a data table with [TanStack Table](https://tanstack.com/table) on top of these parts. See shadcn's [Data Table](https://ui.shadcn.com/docs/components/base/data-table) guide.
+
+## API Reference
+
+Each part renders the HTML element of the same name and accepts all of its props: `Table` (`table`, inside a scrolling `div` with `data-slot="table-container"`), `TableHeader` (`thead`), `TableBody` (`tbody`), `TableFooter` (`tfoot`), `TableRow` (`tr`), `TableHead` (`th`), `TableCell` (`td`) and `TableCaption` (`caption`).
+
+| Attribute               | Part       | Description                |
+| ----------------------- | ---------- | -------------------------- |
+| `data-state="selected"` | `TableRow` | Tints the row as selected. |

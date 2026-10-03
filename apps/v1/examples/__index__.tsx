@@ -604,6 +604,26 @@ export const ExamplesIndex: Record<
     filePath: "examples/switch-settings.tsx",
     component: () => import("./switch-settings"),
   },
+  "table-actions": {
+    name: "table-actions",
+    filePath: "examples/table-actions.tsx",
+    component: () => import("./table-actions"),
+  },
+  "table-demo": {
+    name: "table-demo",
+    filePath: "examples/table-demo.tsx",
+    component: () => import("./table-demo"),
+  },
+  "table-key-value": {
+    name: "table-key-value",
+    filePath: "examples/table-key-value.tsx",
+    component: () => import("./table-key-value"),
+  },
+  "table-selection": {
+    name: "table-selection",
+    filePath: "examples/table-selection.tsx",
+    component: () => import("./table-selection"),
+  },
   "tabs-demo": {
     name: "tabs-demo",
     filePath: "examples/tabs-demo.tsx",
