@@ -1,0 +1,165 @@
+---
+title: Form
+description: Build forms with React Hook Form, Zod and the Field component.
+---
+
+<ComponentPreview name="form-demo" align="start" />
+
+## Introduction
+
+shadcn no longer ships a `form` component: forms are built from [`Field`](/docs/components/field) and the form library of your choice. This guide uses [React Hook Form](https://react-hook-form.com) with [Zod](https://zod.dev) for validation. `Field` brings the layout (label, control, then description or error, 6px apart) and the invalid styling, so your form inherits the design without extra classes.
+
+- `useForm` manages the form state; `zodResolver` validates it against a schema.
+- `<Controller />` connects each control.
+- `<Field />`, `<FieldLabel />`, `<FieldDescription />` and `<FieldError />` handle markup and accessibility.
+
+## Installation
+
+<Steps>
+
+<Step>Add the components the form uses:</Step>
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/field.json http://localhost:3000/r/input.json http://localhost:3000/r/button.json
+```
+
+<Step>Add React Hook Form, the resolvers and Zod:</Step>
+
+```bash
+npm install react-hook-form @hookform/resolvers zod
+```
+
+</Steps>
+
+## Anatomy
+
+```tsx
+<Controller
+  name="title"
+  control={form.control}
+  render={({ field, fieldState }) => (
+    <Field data-invalid={fieldState.invalid}>
+      <FieldLabel htmlFor={field.name}>Bug title</FieldLabel>
+      <Input
+        {...field}
+        id={field.name}
+        aria-invalid={fieldState.invalid}
+        autoComplete="off"
+      />
+      <FieldDescription>
+        Provide a concise title for your bug report.
+      </FieldDescription>
+      {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+    </Field>
+  )}
+/>
+```
+
+## Form
+
+### Create a form schema
+
+Define the shape of the form with a Zod schema.
+
+```tsx title="form.tsx"
+import * as z from "zod"
+
+const formSchema = z.object({
+  title: z
+    .string()
+    .min(5, "Bug title must be at least 5 characters.")
+    .max(32, "Bug title must be at most 32 characters."),
+  description: z
+    .string()
+    .min(20, "Description must be at least 20 characters.")
+    .max(100, "Description must be at most 100 characters."),
+})
+```
+
+### Set up the form
+
+Create the form instance with `useForm` and the Zod resolver.
+
+```tsx title="form.tsx"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+
+export function BugReportForm() {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      title: "",
+      description: "",
+    },
+  })
+
+  function onSubmit(data: z.infer<typeof formSchema>) {
+    console.log(data)
+  }
+
+  return (
+    <form onSubmit={form.handleSubmit(onSubmit)}>
+      {/* Build the form here */}
+    </form>
+  )
+}
+```
+
+### Build the form
+
+Wire each control with `<Controller />` and wrap it in a `<Field />`. The demo at the top of the page is the complete form:
+
+<ComponentSource src="examples/form-demo.tsx" title="form.tsx" />
+
+When you submit, `onSubmit` receives the validated values. If they are invalid, React Hook Form shows the errors next to each field.
+
+## Validation
+
+### Validation modes
+
+```tsx
+const form = useForm<z.infer<typeof formSchema>>({
+  resolver: zodResolver(formSchema),
+  mode: "onChange",
+})
+```
+
+| Mode          | Description                                              |
+| ------------- | -------------------------------------------------------- |
+| `"onChange"`  | Validation triggers on every change.                     |
+| `"onBlur"`    | Validation triggers on blur.                             |
+| `"onSubmit"`  | Validation triggers on submit (default).                 |
+| `"onTouched"` | Validation triggers on first blur, then on every change. |
+| `"all"`       | Validation triggers on blur and change.                  |
+
+## Displaying errors
+
+Show errors next to the field with `<FieldError />`:
+
+- Add `data-invalid` to the `<Field />` (or `<FieldSet />`).
+- Add `aria-invalid` to the control: `<Input />`, `<SelectTrigger />`, `<Checkbox />`, `<RadioGroupItem />`, …
+
+An invalid field turns its control and message red, never its label. Show the description or the error, not both.
+
+## Other controls
+
+Select, radio, switch and checkbox controls aren't native inputs, so pass `field.value` and `field.onChange` instead of spreading `field`:
+
+| Control                                      | Value prop | Change prop       |
+| -------------------------------------------- | ---------- | ----------------- |
+| [`Select`](/docs/components/select)          | `value`    | `onValueChange`   |
+| [`RadioGroup`](/docs/components/radio-group) | `value`    | `onValueChange`   |
+| [`Switch`](/docs/components/switch)          | `checked`  | `onCheckedChange` |
+| [`Checkbox`](/docs/components/checkbox)      | `checked`  | `onCheckedChange` |
+
+<ComponentPreview name="form-controls" align="start" />
+
+## Resetting the form
+
+Call `form.reset()` to return every field to its default value.
+
+```tsx
+<Button type="button" variant="secondary" onClick={() => form.reset()}>
+  Reset
+</Button>
+```

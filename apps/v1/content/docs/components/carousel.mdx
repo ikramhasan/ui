@@ -1,0 +1,143 @@
+---
+title: Carousel
+description: A carousel with motion and swipe built using Embla.
+---
+
+<ComponentPreview name="carousel-demo" />
+
+## About
+
+The carousel component is built using the [Embla Carousel](https://www.embla-carousel.com/) library. The previous and next controls are round raised keys (the secondary Button, `icon-sm`) with a 40px hit area.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/carousel.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install embla-carousel-react cn lucide-react
+```
+
+<Step>Add the components it builds on:</Step>
+
+- [Button](/docs/components/button)
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="carousel" title="components/ui/carousel.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+```
+
+```tsx
+<Carousel>
+  <CarouselContent>
+    <CarouselItem>...</CarouselItem>
+    <CarouselItem>...</CarouselItem>
+    <CarouselItem>...</CarouselItem>
+  </CarouselContent>
+  <CarouselPrevious />
+  <CarouselNext />
+</Carousel>
+```
+
+## Examples
+
+### Sizes
+
+To set the size of the items, use the `basis` utility class on the `<CarouselItem />`.
+
+<ComponentPreview name="carousel-size" />
+
+### Spacing
+
+To set the spacing between the items, use a `pl-[VALUE]` utility on the `<CarouselItem />` and a negative `-ml-[VALUE]` on the `<CarouselContent />`.
+
+<ComponentPreview name="carousel-spacing" />
+
+### Orientation
+
+Use the `orientation` prop to set the orientation of the carousel.
+
+<ComponentPreview name="carousel-orientation" />
+
+### API
+
+Use a state and the `setApi` prop to get an instance of the carousel API.
+
+<ComponentPreview name="carousel-api" />
+
+## Options
+
+Pass options to the carousel with the `opts` prop. See the [Embla Carousel docs](https://www.embla-carousel.com/api/options/) for more information.
+
+```tsx
+<Carousel
+  opts={{
+    align: "start",
+    loop: true,
+  }}
+>
+  ...
+</Carousel>
+```
+
+## Plugins
+
+Use the `plugins` prop to add plugins to the carousel.
+
+```tsx
+import Autoplay from "embla-carousel-autoplay"
+
+export function Example() {
+  return <Carousel plugins={[Autoplay({ delay: 2000 })]}>// ...</Carousel>
+}
+```
+
+See the [Embla Carousel docs](https://www.embla-carousel.com/api/plugins/) for more information on using plugins.
+
+## API Reference
+
+| Part               | Props / notes                                                                                                          |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| `Carousel`         | `opts`, `plugins`, `orientation` (`horizontal` · `vertical`), `setApi`. Left and right arrow keys move between slides. |
+| `CarouselContent`  | The Embla viewport and its track.                                                                                      |
+| `CarouselItem`     | One slide. Size it with `basis-*`.                                                                                     |
+| `CarouselPrevious` | A [`Button`](/docs/components/button), `secondary` `icon-sm` by default, with all Button props.                        |
+| `CarouselNext`     | The same, for the next slide.                                                                                          |
+| `useCarousel`      | Returns `api`, `scrollPrev`, `scrollNext`, `canScrollPrev` and `canScrollNext` inside a `Carousel`.                    |

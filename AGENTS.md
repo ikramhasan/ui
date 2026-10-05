@@ -58,7 +58,7 @@ A component library distributed through the **shadcn CLI**: every shadcn/ui comp
 ## Open items
 
 - The design catalog artifact still lists the old `muted-foreground` (#777777) and `success` (#15B042); the shipped values are #6e6e6e and #0a772a.
-- Suggested next: Native Select, then Input OTP.
+- Every shadcn component is in except Chart. Form is a guide page (base-nova's `form` item ships no files), like Data Table. Blocks and Charts are still placeholders.
 
 ## Layout
 

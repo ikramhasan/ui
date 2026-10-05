@@ -1,0 +1,96 @@
+---
+title: Navigation Menu
+description: A collection of links for navigating websites.
+---
+
+<ComponentPreview name="navigation-menu-demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/navigation-menu.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @base-ui/react class-variance-authority cn lucide-react
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  name="navigation-menu"
+  title="components/ui/navigation-menu.tsx"
+/>
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu"
+```
+
+```tsx
+<NavigationMenu>
+  <NavigationMenuList>
+    <NavigationMenuItem>
+      <NavigationMenuTrigger>Item One</NavigationMenuTrigger>
+      <NavigationMenuContent>
+        <NavigationMenuLink href="/docs">Link</NavigationMenuLink>
+      </NavigationMenuContent>
+    </NavigationMenuItem>
+  </NavigationMenuList>
+</NavigationMenu>
+```
+
+## Examples
+
+### Link component
+
+Use the `render` prop to compose `NavigationMenuLink` with your router's link, and `navigationMenuTriggerStyle()` to style a link like a trigger. `active` marks the current page; it is pressed in like an open trigger.
+
+<ComponentPreview name="navigation-menu-link-component" />
+
+## API Reference
+
+| Part                         | Props / notes                                                                                                                                     |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `NavigationMenu`             | Base UI [Navigation Menu](https://base-ui.com/react/components/navigation-menu#api-reference) root, plus `align` for the popup (default `start`). |
+| `NavigationMenuList`         | The row of items.                                                                                                                                 |
+| `NavigationMenuItem`         | One item.                                                                                                                                         |
+| `NavigationMenuTrigger`      | Opens its content; pressed in while open.                                                                                                         |
+| `NavigationMenuContent`      | The content shown in the shared popup. Slides in the direction you moved.                                                                         |
+| `NavigationMenuLink`         | A link. In content it lifts as a raised row on hover and focus; `active` marks the current page.                                                  |
+| `navigationMenuTriggerStyle` | The trigger's classes, for top-level links.                                                                                                       |
+| `NavigationMenuPositioner`   | Rendered by `NavigationMenu`; `side`, `sideOffset` (6), `align`, `alignOffset`.                                                                   |
+| `NavigationMenuIndicator`    | Base UI's icon slot, for a custom indicator.                                                                                                      |

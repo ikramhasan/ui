@@ -5,6 +5,7 @@ import { META_THEME_COLORS, siteConfig } from "@/lib/config"
 import { socialMetadata } from "@/lib/metadata"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/registry/ui/sonner"
+import { Toaster as ToastToaster } from "@/registry/ui/toast"
 import { TooltipProvider } from "@/registry/ui/tooltip"
 
 import "./globals.css"
@@ -46,7 +47,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body className="overscroll-none bg-background">
         <ThemeProvider>
-          <TooltipProvider>{children}</TooltipProvider>
+          <TooltipProvider>
+            <ToastToaster>{children}</ToastToaster>
+          </TooltipProvider>
           <Toaster />
         </ThemeProvider>
       </body>

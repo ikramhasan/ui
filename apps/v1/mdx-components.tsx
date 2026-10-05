@@ -46,8 +46,10 @@ function replaceSiteUrl(node: React.ReactNode): React.ReactNode {
     return withSiteUrl(node)
   }
 
+  // Children.map keys the rebuilt children; a plain map would hand React a
+  // fresh unkeyed array for every highlighted line.
   if (Array.isArray(node)) {
-    return node.map(replaceSiteUrl)
+    return React.Children.map(node, replaceSiteUrl)
   }
 
   if (React.isValidElement<{ children?: React.ReactNode }>(node)) {
