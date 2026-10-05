@@ -59,6 +59,21 @@ export const ExamplesIndex: Record<
     filePath: "examples/alert-without-icon.tsx",
     component: () => import("./alert-without-icon"),
   },
+  "aspect-ratio-demo": {
+    name: "aspect-ratio-demo",
+    filePath: "examples/aspect-ratio-demo.tsx",
+    component: () => import("./aspect-ratio-demo"),
+  },
+  "aspect-ratio-portrait": {
+    name: "aspect-ratio-portrait",
+    filePath: "examples/aspect-ratio-portrait.tsx",
+    component: () => import("./aspect-ratio-portrait"),
+  },
+  "aspect-ratio-square": {
+    name: "aspect-ratio-square",
+    filePath: "examples/aspect-ratio-square.tsx",
+    component: () => import("./aspect-ratio-square"),
+  },
   "attachment-demo": {
     name: "attachment-demo",
     filePath: "examples/attachment-demo.tsx",
@@ -329,6 +344,31 @@ export const ExamplesIndex: Record<
     filePath: "examples/card-small.tsx",
     component: () => import("./card-small"),
   },
+  "carousel-api": {
+    name: "carousel-api",
+    filePath: "examples/carousel-api.tsx",
+    component: () => import("./carousel-api"),
+  },
+  "carousel-demo": {
+    name: "carousel-demo",
+    filePath: "examples/carousel-demo.tsx",
+    component: () => import("./carousel-demo"),
+  },
+  "carousel-orientation": {
+    name: "carousel-orientation",
+    filePath: "examples/carousel-orientation.tsx",
+    component: () => import("./carousel-orientation"),
+  },
+  "carousel-size": {
+    name: "carousel-size",
+    filePath: "examples/carousel-size.tsx",
+    component: () => import("./carousel-size"),
+  },
+  "carousel-spacing": {
+    name: "carousel-spacing",
+    filePath: "examples/carousel-spacing.tsx",
+    component: () => import("./carousel-spacing"),
+  },
   "checkbox-choice-card": {
     name: "checkbox-choice-card",
     filePath: "examples/checkbox-choice-card.tsx",
@@ -479,6 +519,11 @@ export const ExamplesIndex: Record<
     filePath: "examples/dialog-without-footer.tsx",
     component: () => import("./dialog-without-footer"),
   },
+  "direction-demo": {
+    name: "direction-demo",
+    filePath: "examples/direction-demo.tsx",
+    component: () => import("./direction-demo"),
+  },
   "drawer-demo": {
     name: "drawer-demo",
     filePath: "examples/drawer-demo.tsx",
@@ -559,6 +604,16 @@ export const ExamplesIndex: Record<
     filePath: "examples/field-separator.tsx",
     component: () => import("./field-separator"),
   },
+  "form-controls": {
+    name: "form-controls",
+    filePath: "examples/form-controls.tsx",
+    component: () => import("./form-controls"),
+  },
+  "form-demo": {
+    name: "form-demo",
+    filePath: "examples/form-demo.tsx",
+    component: () => import("./form-demo"),
+  },
   "hover-card-demo": {
     name: "hover-card-demo",
     filePath: "examples/hover-card-demo.tsx",
@@ -613,6 +668,46 @@ export const ExamplesIndex: Record<
     name: "input-invalid",
     filePath: "examples/input-invalid.tsx",
     component: () => import("./input-invalid"),
+  },
+  "input-otp-controlled": {
+    name: "input-otp-controlled",
+    filePath: "examples/input-otp-controlled.tsx",
+    component: () => import("./input-otp-controlled"),
+  },
+  "input-otp-demo": {
+    name: "input-otp-demo",
+    filePath: "examples/input-otp-demo.tsx",
+    component: () => import("./input-otp-demo"),
+  },
+  "input-otp-disabled": {
+    name: "input-otp-disabled",
+    filePath: "examples/input-otp-disabled.tsx",
+    component: () => import("./input-otp-disabled"),
+  },
+  "input-otp-form": {
+    name: "input-otp-form",
+    filePath: "examples/input-otp-form.tsx",
+    component: () => import("./input-otp-form"),
+  },
+  "input-otp-four-digits": {
+    name: "input-otp-four-digits",
+    filePath: "examples/input-otp-four-digits.tsx",
+    component: () => import("./input-otp-four-digits"),
+  },
+  "input-otp-invalid": {
+    name: "input-otp-invalid",
+    filePath: "examples/input-otp-invalid.tsx",
+    component: () => import("./input-otp-invalid"),
+  },
+  "input-otp-pattern": {
+    name: "input-otp-pattern",
+    filePath: "examples/input-otp-pattern.tsx",
+    component: () => import("./input-otp-pattern"),
+  },
+  "input-otp-separator": {
+    name: "input-otp-separator",
+    filePath: "examples/input-otp-separator.tsx",
+    component: () => import("./input-otp-separator"),
   },
   "input-with-button": {
     name: "input-with-button",
@@ -764,6 +859,41 @@ export const ExamplesIndex: Record<
     filePath: "examples/message-scroller-scrollable.tsx",
     component: () => import("./message-scroller-scrollable"),
   },
+  "native-select-demo": {
+    name: "native-select-demo",
+    filePath: "examples/native-select-demo.tsx",
+    component: () => import("./native-select-demo"),
+  },
+  "native-select-disabled": {
+    name: "native-select-disabled",
+    filePath: "examples/native-select-disabled.tsx",
+    component: () => import("./native-select-disabled"),
+  },
+  "native-select-groups": {
+    name: "native-select-groups",
+    filePath: "examples/native-select-groups.tsx",
+    component: () => import("./native-select-groups"),
+  },
+  "native-select-invalid": {
+    name: "native-select-invalid",
+    filePath: "examples/native-select-invalid.tsx",
+    component: () => import("./native-select-invalid"),
+  },
+  "native-select-sizes": {
+    name: "native-select-sizes",
+    filePath: "examples/native-select-sizes.tsx",
+    component: () => import("./native-select-sizes"),
+  },
+  "navigation-menu-demo": {
+    name: "navigation-menu-demo",
+    filePath: "examples/navigation-menu-demo.tsx",
+    component: () => import("./navigation-menu-demo"),
+  },
+  "navigation-menu-link-component": {
+    name: "navigation-menu-link-component",
+    filePath: "examples/navigation-menu-link-component.tsx",
+    component: () => import("./navigation-menu-link-component"),
+  },
   "pagination-demo": {
     name: "pagination-demo",
     filePath: "examples/pagination-demo.tsx",
@@ -893,6 +1023,21 @@ export const ExamplesIndex: Record<
     name: "radio-group-demo",
     filePath: "examples/radio-group-demo.tsx",
     component: () => import("./radio-group-demo"),
+  },
+  "resizable-demo": {
+    name: "resizable-demo",
+    filePath: "examples/resizable-demo.tsx",
+    component: () => import("./resizable-demo"),
+  },
+  "resizable-handle": {
+    name: "resizable-handle",
+    filePath: "examples/resizable-handle.tsx",
+    component: () => import("./resizable-handle"),
+  },
+  "resizable-vertical": {
+    name: "resizable-vertical",
+    filePath: "examples/resizable-vertical.tsx",
+    component: () => import("./resizable-vertical"),
   },
   "scroll-area-both": {
     name: "scroll-area-both",
@@ -1133,6 +1278,21 @@ export const ExamplesIndex: Record<
     name: "textarea-with-label",
     filePath: "examples/textarea-with-label.tsx",
     component: () => import("./textarea-with-label"),
+  },
+  "toast-demo": {
+    name: "toast-demo",
+    filePath: "examples/toast-demo.tsx",
+    component: () => import("./toast-demo"),
+  },
+  "toast-promise": {
+    name: "toast-promise",
+    filePath: "examples/toast-promise.tsx",
+    component: () => import("./toast-promise"),
+  },
+  "toast-types": {
+    name: "toast-types",
+    filePath: "examples/toast-types.tsx",
+    component: () => import("./toast-types"),
   },
   "toggle-demo": {
     name: "toggle-demo",

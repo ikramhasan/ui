@@ -1,0 +1,91 @@
+---
+title: Resizable
+description: Accessible resizable panel groups and layouts with keyboard support.
+---
+
+<ComponentPreview name="resizable-demo" />
+
+## About
+
+The `Resizable` component is built on top of [react-resizable-panels](https://github.com/bvaughn/react-resizable-panels) by [bvaughn](https://github.com/bvaughn). The handle is the engraved Separator; `withHandle` adds a raised grip.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/resizable.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install react-resizable-panels cn
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="resizable" title="components/ui/resizable.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/components/ui/resizable"
+```
+
+```tsx
+<ResizablePanelGroup orientation="horizontal">
+  <ResizablePanel>One</ResizablePanel>
+  <ResizableHandle />
+  <ResizablePanel>Two</ResizablePanel>
+</ResizablePanelGroup>
+```
+
+## Examples
+
+### Vertical
+
+Use the `orientation` prop to set the orientation of the panel group.
+
+<ComponentPreview name="resizable-vertical" />
+
+### Handle
+
+Use the `withHandle` prop on `ResizableHandle` to show a visible grip.
+
+<ComponentPreview name="resizable-handle" />
+
+## API Reference
+
+See the [react-resizable-panels](https://github.com/bvaughn/react-resizable-panels/tree/main/packages/react-resizable-panels) documentation. This uses v4: `Group` / `Separator`, the `orientation` prop and string sizes such as `defaultSize="50%"`.
+
+| Part                  | Props / notes                                                                    |
+| --------------------- | -------------------------------------------------------------------------------- |
+| `ResizablePanelGroup` | Every `Group` prop (`orientation`, `onLayoutChange`, …).                         |
+| `ResizablePanel`      | Every `Panel` prop (`defaultSize`, `minSize`, `maxSize`, `collapsible`, …).      |
+| `ResizableHandle`     | Every `Separator` prop, plus `withHandle`. Arrow keys resize when it is focused. |

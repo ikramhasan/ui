@@ -1,0 +1,82 @@
+---
+title: Aspect Ratio
+description: Displays content within a desired ratio.
+---
+
+<ComponentPreview name="aspect-ratio-demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/aspect-ratio.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install cn
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="aspect-ratio" title="components/ui/aspect-ratio.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { AspectRatio } from "@/components/ui/aspect-ratio"
+```
+
+```tsx
+<AspectRatio ratio={16 / 9} className="overflow-hidden rounded-xl">
+  <img
+    src="..."
+    alt="Image"
+    className="absolute inset-0 size-full object-cover"
+  />
+</AspectRatio>
+```
+
+## Examples
+
+### Square
+
+<ComponentPreview name="aspect-ratio-square" />
+
+### Portrait
+
+<ComponentPreview name="aspect-ratio-portrait" />
+
+## API Reference
+
+### AspectRatio
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `ratio`     | `number` | —       |
+| `className` | `string` | —       |
+
+The frame is plain: give it a radius and, for photos, the 1px inset outline the Item and Attachment image tiles use (`outline-1 -outline-offset-1 outline-black/10 dark:outline-white/10`).

@@ -1,0 +1,100 @@
+---
+title: Native Select
+description: A styled native HTML select element with consistent design system integration.
+---
+
+<ComponentPreview name="native-select-demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/native-select.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install cn lucide-react
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="native-select" title="components/ui/native-select.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  NativeSelect,
+  NativeSelectOptGroup,
+  NativeSelectOption,
+} from "@/components/ui/native-select"
+```
+
+```tsx
+<NativeSelect>
+  <NativeSelectOption value="">Select a fruit</NativeSelectOption>
+  <NativeSelectOption value="apple">Apple</NativeSelectOption>
+  <NativeSelectOption value="banana">Banana</NativeSelectOption>
+</NativeSelect>
+```
+
+## Examples
+
+### Groups
+
+Use `NativeSelectOptGroup` to organize options into categories.
+
+<ComponentPreview name="native-select-groups" />
+
+### Sizes
+
+<ComponentPreview name="native-select-sizes" />
+
+### Invalid
+
+Use `aria-invalid` to show an error state.
+
+<ComponentPreview name="native-select-invalid" />
+
+### Disabled
+
+<ComponentPreview name="native-select-disabled" />
+
+## Native Select vs Select
+
+- Use `NativeSelect` for native browser behavior, better performance, or mobile-optimized pickers.
+- Use [`Select`](/docs/components/select) for custom styling of the options, animations, or complex interactions.
+
+The trigger looks the same as `SelectTrigger`; the open list is the browser's own.
+
+## API Reference
+
+| Part                   | Props / notes                                                                                              |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `NativeSelect`         | Every `<select>` prop, plus `size`: `default` · `sm` (default `default`). `className` goes on the wrapper. |
+| `NativeSelectOption`   | Every `<option>` prop.                                                                                     |
+| `NativeSelectOptGroup` | Every `<optgroup>` prop.                                                                                   |

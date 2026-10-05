@@ -199,6 +199,14 @@ shadcn `Alert` (`AlertTitle`, `AlertDescription`, `AlertAction`), variants `defa
 - `AlertAction`: 8px from the top and right, sized for `size="sm"` / `icon-sm` buttons (28px), which then center on the title line.
 - `destructive`: title and icon in `destructive`, description in `destructive/90`. Same neutral container.
 
+### Carousel
+
+shadcn `Carousel` on Embla (`opts`, `plugins`, `orientation`, `setApi`, `useCarousel`). Previous and next are round raised keys: the secondary Button at `icon-sm` (28px), `rounded-full`, with a 40px hit area, 48px outside the track; disabled at the ends. Slides are whatever you put in them (usually Cards). Left and right arrows move between slides.
+
+### Aspect Ratio
+
+shadcn `AspectRatio` (`ratio`). Unstyled; the examples frame photos with `rounded-xl` and the 1px black/10 inset outline (dark white/10) used by Item and Attachment image tiles.
+
 ### Card
 
 shadcn `Card` (`CardHeader`, `CardTitle`, `CardDescription`, `CardAction`, `CardContent`, `CardFooter`), `size` `default` / `sm`.
@@ -388,6 +396,14 @@ shadcn `Slider` (one thumb per value; `orientation` `horizontal` · `vertical`, 
 - Disabled: the whole control at 50%.
 - Arrow keys, Page Up / Down, Home / End (Base UI behavior).
 
+### Toast
+
+shadcn `Toast` on Base UI's Toast (`Toaster`, `toast.add` / `close` / `update` / `promise`, `type`, `actionProps`, every part exported). The Sonner look: a muted shell (`muted`, dark `popover` + 20% black, `rounded-xl`, ring, menu shadow plus inner highlight) holding the message on a raised `popover` card (`::before` over the icon and text columns, inset 4px, `rounded-[10px]`).
+
+- Text 12px inside the card (16px from the shell edge); title `body-medium`, description `body` `muted-foreground`, 2px apart. Icon: Sonner's 24px tinted tile, 10px inside the card.
+- `ToastAction` is the default Button and `ToastClose` a 44px-wide secondary key with a 16px X, both on the shell at the card's height, 4px from the card, each other and the shell's edges (measured), so their 10px radius is concentric.
+- Stacking, swipe and motion are upstream's; stacked toasts behind the front one hide their content. Reduced motion drops the slide and keeps the fade.
+
 ### Sonner
 
 shadcn `Toaster` on Sonner (every `Toaster` and `toast()` option as upstream). Toasts are `unstyled` and restyled part by part: the Dialog's frame on its side, a muted shell holding the message on a raised card, with the buttons on the shell to its right.
@@ -430,6 +446,13 @@ Toggles are used tens of times a day, so motion is short, purposeful and built f
 - Radio: the dot grows from 0.5× (never from 0) and fades in over 200ms; out in 100ms.
 - Press: 0.95 scale on every toggle. Reduced motion keeps the fades and drops scale and drawing.
 
+### Input OTP
+
+shadcn `InputOTP` on input-otp (`InputOTPGroup`, `InputOTPSlot`, `InputOTPSeparator`). Each group is the Input frame split into joined 32px cells: `background`, 1px `input` seams, only the outer corners rounded 10px, the group carrying `shadow-xs`. Groups and separators are 8px apart; the separator is a 16px `muted-foreground` dash.
+
+- The active cell takes the Input's focus (`ring` border + 3px `ring/30`, dark `/40`) and rises above its neighbors. The fake caret is a 1px `primary` line that blinks; reduced motion holds it.
+- Invalid (`aria-invalid` on slots): `destructive` borders, a `destructive/25` ring on the active cell. Disabled: 50%.
+
 ### Input and Textarea
 
 - `Input`: 32px, `background` fill, 1px `input`, radius 10px, `shadow-xs`, padding 0 10px, text `body`, placeholder `muted-foreground`. For a leading icon or a trailing hint, use `InputGroup`.
@@ -467,6 +490,10 @@ shadcn `InputGroup` (`InputGroupAddon`, `InputGroupButton`, `InputGroupText`, `I
 - Disabled: the whole group at 50%, once.
 - The sidebar's **Quick actions** field is an `InputGroup` with a command icon addon and a trailing `Kbd` ("K", 12px Medium).
 
+### Resizable
+
+shadcn `Resizable` on react-resizable-panels v4 (`ResizablePanelGroup`, `ResizablePanel`, `ResizableHandle` with `withHandle`). The handle is the engraved Separator (1px `border` line, dark black/40, with a 1px highlight beside it) on a 9px hit area. Hover darkens the line 12% toward `foreground`, dragging 20% (dark 15% / 25%), 150ms. `withHandle` adds an 8×24px raised white grip (the Slider thumb as a pill) centered on the line. Focus: the 2px `ring` around the line. Arrow keys resize (library behavior).
+
 ### Scroll Area
 
 shadcn `ScrollArea` and `ScrollBar` (`orientation` `vertical` · `horizontal`) on Base UI's Scroll Area. Bars overlay the content, inside the root's border, and only render when there is overflow.
@@ -475,6 +502,10 @@ shadcn `ScrollArea` and `ScrollBar` (`orientation` `vertical` · `horizontal`) o
 - Hover or drag: the thumb widens to 8px on the cross axis only (the ends keep their 2px gap) and darkens to `muted-foreground` at 75%, 3.1:1 (dark 4.0:1). 150ms, ease `cubic-bezier(0.23, 1, 0.32, 1)`; reduced motion keeps the color change and drops the width change.
 - Corners: the 2px end gap keeps the thumb's round ends inside a `rounded-lg` container (measured: 8.66px of the 9px inner radius at rest, tangent on hover). Rounder containers inset the bar with `className`.
 - Keyboard focus on the viewport: a 2px `ring` outline inset 2px (an outline, so it paints above the scrolled content).
+
+### Native Select
+
+shadcn `NativeSelect` (`size` `default` · `sm`, `NativeSelectOption`, `NativeSelectOptGroup`). The `SelectTrigger` skin on a real `<select>`: secondary Button gradient, `input` hairline, 32px (`sm` 28px, 13px text), text 11px in, a 16px `muted-foreground` chevron 9px from the right, centered (measured 0px). Focus: the Button's 2px `ring` with a 2px offset. Invalid: `destructive` border + ring. Disabled: the wrapper at 50%. The open list is the browser's own.
 
 ### Select
 
@@ -485,6 +516,14 @@ shadcn `Select` (`SelectTrigger` `size` `default` · `sm`, `SelectValue`, `Selec
 - `SelectItem`: the Dropdown Menu row (32px, `rounded-lg`, the raised card when highlighted) with 7px left padding, so its text lands 11px from the popup edge like the trigger's. The selected item has a 16px `primary` check (2.5 stroke) 8px from the right that draws itself in. `SelectLabel`: `caption` Medium in `muted-foreground`. `SelectSeparator`: engraved, like `Separator`.
 - Motion: below the trigger, opacity + scale 0.96 from the trigger, 150ms in / 100ms out; laid over the trigger it only fades, since the item lands on the value. Reduced motion keeps the fade.
 - Closes on pick, outside click, Escape (Base UI behavior).
+
+### Navigation Menu
+
+shadcn `NavigationMenu` on Base UI's Navigation Menu (every upstream part, `navigationMenuTriggerStyle`, `align`).
+
+- Triggers and top-level links: 32px, `rounded-lg`, 12px padding, `body` Medium; hover `accent`. The open trigger (and an `active` link) is pressed into the surface: the Toggle's recessed well fading in on `::before`, 150ms. The 12px chevron turns over in 200ms. Focus: the Button's 2px `ring` with a 2px offset.
+- Popup: the Dropdown Menu shell (`muted`, `rounded-xl`, ring, menu shadow, inner highlight), 6px below the trigger, start-aligned (measured flush). It morphs its width and height between contents; contents slide in the direction you moved and fade, 250ms ease `cubic-bezier(0.23, 1, 0.32, 1)`. Opens with opacity + scale 0.96, closes in 150ms. Reduced motion keeps the fades.
+- Content pads 4px; links are the Dropdown Menu row (`rounded-lg`, 10 = 14 − 4) and lift as the raised card on hover and focus. Icons 16px `muted-foreground`, `foreground` when lifted.
 
 ### Toggle and Toggle Group
 

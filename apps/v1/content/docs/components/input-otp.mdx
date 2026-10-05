@@ -1,0 +1,133 @@
+---
+title: Input OTP
+description: Accessible one-time password component with copy-paste functionality.
+---
+
+<ComponentPreview name="input-otp-demo" />
+
+## About
+
+Input OTP is built on top of [input-otp](https://github.com/guilhermerodz/input-otp) by [@guilherme_rodz](https://twitter.com/guilherme_rodz). Each group is the Input frame split into 32px cells; the active cell takes the Input's focus ring.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/input-otp.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install input-otp cn lucide-react
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="input-otp" title="components/ui/input-otp.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from "@/components/ui/input-otp"
+```
+
+```tsx
+<InputOTP maxLength={6}>
+  <InputOTPGroup>
+    <InputOTPSlot index={0} />
+    <InputOTPSlot index={1} />
+    <InputOTPSlot index={2} />
+  </InputOTPGroup>
+  <InputOTPSeparator />
+  <InputOTPGroup>
+    <InputOTPSlot index={3} />
+    <InputOTPSlot index={4} />
+    <InputOTPSlot index={5} />
+  </InputOTPGroup>
+</InputOTP>
+```
+
+## Examples
+
+### Pattern
+
+Use the `pattern` prop to define a custom pattern for the OTP input.
+
+```tsx
+import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp"
+
+;<InputOTP maxLength={6} pattern={REGEXP_ONLY_DIGITS_AND_CHARS}>
+  ...
+</InputOTP>
+```
+
+<ComponentPreview name="input-otp-pattern" />
+
+### Four digits
+
+A common pattern for PIN codes, with `pattern={REGEXP_ONLY_DIGITS}`.
+
+<ComponentPreview name="input-otp-four-digits" />
+
+### Separator
+
+Use `<InputOTPSeparator />` between groups.
+
+<ComponentPreview name="input-otp-separator" />
+
+### Controlled
+
+Use the `value` and `onChange` props to control the input value.
+
+<ComponentPreview name="input-otp-controlled" />
+
+### Invalid
+
+Use `aria-invalid` on the slots to show an error state.
+
+<ComponentPreview name="input-otp-invalid" />
+
+### Disabled
+
+<ComponentPreview name="input-otp-disabled" />
+
+### Form
+
+<ComponentPreview name="input-otp-form" />
+
+## API Reference
+
+| Part                | Props / notes                                                                                                                               |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `InputOTP`          | Every [input-otp](https://input-otp.rodz.dev) prop (`maxLength`, `pattern`, `value`, `onChange`, `disabled`, …), plus `containerClassName`. |
+| `InputOTPGroup`     | Joined cells: shared 1px seams, the outer corners rounded.                                                                                  |
+| `InputOTPSlot`      | `index`: the character it shows. Takes `aria-invalid`.                                                                                      |
+| `InputOTPSeparator` | A `muted-foreground` dash with `role="separator"`.                                                                                          |

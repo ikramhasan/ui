@@ -1,0 +1,80 @@
+---
+title: Direction
+description: A provider component that sets the text direction for your application.
+---
+
+<ComponentPreview name="direction-demo" />
+
+The `DirectionProvider` sets the text direction (`ltr` or `rtl`) that Base UI's components read, for right-to-left languages like Arabic, Hebrew and Persian. Set `dir` on the matching element too, so the browser lays the content out in that direction.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/direction.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="direction" title="components/ui/direction.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { DirectionProvider } from "@/components/ui/direction"
+```
+
+```tsx
+<html dir="rtl">
+  <body>
+    <DirectionProvider direction="rtl">
+      {/* Your app content */}
+    </DirectionProvider>
+  </body>
+</html>
+```
+
+## useDirection
+
+The `useDirection` hook returns the current direction.
+
+```tsx
+import { useDirection } from "@/components/ui/direction"
+
+function MyComponent() {
+  const direction = useDirection()
+  return <div>Current direction: {direction}</div>
+}
+```
+
+## API Reference
+
+Direction re-exports Base UI's [Direction Provider](https://base-ui.com/react/utils/direction-provider#api-reference) (`direction`: `ltr` · `rtl`, default `ltr`).
