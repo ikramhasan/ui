@@ -5,10 +5,10 @@ import nextTs from "eslint-config-next/typescript"
 const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
-  // Examples are copied into any React app, not only Next, so they use a
-  // plain <img>.
+  // Examples and blocks are copied into any React app, not only Next, so
+  // they use a plain <img>.
   {
-    files: ["examples/**"],
+    files: ["examples/**", "registry/blocks/**"],
     rules: { "@next/next/no-img-element": "off" },
   },
   // Override default ignores of eslint-config-next.
