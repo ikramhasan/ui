@@ -8,10 +8,10 @@ shadcn components rebuilt on [Base UI](https://base-ui.com) with our own design 
 
 ```bash
 # once: the theme variables and the Inter font
-npx shadcn@latest add http://localhost:3000/r/style.json
+npx shadcn@latest add https://ui.ikramhasan.com/r/style.json
 
 # then any component
-npx shadcn@latest add http://localhost:3000/r/button.json
+npx shadcn@latest add https://ui.ikramhasan.com/r/button.json
 ```
 
 Components only use the standard shadcn variables (`--primary`, `--secondary`, `--accent`, `--input`, `--ring`, …), so they also work with any other shadcn theme. Colors the design needs beyond those, like the button gradients, are derived in the component with `color-mix()`, the way base-nova does it. The one added color, `--success`, follows shadcn's "adding new colors" pattern.
@@ -92,7 +92,7 @@ Guides built from those components (shadcn ships them as docs pages, not registr
 
 ## Structure
 
-A pnpm workspace laid out like [shadcn/ui](https://github.com/shadcn-ui/ui), whose site lives in `apps/v4`. This is the first version, so the site is `apps/v1`.
+A pnpm workspace laid out like [shadcn/ui](https://github.com/shadcn-ui/ui), the site is `apps/v1`.
 
 ```
 apps/v1
@@ -123,17 +123,7 @@ pnpm typecheck
 
 ## Registry URL
 
-`registry.json` and the docs are written against `http://localhost:3000`. At build and render time that URL is replaced with the site's own (`apps/v1/lib/site-url.mjs`):
-
-1. `NEXT_PUBLIC_APP_URL`, when set.
-2. On Vercel: the production domain for production deploys, the deployment URL for previews. Vercel sets these, so no configuration is needed.
-3. `http://localhost:3000` otherwise.
-
-That covers the JSON the CLI downloads (`homepage` and every `registryDependencies` URL) and every install command and link in the docs. On another host, set `NEXT_PUBLIC_APP_URL=https://your-domain` for the build.
-
-## Deploying
-
-Deploy `apps/v1` as a Next.js app. On Vercel, set the project's **Root Directory** to `apps/v1` (Settings → Build and Deployment) and keep "Include files outside the root directory" on, so the workspace lockfile is used. The build command is the app's `pnpm build`, which builds the registry first.
+The registry url is [https://ui.ikramhasan.com](https://ui.ikramhasan.com)
 
 ## Adding a component
 
