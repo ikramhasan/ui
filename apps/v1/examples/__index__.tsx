@@ -369,6 +369,56 @@ export const ExamplesIndex: Record<
     filePath: "examples/carousel-spacing.tsx",
     component: () => import("./carousel-spacing"),
   },
+  "chart-area": {
+    name: "chart-area",
+    filePath: "examples/chart-area.tsx",
+    component: () => import("./chart-area"),
+  },
+  "chart-demo": {
+    name: "chart-demo",
+    filePath: "examples/chart-demo.tsx",
+    component: () => import("./chart-demo"),
+  },
+  "chart-example-axis": {
+    name: "chart-example-axis",
+    filePath: "examples/chart-example-axis.tsx",
+    component: () => import("./chart-example-axis"),
+  },
+  "chart-example-grid": {
+    name: "chart-example-grid",
+    filePath: "examples/chart-example-grid.tsx",
+    component: () => import("./chart-example-grid"),
+  },
+  "chart-example-legend": {
+    name: "chart-example-legend",
+    filePath: "examples/chart-example-legend.tsx",
+    component: () => import("./chart-example-legend"),
+  },
+  "chart-example-tooltip": {
+    name: "chart-example-tooltip",
+    filePath: "examples/chart-example-tooltip.tsx",
+    component: () => import("./chart-example-tooltip"),
+  },
+  "chart-example": {
+    name: "chart-example",
+    filePath: "examples/chart-example.tsx",
+    component: () => import("./chart-example"),
+  },
+  "chart-line": {
+    name: "chart-line",
+    filePath: "examples/chart-line.tsx",
+    component: () => import("./chart-line"),
+  },
+  "chart-pie": {
+    name: "chart-pie",
+    filePath: "examples/chart-pie.tsx",
+    component: () => import("./chart-pie"),
+  },
+  "chart-tooltip": {
+    name: "chart-tooltip",
+    filePath: "examples/chart-tooltip.tsx",
+    component: () => import("./chart-tooltip"),
+  },
   "checkbox-choice-card": {
     name: "checkbox-choice-card",
     filePath: "examples/checkbox-choice-card.tsx",

@@ -20,7 +20,7 @@ Components only use the standard shadcn variables (`--primary`, `--secondary`, `
 
 Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://ui.shadcn.com/r/styles/base-nova/registry.json). Tick a box when the component is in `registry/ui/`, in `registry.json` and has a docs page.
 
-**Progress: 62 / 63**
+**Progress: 63 / 63**
 
 - [x] Accordion (`accordion`)
 - [x] Alert (`alert`)
@@ -36,7 +36,7 @@ Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://
 - [x] Calendar (`calendar`)
 - [x] Card (`card`)
 - [x] Carousel (`carousel`)
-- [ ] Chart (`chart`)
+- [x] Chart (`chart`)
 - [x] Checkbox (`checkbox`)
 - [x] Collapsible (`collapsible`)
 - [x] Combobox (`combobox`)
@@ -108,7 +108,7 @@ apps/v1
 └── scripts/build-registry.mjs
 ```
 
-Blocks and Charts are placeholders until every component has shipped. The docs are complete.
+Charts is a gallery of every chart type, two variants each. Blocks is a placeholder. The docs are complete.
 
 ## Development
 
