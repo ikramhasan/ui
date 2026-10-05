@@ -1,0 +1,882 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Embossed UI Motion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=block" rel="stylesheet">
+<style>
+:root {
+  --background: #ffffff;
+  --foreground: #333333;
+  --primary: #3e6ae1;
+  --secondary: #f5f5f5;
+  --muted: #f5f5f5;
+  --muted-foreground: #6e6e6e;
+  --accent: #f2f2f2;
+  --destructive: #d42f2f;
+  --border: #ebebeb;
+  --input: #e0e0e0;
+  --sidebar: #f9f9f9;
+  --sidebar-accent: #ededed;
+  --chart-1: oklch(0.555 0.18 264.5);
+  --raised-bg: linear-gradient(to bottom, var(--background), color-mix(in oklch, var(--background), var(--secondary) 60%));
+  --raised-shadow: 0 1px 2px rgb(0 0 0 / 0.08), 0 0 0 1px rgb(0 0 0 / 0.06), inset 0 -1px 0 rgb(0 0 0 / 0.03);
+  --recessed-bg: linear-gradient(to bottom, color-mix(in oklch, var(--muted), var(--foreground) 7%), var(--muted));
+  --recessed-shadow: inset 0 1px 2px rgb(0 0 0 / 0.1), inset 0 0 0 1px rgb(0 0 0 / 0.05), 0 1px 0 rgb(255 255 255 / 0.9);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; width: 1440px; height: 1440px; overflow: hidden; background: var(--background); }
+body {
+  font-family: Inter, sans-serif; color: var(--foreground); font-size: 14px; line-height: 20px;
+  -webkit-font-smoothing: antialiased; font-feature-settings: "cv11";
+}
+#stage { position: absolute; inset: 0; overflow: hidden; background: var(--background); }
+#cam { position: absolute; left: 720px; top: 720px; width: 0; height: 0; transform-origin: 0 0; }
+#shape { position: absolute; overflow: hidden; border: 1px solid transparent; }
+.ov { position: absolute; inset: 0; pointer-events: none; }
+#gloss { background: linear-gradient(to bottom, rgb(255 255 255 / 0.16), rgb(255 255 255 / 0)); }
+#recess { background: linear-gradient(to bottom, rgb(0 0 0 / 0.035), rgb(0 0 0 / 0)); }
+.st { position: absolute; left: 50%; top: 50%; transform-origin: 50% 50%; }
+#cursor { position: absolute; left: 0; top: 0; width: 26px; height: 38px; transform-origin: 0 0; }
+
+svg.i { width: 16px; height: 16px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; display: block; }
+.muted { color: var(--muted-foreground); }
+.row { display: flex; align-items: center; }
+.tnum { font-variant-numeric: tabular-nums; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 32px; padding: 0 12px; border-radius: 10px; border: 1px solid transparent; font-size: 14px; line-height: 16px; font-weight: 500; white-space: nowrap; }
+.btn-primary { border-color: color-mix(in oklch, var(--primary), black 15%); background: linear-gradient(to bottom, color-mix(in oklch, var(--primary), white 15%), var(--primary)); color: #fff; box-shadow: 0 1px 2px rgb(30 60 160 / 0.28), inset 0 1px 0 rgb(255 255 255 / 0.22); }
+.btn-outline { border-color: var(--input); background: var(--background); box-shadow: 0 1px 2px rgb(0 0 0 / 0.05); }
+.btn-ghost { color: var(--muted-foreground); }
+.btn-icon { width: 32px; padding: 0; }
+.btn-sm { height: 28px; padding: 0 10px; font-size: 13px; }
+.kbd { display: inline-flex; align-items: center; justify-content: center; height: 20px; min-width: 20px; padding: 0 4px; border-radius: 6px; background: var(--recessed-bg); box-shadow: inset 0 1px 1.5px rgb(0 0 0 / 0.12), inset 0 0 0 1px rgb(0 0 0 / 0.05), 0 1px 0 rgb(255 255 255 / 0.9); font-size: 12px; font-weight: 500; color: var(--muted-foreground); letter-spacing: 0.08em; }
+.raised { background: var(--raised-bg); box-shadow: var(--raised-shadow); }
+.recessed { background: var(--recessed-bg); box-shadow: var(--recessed-shadow); }
+.avatar { width: 28px; height: 28px; border-radius: 999px; background: var(--muted); color: var(--muted-foreground); font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 2px var(--background); flex-shrink: 0; }
+.sep { height: 1px; background: var(--border); }
+
+/* checkbox */
+.cb { position: relative; width: 16px; height: 16px; flex-shrink: 0; border-radius: 4px; border: 1px solid color-mix(in oklch, var(--input), var(--foreground) 48%); background: linear-gradient(to bottom, var(--background), var(--secondary)); box-shadow: 0 1px 2px rgb(0 0 0 / 0.06), inset 0 -1px 0 rgb(0 0 0 / 0.03); }
+.cb .on { position: absolute; inset: -1px; border-radius: 4px; background: linear-gradient(to bottom, color-mix(in oklch, var(--primary), white 15%), var(--primary)); box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.22); opacity: 0; }
+.cb svg { position: absolute; left: 1px; top: 1px; width: 12px; height: 12px; fill: none; stroke: #fff; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.cb svg path { stroke-dasharray: 24; stroke-dashoffset: 24; }
+
+/* switch */
+.sw { position: relative; width: 32px; height: 18px; border-radius: 999px; flex-shrink: 0; background: linear-gradient(to bottom, color-mix(in oklch, var(--input), var(--foreground) 12%), var(--input)); box-shadow: inset 0 1px 2px rgb(0 0 0 / 0.12), inset 0 0 0 1px color-mix(in oklch, var(--input), var(--foreground) 48%); }
+.sw .on { position: absolute; inset: 0; border-radius: 999px; background: linear-gradient(to bottom, color-mix(in oklch, var(--primary), black 14%), var(--primary)); box-shadow: inset 0 1px 2px rgb(0 0 0 / 0.25), inset 0 0 0 1px color-mix(in oklch, var(--primary), black 15%); opacity: 0; }
+.sw .knob { position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 999px; background: linear-gradient(to bottom, #fff, color-mix(in oklch, white, black 5%)); box-shadow: 0 1px 2px rgb(0 0 0 / 0.2), 0 0 0 0.5px rgb(0 0 0 / 0.08), inset 0 -1px 0 rgb(0 0 0 / 0.04); }
+
+/* menu (dropdown / menubar content) */
+.menu { border-radius: 14px; background: var(--muted); padding: 4px; }
+.mi { position: relative; display: flex; align-items: center; gap: 8px; height: 32px; padding: 0 8px; border-radius: 10px; font-size: 14px; }
+.mi svg.i { color: var(--muted-foreground); }
+.mi .sc { margin-left: auto; font-size: 12px; color: var(--muted-foreground); letter-spacing: 0.08em; }
+.mlabel { height: 28px; display: flex; align-items: center; padding: 0 8px; font-size: 12px; font-weight: 500; color: var(--muted-foreground); }
+.hl { position: absolute; left: 4px; right: 4px; height: 32px; border-radius: 10px; }
+
+/* card text */
+.title { font-size: 16px; line-height: 22px; font-weight: 600; letter-spacing: -0.01em; }
+.desc { font-size: 13px; line-height: 18px; color: var(--muted-foreground); }
+
+/* terminal */
+#s-term { color: #ececec; padding: 18px 22px; }
+#s-term .path { font-size: 13px; line-height: 20px; color: #9a9a9a; }
+#s-term .line { font-size: 16px; line-height: 24px; margin-top: 6px; white-space: nowrap; display: flex; align-items: center; }
+#s-term .ps { color: #8a8a8a; margin-right: 10px; }
+#caret { display: inline-block; width: 2px; height: 18px; background: #ececec; margin-left: 2px; border-radius: 1px; }
+
+/* table */
+table { border-collapse: collapse; width: 100%; }
+th { height: 40px; text-align: left; font-size: 13px; font-weight: 500; color: var(--muted-foreground); padding: 0 12px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+td { height: 44px; padding: 0 12px; border-bottom: 1px solid var(--border); white-space: nowrap; font-size: 14px; }
+tr:last-child td { border-bottom: 0; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 8px; border-radius: 999px; border: 1px solid var(--border); font-size: 12px; font-weight: 500; }
+.dot { width: 6px; height: 6px; border-radius: 999px; }
+
+/* calendar */
+.cal-grid { display: grid; grid-template-columns: repeat(7, 32px); row-gap: 2px; }
+.cal-wd { height: 24px; display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--muted-foreground); }
+.cal-d { position: relative; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-variant-numeric: tabular-nums; }
+.cal-d .rng { position: absolute; inset: 0; background: var(--accent); opacity: 0; }
+.cal-d .sel { position: absolute; inset: 0; border-radius: 8px; background: linear-gradient(to bottom, color-mix(in oklch, var(--primary), white 15%), var(--primary)); box-shadow: 0 1px 2px rgb(30 60 160 / 0.28), inset 0 1px 0 rgb(255 255 255 / 0.22); opacity: 0; }
+.cal-d span { position: relative; }
+.cal-d.out { color: color-mix(in oklch, var(--muted-foreground), white 30%); }
+
+/* sidebar */
+.sb-item { position: relative; display: flex; align-items: center; gap: 10px; height: 32px; padding: 0 8px; border-radius: 8px; font-size: 14px; }
+.sb-item svg.i { color: var(--muted-foreground); }
+.sb-badge { margin-left: auto; font-size: 12px; font-weight: 500; color: var(--muted-foreground); font-variant-numeric: tabular-nums; }
+
+/* matched to the registry components */
+.title { font-size: 16px; line-height: 20px; font-weight: 500; letter-spacing: 0; }
+.desc { font-size: 14px; line-height: 20px; color: var(--muted-foreground); }
+.card-footer { display: flex; align-items: center; border-top: 1px solid var(--border); background: color-mix(in oklch, var(--muted) 50%, transparent); padding: 16px 20px; }
+.kbd { margin-left: auto; letter-spacing: 0.1em; padding: 0 4px; }
+.mi .kbd { margin-left: auto; }
+.avatar { position: relative; width: 32px; height: 32px; border-radius: 999px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background-color: var(--secondary); background-image: linear-gradient(to bottom, #fff, rgb(255 255 255 / 0)); color: var(--muted-foreground); font-size: 14px; font-weight: 500; box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.08); }
+.msg { display: flex; gap: 8px; width: 100%; }
+.msg.end { flex-direction: row-reverse; }
+.msg .av { align-self: flex-end; margin-bottom: 2px; }
+.msg-col { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.msg-head { padding: 0 14px; font-size: 12px; line-height: 16px; font-weight: 500; color: var(--muted-foreground); }
+.bubble { width: fit-content; max-width: 100%; border-radius: 18px; border: 1px solid transparent; padding: 7px 13px; font-size: 14px; line-height: 20px; }
+.bubble-muted { background: var(--muted); }
+.bubble-ink { border-color: color-mix(in oklch, var(--foreground), black 20%); background: linear-gradient(to bottom, color-mix(in oklch, var(--foreground), var(--background) 12%), var(--foreground)); color: var(--background); box-shadow: 0 1px 2px rgb(0 0 0 / 0.16), inset 0 1px 0 rgb(255 255 255 / 0.14); }
+.ig { width: 100%; border-radius: 10px; border: 1px solid var(--input); background: var(--background); box-shadow: 0 1px 2px rgb(0 0 0 / 0.05); }
+.ig-text { position: relative; min-height: 40px; padding: 8px 10px 0; font-size: 14px; line-height: 20px; }
+.ig-addon { display: flex; justify-content: flex-end; padding: 6px 8px 8px; }
+.badge { display: inline-flex; align-items: center; height: 20px; padding: 0 5px; gap: 4px; border-radius: 6px; border: 1px solid transparent; font-size: 13px; line-height: 16px; font-weight: 500; white-space: nowrap; }
+.badge-default { background: color-mix(in oklch, var(--primary) 10%, transparent); color: color-mix(in oklch, var(--primary), black 12%); }
+.badge-secondary { background: var(--muted); color: var(--muted-foreground); }
+.badge-outline { border-color: var(--border); color: var(--foreground); }
+.tframe { border-radius: 14px; background: var(--muted); padding: 0 5px 5px; box-shadow: 0 0 0 1px var(--border); font-variant-numeric: tabular-nums; }
+.trow { display: grid; grid-template-columns: 36px 1fr 108px 80px 72px; align-items: center; }
+.trow > div { padding: 0 12px; white-space: nowrap; }
+.thead > div { padding-top: 10px; padding-bottom: 11px; font-size: 13px; line-height: 16px; font-weight: 500; color: var(--muted-foreground); }
+.tsheet { position: relative; border-radius: 10px; border: 1px solid var(--border); background: var(--background); box-shadow: 0 1px 2px rgb(0 0 0 / 0.04); }
+.tbody .trow { height: 40px; border-bottom: 1px solid var(--border); }
+.tbody .trow:last-child { border-bottom: 0; }
+.cal { padding: 6px; width: fit-content; }
+.cal-cap { position: relative; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: 500; }
+.cal-nav { position: absolute; top: 0; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 8px; }
+.cal-wd { width: 32px; text-align: center; font-size: 12px; line-height: 16px; font-weight: 500; color: var(--muted-foreground); }
+.cal-d { position: relative; isolation: isolate; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-variant-numeric: tabular-nums; }
+.cal-d.out { color: var(--muted-foreground); }
+.cal-d span { position: relative; }
+.groove { position: absolute; top: 2px; bottom: 2px; background: var(--recessed-bg); box-shadow: inset 0 1px 0 rgb(0 0 0 / 0.06), 0 1px 0 rgb(255 255 255 / 0.9); opacity: 0; }
+.cal-d .today { position: absolute; inset: 0; z-index: -1; border-radius: 8px; background: var(--recessed-bg); box-shadow: inset 0 1px 1.5px rgb(0 0 0 / 0.12), inset 0 0 0 1px rgb(0 0 0 / 0.05), 0 1px 0 rgb(255 255 255 / 0.9); }
+.cal-d .key { position: absolute; inset: 0; z-index: -1; border-radius: 8px; border: 1px solid color-mix(in oklch, var(--primary), black 15%); background: linear-gradient(to bottom, color-mix(in oklch, var(--primary), white 15%), var(--primary)); box-shadow: 0 1px 2px rgb(30 60 160 / 0.28), inset 0 1px 0 rgb(255 255 255 / 0.22); opacity: 0; }
+.tipshell { position: absolute; left: 0; top: 0; min-width: 128px; border-radius: 14px; background: var(--muted); padding: 4px; font-size: 12px; box-shadow: 0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px rgb(0 0 0 / 0.1), inset 0 1px 0 rgb(255 255 255 / 0.7), 0 0 0 1px var(--border); }
+.tiplabel { padding: 2px 9px 6px; line-height: 16px; font-weight: 500; }
+.tipcard { border-radius: 10px; border: 1px solid var(--border); background: var(--background); padding: 6px 8px; box-shadow: 0 1px 2px rgb(0 0 0 / 0.04); }
+.swatch { width: 10px; height: 10px; flex-shrink: 0; border-radius: 3px; background-color: var(--chart-1); background-image: linear-gradient(to bottom, rgb(255 255 255 / 0.2), rgb(255 255 255 / 0)); box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.1); }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="cam">
+    <div id="shape">
+      <div class="ov" id="gloss"></div>
+      <div class="ov" id="recess"></div>
+      <div id="contents"></div>
+    </div>
+  </div>
+  <svg id="cursor" viewBox="0 0 26 38">
+    <path d="M2 2 L2 28.5 L8.6 22.3 L13.1 32.6 L17.6 30.7 L13.2 20.6 L22 20.6 Z" fill="#111" stroke="#fff" stroke-width="2" stroke-linejoin="round"/>
+  </svg>
+</div>
+
+<script>
+// ───────────────────────── timing ─────────────────────────
+const L = 28          // loop length (s): 14 bars at 120 BPM, events on every other beat
+const BEAT = 1.0
+const SOFT = 1.3      // springs run a little softer at half-time
+const b = (n) => n * BEAT
+const mod = (x, m) => ((x % m) + m) % m
+const clamp = (x, a = 0, z = 1) => Math.min(z, Math.max(a, x))
+// wrapped difference t - c, in (-L/2, L/2]
+const wd = (t, c) => { const d = mod(t - c + L / 2, L) - L / 2; return d }
+const easeOut = (x) => 1 - Math.pow(1 - clamp(x), 3)
+const easeInOut = (x) => { x = clamp(x); return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2 }
+
+// ───────────────────────── springs ─────────────────────────
+// Closed-form step response of an underdamped spring (0 → 1).
+function step(tau, T, zeta) {
+  if (tau <= 0) return 0
+  T *= SOFT
+  const w = (2 * Math.PI) / T, a = zeta * w, wdp = w * Math.sqrt(1 - zeta * zeta)
+  return 1 - Math.exp(-a * tau) * (Math.cos(wdp * tau) + (a / wdp) * Math.sin(wdp * tau))
+}
+// A value that changes target many times = sum of one spring per change.
+// keys: [[time, value, T?, zeta?], ...] — cyclic: before the first key the
+// value is the last key's value, and the previous loop's springs are summed
+// in too, so the track is periodic in L and a pure function of t.
+function track(keys, T = 0.34, zeta = 0.86) {
+  keys = keys.slice().sort((p, q) => p[0] - q[0])
+  const base = keys[keys.length - 1][1]
+  const terms = keys.map((k, i) => [k[0], k[1] - (i ? keys[i - 1][1] : base), k[2] || T, k[3] || zeta])
+  return (t) => {
+    t = mod(t, L)
+    let v = base
+    for (const [ti, d, Ti, z] of terms) if (d) v += d * (step(t - ti, Ti, z) + step(t - ti + L, Ti, z))
+    return v
+  }
+}
+// a one-shot spring from 0 to 1 starting at c (wrapped)
+const once = (t, c, T = 0.34, z = 0.86) => { const d = wd(t, c); return d < -1 ? 0 : step(d, T, z) }
+// on/off toggle at c, eased (for colors and fades inside a state)
+const fadeAt = (t, c, dur = 0.16) => easeOut(wd(t, c) / dur)
+// press: down over 30ms before the click, spring back after
+function press(t, c) {
+  const d = wd(t, c)
+  if (d < -0.03 || d > 0.5) return 0
+  if (d < 0) return easeInOut((d + 0.03) / 0.03)
+  return Math.exp(-d / 0.07)
+}
+
+// ───────────────────────── icons (lucide, 2px stroke) ─────────────────────────
+const P = {
+  arrowRight: '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
+  arrowUp: '<path d="m5 12 7-7 7 7"/><path d="M12 19V5"/>',
+  plus: '<path d="M5 12h14"/><path d="M12 5v14"/>',
+  search: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+  msg: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+  ellipsis: '<circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/>',
+  pencil: '<path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/>',
+  calendar: '<path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/>',
+  users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  trash: '<path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>',
+  house: '<path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
+  inbox: '<polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>',
+  squareCheck: '<rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 12 2 2 4-4"/>',
+  chart: '<path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/>',
+  terminal: '<path d="M12 19h8"/><path d="m4 17 6-6-6-6"/>',
+  bell: '<path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/>',
+  chevL: '<path d="m15 18-6-6 6-6"/>',
+  chevR: '<path d="m9 18 6-6-6-6"/>',
+  chevUD: '<path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/>',
+  filter: '<path d="M3 6h18"/><path d="M7 12h10"/><path d="M10 18h4"/>',
+}
+const I = (n, extra = '') => `<svg class="i" viewBox="0 0 24 24" ${extra}>${P[n]}</svg>`
+const CHECK = '<svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>'
+const spinner = (id) => `<svg id="${id}" class="i" viewBox="0 0 24 24">${Array.from({ length: 8 }, (_, i) => `<line x1="12" y1="2.5" x2="12" y2="6.5" opacity="${(i + 1) / 8}" transform="rotate(${i * 45} 12 12)"/>`).join('')}</svg>`
+
+// ───────────────────────── states ─────────────────────────
+// skin: [bg r,g,b, border r,g,b, lift, gloss, recess]
+const SK = {
+  dark:    [28, 28, 28, 46, 46, 46, 1, 0, 0],
+  white:   [255, 255, 255, 235, 235, 235, 1, 0, 0],
+  primary: [62, 106, 225, 44, 86, 196, 0, 1, 0],
+  muted:   [245, 245, 245, 235, 235, 235, 1, 0, 0],
+  recess:  [241, 241, 241, 241, 241, 241, 0, 0, 1],
+  sidebar: [249, 249, 249, 235, 235, 235, 1, 0, 0],
+}
+const CMD = 'npx shadcn@latest add https://ui.ikramhasan.com/r/all.json'
+const MSG = 'Shipping it today'
+const QUERY = 'tasks'
+
+const STATES = [
+  { id: 'term',     at: b(27), w: 540, h: 98,  r: 14, skin: 'dark' },
+  { id: 'spin',     at: b(2),  w: 236, h: 44,  r: 22, skin: 'white' },
+  { id: 'button',   at: b(3),  w: 116, h: 36,  r: 10, skin: 'primary' },
+  { id: 'empty',    at: b(4),  w: 320, h: 276, r: 18, skin: 'white' },
+  { id: 'message',  at: b(5),  w: 380, h: 342, r: 18, skin: 'white' },
+  { id: 'command',  at: b(7),  w: 420, h: 182, r: 14, skin: 'muted' },
+  { id: 'table',    at: b(8),  w: 620, h: 398, r: 18, skin: 'white' },
+  { id: 'check',    at: b(10), w: 300, h: 200, r: 18, skin: 'white' },
+  { id: 'dropdown', at: b(12), w: 212, h: 178, r: 14, skin: 'muted' },
+  { id: 'calendar', at: b(13), w: 258, h: 330, r: 18, skin: 'white' },
+  { id: 'toggle',   at: b(16), w: 204, h: 32,  r: 10, skin: 'recess' },
+  { id: 'chart',    at: b(19), w: 440, h: 340, r: 18, skin: 'white' },
+  { id: 'switch',   at: b(21), w: 340, h: 262, r: 18, skin: 'white' },
+  { id: 'menubar',  at: b(24), w: 440, h: 276, r: 18, skin: 'white' },
+  { id: 'sidebar',  at: b(26), w: 248, h: 420, r: 14, skin: 'sidebar' },
+]
+STATES.forEach((s) => { s.z = Math.min(1040 / s.w, 1000 / s.h, 5) })
+STATES.sort((p, q) => p.at - q.at)
+STATES.forEach((s, i) => { s.next = STATES[(i + 1) % STATES.length].at; s.dur = mod(s.next - s.at, L) })
+
+// ───────────────────────── content markup ─────────────────────────
+const C = {}
+C.term = `
+  <div class="path">~/acme-app</div>
+  <div class="line"><span class="ps">$</span><span id="cmd"></span><span id="caret"></span></div>`
+
+C.spin = `<div class="row" style="height:100%;justify-content:center;gap:10px;font-weight:500">
+  ${spinner('spinner')}<span>Installing components</span></div>`
+
+C.button = `<div class="row" style="height:100%;justify-content:center;gap:8px;color:#fff;font-weight:500;padding-left:2px">
+  <span>Open app</span>${I('arrowRight')}</div>`
+
+C.empty = `<div style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px">
+  <div style="position:relative;width:40px;height:40px;margin-bottom:20px">
+    <div style="position:absolute;inset:0;border-radius:10px;border:1px solid var(--border);background:var(--muted);transform:translate(-9px,1px) rotate(-12deg);transform-origin:bottom"></div>
+    <div style="position:absolute;inset:0;border-radius:10px;border:1px solid var(--border);background:var(--muted);transform:translate(9px,1px) rotate(12deg);transform-origin:bottom"></div>
+    <div class="row" style="position:absolute;inset:0;justify-content:center;border-radius:10px;border:1px solid var(--input);background:linear-gradient(var(--background),var(--secondary));box-shadow:0 1px 2px rgb(0 0 0/.06),inset 0 -1px 0 rgb(0 0 0/.03)">${I('msg')}</div>
+  </div>
+  <div class="title">No messages yet</div>
+  <div class="desc" style="margin-top:8px;max-width:230px">Start a thread to share updates with your team.</div>
+  <div id="empty-btn" class="btn btn-primary" style="margin-top:20px;padding-left:10px">${I('plus')}New message</div>
+</div>`
+
+C.message = `<div style="height:100%;display:flex;flex-direction:column">
+  <div class="row" style="padding:20px;border-bottom:1px solid var(--border);align-items:flex-start">
+    <div><div class="title">#design-review</div><div class="desc" style="margin-top:4px">Maya and 3 others</div></div>
+    <div class="btn btn-ghost btn-icon" style="margin-left:auto;width:28px;height:28px;margin-top:-4px;margin-right:-6px">${I('users')}</div>
+  </div>
+  <div style="flex:1;padding:20px;display:flex;flex-direction:column;gap:16px">
+    <div class="msg">
+      <div class="avatar av">MR</div>
+      <div class="msg-col">
+        <div class="msg-head">Maya</div>
+        <div class="bubble bubble-muted">Is the data table ready?</div>
+      </div>
+    </div>
+    <div class="msg end" id="bubble-out" style="transform-origin:100% 100%">
+      <div class="avatar av">AK</div>
+      <div class="msg-col" style="align-items:flex-end"><div class="bubble bubble-ink">${MSG}</div></div>
+    </div>
+  </div>
+  <div style="padding:0 20px 20px">
+    <div class="ig">
+      <div class="ig-text"><span id="msg-ph" class="muted" style="position:absolute">Message #design-review</span><span id="msg-text"></span><span id="msg-caret" style="display:inline-block;width:1.5px;height:17px;vertical-align:-3px;background:var(--primary);margin-left:1px"></span></div>
+      <div class="ig-addon"><div id="msg-send" class="btn btn-primary btn-icon" style="width:28px;height:28px;border-radius:999px">${I('arrowUp')}</div></div>
+    </div>
+  </div>
+</div>`
+
+C.command = `<div style="padding:6px">
+  <div class="row recessed" style="height:32px;border-radius:8px;padding:0 10px;gap:8px">
+    <span class="muted">${I('search')}</span>
+    <span id="q-ph" style="position:absolute;margin-left:24px;color:color-mix(in oklch,var(--muted-foreground),var(--foreground) 20%)">Type a command or search…</span>
+    <span class="row"><span id="q-text"></span><span id="q-caret" style="display:inline-block;width:1.5px;height:16px;background:var(--primary)"></span></span>
+  </div>
+  <div class="mlabel" style="margin-top:4px">Suggestions</div>
+  <div style="position:relative">
+    <div class="hl raised" style="left:0;right:0;top:0;border-radius:8px"></div>
+    <div class="mi" id="cmd-open" style="border-radius:8px">${I('squareCheck')}Open Tasks<span class="kbd">⌘O</span></div>
+    <div class="mi" style="border-radius:8px">${I('plus')}New task<span class="kbd">⌘N</span></div>
+    <div class="mi" style="border-radius:8px">${I('calendar')}Tasks due this week</div>
+  </div>
+</div>`
+
+const ROWS1 = [
+  ['Ship pagination', 'In progress', 'High', 'Oct 8'],
+  ['Audit color tokens', 'Todo', 'Medium', 'Oct 9'],
+  ['Sidebar keyboard nav', 'Done', 'High', 'Oct 10'],
+  ['Calendar range styles', 'In progress', 'Low', 'Oct 12'],
+  ['Chart tooltip spacing', 'Todo', 'Medium', 'Oct 13'],
+]
+const ROWS2 = [
+  ['Review data table', 'In progress', 'High', 'Oct 14'],
+  ['Write release notes', 'Todo', 'Medium', 'Oct 15'],
+  ['Schedule launch', 'Todo', 'High', 'Oct 16'],
+  ['Menubar shortcuts', 'Done', 'Low', 'Oct 17'],
+  ['Empty state copy', 'Todo', 'Low', 'Oct 18'],
+]
+const badgeVariant = { 'In progress': 'badge-default', Todo: 'badge-secondary', Done: 'badge-outline' }
+const rowsHTML = (rows, page) => rows.map((r, i) => `<div class="trow">
+  <div style="padding-right:0"><div class="cb" ${page === 2 && i === 0 ? 'id="row-check"' : ''}><div class="on"></div>${CHECK}</div></div>
+  <div style="font-weight:500">${r[0]}</div>
+  <div><span class="badge ${badgeVariant[r[1]]}">${r[1]}</span></div>
+  <div class="muted">${r[2]}</div>
+  <div class="muted tnum">${r[3]}</div></div>`).join('')
+C.table = `<div style="height:100%;display:flex;flex-direction:column;padding:20px">
+  <div class="row" style="align-items:flex-start">
+    <div><div class="title">Tasks</div><div class="desc" style="margin-top:4px">18 open · 6 due this week</div></div>
+    <div class="btn btn-outline btn-sm" style="margin-left:auto;padding-left:8px">${I('filter')}Filter</div>
+  </div>
+  <div class="tframe" style="margin-top:16px">
+    <div class="trow thead"><div style="padding-right:0"><div class="cb"><div class="on"></div>${CHECK}</div></div><div>Task</div><div>Status</div><div>Priority</div><div>Due</div></div>
+    <div class="tsheet" style="height:206px">
+      <div id="tbl1" class="tbody" style="position:absolute;inset:0">${rowsHTML(ROWS1, 1)}</div>
+      <div id="tbl2" class="tbody" style="position:absolute;inset:0">${rowsHTML(ROWS2, 2)}</div>
+    </div>
+  </div>
+  <div class="row" style="margin-top:16px;height:32px">
+    <div class="desc tnum" style="position:relative;width:110px;height:20px"><span id="pg-l1" style="position:absolute">Page 1 of 4</span><span id="pg-l2" style="position:absolute">Page 2 of 4</span></div>
+    <div class="row recessed" style="margin-left:auto;height:32px;border-radius:10px;padding:3px;position:relative;color:color-mix(in oklch,var(--muted-foreground),var(--foreground) 20%)">
+      <div id="pg-ind" style="position:absolute;top:3px;height:26px;width:26px;border-radius:7px;background:linear-gradient(to bottom,var(--background),color-mix(in oklch,var(--background),var(--secondary) 60%));box-shadow:0 1px 2px rgb(0 0 0/.1),0 0 0 1px rgb(0 0 0/.07),inset 0 -1px 0 rgb(0 0 0/.03)"></div>
+      <div class="row" style="width:26px;height:26px;justify-content:center;position:relative">${I('chevL')}</div>
+      ${[1, 2, 3, 4].map((n) => `<div id="pg-${n}" class="row tnum" style="width:26px;height:26px;justify-content:center;position:relative;font-size:14px">${n}</div>`).join('')}
+      <div class="row" style="width:26px;height:26px;justify-content:center;position:relative">${I('chevR')}</div>
+    </div>
+  </div>
+</div>`
+
+const TASKS = ['Review data table', 'Write release notes', 'Schedule launch']
+C.check = `<div style="padding:20px">
+  <div class="row" style="margin-bottom:8px;align-items:flex-start">
+    <div><div class="title">Today</div>
+      <div class="desc tnum" style="position:relative;height:20px;width:120px;margin-top:4px"><span id="ck-c1" style="position:absolute">1 of 3 done</span><span id="ck-c2" style="position:absolute">2 of 3 done</span></div></div>
+    <div id="chk-more" class="btn btn-ghost btn-icon" style="margin-left:auto;margin-right:-6px;margin-top:-4px;width:28px;height:28px">${I('ellipsis')}</div>
+  </div>
+  ${TASKS.map((tk, i) => `<div class="row" style="height:40px;gap:12px;${i ? 'border-top:1px solid var(--border)' : ''}">
+    <div class="cb" id="chk-${i + 1}"><div class="on"></div>${CHECK}</div>
+    <span style="position:relative" id="tk-${i + 1}">${tk}<span class="strike" style="position:absolute;left:0;top:50%;height:1.5px;width:100%;background:currentColor;transform-origin:0 50%;transform:scaleX(0)"></span></span>
+  </div>`).join('')}
+</div>`
+
+C.dropdown = `<div class="menu" style="position:relative;background:none">
+  <div class="mlabel">Schedule launch</div>
+  <div id="dd-hl" class="hl raised" style="top:32px"></div>
+  <div class="mi" id="dd-edit">${I('pencil')}Edit<span class="kbd">⌘E</span></div>
+  <div class="mi" id="dd-schedule">${I('calendar')}Schedule…</div>
+  <div class="mi">${I('users')}Assign…</div>
+  <div class="sep" style="margin:4px -4px"></div>
+  <div class="mi" style="color:color-mix(in oklch,var(--destructive),black 12%)">${I('trash', 'style="color:inherit"')}Delete</div>
+</div>`
+
+// October 2026 starts on a Thursday; today is the 6th.
+const calWeeks = []
+{
+  const days = [[27, 1], [28, 1], [29, 1], [30, 1]]
+  for (let d = 1; d <= 31; d++) days.push([d, 0])
+  for (let i = 0; i < days.length; i += 7) calWeeks.push(days.slice(i, i + 7))
+}
+// the groove under a range is one strip per week: 14 (from its center) → 17, then 18 (to its center)
+C.calendar = `<div style="height:100%;display:flex;flex-direction:column">
+  <div style="padding:10px 10px 4px">
+    <div class="cal">
+      <div class="cal-cap">
+        <div class="cal-nav" style="left:0">${I('chevL')}</div>October 2026<div class="cal-nav" style="right:0">${I('chevR')}</div>
+      </div>
+      <div class="row" style="margin-top:12px">${['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].map((d) => `<div class="cal-wd">${d}</div>`).join('')}</div>
+      ${calWeeks.map((w, wi) => `<div class="row" style="position:relative;margin-top:${wi ? 4 : 8}px">
+        ${wi === 2 ? '<div id="groove-a" class="groove" style="left:112px;border-radius:0 8px 8px 0"></div>' : ''}
+        ${wi === 3 ? '<div id="groove-b" class="groove" style="left:0;border-radius:8px 0 0 8px"></div>' : ''}
+        ${w.map(([d, out]) => {
+        return `<div class="cal-d${out ? ' out' : ''}" ${!out ? `id="cal-${d}"` : ''}>
+          ${!out && d === 6 ? '<div class="today"></div>' : ''}
+          ${!out && (d === 14 || d === 18) ? '<div class="key"></div>' : ''}
+          <span>${d}</span></div>`
+      }).join('')}</div>`).join('')}
+    </div>
+  </div>
+  <div class="card-footer" style="margin-top:auto;padding:12px 14px 12px 16px">
+    <div class="desc tnum" style="position:relative;flex:1;height:20px"><span id="cal-l0" style="position:absolute">Pick a range</span><span id="cal-l1" style="position:absolute">Oct 14 –</span><span id="cal-l2" style="position:absolute">Oct 14 – 18</span></div>
+    <div id="cal-apply" class="btn btn-primary btn-sm">Apply</div>
+  </div>
+</div>`
+
+const TG = ['Day', 'Week', 'Month']
+C.toggle = `<div style="position:relative;height:100%;padding:2px">
+  <div id="tg-ind" class="raised" style="position:absolute;top:2px;height:26px;border-radius:7px"></div>
+  <div class="row" style="position:relative;height:26px">
+    ${TG.map((l, i) => `<div id="tg-${l.toLowerCase()}" class="row" style="width:66px;height:26px;justify-content:center;font-weight:500;font-size:14px">${l}</div>`).join('')}
+  </div>
+</div>`
+
+const BARS = [64, 78, 71, 96, 88, 104, 92, 118, 109, 142, 0, 0]
+const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+const PLOT_W = 398, PLOT_H = 176, BAND = PLOT_W / 12, BAR_W = 22
+C.chart = `<div style="padding:20px;height:100%;display:flex;flex-direction:column">
+  <div class="row" style="align-items:flex-start">
+    <div><div class="title">Completed tasks</div><div class="desc" style="margin-top:4px">January – December 2026</div></div>
+    <div id="chart-bell" class="btn btn-outline btn-icon" style="margin-left:auto;width:28px;height:28px;margin-top:-4px">${I('bell')}</div>
+  </div>
+  <div id="chart-area" style="position:relative;margin-top:20px;width:${PLOT_W}px;height:${PLOT_H + 26}px;font-size:12px">
+    <div id="ch-cursor" style="position:absolute;top:0;height:${PLOT_H}px;width:${BAND}px;left:${9 * BAND}px;background:var(--muted)"></div>
+    ${[0, 1, 2, 3, 4].map((i) => `<div style="position:absolute;left:0;right:0;top:${(i * PLOT_H) / 4}px;border-top:1px solid var(--border)"></div>`).join('')}
+    ${BARS.map((v, i) => `<div class="bar" id="bar-${i}" style="position:absolute;left:${(i * BAND + (BAND - BAR_W) / 2).toFixed(2)}px;width:${BAR_W}px;top:${PLOT_H - (v / 150) * PLOT_H}px;height:${(v / 150) * PLOT_H}px;border-radius:4px;background:var(--chart-1);transform-origin:50% 100%"></div>`).join('')}
+    ${MON.map((m, i) => `<div style="position:absolute;top:${PLOT_H + 10}px;left:${i * BAND}px;width:${BAND}px;text-align:center;line-height:16px;color:var(--muted-foreground)">${m}</div>`).join('')}
+    <div id="tip" class="tipshell" style="transform-origin:100% 50%">
+      <div class="tiplabel">October</div>
+      <div class="tipcard"><div class="row" style="gap:8px;line-height:16px"><span class="swatch"></span><span class="muted">Completed</span><span class="tnum" style="margin-left:auto;padding-left:16px;font-weight:500">142</span></div></div>
+    </div>
+  </div>
+  <div class="row" style="justify-content:center;gap:6px;padding-top:12px;font-size:12px;line-height:16px;color:var(--muted-foreground)"><span class="swatch"></span>Completed</div>
+</div>`
+
+C.switch = `<div style="height:100%;display:flex;flex-direction:column">
+  <div style="padding:20px 20px 8px">
+    <div class="title">Notifications</div>
+    <div class="desc" style="margin-top:4px">Choose what reaches you.</div>
+  </div>
+  ${[['Push notifications', 'On your phone and desktop'], ['Weekly digest', 'A summary every Monday']].map(([l, d], i) => `
+  <div class="row" style="margin:0 20px;height:56px;gap:12px;${i ? 'border-top:1px solid var(--border)' : ''}">
+    <div><div style="font-weight:500">${l}</div><div class="desc" style="font-size:13px;line-height:18px">${d}</div></div>
+    <div class="sw" id="sw-${i + 1}" style="margin-left:auto"><div class="on"></div><div class="knob"></div></div>
+  </div>`).join('')}
+  <div class="card-footer" style="margin-top:auto"><div id="sw-save" class="btn btn-primary btn-sm" style="margin-left:auto">Save</div></div>
+</div>`
+
+C.menubar = `<div style="padding:12px;height:100%;position:relative">
+  <div class="row" style="height:32px;width:fit-content;gap:2px;border-radius:10px;border:1px solid var(--input);background:linear-gradient(var(--background),var(--secondary));padding:3px;box-shadow:0 1px 2px rgb(0 0 0/.06),inset 0 -1px 0 rgb(0 0 0/.03)">
+    ${['File', 'Edit', 'View', 'Help'].map((m) => `<div id="mb-${m.toLowerCase()}" style="position:relative;height:24px;padding:0 8px;display:flex;align-items:center;border-radius:6px;font-weight:500">${m === 'View' ? '<div id="mb-view-bg" class="raised" style="position:absolute;inset:0;border-radius:6px"></div>' : ''}<span style="position:relative">${m}</span></div>`).join('')}
+  </div>
+  <div style="padding:22px 6px 0">
+    <div class="title" style="font-size:18px;line-height:24px">Q4 launch plan</div>
+    <div class="desc" style="line-height:22px;margin-top:8px">Ship the full component set on October 18. Docs, blocks and charts go live the same morning, with the registry open for installs.</div>
+  </div>
+  <div id="mb-menu" class="menu" style="position:absolute;top:48px;width:220px;box-shadow:0 1px 2px rgb(0 0 0/.04),0 8px 24px rgb(0 0 0/.1),inset 0 1px 0 rgb(255 255 255/.7),0 0 0 1px var(--border);transform-origin:0 0">
+    <div id="mi-hl" class="hl raised" style="top:4px"></div>
+    <div class="mi" id="mi-sidebar" style="padding-left:32px">Show Sidebar<span class="kbd">⌘B</span></div>
+    <div class="mi" style="padding-left:32px">Zoom In<span class="kbd">⌘+</span></div>
+    <div class="mi" style="padding-left:32px">Zoom Out<span class="kbd">⌘−</span></div>
+    <div class="sep" style="margin:4px -4px"></div>
+    <div class="mi" style="padding-left:32px">Full Screen<span class="kbd">⌃⌘F</span></div>
+  </div>
+</div>`
+
+const NAV = [['house', 'Home'], ['inbox', 'Inbox', '3'], ['squareCheck', 'Tasks'], ['calendar', 'Calendar'], ['chart', 'Reports'], ['terminal', 'Terminal']]
+C.sidebar = `<div style="padding:8px;height:100%;display:flex;flex-direction:column">
+  <div class="row" style="height:48px;padding:0 8px;gap:10px">
+    <div class="row" style="width:32px;height:32px;border-radius:8px;background:var(--foreground);color:#fff;justify-content:center;font-weight:600">A</div>
+    <div style="line-height:18px"><div style="font-weight:600">Acme Inc</div><div class="desc" style="font-size:12px;line-height:16px">Enterprise</div></div>
+    <span class="muted" style="margin-left:auto">${I('chevUD')}</span>
+  </div>
+  <div class="row" style="height:32px;padding:0 8px;margin-top:8px;font-size:13px;font-weight:500;color:var(--muted-foreground)">Platform</div>
+  <div style="position:relative">
+    <div id="sb-active" class="raised" style="position:absolute;left:0;right:0;top:64px;height:32px;border-radius:8px"></div>
+    <div id="sb-hover" style="position:absolute;left:0;right:0;top:160px;height:32px;border-radius:8px;background:var(--sidebar-accent)"></div>
+    ${NAV.map(([ic, l, n]) => `<div class="sb-item" id="sb-${l.toLowerCase()}" style="${l === 'Tasks' ? 'font-weight:500' : ''}">${I(ic)}${l}${n ? `<span class="sb-badge">${n}</span>` : ''}</div>`).join('')}
+  </div>
+  <div class="row" style="margin-top:auto;height:52px;padding:0 8px;gap:10px">
+    <div class="avatar" style="width:32px;height:32px;font-size:12px">AK</div>
+    <div style="line-height:18px"><div style="font-weight:500">Alex Kim</div><div class="desc" style="font-size:12px;line-height:16px">alex@acme.dev</div></div>
+    <span class="muted" style="margin-left:auto">${I('chevUD')}</span>
+  </div>
+</div>`
+
+// ───────────────────────── build DOM ─────────────────────────
+const $ = (id) => document.getElementById(id)
+const contents = $('contents')
+for (const s of STATES) {
+  const el = document.createElement('div')
+  el.className = 'st'
+  el.id = 's-' + s.id
+  el.style.width = s.w - 2 + 'px'
+  el.style.height = s.h - 2 + 'px'
+  el.style.marginLeft = -(s.w - 2) / 2 + 'px'
+  el.style.marginTop = -(s.h - 2) / 2 + 'px'
+  el.innerHTML = C[s.id]
+  contents.appendChild(el)
+  s.el = el
+}
+
+// ───────────────────────── tracks ─────────────────────────
+const tW = track(STATES.map((s) => [s.at, s.w]))
+const tH = track(STATES.map((s) => [s.at, s.h]))
+const tR = track(STATES.map((s) => [s.at, s.r]))
+const tZ = track(STATES.map((s) => [s.at, s.z]), 0.46, 0.9)
+const tSkin = SK.white.map((_, k) => track(STATES.map((s) => [s.at, SK[s.skin][k]]), 0.2, 0.95))
+
+// cursor: world-space targets, measured from the layout
+const POS = {}
+function measure() {
+  const cam = $('cam').getBoundingClientRect()
+  document.querySelectorAll('[id]').forEach((el) => {
+    if (!el.closest('.st')) return
+    const r = el.getBoundingClientRect()
+    POS[el.id] = [r.left + r.width / 2 - cam.left, r.top + r.height / 2 - cam.top]
+  })
+}
+
+// cursor path: [time the move starts, target id or [x, y]]
+const REST = [224, 76]
+const CUR = [
+  [b(3) + 0.05, 'button'],
+  [b(4) + 0.05, 'empty-btn'],
+  [b(5) + 0.1, 'msg-send'],
+  [b(7) + 0.1, 'pg-2'],
+  [b(9) + 0.05, 'row-check'],
+  [b(10) + 0.05, 'chk-2'],
+  [b(11) + 0.05, 'chk-more'],
+  [b(12) + 0.05, 'dd-schedule'],
+  [b(13) + 0.05, 'cal-14'],
+  [b(14) + 0.05, 'cal-18'],
+  [b(15) + 0.05, 'cal-apply'],
+  [b(16) + 0.05, 'tg-week'],
+  [b(17) + 0.05, 'tg-month'],
+  [b(18) + 0.5, 'bar-9'],
+  [b(20) + 0.05, 'chart-bell'],
+  [b(21) + 0.05, 'sw-1'],
+  [b(22) + 0.05, 'sw-2'],
+  [b(23) + 0.05, 'sw-save'],
+  [b(24) + 0.05, 'mb-view'],
+  [b(25) + 0.05, 'mi-sidebar'],
+  [b(26) + 0.05, 'sb-terminal'],
+  [b(27) + 0.1, REST],
+]
+const CLICKS = [b(4), b(5), b(6), b(9), b(10), b(11), b(12), b(13), b(14), b(15), b(16), b(17), b(18), b(21), b(22), b(23), b(24), b(25), b(26), b(27)]
+let tCX, tCY
+function buildCursor() {
+  const pts = CUR.map(([t, tg]) => [t, typeof tg === 'string' ? (tg === 'button' ? [0, 0] : POS[tg]) : tg])
+  // bars sit on the bottom; aim at the upper part of the October bar
+  const bar = CUR.findIndex((c) => c[1] === 'bar-9')
+  pts[bar][1] = [pts[bar][1][0] + 2, pts[bar][1][1] - 30]
+  tCX = track(pts.map(([t, p]) => [t, p[0]]), 0.34, 0.9)
+  tCY = track(pts.map(([t, p]) => [t, p[1]]), 0.34, 0.9)
+}
+
+// typing: deterministic, slightly uneven per-key timing
+function keyTimes(n, t0, t1, seed) {
+  let s = seed, acc = 0
+  const d = []
+  for (let i = 0; i < n; i++) { s = (s * 16807) % 2147483647; const w = 0.7 + 0.6 * (s / 2147483647); d.push(w); acc += w }
+  let c = 0
+  return d.map((w) => { const t = t0 + (c / acc) * (t1 - t0); c += w; return t })
+}
+const KT_CMD = keyTimes(CMD.length, 0.03, 1.8, 7)
+const KT_MSG = keyTimes(MSG.length, b(5) + 0.14, b(6) - 0.1, 11)
+const KT_Q = keyTimes(QUERY.length, b(7) + 0.2, b(7) + 0.62, 3)
+const typed = (t, kt) => { let n = 0; for (const k of kt) if (t >= k) n++; return n }
+
+// two-edge indicator: the leading edge rides a quicker spring than the trailing one
+function edges(keys, fast = 0.2, slow = 0.38) {
+  const lk = [], rk = []
+  keys.forEach(([t, l, r], i) => {
+    const pl = i ? keys[i - 1][1] : keys[keys.length - 1][1]
+    const right = l > pl
+    lk.push([t, l, right ? slow : fast, 0.88])
+    rk.push([t, r, right ? fast : slow, 0.88])
+  })
+  return [track(lk), track(rk)]
+}
+let tgL, tgR, pgX, swE
+function buildIndicators() {
+  // toggle group: item i spans [2 + 66i, 2 + 66(i+1)] inside the 2px padding (content coords)
+  const it = (i) => [i * 66, i * 66 + 66]
+  ;[tgL, tgR] = edges([[b(16) - 0.4, ...it(0)], [b(17), ...it(1)], [b(18), ...it(2)]])
+  // the switch knob: left/right edges, 0..14 travel inside an 18px track
+  swE = [1, 2].map((n) => {
+    const c = b(21 + n)
+    return edges([[c, 14, 28], [b(27), 0, 14]], 0.17, 0.3)
+  })
+}
+
+// ───────────────────────── seek ─────────────────────────
+const px = (v) => v.toFixed(3) + 'px'
+const set = (el, k, v) => { el.style[k] = v }
+function vis(el, o) { el.style.opacity = o.toFixed(4); el.style.visibility = o < 0.002 ? 'hidden' : 'visible' }
+
+function seek(t) {
+  t = mod(t, L)
+  const z = tZ(t), w = tW(t), h = tH(t), r = tR(t)
+  const sk = tSkin.map((f) => f(t))
+
+  // the button is the shape itself, so it takes the press
+  const pBtn = press(t, b(4))
+  const shapeScale = 1 - 0.04 * pBtn
+
+  $('cam').style.transform = `scale(${z.toFixed(5)})`
+  const shape = $('shape')
+  shape.style.left = px(-w / 2)
+  shape.style.top = px(-h / 2)
+  shape.style.width = px(w)
+  shape.style.height = px(h)
+  shape.style.borderRadius = px(r)
+  shape.style.transform = `translateY(${(0.5 * pBtn).toFixed(3)}px) scale(${shapeScale.toFixed(4)})`
+  const c = (i) => Math.round(clamp(sk[i], 0, 255))
+  shape.style.backgroundColor = `rgb(${c(0)},${c(1)},${c(2)})`
+  shape.style.borderColor = `rgb(${c(3)},${c(4)},${c(5)})`
+  const lift = clamp(sk[6]), gloss = clamp(sk[7]) * (1 - pBtn), rec = clamp(sk[8])
+  shape.style.boxShadow = [
+    `0 1px 2px rgb(0 0 0 / ${(0.05 * lift).toFixed(4)})`,
+    `0 16px 40px -16px rgb(0 0 0 / ${(0.12 * lift).toFixed(4)})`,
+    `0 1px 2px rgb(30 60 160 / ${(0.28 * gloss).toFixed(4)})`,
+    `inset 0 1px 0 rgb(255 255 255 / ${(0.22 * gloss).toFixed(4)})`,
+    `inset 0 1px 2px rgb(0 0 0 / ${(0.1 * rec).toFixed(4)})`,
+    `inset 0 0 0 1px rgb(0 0 0 / ${(0.05 * rec).toFixed(4)})`,
+  ].join(',')
+  $('gloss').style.opacity = clamp(sk[7]).toFixed(4)
+  $('recess').style.opacity = rec.toFixed(4)
+
+  // content: each state has its own enter and exit window
+  for (const s of STATES) {
+    const u = mod(t - s.at, L)
+    const enter = easeOut((u - 0.13) / 0.3)
+    const exit = 1 - easeOut((u - s.dur) / 0.14)
+    const o = u < s.dur ? enter : u < s.dur + 0.14 ? exit : 0
+    vis(s.el, o)
+    if (o > 0) {
+      const blur = (1 - o) * 7 / z
+      const sc = u < s.dur ? 0.975 + 0.025 * enter : 1 - 0.015 * (1 - exit)
+      s.el.style.filter = blur > 0.01 ? `blur(${blur.toFixed(3)}px)` : 'none'
+      s.el.style.transform = `scale(${sc.toFixed(4)})`
+    }
+  }
+
+  // ── terminal
+  const n = t < b(2) + 0.3 ? typed(t, KT_CMD) : 0
+  $('cmd').textContent = CMD.slice(0, n)
+  const typing = t < 1.9
+  $('caret').style.opacity = typing ? 1 : (mod(t, 0.5) >= 0.25 ? 1 : 0)
+  // ── spinner: eight steps per 0.8s turn, like the component
+  $('spinner').style.transform = `rotate(${Math.floor(mod(t, 0.8) / 0.1) * 45}deg)`
+
+  // ── empty
+  const pEmpty = press(t, b(5))
+  $('empty-btn').style.transform = `scale(${(1 - 0.04 * pEmpty).toFixed(4)})`
+
+  // ── message
+  const nm = t >= b(6) ? 0 : typed(t, KT_MSG)
+  $('msg-text').textContent = MSG.slice(0, nm)
+  vis($('msg-ph'), nm ? 0 : 1)
+  $('msg-caret').style.opacity = mod(t, 0.5) < 0.25 || (t > KT_MSG[0] && t < b(6)) ? 1 : 0
+  const send = $('msg-send')
+  send.style.opacity = (0.45 + 0.55 * clamp(nm)).toFixed(3)
+  send.style.transform = `scale(${(1 - 0.08 * press(t, b(6))).toFixed(4)})`
+  const bo = once(t, b(6) + 0.02, 0.32, 0.86)
+  const bubble = $('bubble-out')
+  vis(bubble, t >= b(6) && t < b(8) ? clamp(fadeAt(t, b(6) + 0.02, 0.12)) : 0)
+  bubble.style.transform = `translateY(${((1 - bo) * 26).toFixed(3)}px) scale(${(0.94 + 0.06 * bo).toFixed(4)})`
+
+  // ── command
+  const nq = t > b(7) && t < b(9) ? typed(t, KT_Q) : 0
+  $('q-text').textContent = QUERY.slice(0, nq)
+  vis($('q-ph'), nq ? 0 : 1)
+  $('q-caret').style.marginLeft = nq ? '1px' : '0'
+  $('q-caret').style.opacity = mod(t, 0.5) < 0.25 || nq ? 1 : 0
+  $('cmd-open').style.transform = `scale(${(1 - 0.02 * press(t, b(8))).toFixed(4)})`
+
+  // ── table: page 2 swaps the rows with a short blur, the page pill rides a spring
+  const sw = fadeAt(t, b(9), 0.12), sIn = easeOut((wd(t, b(9)) - 0.06) / 0.18)
+  const onP2 = t >= b(9) && t < b(11)
+  const out1 = onP2 ? 1 - sw : 1, in2 = onP2 ? sIn : 0
+  for (const [id, o] of [['tbl1', out1], ['tbl2', in2], ['pg-l1', out1], ['pg-l2', in2]]) {
+    const el = $(id)
+    vis(el, o)
+    el.style.filter = o < 1 ? `blur(${((1 - o) * 4).toFixed(3)}px)` : 'none'
+  }
+  // keep the header row steady: only the body swaps
+  const pgx = pgX(t)
+  $('pg-ind').style.left = px(pgx)
+  $('pg-2').style.transform = `scale(${(1 - 0.06 * press(t, b(9))).toFixed(4)})`
+  const rc = once(t, b(10), 0.22, 0.9) * (t >= b(10) && t < b(12) ? 1 : 0)
+  setCheck($('row-check'), rc, press(t, b(10)))
+
+  // ── checkbox card
+  const c1 = t >= b(10) && t < b(13) ? once(t, b(10) + 0.16, 0.24, 0.9) : 0
+  const c2 = t >= b(11) && t < b(13) ? once(t, b(11), 0.24, 0.9) : 0
+  setCheck($('chk-1'), c1, 0)
+  setCheck($('chk-2'), c2, press(t, b(11)))
+  setStrike(1, c1)
+  setStrike(2, c2)
+  const cc = t >= b(11) && t < b(13) ? fadeAt(t, b(11), 0.14) : 0
+  vis($('ck-c1'), 1 - cc); vis($('ck-c2'), cc)
+  $('ck-c1').style.filter = `blur(${(cc * 3).toFixed(2)}px)`
+  $('ck-c2').style.filter = `blur(${((1 - cc) * 3).toFixed(2)}px)`
+  const more = $('chk-more')
+  const mh = t > b(11) + 0.5 && t < b(13) ? fadeAt(t, b(11) + 0.56, 0.1) : 0
+  more.style.background = `rgb(242 242 242 / ${mh.toFixed(3)})`
+  more.style.color = mh > 0.5 ? 'var(--foreground)' : 'var(--muted-foreground)'
+  more.style.transform = `scale(${(1 - 0.06 * press(t, b(12))).toFixed(4)})`
+
+  // ── dropdown: highlight follows the pointer from Edit to Schedule…
+  const hlY = ddY(t)
+  $('dd-hl').style.top = px(hlY)
+  vis($('dd-hl'), t > b(12) && t < b(14) ? fadeAt(t, b(12) + 0.3, 0.1) : 0)
+  $('dd-schedule').style.transform = `scale(${(1 - 0.02 * press(t, b(13))).toFixed(4)})`
+
+  // ── calendar: the ends become primary keys, the groove fills 14 → 18
+  const inCal = t >= b(13) && t < b(16) + 0.4
+  const s14 = inCal && t >= b(14) ? once(t, b(14), 0.26, 0.85) : 0
+  const s18 = inCal && t >= b(15) ? once(t, b(15), 0.26, 0.85) : 0
+  for (const d of [14, 18]) {
+    const cell = $('cal-' + d), sel = d === 14 ? s14 : s18
+    const key = cell.querySelector('.key')
+    key.style.opacity = clamp(sel * 1.6).toFixed(3)
+    key.style.transform = `scale(${(0.9 + 0.1 * sel).toFixed(4)})`
+    cell.querySelector('span').style.color = sel > 0.45 ? '#fff' : ''
+    cell.style.transform = `scale(${(1 - 0.05 * press(t, d === 14 ? b(14) : b(15))).toFixed(4)})`
+  }
+  // the groove runs out from 14 to the end of the week, then into 18
+  const ga = inCal && t >= b(15) ? easeOut(wd(t, b(15)) / 0.16) : 0
+  const gb = inCal && t >= b(15) ? easeOut((wd(t, b(15)) - 0.12) / 0.1) : 0
+  $('groove-a').style.width = px(112 * ga)
+  $('groove-a').style.opacity = clamp(ga * 4).toFixed(3)
+  $('groove-b').style.width = px(16 * gb)
+  $('groove-b').style.opacity = clamp(gb * 4).toFixed(3)
+  const l1 = t >= b(14) && t < b(17) ? fadeAt(t, b(14), 0.12) : 0
+  const l2 = t >= b(15) && t < b(17) ? fadeAt(t, b(15), 0.12) : 0
+  vis($('cal-l0'), 1 - l1); vis($('cal-l1'), l1 - l2); vis($('cal-l2'), l2)
+  $('cal-apply').style.transform = `scale(${(1 - 0.05 * press(t, b(16))).toFixed(4)})`
+
+  // ── toggle group
+  const L0 = tgL(t), R0 = tgR(t)
+  const ind = $('tg-ind')
+  ind.style.left = px(2 + L0)
+  ind.style.width = px(R0 - L0)
+  TG.forEach((l, i) => {
+    const el = $('tg-' + l.toLowerCase())
+    const on = i === 0 ? (t < b(17) ? 1 : 1 - fadeAt(t, b(17), 0.12)) : i === 1 ? (t < b(17) ? 0 : t < b(18) ? fadeAt(t, b(17), 0.12) : 1 - fadeAt(t, b(18), 0.12)) : t >= b(18) ? fadeAt(t, b(18), 0.12) : 0
+    el.style.color = `color-mix(in oklch, #626262, var(--foreground) ${(on * 100).toFixed(1)}%)`
+    const pc = i === 1 ? press(t, b(17)) : i === 2 ? press(t, b(18)) : 0
+    el.style.transform = `scale(${(1 - 0.04 * pc).toFixed(4)})`
+  })
+
+  // ── chart: bars grow on a stagger; hovering October shades its column and opens the tooltip
+  const inChart = t >= b(19) && t < b(21) + 0.2
+  const hover = inChart ? fadeAt(t, b(20) - 0.02, 0.12) : 0
+  BARS.forEach((v, i) => {
+    const g = inChart ? once(t, b(19) + 0.06 + i * 0.022, 0.42, 0.86) : 0
+    $('bar-' + i).style.transform = `scaleY(${Math.max(0, g).toFixed(4)})`
+  })
+  vis($('ch-cursor'), hover)
+  const tip = $('tip')
+  const ts = inChart ? once(t, b(20) - 0.02, 0.26, 0.86) : 0
+  vis(tip, hover)
+  tip.style.left = px(CHART_TIP[0])
+  tip.style.top = px(CHART_TIP[1])
+  tip.style.transform = `translateX(${((1 - ts) * 6).toFixed(3)}px) scale(${(0.96 + 0.04 * ts).toFixed(4)})`
+  $('chart-bell').style.transform = `scale(${(1 - 0.06 * press(t, b(21))).toFixed(4)})`
+
+  // ── switches: the knob's edges ride different springs, so it stretches
+  ;[1, 2].forEach((k) => {
+    const el = $('sw-' + k)
+    const c = b(21 + k)
+    const live = t >= c - 0.6 && t < b(25)
+    const on = live && t >= c ? fadeAt(t, c, 0.2) : 0
+    const [fl, fr] = swE[k - 1]
+    const l = live && t >= c ? fl(t) : 0, r = live && t >= c ? fr(t) : 14
+    el.querySelector('.on').style.opacity = on.toFixed(3)
+    const knob = el.querySelector('.knob')
+    knob.style.left = px(2 + l)
+    knob.style.width = px(Math.max(14, r - l))
+    el.style.transform = `scale(${(1 - 0.05 * press(t, c)).toFixed(4)})`
+  })
+  $('sw-save').style.transform = `scale(${(1 - 0.05 * press(t, b(24))).toFixed(4)})`
+
+  // ── menubar: View opens its menu, the highlight lands on Show Sidebar
+  const open = t >= b(25) && t < b(27) ? once(t, b(25), 0.3, 0.9) : 0
+  const menu = $('mb-menu')
+  vis(menu, clamp(fadeAt(t, b(25), 0.1) * (t >= b(25) && t < b(27) ? 1 : 0)))
+  menu.style.left = px(MENU_X)
+  menu.style.transform = `translateY(${((1 - open) * -4).toFixed(3)}px) scale(${(0.96 + 0.04 * open).toFixed(4)})`
+  vis($('mb-view-bg'), t >= b(25) && t < b(27) ? fadeAt(t, b(25), 0.08) : 0)
+  vis($('mi-hl'), t >= b(25) && t < b(27) ? fadeAt(t, b(25) + 0.55, 0.1) : 0)
+  $('mb-view').style.transform = `scale(${(1 - 0.05 * press(t, b(25))).toFixed(4)})`
+  $('mi-sidebar').style.transform = `scale(${(1 - 0.02 * press(t, b(26))).toFixed(4)})`
+
+  // ── sidebar: hover reaches Terminal, then the click
+  vis($('sb-hover'), t >= b(26) && t < b(28) ? fadeAt(t, b(26) + 0.55, 0.1) : 0)
+  $('sb-terminal').style.transform = `scale(${(1 - 0.03 * press(t, b(27))).toFixed(4)})`
+
+  // ── cursor (screen space: constant size, follows the camera)
+  let p = 0
+  for (const c of CLICKS) p = Math.max(p, press(t, c))
+  const cx = 720 + z * tCX(t), cy = 720 + z * tCY(t)
+  $('cursor').style.transform = `translate(${(cx - 2).toFixed(3)}px, ${(cy - 2).toFixed(3)}px) scale(${(1.25 * (1 - 0.1 * p)).toFixed(4)})`
+}
+
+function setCheck(el, c, p) {
+  el.querySelector('.on').style.opacity = clamp(c * 1.4).toFixed(3)
+  el.querySelector('path').style.strokeDashoffset = (24 * (1 - clamp(c))).toFixed(3)
+  el.style.transform = `scale(${(1 - 0.08 * p).toFixed(4)})`
+}
+function setStrike(i, c) {
+  const tk = $('tk-' + i)
+  tk.querySelector('.strike').style.transform = `scaleX(${clamp(c).toFixed(4)})`
+  tk.style.color = `color-mix(in oklch, var(--foreground), var(--muted-foreground) ${(clamp(c) * 100).toFixed(1)}%)`
+}
+
+let ddY, CHART_TIP, MENU_X
+function init() {
+  // lay every content box out at rest so positions can be measured
+  $('cam').style.transform = 'scale(1)'
+  STATES.forEach((s) => { s.el.style.transform = 'none'; s.el.style.filter = 'none' })
+  measure()
+  // pagination indicator x (content coords inside the recessed track)
+  const pg = (n) => $('pg-' + n).offsetLeft
+  pgX = track([[b(8) - 0.5, pg(1)], [b(9), pg(2)], [b(12), pg(1)]], 0.3, 0.86)
+  // dropdown highlight y: Edit, then Schedule…
+  const ddTop = (id) => $(id).offsetTop
+  ddY = track([[b(12) + 0.3, ddTop('dd-edit')], [b(12) + 0.52, ddTop('dd-schedule')], [b(14), ddTop('dd-edit')]], 0.18, 0.9)
+  // tooltip above the October bar
+  const bar = $('bar-9')
+  CHART_TIP = [bar.offsetLeft - (BAND - BAR_W) / 2 - $('tip').offsetWidth - 8, 14]
+  MENU_X = $('mb-view').getBoundingClientRect().left - $('s-menubar').getBoundingClientRect().left - 4
+  buildIndicators()
+  buildCursor()
+}
+
+window.seek = seek
+window.ready = document.fonts.ready.then(() => { init(); seek(0); return true })
+</script>
+</body>
+</html>
