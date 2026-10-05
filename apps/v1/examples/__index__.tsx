@@ -349,6 +349,81 @@ export const ExamplesIndex: Record<
     filePath: "examples/collapsible-demo.tsx",
     component: () => import("./collapsible-demo"),
   },
+  "combobox-auto-highlight": {
+    name: "combobox-auto-highlight",
+    filePath: "examples/combobox-auto-highlight.tsx",
+    component: () => import("./combobox-auto-highlight"),
+  },
+  "combobox-basic": {
+    name: "combobox-basic",
+    filePath: "examples/combobox-basic.tsx",
+    component: () => import("./combobox-basic"),
+  },
+  "combobox-clear": {
+    name: "combobox-clear",
+    filePath: "examples/combobox-clear.tsx",
+    component: () => import("./combobox-clear"),
+  },
+  "combobox-custom": {
+    name: "combobox-custom",
+    filePath: "examples/combobox-custom.tsx",
+    component: () => import("./combobox-custom"),
+  },
+  "combobox-demo": {
+    name: "combobox-demo",
+    filePath: "examples/combobox-demo.tsx",
+    component: () => import("./combobox-demo"),
+  },
+  "combobox-disabled-items": {
+    name: "combobox-disabled-items",
+    filePath: "examples/combobox-disabled-items.tsx",
+    component: () => import("./combobox-disabled-items"),
+  },
+  "combobox-disabled": {
+    name: "combobox-disabled",
+    filePath: "examples/combobox-disabled.tsx",
+    component: () => import("./combobox-disabled"),
+  },
+  "combobox-groups": {
+    name: "combobox-groups",
+    filePath: "examples/combobox-groups.tsx",
+    component: () => import("./combobox-groups"),
+  },
+  "combobox-input-group": {
+    name: "combobox-input-group",
+    filePath: "examples/combobox-input-group.tsx",
+    component: () => import("./combobox-input-group"),
+  },
+  "combobox-invalid": {
+    name: "combobox-invalid",
+    filePath: "examples/combobox-invalid.tsx",
+    component: () => import("./combobox-invalid"),
+  },
+  "combobox-multiple-disabled": {
+    name: "combobox-multiple-disabled",
+    filePath: "examples/combobox-multiple-disabled.tsx",
+    component: () => import("./combobox-multiple-disabled"),
+  },
+  "combobox-multiple-invalid": {
+    name: "combobox-multiple-invalid",
+    filePath: "examples/combobox-multiple-invalid.tsx",
+    component: () => import("./combobox-multiple-invalid"),
+  },
+  "combobox-multiple-no-remove": {
+    name: "combobox-multiple-no-remove",
+    filePath: "examples/combobox-multiple-no-remove.tsx",
+    component: () => import("./combobox-multiple-no-remove"),
+  },
+  "combobox-multiple": {
+    name: "combobox-multiple",
+    filePath: "examples/combobox-multiple.tsx",
+    component: () => import("./combobox-multiple"),
+  },
+  "combobox-popup": {
+    name: "combobox-popup",
+    filePath: "examples/combobox-popup.tsx",
+    component: () => import("./combobox-popup"),
+  },
   "command-checked-items": {
     name: "command-checked-items",
     filePath: "examples/command-checked-items.tsx",

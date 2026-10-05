@@ -303,6 +303,16 @@ shadcn `DropdownMenu` (all upstream parts; `DropdownMenuItem` `variant` `default
 - Sub-menus open to the right with the first item level with its trigger; the trigger keeps the raised card while open and ends in a `muted-foreground` chevron.
 - Motion: from the trigger, opacity + scale 0.96, 150ms in / 100ms out. Keyboard opens and Escape closes are instant (Base UI's `data-instant`). Reduced motion keeps the fade.
 
+### Combobox
+
+shadcn `Combobox` (`ComboboxInput` with `showTrigger` / `showClear`, `ComboboxContent`, `ComboboxList`, `ComboboxItem`, `ComboboxGroup`, `ComboboxLabel`, `ComboboxCollection`, `ComboboxEmpty`, `ComboboxSeparator`, `ComboboxChips`, `ComboboxChip` with `showRemove`, `ComboboxChipsInput`, `ComboboxTrigger`, `ComboboxValue`, `useComboboxAnchor`). An Input Group field opening the Select's shell and rows.
+
+- `ComboboxInput`: an `InputGroup` (the Input frame), text 11px in; the chevron and clear are ghost `icon-xs` buttons inset 4px. The whole frame is Base UI's anchor, so the popup opens 6px below, flush with the field's left edge and at least its width (measured 0px).
+- `ComboboxContent`: the Select shell (`muted`, `rounded-xl`, ring, menu shadow, inner highlight); the list pads 4px. Rows are the Select row (32px, `rounded-lg`, 7px left padding), so row text lands 11px in, level with the input text (measured). The highlighted row (pointer or arrows; focus stays in the input) is the raised card. Selected rows end in the self-drawing 16px `primary` check. Labels: `caption` Medium `muted-foreground`; separator engraved. Empty: a 40px `muted-foreground` line, the height of a one-row list.
+- Input inside the popup (`ComboboxTrigger` from a button): the Command's recessed well, 4px from the shell edges with a 10px radius (14 − 4), no ring, `primary` caret, text on the rows' 11px column. Placeholder 4.9–5.6:1 in light, 5.5–6.8:1 in dark.
+- `ComboboxChips`: the Input frame with a 3px inner padding once it holds chips, so 24px chips sit 4px from the outer edge (1px border + 3px) with a 6px radius. `ComboboxChip`: the secondary Button skin, 12px Medium `foreground`; its remove button fills the chip's inner height (22px, radius 5 = 6 − 1), its 12px x going to `foreground` on hover. Backspace removes the last chip.
+- Invalid: `destructive` border; disabled: the frame at 50%. Motion: the Select's (opacity + scale 0.96 from the field, 150ms in / 100ms out; reduced motion keeps the fade).
+
 ### Command
 
 shadcn `Command` on cmdk (`CommandDialog`, `CommandInput`, `CommandList`, `CommandEmpty`, `CommandGroup`, `CommandItem`, `CommandShortcut`, `CommandSeparator`). The Dropdown Menu's shell and rows, with the query typed into a recessed well.
