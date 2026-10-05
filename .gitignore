@@ -49,3 +49,6 @@ apps/*/public/r
 # eslint
 .eslintcache
 .registry.json
+
+# motion renders
+motion/export/
