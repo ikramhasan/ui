@@ -1187,6 +1187,235 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "dashboard-01",
+      "type": "registry:block",
+      "title": "Dashboard 01",
+      "description": "A dashboard with sidebar, charts and data table.",
+      "dependencies": [
+        "lucide-react",
+        "@dnd-kit/core",
+        "@dnd-kit/modifiers",
+        "@dnd-kit/sortable",
+        "@dnd-kit/utilities",
+        "@tanstack/react-table",
+        "zod"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/r/sidebar.json",
+        "http://localhost:3000/r/breadcrumb.json",
+        "http://localhost:3000/r/separator.json",
+        "http://localhost:3000/r/label.json",
+        "http://localhost:3000/r/chart.json",
+        "http://localhost:3000/r/card.json",
+        "http://localhost:3000/r/select.json",
+        "http://localhost:3000/r/tabs.json",
+        "http://localhost:3000/r/table.json",
+        "http://localhost:3000/r/toggle-group.json",
+        "http://localhost:3000/r/badge.json",
+        "http://localhost:3000/r/button.json",
+        "http://localhost:3000/r/checkbox.json",
+        "http://localhost:3000/r/dropdown-menu.json",
+        "http://localhost:3000/r/drawer.json",
+        "http://localhost:3000/r/input.json",
+        "http://localhost:3000/r/avatar.json",
+        "http://localhost:3000/r/sheet.json",
+        "http://localhost:3000/r/sonner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/dashboard-01/page.tsx",
+          "type": "registry:page",
+          "target": "app/dashboard/page.tsx"
+        },
+        {
+          "path": "registry/blocks/dashboard-01/data.json",
+          "type": "registry:file",
+          "target": "app/dashboard/data.json"
+        },
+        {
+          "path": "registry/blocks/dashboard-01/components/app-sidebar.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/dashboard-01/components/chart-area-interactive.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/dashboard-01/components/data-table.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/dashboard-01/components/nav-documents.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/dashboard-01/components/nav-main.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/dashboard-01/components/nav-secondary.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/dashboard-01/components/nav-user.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/dashboard-01/components/section-cards.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/dashboard-01/components/site-header.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "iframeHeight": "1000px"
+      },
+      "categories": [
+        "dashboard"
+      ]
+    },
+    {
+      "name": "sidebar-07",
+      "type": "registry:block",
+      "title": "Sidebar 07",
+      "description": "A sidebar that collapses to icons.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/r/sidebar.json",
+        "http://localhost:3000/r/breadcrumb.json",
+        "http://localhost:3000/r/separator.json",
+        "http://localhost:3000/r/collapsible.json",
+        "http://localhost:3000/r/dropdown-menu.json",
+        "http://localhost:3000/r/avatar.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/sidebar-07/page.tsx",
+          "type": "registry:page",
+          "target": "app/dashboard/page.tsx"
+        },
+        {
+          "path": "registry/blocks/sidebar-07/components/app-sidebar.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/sidebar-07/components/nav-main.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/sidebar-07/components/nav-projects.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/sidebar-07/components/nav-user.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/sidebar-07/components/team-switcher.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "sidebar",
+        "dashboard"
+      ]
+    },
+    {
+      "name": "sidebar-03",
+      "type": "registry:block",
+      "title": "Sidebar 03",
+      "description": "A sidebar with submenus.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/r/sidebar.json",
+        "http://localhost:3000/r/breadcrumb.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/sidebar-03/page.tsx",
+          "type": "registry:page",
+          "target": "app/dashboard/page.tsx"
+        },
+        {
+          "path": "registry/blocks/sidebar-03/components/app-sidebar.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "sidebar",
+        "dashboard"
+      ]
+    },
+    {
+      "name": "login-03",
+      "type": "registry:block",
+      "title": "Login 03",
+      "description": "A login page with a muted background color.",
+      "dependencies": [
+        "cn",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/r/button.json",
+        "http://localhost:3000/r/card.json",
+        "http://localhost:3000/r/input.json",
+        "http://localhost:3000/r/label.json",
+        "http://localhost:3000/r/field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/login-03/page.tsx",
+          "type": "registry:page",
+          "target": "app/login/page.tsx"
+        },
+        {
+          "path": "registry/blocks/login-03/components/login-form.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "authentication",
+        "login"
+      ]
+    },
+    {
+      "name": "login-04",
+      "type": "registry:block",
+      "title": "Login 04",
+      "description": "A login page with form and image.",
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/r/button.json",
+        "http://localhost:3000/r/card.json",
+        "http://localhost:3000/r/input.json",
+        "http://localhost:3000/r/label.json",
+        "http://localhost:3000/r/field.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/login-04/page.tsx",
+          "type": "registry:page",
+          "target": "app/login/page.tsx"
+        },
+        {
+          "path": "registry/blocks/login-04/components/login-form.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "authentication",
+        "login"
+      ]
     }
   ]
 }

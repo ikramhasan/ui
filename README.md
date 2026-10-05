@@ -108,7 +108,7 @@ apps/v1
 └── scripts/build-registry.mjs
 ```
 
-Charts is a gallery of every chart type, two variants each. Blocks is a placeholder. The docs are complete.
+Charts is a gallery of every chart type, two variants each. Blocks shows shadcn's five featured blocks (dashboard-01, sidebar-07, sidebar-03, login-03, login-04), each installable with `shadcn add`. The docs are complete.
 
 ## Development
 
