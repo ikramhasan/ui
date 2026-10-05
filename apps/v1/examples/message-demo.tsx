@@ -1,3 +1,4 @@
+import { Avatar, AvatarFallback } from "@/registry/ui/avatar"
 import {
   Bubble,
   BubbleContent,
@@ -17,7 +18,9 @@ export function MessageDemo() {
     <div className="flex w-full max-w-sm flex-col gap-6 py-12">
       <Message align="end">
         <MessageAvatar>
-          <span className="grid size-8 place-items-center">ME</span>
+          <Avatar>
+            <AvatarFallback>ME</AvatarFallback>
+          </Avatar>
         </MessageAvatar>
         <MessageContent>
           <Bubble>
@@ -27,7 +30,9 @@ export function MessageDemo() {
       </Message>
       <Message>
         <MessageAvatar>
-          <span className="grid size-8 place-items-center">R</span>
+          <Avatar>
+            <AvatarFallback>R</AvatarFallback>
+          </Avatar>
         </MessageAvatar>
         <MessageContent>
           <Bubble variant="muted">
@@ -37,7 +42,9 @@ export function MessageDemo() {
       </Message>
       <Message align="end">
         <MessageAvatar>
-          <span className="grid size-8 place-items-center">ME</span>
+          <Avatar>
+            <AvatarFallback>ME</AvatarFallback>
+          </Avatar>
         </MessageAvatar>
         <MessageContent>
           <Bubble>
@@ -48,7 +55,9 @@ export function MessageDemo() {
       </Message>
       <Message>
         <MessageAvatar>
-          <span className="grid size-8 place-items-center">R</span>
+          <Avatar>
+            <AvatarFallback>R</AvatarFallback>
+          </Avatar>
         </MessageAvatar>
         <MessageContent>
           <BubbleGroup>

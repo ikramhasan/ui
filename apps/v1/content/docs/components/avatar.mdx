@@ -1,0 +1,192 @@
+---
+title: Avatar
+description: An image element with a fallback for representing the user.
+---
+
+<ComponentPreview name="avatar-demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/avatar.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @base-ui/react cn
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="avatar" title="components/ui/avatar.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+```
+
+```tsx
+<Avatar>
+  <AvatarImage src="https://github.com/shadcn.png" />
+  <AvatarFallback>CN</AvatarFallback>
+</Avatar>
+```
+
+## Composition
+
+Use the following composition to build an `Avatar`:
+
+```text
+Avatar
+├── AvatarImage
+├── AvatarFallback
+└── AvatarBadge
+```
+
+Use the following composition to build an `AvatarGroup`:
+
+```text
+AvatarGroup
+├── Avatar
+│   ├── AvatarImage
+│   ├── AvatarFallback
+│   └── AvatarBadge
+└── AvatarGroupCount
+```
+
+## Examples
+
+### Basic
+
+An image with a fallback. The fallback shows while the image loads and when it fails.
+
+<ComponentPreview name="avatar-basic" />
+
+### Badge
+
+Use `AvatarBadge` to add a status dot at the bottom right. Recolor it with `className`.
+
+<ComponentPreview name="avatar-badge" />
+
+```tsx
+<Avatar>
+  <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+  <AvatarFallback>CN</AvatarFallback>
+  <AvatarBadge className="bg-success" />
+</Avatar>
+```
+
+### Badge with Icon
+
+An icon inside `AvatarBadge` shows on the `default` and `lg` sizes.
+
+<ComponentPreview name="avatar-badge-icon" />
+
+### Avatar Group
+
+Use `AvatarGroup` to overlap avatars.
+
+<ComponentPreview name="avatar-group" />
+
+### Avatar Group Count
+
+Use `AvatarGroupCount` to show how many more there are.
+
+<ComponentPreview name="avatar-group-count" />
+
+### Avatar Group with Icon
+
+<ComponentPreview name="avatar-group-count-icon" />
+
+### Sizes
+
+Use the `size` prop to change the size. `AvatarGroupCount` follows the size of the avatars in its group.
+
+<ComponentPreview name="avatar-size" />
+
+### Dropdown
+
+Render the avatar inside a button to use it as a menu trigger.
+
+<ComponentPreview name="avatar-dropdown" />
+
+## API Reference
+
+### Avatar
+
+The root. It accepts all Base UI Avatar Root props.
+
+| Prop        | Type                        | Default     |
+| ----------- | --------------------------- | ----------- |
+| `size`      | `"default" \| "sm" \| "lg"` | `"default"` |
+| `className` | `string`                    | -           |
+
+### AvatarImage
+
+The image. It accepts all Base UI Avatar Image props.
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `src`       | `string` | -       |
+| `alt`       | `string` | -       |
+| `className` | `string` | -       |
+
+### AvatarFallback
+
+Shown while the image loads or when it fails. It accepts all Base UI Avatar Fallback props.
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `delay`     | `number` | -       |
+| `className` | `string` | -       |
+
+### AvatarBadge
+
+A status indicator at the bottom right of the avatar.
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+### AvatarGroup
+
+Overlaps its avatars, each cut out by a background ring.
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+### AvatarGroupCount
+
+The overflow count at the end of a group. Accepts text or an icon.
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `className` | `string` | -       |
+
+See the [Base UI Avatar](https://base-ui.com/react/components/avatar) documentation for more.

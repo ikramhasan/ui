@@ -58,7 +58,7 @@ A component library distributed through the **shadcn CLI**: every shadcn/ui comp
 ## Open items
 
 - The design catalog artifact still lists the old `muted-foreground` (#777777) and `success` (#15B042); the shipped values are #6e6e6e and #0a772a.
-- Suggested next: Avatar, then Combobox. The Message examples use plain initials in `MessageAvatar` until Avatar ships; swap them for `<Avatar>` then.
+- Suggested next: Combobox.
 
 ## Layout
 

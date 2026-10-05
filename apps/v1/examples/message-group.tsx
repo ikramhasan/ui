@@ -1,3 +1,4 @@
+import { Avatar, AvatarFallback } from "@/registry/ui/avatar"
 import { Bubble, BubbleContent } from "@/registry/ui/bubble"
 import {
   Message,
@@ -20,7 +21,9 @@ export function MessageGroupDemo() {
         </Message>
         <Message>
           <MessageAvatar>
-            <span className="grid size-8 place-items-center">CN</span>
+            <Avatar>
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
           </MessageAvatar>
           <MessageContent>
             <Bubble variant="muted">

@@ -89,6 +89,51 @@ export const ExamplesIndex: Record<
     filePath: "examples/attachment-trigger.tsx",
     component: () => import("./attachment-trigger"),
   },
+  "avatar-badge-icon": {
+    name: "avatar-badge-icon",
+    filePath: "examples/avatar-badge-icon.tsx",
+    component: () => import("./avatar-badge-icon"),
+  },
+  "avatar-badge": {
+    name: "avatar-badge",
+    filePath: "examples/avatar-badge.tsx",
+    component: () => import("./avatar-badge"),
+  },
+  "avatar-basic": {
+    name: "avatar-basic",
+    filePath: "examples/avatar-basic.tsx",
+    component: () => import("./avatar-basic"),
+  },
+  "avatar-demo": {
+    name: "avatar-demo",
+    filePath: "examples/avatar-demo.tsx",
+    component: () => import("./avatar-demo"),
+  },
+  "avatar-dropdown": {
+    name: "avatar-dropdown",
+    filePath: "examples/avatar-dropdown.tsx",
+    component: () => import("./avatar-dropdown"),
+  },
+  "avatar-group-count-icon": {
+    name: "avatar-group-count-icon",
+    filePath: "examples/avatar-group-count-icon.tsx",
+    component: () => import("./avatar-group-count-icon"),
+  },
+  "avatar-group-count": {
+    name: "avatar-group-count",
+    filePath: "examples/avatar-group-count.tsx",
+    component: () => import("./avatar-group-count"),
+  },
+  "avatar-group": {
+    name: "avatar-group",
+    filePath: "examples/avatar-group.tsx",
+    component: () => import("./avatar-group"),
+  },
+  "avatar-size": {
+    name: "avatar-size",
+    filePath: "examples/avatar-size.tsx",
+    component: () => import("./avatar-size"),
+  },
   "badge-after-a-title": {
     name: "badge-after-a-title",
     filePath: "examples/badge-after-a-title.tsx",

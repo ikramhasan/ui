@@ -337,6 +337,15 @@ shadcn `Tooltip` (`TooltipProvider`, `TooltipTrigger`, `TooltipContent`). Wrap t
 - With a `Kbd`: the key is inset 4px from the top, bottom and right, with a 4px radius (8 − 4). It is recessed into the tooltip's own surface, so it uses the opposite theme's Kbd recipe on `foreground`.
 - Motion: from the trigger, opacity + scale 0.96, 150ms in / 100ms out. No motion when Base UI marks the open `data-instant` (moving along a toolbar, keyboard focus). Reduced motion keeps the fade.
 
+### Avatar
+
+shadcn `Avatar` (`size` `default` · `sm` · `lg`; `AvatarImage`, `AvatarFallback`, `AvatarBadge`, `AvatarGroup`, `AvatarGroupCount`). 32 / 24 / 40px, `rounded-full`.
+
+- A 1px inset outline above the image (black/8, dark white/10) keeps photos from bleeding into the page, like Item image tiles.
+- `AvatarFallback`: the secondary Button's raised skin as a white highlight fading over `secondary` (white/6 plus a top hairline in dark), `caption` Medium in `muted-foreground` (12px on `sm`). Measured 4.68–5.10:1 in light, 4.63–5.52:1 in dark across the gradient.
+- `AvatarBadge`: 8 / 10 / 12px, `primary` with the Button's white/15 lift, cut out by a 2px `background` ring; its center sits on the avatar's edge (measured). Recolor with a plain `bg-*` (e.g. `bg-success`); the highlight is an overlay, so it follows. Icons show on `default` and `lg`.
+- `AvatarGroup`: −8px overlap, each avatar ringed in `background`. `AvatarGroupCount` reuses the fallback skin and follows the group's size.
+
 ### Badge
 
 shadcn `Badge` (renders through `useRender`, so `render={<a />}` works). 20px tall, `rounded-sm` (6px), 13/16 Medium, 6px side padding (5px + a 1px border that is transparent except on `outline`). One or two words; sits 8px after a title.

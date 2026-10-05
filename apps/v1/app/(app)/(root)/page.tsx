@@ -38,9 +38,9 @@ export default function IndexPage() {
       <PageHeader className="border-b-0">
         <Badge
           variant="secondary"
-          render={<Link href="/docs/components/attachment" />}
+          render={<Link href="/docs/components/avatar" />}
         >
-          New Attachment component
+          New Avatar component
           <ArrowRightIcon data-icon="inline-end" />
         </Badge>
         <PageHeaderHeading className="max-w-3xl md:text-5xl md:leading-tight">
