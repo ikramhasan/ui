@@ -20,32 +20,32 @@ Use this file as the source of truth when building techshoi UI. It is written ag
 
 Themes: light (default) and dark, toggled with the `dark` class on `<html>` (shadcn convention: `@custom-variant dark (&:is(.dark *))`). Tokens are the standard shadcn variables, used through their Tailwind utilities (`bg-background`, `text-muted-foreground`, `border-input`, …). The `style` registry item installs them.
 
-| Variable                     | Light     | Dark      | Use                                                                                                                                                   |
-| ---------------------------- | --------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `background`                 | `#ffffff` | `#1c1c1c` | Main panel, inputs, tables, the composer box.                                                                                                         |
-| `foreground`                 | `#333333` | `#ececec` | Default text: body, nav items, values, titles. Also the user's chat bubble fill (with `background` text on it).                                       |
-| `card` / `card-foreground`   | `#ffffff` / `#333333` | `#1c1c1c` / `#ececec` | Cards and floating panels.                                                                                                   |
-| `popover` / `popover-foreground` | `#ffffff` / `#333333` | `#1c1c1c` / `#ececec` | Menus, select content, popovers.                                                                                         |
-| `primary`                    | `#3e6ae1` | `#3e6ae1` | The action blue: default button (bottom of its gradient), links, switch on, selected checks, the send button. White on it is 4.8:1.                   |
-| `primary-foreground`         | `#ffffff` | `#ffffff` | Label and icon on `primary`.                                                                                                                          |
-| `secondary`                  | `#f5f5f5` | `#242424` | Bottom of the secondary button gradient, segmented tab track.                                                                                         |
-| `secondary-foreground`       | `#1a1a1a` | `#f5f5f5` | Label and icon on the secondary button, sampled from the reference buttons.                                                                           |
-| `muted`                      | `#f5f5f5` | `#242424` | Nested panels (Tool permissions), attachment chips, the sources pill, the composer upsell strip, neutral badges.                                     |
-| `muted-foreground`           | `#6e6e6e` | `#9a9a9a` | Descriptions, row keys, section labels, nav icons, meta ("1 of 5"), placeholders. 5.1:1 on `background`, 4.7:1 on `muted`, 4.55:1 on the `accent` hover fill (darkened from the reference #777777 to pass AA). Dark: 6:1. |
-| `accent`                     | `#f2f2f2` | `#2a2a2a` | Hover and highlighted fills: ghost and outline buttons, menu items, list rows. (shadcn's `accent` is a hover fill, not a brand color.)               |
-| `accent-foreground`          | `#333333` | `#ececec` | Text on `accent`.                                                                                                                                     |
-| `destructive`                | `#d42f2f` | `#ff6b6b` | Errors and destructive actions: invalid field borders and messages, the destructive button. 4.9:1 on `background` (light), 6.5:1 (dark). Soft fills use `destructive/10`–`/20`. |
-| `border`                     | `#ebebeb` | `#2e2e2e` | Hairlines: panel and card outlines, table row dividers, sidebar edge.                                                                                 |
-| `input`                      | `#e0e0e0` | `#3a3a3a` | Control borders: inputs, secondary and outline buttons, toolbar dividers, switch track when off.                                                      |
-| `ring`                       | `#0077e6` | `#3d9bff` | Keyboard focus rings on every control. Brighter than `primary` so focus reads on top of a primary button.                                            |
-| `sidebar`                    | `#f9f9f9` | `#151515` | Sidebar background and the app canvas behind panels.                                                                                                  |
-| `sidebar-foreground`         | `#333333` | `#ececec` | Sidebar text.                                                                                                                                         |
-| `sidebar-primary` / `-foreground` | `#3e6ae1` / `#ffffff` | same | Primary elements inside the sidebar.                                                                                                       |
-| `sidebar-accent` / `-foreground`  | `#ededed` / `#333333` | `#313131` / `#ececec` | The selected (active) sidebar menu item.                                                                           |
-| `sidebar-border`             | `#ebebeb` | `#2e2e2e` | Sidebar edge and rules.                                                                                                                               |
-| `sidebar-ring`               | `#0077e6` | `#3d9bff` | Focus inside the sidebar.                                                                                                                             |
-| `chart-1` … `chart-5`        | shadcn neutral | shadcn neutral | Charts (unchanged from shadcn's neutral base).                                                                                               |
-| `success` _(added color)_    | `#0a772a` | `#3ddc6e` | Positive status (Connected) and the granted-permission shield. Added the way shadcn's theming docs add a color (`--success` + `--color-success`); no shadcn component uses it, so apply it with `className`. Soft fill: `bg-success/15` (text on it 4.6:1). Darkened from the reference #15B042, which was 2.5:1 on its fill and 2.6:1 as an icon on white. |
+| Variable                          | Light                 | Dark                  | Use                                                                                                                                                                                                                                                                                                                                                         |
+| --------------------------------- | --------------------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `background`                      | `#ffffff`             | `#1c1c1c`             | Main panel, inputs, tables, the composer box.                                                                                                                                                                                                                                                                                                               |
+| `foreground`                      | `#333333`             | `#ececec`             | Default text: body, nav items, values, titles. Also the user's chat bubble fill (with `background` text on it).                                                                                                                                                                                                                                             |
+| `card` / `card-foreground`        | `#ffffff` / `#333333` | `#1c1c1c` / `#ececec` | Cards and floating panels.                                                                                                                                                                                                                                                                                                                                  |
+| `popover` / `popover-foreground`  | `#ffffff` / `#333333` | `#1c1c1c` / `#ececec` | Menus, select content, popovers.                                                                                                                                                                                                                                                                                                                            |
+| `primary`                         | `#3e6ae1`             | `#3e6ae1`             | The action blue: default button (bottom of its gradient), links, switch on, selected checks, the send button. White on it is 4.8:1.                                                                                                                                                                                                                         |
+| `primary-foreground`              | `#ffffff`             | `#ffffff`             | Label and icon on `primary`.                                                                                                                                                                                                                                                                                                                                |
+| `secondary`                       | `#f5f5f5`             | `#242424`             | Bottom of the secondary button gradient, segmented tab track.                                                                                                                                                                                                                                                                                               |
+| `secondary-foreground`            | `#1a1a1a`             | `#f5f5f5`             | Label and icon on the secondary button, sampled from the reference buttons.                                                                                                                                                                                                                                                                                 |
+| `muted`                           | `#f5f5f5`             | `#242424`             | Nested panels (Tool permissions), attachment chips, the sources pill, the composer upsell strip, neutral badges.                                                                                                                                                                                                                                            |
+| `muted-foreground`                | `#6e6e6e`             | `#9a9a9a`             | Descriptions, row keys, section labels, nav icons, meta ("1 of 5"), placeholders. 5.1:1 on `background`, 4.7:1 on `muted`, 4.55:1 on the `accent` hover fill (darkened from the reference #777777 to pass AA). Dark: 6:1.                                                                                                                                   |
+| `accent`                          | `#f2f2f2`             | `#2a2a2a`             | Hover and highlighted fills: ghost and outline buttons, menu items, list rows. (shadcn's `accent` is a hover fill, not a brand color.)                                                                                                                                                                                                                      |
+| `accent-foreground`               | `#333333`             | `#ececec`             | Text on `accent`.                                                                                                                                                                                                                                                                                                                                           |
+| `destructive`                     | `#d42f2f`             | `#ff6b6b`             | Errors and destructive actions: invalid field borders and messages, the destructive button. 4.9:1 on `background` (light), 6.5:1 (dark). Soft fills use `destructive/10`–`/20`.                                                                                                                                                                             |
+| `border`                          | `#ebebeb`             | `#2e2e2e`             | Hairlines: panel and card outlines, table row dividers, sidebar edge.                                                                                                                                                                                                                                                                                       |
+| `input`                           | `#e0e0e0`             | `#3a3a3a`             | Control borders: inputs, secondary and outline buttons, toolbar dividers, switch track when off.                                                                                                                                                                                                                                                            |
+| `ring`                            | `#0077e6`             | `#3d9bff`             | Keyboard focus rings on every control. Brighter than `primary` so focus reads on top of a primary button.                                                                                                                                                                                                                                                   |
+| `sidebar`                         | `#f9f9f9`             | `#151515`             | Sidebar background and the app canvas behind panels.                                                                                                                                                                                                                                                                                                        |
+| `sidebar-foreground`              | `#333333`             | `#ececec`             | Sidebar text.                                                                                                                                                                                                                                                                                                                                               |
+| `sidebar-primary` / `-foreground` | `#3e6ae1` / `#ffffff` | same                  | Primary elements inside the sidebar.                                                                                                                                                                                                                                                                                                                        |
+| `sidebar-accent` / `-foreground`  | `#ededed` / `#333333` | `#313131` / `#ececec` | The selected (active) sidebar menu item.                                                                                                                                                                                                                                                                                                                    |
+| `sidebar-border`                  | `#ebebeb`             | `#2e2e2e`             | Sidebar edge and rules.                                                                                                                                                                                                                                                                                                                                     |
+| `sidebar-ring`                    | `#0077e6`             | `#3d9bff`             | Focus inside the sidebar.                                                                                                                                                                                                                                                                                                                                   |
+| `chart-1` … `chart-5`             | see Chart             | see Chart             | Data series: five distinct hues (blue, teal, amber, violet, rose), each ≥ 3:1 on `card`. `chart-1` is the `primary` blue. Only for data, never for UI state.                                                                                                                                                                                                |
+| `success` _(added color)_         | `#0a772a`             | `#3ddc6e`             | Positive status (Connected) and the granted-permission shield. Added the way shadcn's theming docs add a color (`--success` + `--color-success`); no shadcn component uses it, so apply it with `className`. Soft fill: `bg-success/15` (text on it 4.6:1). Darkened from the reference #15B042, which was 2.5:1 on its fill and 2.6:1 as an icon on white. |
 
 ### Color rules
 
@@ -53,18 +53,19 @@ Themes: light (default) and dark, toggled with the `dark` class on `<html>` (sha
 - `primary` is the only blue for things you act on: default button, links, switch on, selected checks, the send button. `ring` is only for focus.
 - `accent` is a neutral hover fill. Never use it as a brand color.
 - `success` only for positive status and granted permissions. `destructive` only for errors and destructive actions.
+- `chart-*` only for data series. Charts are the one place several hues sit side by side: series must be told apart, so they get hue, not shades of gray.
 - Never put meaning in color alone: a badge always has a word, a granted permission has a shield icon.
 
 ### Derived colors
 
 Some design colors aren't tokens; components derive them from tokens with `color-mix()`, the same way shadcn's base-nova styles do. This keeps components working with any shadcn theme.
 
-| Color                         | Derivation                                         | Light ≈   | Dark ≈    |
-| ----------------------------- | -------------------------------------------------- | --------- | --------- |
-| Default button gradient top   | `primary` + 15% white                              | `#5982e8` | `#5982e8` |
-| Default button border         | `primary` + 15% black                              | `#3054b5` | `#3054b5` |
+| Color                         | Derivation                                                 | Light ≈   | Dark ≈    |
+| ----------------------------- | ---------------------------------------------------------- | --------- | --------- |
+| Default button gradient top   | `primary` + 15% white                                      | `#5982e8` | `#5982e8` |
+| Default button border         | `primary` + 15% black                                      | `#3054b5` | `#3054b5` |
 | Secondary button gradient top | `background` (light); `secondary` + 4% `foreground` (dark) | `#ffffff` | `#2b2b2b` |
-| Secondary button hover bottom | `secondary` + 5% `foreground` (light), 8% (dark)   | `#ebebeb` | `#333333` |
+| Secondary button hover bottom | `secondary` + 5% `foreground` (light), 8% (dark)           | `#ebebeb` | `#333333` |
 
 **Text on tints.** `primary` and `destructive` text on their own 10–20% tints (Badge `default` / `destructive`, Button `destructive`) is darkened with 12% black in light mode, and lifted in dark mode (`primary` + 35% white, `destructive` + 25% white), so it passes 4.5:1 at rest and on hover. Button and Badge `link` text is lifted the same way in dark.
 
@@ -74,16 +75,16 @@ Some design colors aren't tokens; components derive them from tokens with `color
 
 Family: **Inter**, through `--font-sans` (the `style` item installs shadcn's `font-inter`). Weights 400 / 500 / 600.
 
-| Style         | Size / line height | Weight | Tailwind                       | Use                                                                 |
-| ------------- | ------------------ | ------ | ------------------------------ | ------------------------------------------------------------------- |
+| Style         | Size / line height | Weight | Tailwind                            | Use                                                                |
+| ------------- | ------------------ | ------ | ----------------------------------- | ------------------------------------------------------------------ |
 | `display`     | 28px / 36px        | 500    | `text-[28px] leading-9 font-medium` | One per empty state or landing view. e.g. "Where should we begin?" |
-| `heading`     | 20px / 28px        | 500    | `text-xl font-medium`          | Page and panel titles. e.g. "Shopify"                               |
-| `title`       | 16px / 20px        | 500    | `text-base leading-5 font-medium` | Section titles, card titles, app names, workspace name.          |
-| `body`        | 14px / 20px        | 400    | `text-sm`                      | Default text, nav items, descriptions, table cells.                 |
-| `body-medium` | 14px / 20px        | 500    | `text-sm font-medium`          | Row names, permission titles, emphasis within body.                 |
-| `button`      | 14px / 16px        | 500    | `text-sm leading-4 font-medium` | Button labels at the 32px control height.                          |
-| `label`       | 13px / 16px        | 500    | `text-[13px] leading-4 font-medium` | Badges, sidebar group labels, small-button labels.             |
-| `caption`     | 12px / 16px        | 400    | `text-xs`                      | Keyboard hints (`Kbd`) and tiny meta. e.g. "1 of 5"                 |
+| `heading`     | 20px / 28px        | 500    | `text-xl font-medium`               | Page and panel titles. e.g. "Shopify"                              |
+| `title`       | 16px / 20px        | 500    | `text-base leading-5 font-medium`   | Section titles, card titles, app names, workspace name.            |
+| `body`        | 14px / 20px        | 400    | `text-sm`                           | Default text, nav items, descriptions, table cells.                |
+| `body-medium` | 14px / 20px        | 500    | `text-sm font-medium`               | Row names, permission titles, emphasis within body.                |
+| `button`      | 14px / 16px        | 500    | `text-sm leading-4 font-medium`     | Button labels at the 32px control height.                          |
+| `label`       | 13px / 16px        | 500    | `text-[13px] leading-4 font-medium` | Badges, sidebar group labels, small-button labels.                 |
+| `caption`     | 12px / 16px        | 400    | `text-xs`                           | Keyboard hints (`Kbd`) and tiny meta. e.g. "1 of 5"                |
 
 - Default text on any page is `body` (14/20 Regular, `foreground`).
 - One `display` per screen at most (empty states). `heading` titles a page or panel. `title` heads sections and cards.
@@ -109,37 +110,37 @@ Family: **Inter**, through `--font-sans` (the `style` item installs shadcn's `fo
 
 **Radius**: shadcn's scale from `--radius: 0.625rem`. 10px (`rounded-lg`) is the signature.
 
-| Utility        | Value  | Use                                                     |
-| -------------- | ------ | ------------------------------------------------------- |
-| `rounded-sm`   | 6px    | Badges, small marks.                                    |
+| Utility        | Value  | Use                                                                    |
+| -------------- | ------ | ---------------------------------------------------------------------- |
+| `rounded-sm`   | 6px    | Badges, small marks.                                                   |
 | `rounded-md`   | 8px    | Sidebar menu buttons, menu items, segments, small tiles, `xs` buttons. |
-| `rounded-lg`   | 10px   | Buttons, inputs, select triggers, app tiles.            |
-| `rounded-xl`   | 14px   | Tables, lists, nested panels, menus, attachment chips.  |
-| `rounded-2xl`  | 18px   | Cards, the composer, chat panel, message bubbles.       |
-| `rounded-full` | 9999px | Switch tracks, the send button, the sources pill.       |
+| `rounded-lg`   | 10px   | Buttons, inputs, select triggers, app tiles.                           |
+| `rounded-xl`   | 14px   | Tables, lists, nested panels, menus, attachment chips.                 |
+| `rounded-2xl`  | 18px   | Cards, the composer, chat panel, message bubbles.                      |
+| `rounded-full` | 9999px | Switch tracks, the send button, the sources pill.                      |
 
 **Fixed sizes**
 
-| Size              | Value | Tailwind | Use                                                   |
-| ----------------- | ----- | -------- | ----------------------------------------------------- |
-| Control           | 32px  | `h-8`    | Buttons, icon buttons (`size-8`), inputs, sidebar menu buttons. |
-| Small control     | 28px  | `h-7`    | `size="sm"` buttons inside strips and toolbars.       |
-| Data row          | 40px  | `h-10`   | Key/value table rows.                                 |
-| List row          | 44px  | `h-11`   | Store and list rows with a mark and link.             |
-| Badge             | 20px  | `h-5`    | Badges.                                               |
-| Switch            | 24×14 | `w-6 h-3.5` | Switch track; thumb 10px (`size-2.5`), 2px inset.  |
-| Tile              | 40px  | `size-10` | App icon tiles.                                      |
-| Sidebar width     | 272px | `--sidebar-width: 17rem` | Set on `SidebarProvider`.              |
+| Size          | Value | Tailwind                 | Use                                                             |
+| ------------- | ----- | ------------------------ | --------------------------------------------------------------- |
+| Control       | 32px  | `h-8`                    | Buttons, icon buttons (`size-8`), inputs, sidebar menu buttons. |
+| Small control | 28px  | `h-7`                    | `size="sm"` buttons inside strips and toolbars.                 |
+| Data row      | 40px  | `h-10`                   | Key/value table rows.                                           |
+| List row      | 44px  | `h-11`                   | Store and list rows with a mark and link.                       |
+| Badge         | 20px  | `h-5`                    | Badges.                                                         |
+| Switch        | 24×14 | `w-6 h-3.5`              | Switch track; thumb 10px (`size-2.5`), 2px inset.               |
+| Tile          | 40px  | `size-10`                | App icon tiles.                                                 |
+| Sidebar width | 272px | `--sidebar-width: 17rem` | Set on `SidebarProvider`.                                       |
 
 **Shadows**: not tokens. Inputs use Tailwind's `shadow-xs` (identical to the design's value); the others are arbitrary values inside the component that owns them, with a `dark:` variant.
 
-| Shadow         | Light                                                                  | Dark                                                               | Owner                                                  |
-| -------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------ |
-| Input / tile   | `shadow-xs` (`0 1px 2px rgb(0 0 0 / 0.05)`)                            | `0 1px 2px rgba(0,0,0,0.4)`                                        | Input, outline button, app tiles.                      |
-| Secondary button | `0 1px 2px rgba(0,0,0,0.06), inset 0 -1px 0 rgba(0,0,0,0.03)`        | `0 1px 2px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06)`  | Button `secondary`: a soft lift and a faint bottom edge. |
-| Default button | `0 1px 2px rgba(30,60,160,0.28), inset 0 1px 0 rgba(255,255,255,0.22)` | `0 1px 2px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.22)` | Button `default`: blue-tinted lift plus a top highlight. |
-| Card           | `0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.05)`              | `0 1px 2px rgba(0,0,0,0.4), 0 4px 12px rgba(0,0,0,0.3)`            | Floating cards (Getting started, the composer).        |
-| Menu           | `0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.10)`              | `0 1px 2px rgba(0,0,0,0.5), 0 8px 24px rgba(0,0,0,0.5)`            | Select, dropdown menu, popover content.                |
+| Shadow           | Light                                                                  | Dark                                                               | Owner                                                    |
+| ---------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------ | -------------------------------------------------------- |
+| Input / tile     | `shadow-xs` (`0 1px 2px rgb(0 0 0 / 0.05)`)                            | `0 1px 2px rgba(0,0,0,0.4)`                                        | Input, outline button, app tiles.                        |
+| Secondary button | `0 1px 2px rgba(0,0,0,0.06), inset 0 -1px 0 rgba(0,0,0,0.03)`          | `0 1px 2px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06)`  | Button `secondary`: a soft lift and a faint bottom edge. |
+| Default button   | `0 1px 2px rgba(30,60,160,0.28), inset 0 1px 0 rgba(255,255,255,0.22)` | `0 1px 2px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.22)` | Button `default`: blue-tinted lift plus a top highlight. |
+| Card             | `0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.05)`              | `0 1px 2px rgba(0,0,0,0.4), 0 4px 12px rgba(0,0,0,0.3)`            | Floating cards (Getting started, the composer).          |
+| Menu             | `0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.10)`              | `0 1px 2px rgba(0,0,0,0.5), 0 8px 24px rgba(0,0,0,0.5)`            | Select, dropdown menu, popover content.                  |
 
 **Focus**: `focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background` (a 2px gap and a 2px `ring` outline) on every control. Text inputs use a 3px soft ring around a `ring` border instead (see Input).
 
@@ -153,14 +154,14 @@ Every component is the shadcn component of the same name (base-nova, on Base UI)
 
 `variant`: `default` · `secondary` · `outline` · `ghost` · `destructive` · `link`. `size`: `xs` · `sm` · `default` · `lg` · `icon` · `icon-xs` · `icon-sm` · `icon-lg`. The reference pair is **Launch campaign** (`default`) and **Shuffle** (`secondary`).
 
-|              | `default`                                      | `secondary`                                         | `outline`                 | `ghost`                       | `destructive`              | `link`               |
-| ------------ | ---------------------------------------------- | --------------------------------------------------- | ------------------------- | ----------------------------- | -------------------------- | -------------------- |
-| Fill         | gradient `primary` + 15% white → `primary`     | gradient `background` → `secondary`                 | `background`              | none                          | `destructive/10`           | none                 |
-| Border       | 1px `primary` + 15% black                      | 1px `input`                                         | 1px `input`               | none                          | none                       | none                 |
-| Label / icon | `primary-foreground`                           | `secondary-foreground`                              | `foreground`              | `foreground`, icon `muted-foreground` | `destructive`      | `primary`            |
-| Shadow       | default button shadow                          | secondary button shadow                             | `shadow-xs`               | none                          | none                       | none                 |
-| Hover        | brightness +6%                                 | bottom stop → `secondary` + 5% `foreground`         | `accent` fill             | `accent` fill                 | `destructive/20`           | underline            |
-| Use          | one per view: the action the view exists for   | most actions                                        | flat bordered actions     | toolbars, pickers, inline actions | delete, disconnect     | inline text actions  |
+|              | `default`                                    | `secondary`                                 | `outline`             | `ghost`                               | `destructive`      | `link`              |
+| ------------ | -------------------------------------------- | ------------------------------------------- | --------------------- | ------------------------------------- | ------------------ | ------------------- |
+| Fill         | gradient `primary` + 15% white → `primary`   | gradient `background` → `secondary`         | `background`          | none                                  | `destructive/10`   | none                |
+| Border       | 1px `primary` + 15% black                    | 1px `input`                                 | 1px `input`           | none                                  | none               | none                |
+| Label / icon | `primary-foreground`                         | `secondary-foreground`                      | `foreground`          | `foreground`, icon `muted-foreground` | `destructive`      | `primary`           |
+| Shadow       | default button shadow                        | secondary button shadow                     | `shadow-xs`           | none                                  | none               | none                |
+| Hover        | brightness +6%                               | bottom stop → `secondary` + 5% `foreground` | `accent` fill         | `accent` fill                         | `destructive/20`   | underline           |
+| Use          | one per view: the action the view exists for | most actions                                | flat bordered actions | toolbars, pickers, inline actions     | delete, disconnect | inline text actions |
 
 - `default` size: 32px, radius 10px (`rounded-lg`), padding 0 12px, gap 6px, label 14/16 Medium. Ghost runs tighter (0 8px).
 - Icons are 16px, same color as the label, placed with `data-icon="inline-start"` / `"inline-end"` (the side padding tightens by 2px).
@@ -426,6 +427,28 @@ shadcn `Switch`, `size` `default` / `sm`. A raised thumb in a recessed track: th
 - Track, off: the Kbd recipe (`input` + 12% `foreground` at the top fading to `input`, an inner shadow under the lip) with a 3:1 inner hairline (`input` + 48% `foreground`; dark 35%). On: a recessed `primary` channel (`primary` + 14% black at the top), cross-fading in on a ::before.
 - Thumb: white in both themes, the secondary button's raised skin (white → 5% darker, a soft drop shadow, a faint bottom edge).
 - Hit area 56×42 via ::after. Press: the whole switch scales to 0.95.
+
+### Chart
+
+shadcn `Chart` on Recharts v3 (`ChartContainer` with `config`, `ChartTooltip`, `ChartTooltipContent` with `indicator` `dot` · `line` · `dashed`, `hideLabel`, `hideIndicator`, `labelKey`, `nameKey`; `ChartLegend`, `ChartLegendContent` with `hideIcon`, `nameKey`; `ChartStyle`). Usually placed in a `Card`.
+
+- Series colors: the `chart-*` tokens, five hues at similar chroma, lifted in dark so they hold on `#1c1c1c`. Measured against `card`:
+
+  | Token     | Light                                    | Dark                                    |
+  | --------- | ---------------------------------------- | --------------------------------------- |
+  | `chart-1` | `oklch(0.555 0.18 264.5)` #3c6adb, 4.9:1 | `oklch(0.62 0.17 264.5)` #5180eb, 4.6:1 |
+  | `chart-2` | `oklch(0.6 0.105 185)` #059488, 3.7:1    | `oklch(0.72 0.12 185)` #26bdae, 7.3:1   |
+  | `chart-3` | `oklch(0.66 0.15 62)` #d27908, 3.2:1     | `oklch(0.78 0.14 75)` #eba941, 8.4:1    |
+  | `chart-4` | `oklch(0.56 0.2 300)` #894ed6, 5.1:1     | `oklch(0.68 0.16 300)` #a87eeb, 5.6:1   |
+  | `chart-5` | `oklch(0.6 0.19 18)` #da4053, 4.3:1      | `oklch(0.7 0.16 18)` #f16f78, 5.9:1     |
+
+  `chart-5` is a rose, not `destructive`, so a series never reads as an error. Text is never drawn in a series color.
+
+- Recharts' hard-coded grays are swapped for tokens: grid and polar grid `border`, axis ticks `caption` in `muted-foreground` (tabular), the line cursor `input`, the bar cursor `muted`, the white rings around active dots and pie sectors `card`.
+- `ChartTooltipContent`: the Table's frame at tooltip size. A muted shell (`muted`, dark `popover` + 20% black, `rounded-xl`, ring, menu shadow plus inner highlight, 4px padding) with the label (`caption` Medium) on it, and the series on a raised `popover` card inset 4px, `rounded-[10px]` (14 − 4). Label and row text share one column 13px from the shell edge; the label sits 6px above the card. Rows 16px, 4px apart; names `muted-foreground`, values Medium `foreground`, tabular.
+- Indicators: `dot` a 10px swatch with a 3px radius, `line` 4×16px, `dashed` a 1.5px dashed bar, each centered on its row (measured 0px). Swatches in the tooltip and legend are small raised keys: the series color under a white/20 top highlight with a 1px black/10 inner edge (dark white/8).
+- `ChartLegendContent`: `caption` in `muted-foreground`, 10px swatches, 16px between items, 12px from the plot. Recharts sorts legend items by name; pass `itemSorter={null}` to keep data order.
+- With `accessibilityLayer`, the chart surface takes keyboard focus with the 2px `ring` and a 2px offset, `rounded-md`.
 
 ### Checkbox and Radio Group
 
