@@ -37,6 +37,12 @@ npx shadcn@latest add http://localhost:3000/r/button.json
 
 Components that build on others (a Dialog uses the Button) bring those along automatically.
 
+Or install everything at once, the style included:
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/all.json
+```
+
 <Step>Use them</Step>
 
 ```tsx title="app/page.tsx"
@@ -75,6 +81,12 @@ Components share shadcn's file names and APIs, so switching is reinstalling. Add
 
 ```bash
 npx shadcn@latest add http://localhost:3000/r/button.json --overwrite
+```
+
+To switch every component at once, overwrite with `all.json`:
+
+```bash
+npx shadcn@latest add http://localhost:3000/r/all.json --overwrite
 ```
 
 <Callout title="Base UI, not Radix">
