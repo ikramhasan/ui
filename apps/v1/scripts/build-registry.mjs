@@ -83,9 +83,46 @@ ${entries.join("\n")}
   console.log(`blocks: indexed ${blocks.length} blocks`)
 }
 
+// The `all` item installs the whole library in one command: the style, every
+// component and hook. Blocks are left out: they write demo pages into the
+// user's app. Generated here so it can't drift from registry.json.
+//
+// It is a registry:style, not a registry:item: the CLI only overwrites a
+// project's existing theme variables when the item named on the command line
+// is a style, so a plain item would leave shadcn's default colors in place.
+const ALL_ITEM_TYPES = ["registry:style", "registry:ui", "registry:hook"]
+
+function withAllItem(registry) {
+  const items = registry.items.filter((item) =>
+    ALL_ITEM_TYPES.includes(item.type)
+  )
+
+  return {
+    ...registry,
+    items: [
+      ...registry.items,
+      {
+        name: "all",
+        type: "registry:style",
+        title: "All",
+        description: "The style and every component and hook in the library.",
+        registryDependencies: items.map(
+          (item) => `${REGISTRY_URL_PLACEHOLDER}/r/${item.name}.json`
+        ),
+      },
+    ],
+  }
+}
+
 async function buildRegistry() {
   const url = getSiteUrl()
-  const source = await fs.readFile(path.join(root, "registry.json"), "utf8")
+  const registry = JSON.parse(
+    await fs.readFile(path.join(root, "registry.json"), "utf8")
+  )
+  if (registry.items.some((item) => item.name === "all")) {
+    throw new Error("registry.json must not define `all`; it is generated.")
+  }
+  const source = JSON.stringify(withAllItem(registry), null, 2)
   const tmp = path.join(root, ".registry.json")
 
   await fs.writeFile(tmp, source.replaceAll(REGISTRY_URL_PLACEHOLDER, url))

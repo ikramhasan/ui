@@ -12,6 +12,9 @@ npx shadcn@latest add https://ui.ikramhasan.com/r/style.json
 
 # then any component
 npx shadcn@latest add https://ui.ikramhasan.com/r/button.json
+
+# or everything at once: the style, every component and hook
+pnpm dlx shadcn@latest add https://ui.ikramhasan.com/r/all.json
 ```
 
 Components only use the standard shadcn variables (`--primary`, `--secondary`, `--accent`, `--input`, `--ring`, …), so they also work with any other shadcn theme. Colors the design needs beyond those, like the button gradients, are derived in the component with `color-mix()`, the way base-nova does it. The one added color, `--success`, follows shadcn's "adding new colors" pattern.

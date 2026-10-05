@@ -13,7 +13,10 @@ Items are served from `/r`:
 | ------------- | --------------------------------------- |
 | Style         | `http://localhost:3000/r/style.json`    |
 | A component   | `http://localhost:3000/r/{name}.json`   |
+| Everything    | `http://localhost:3000/r/all.json`      |
 | The registry  | `http://localhost:3000/r/registry.json` |
+
+`all` installs the style, every component and the hooks in one go (blocks are left out). The build generates it from `registry.json`, so it never misses a component.
 
 The `{name}` of a component is its file name, the same as in shadcn/ui: `button`, `dropdown-menu`, `input-group`.
 
