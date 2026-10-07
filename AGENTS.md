@@ -28,7 +28,7 @@ A component library distributed through the **shadcn CLI**: every shadcn/ui comp
 
 ## Working with the user
 
-- **Design taste.** The user loves the textured pieces: the Button protrudes (gradient, hairline, lift, inner highlight), the Kbd is recessed (the inverse), the Dialog is a muted shell holding a raised card with the footer on the shell, and the toggles reuse those skins. Variations on that language are welcome. The user rejected two Card redesigns (a gray tray with a sheet, and a raised card with a recessed footer well), so the Card stays plain.
+- **Design taste.** The user loves the textured pieces: the Button protrudes (gradient, hairline, lift, inner highlight), the Kbd is recessed (the inverse), the Sheet is a muted shell holding a raised card with the footer on the shell, the Dialog is the plain Card lifted off the page with a CardFooter strip (the old shell-and-card Dialog was rejected), and the toggles reuse those skins. Variations on that language are welcome. The user rejected two Card redesigns (a gray tray with a sheet, and a raised card with a recessed footer well), so the Card stays plain.
 - **Experiments are cheap.** When asked to "try" a look, change only the component file, show it, and restore it with `git checkout` if it's rejected. Don't update DESIGN.md until the look is kept.
 - **Precision matters.** "This is a design library": a 1px misalignment is a bug. Before calling anything done, do the box math (control height − borders − padding vs child size, line heights, radii) and measure it in the browser (insets on every side, centers vs the text line, concentric radii = outer − inset). Report numbers, not impressions.
 - **Ask before changing shipped tokens or many components.** Present the measured trade-off (e.g. a contrast table) and let the user decide.
@@ -48,7 +48,7 @@ A component library distributed through the **shadcn CLI**: every shadcn/ui comp
 - **Gradients can't transition.** Cross-fade a second skin on `::before` with opacity, as Checkbox, Radio and the Switch track do.
 - **Pseudo-elements don't get the global `border-border`.** Set `before:border-border` explicitly.
 - **shadcn's `data-checked` / `data-unchecked` variants don't compose with `group-`.** Style the child from the element that carries the attribute (e.g. `data-unchecked:*:…` on Base UI's Indicator, which gets the same attributes).
-- **Absolutely positioned grid children** use their grid area as their containing block without occupying cells (the Dialog's card is a `::before` spanning `row-[1/footer]`). Give the grid an explicit column (`grid-cols-1`), or an `auto` end line stretches to the padding edge.
+- **Absolutely positioned grid children** use their grid area as their containing block without occupying cells (the Sheet's card is a `::before` spanning `row-[1/footer]`). Give the grid an explicit column (`grid-cols-1`), or an `auto` end line stretches to the padding edge.
 - **fumadocs' remark-structure is off** (`source.config.ts`): its stringifier overflows the stack on bold text once enough pages build. Search uses the page tree instead.
 - **`CommandDialog` needs a `Command` inside it** (base-nova's doesn't include one); without it cmdk throws on open. The site's search owns ⌘K, so the command-dialog example uses ⌘J.
 - **Docs code shows the user's paths.** `ComponentSource` and previews rewrite `@/registry/ui/` to `@/components/ui/`, as the CLI does on install.

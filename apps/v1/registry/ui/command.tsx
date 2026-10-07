@@ -54,8 +54,8 @@ function CommandDialog({
       </DialogHeader>
       <DialogContent
         className={cn(
-          // The Command is the shell here, so the Dialog's inner card goes.
-          "top-1/3 translate-y-0 overflow-hidden p-0 before:hidden",
+          // The Command is the whole surface here, at its own 14px radius.
+          "top-1/3 translate-y-0 overflow-hidden rounded-xl p-0",
           className
         )}
         showCloseButton={showCloseButton}

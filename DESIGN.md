@@ -230,20 +230,20 @@ shadcn `Item` and its parts, `variant` `default` / `outline` / `muted`, `size` `
 
 ### Dialog and Alert Dialog
 
-shadcn `Dialog` and `AlertDialog`, same parts and props. Both share one frame: a muted shell holding an inset card, with the footer on the shell.
+shadcn `Dialog` and `AlertDialog`, same parts and props. Both are the Card lifted off the page: one plain panel, with the footer as the CardFooter strip.
 
-- Shell: `muted` fill (dark: `popover` + 20% black, so the card still reads raised), `rounded-xl` (14px), 1px `border` ring, menu shadow. Width `sm:max-w-sm` (384px); Alert Dialog `size="sm"` is 320px.
-- Card: inset 4px, `rounded-lg` (10px = 14 − 4), `popover` fill, 1px `border`, a faint lift. Content padding 16px, so content sits 20px from the shell edge; 16px between content blocks.
-- Footer: on the shell, buttons 4px below the card and 4px from the shell's right and bottom edges (10px button radius + 4px = the shell's 14px). Buttons 8px apart, stacked on mobile; Alert Dialog `size="sm"` splits them into two columns. Without a footer, the shell shows 4px below the card.
-- Title: `heading` (20/28 Medium). Description: `body` in `muted-foreground`, 4px below.
-- Dialog close button: `ghost` `icon-sm`, 20px from the top and right, so its 28px box lines up with the title line; the header reserves 32px on the right for it.
+- Panel: `popover` fill, 1px `border` ring, `rounded-2xl` (18px, the Card's radius), 20px padding, 16px between blocks. A deeper float than the menus: `0 1px 2px rgba(0,0,0,0.04), 0 16px 40px -8px rgba(0,0,0,0.16)` (dark: 50% / 60%, plus a 1px white/5 inner top highlight). Width `sm:max-w-sm` (384px); Alert Dialog `size="sm"` is 320px.
+- Footer: the CardFooter strip, `muted/50` under a hairline, bled to the panel's edges with its bottom corners. Buttons 20px from the sides and 16px from the top and bottom, 8px apart, stacked on mobile; Alert Dialog `size="sm"` splits them into two columns.
+- Title: `title` (16/20 Medium), like `CardTitle`. Description: `body` in `muted-foreground`, 4px below.
+- Dialog close button: `ghost` `icon-sm`, 16px from the top and right, so its 28px box centers on the 20px title line; the header reserves 32px on the right for it.
 - Alert Dialog media: 40px `muted` tile, `rounded-lg`, 20px icon.
+- `CommandDialog`: the Command is the whole surface, at its own 14px radius and no padding.
 - Overlay: `black/10` (dark: `black/40`) with a slight backdrop blur.
 - Motion: opacity + scale from 0.96, 250ms `cubic-bezier(0.23, 1, 0.32, 1)` in, 150ms out; the backdrop fades with it. Reduced motion keeps the fade and drops the scale.
 
 ### Sheet
 
-shadcn `Sheet` (`SheetContent` `side` `top` · `right` · `bottom` · `left`, `showCloseButton`; `SheetHeader`, `SheetFooter`, `SheetTitle`, `SheetDescription`, `SheetClose`). The Dialog's frame on an edge: a muted shell (1px `border` on the open side, a wide soft shadow) holding a raised `popover` card inset 4px, `rounded-lg`.
+shadcn `Sheet` (`SheetContent` `side` `top` · `right` · `bottom` · `left`, `showCloseButton`; `SheetHeader`, `SheetFooter`, `SheetTitle`, `SheetDescription`, `SheetClose`). The old Dialog frame on an edge: a muted shell (1px `border` on the open side, a wide soft shadow) holding a raised `popover` card inset 4px, `rounded-lg`.
 
 - The card is the shell's `::before`, spanning every grid row above `footer`, with a `1fr` filler row so it reaches down to the footer. `SheetFooter` sits on the shell: buttons 4px below the card and 4px from the edges. Without a footer the card fills the panel.
 - Content sits 16px inside the card (20px from the panel edge, plus the border on the open side). Blocks are 16px apart.
@@ -301,9 +301,9 @@ shadcn `HoverCard` (`HoverCardTrigger`, `HoverCardContent`), on Base UI's Previe
 
 ### Dropdown Menu
 
-shadcn `DropdownMenu` (all upstream parts; `DropdownMenuItem` `variant` `default` · `destructive`, `inset` on items and labels). The Dialog's muted shell holding 32px rows; the highlighted row lifts out of it as a raised card.
+shadcn `DropdownMenu` (all upstream parts; `DropdownMenuItem` `variant` `default` · `destructive`, `inset` on items and labels). A muted shell holding 32px rows; the highlighted row lifts out of it as a raised card.
 
-- Content: `muted` (dark: `popover` + 20% black, like the Dialog shell), 1px `border` ring, `rounded-xl` (14px), menu shadow plus a 1px inner top highlight, 4px padding, 4px below the trigger, start-aligned, at least the trigger's width.
+- Content: `muted` (dark: `popover` + 20% black, the shared muted shell), 1px `border` ring, `rounded-xl` (14px), menu shadow plus a 1px inner top highlight, 4px padding, 4px below the trigger, start-aligned, at least the trigger's width.
 - Items: 32px (`body` 20px line + 6px top and bottom), padding 0 8px, `rounded-lg` (10px = 14 − 4), 8px gap, 16px `muted-foreground` icons. Highlighted (hover or keyboard): a raised card, the secondary Button skin (`background` → `secondary` gradient, 1px hairline, 1px drop shadow, inner highlight), with the icon going to `foreground`. Disabled: 50%.
 - `inset`: 32px left padding (8 + 16 icon + 8 gap), so inset text lines up with text after an icon.
 - `destructive`: text and icon in `destructive` per **Text on tints**; highlighted, the raised card tinted with `destructive` (4% → 9% over `background`; 16% → 11% over `secondary` in dark) and a `destructive`-tinted hairline.
@@ -563,7 +563,7 @@ shadcn `Toggle` (`variant` `default` · `outline`, `size` `sm` · `default` · `
 
 shadcn `Table` (`TableHeader`, `TableBody`, `TableFooter`, `TableRow`, `TableHead`, `TableCell`, `TableCaption`). The Dialog's frame laid flat: a muted shell holding the rows on a raised card, with the header, footer and caption on the shell.
 
-- Shell (`table-container`, scrolls horizontally): `muted` (dark: `background` + 20% black, like the Dialog shell), `rounded-xl` (14px), 1px `border` ring, 4px around the card. Without a `TableHeader`, the card fills the shell.
+- Shell (`table-container`, scrolls horizontally): `muted` (dark: `background` + 20% black, the shared muted shell), `rounded-xl` (14px), 1px `border` ring, 4px around the card. Without a `TableHeader`, the card fills the shell.
 - Card: drawn behind `TableBody` on `::before`, `background` fill, 1px `border`, `rounded-[10px]` (14 − 4, concentric), a faint lift (`0 1px 2px` black/4%; dark /40%).
 - `TableHead`: `label` (13/16 Medium) in `muted-foreground` (4.7:1 on the shell), 12px side padding. The header band is 36px above the card: the label's line box sits 10px from the shell's top edge and 10px from the card.
 - Body rows: exactly 40px, divided by 1px `border` lines; the last row has none. `body` text, 12px side padding, so header and cell text line up 16px from the shell's inner edge. Numbers are tabular.
@@ -633,7 +633,7 @@ shadcn `Kbd` / `KbdGroup`. 20px tall, min 20px wide, `rounded-sm`, 12/16 Medium 
 
 ### Attachment
 
-shadcn `Attachment` (`state` `idle` · `uploading` · `processing` · `error` · `done`, `size` `default` · `sm` · `xs`, `orientation` `horizontal` · `vertical`; `AttachmentMedia` `variant` `icon` · `image`, `AttachmentContent`, `AttachmentTitle`, `AttachmentDescription`, `AttachmentActions`, `AttachmentAction`, `AttachmentTrigger`, `AttachmentGroup`). A muted chip holding a raised tile, like the Dialog's shell and card.
+shadcn `Attachment` (`state` `idle` · `uploading` · `processing` · `error` · `done`, `size` `default` · `sm` · `xs`, `orientation` `horizontal` · `vertical`; `AttachmentMedia` `variant` `icon` · `image`, `AttachmentContent`, `AttachmentTitle`, `AttachmentDescription`, `AttachmentActions`, `AttachmentAction`, `AttachmentTrigger`, `AttachmentGroup`). A muted chip holding a raised tile, like the Sheet's shell and card.
 
 - Chip: `muted` fill, 1px `border`. Horizontal chips are 56 / 44 / 36px tall with or without media. The radius and the tile inset are paired so the tile is concentric: 18px − 8px = 10px (`default`), 14 − 6 = 8 (`sm`), 10 − 4 = 6 (`xs`). Tiles are 40 / 32 / 28px; without media the text sits 12 / 10 / 8px in.
 - `icon` media: the secondary Button skin (white key, `input` hairline, soft lift) with a 16px `foreground` icon (14px for `xs`, 24px when vertical). `image` media: the picture with a 1px black/10 outline (white/10 in dark), dimmed to 60% while uploading or processing.
