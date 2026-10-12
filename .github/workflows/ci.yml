@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Lint, typecheck and build
+    runs-on: ubicloud-standard-2
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build registry
+        run: pnpm registry:build
+
+      - name: Check generated files are committed
+        run: git diff --exit-code -- apps/v1/examples/__index__.tsx apps/v1/registry/blocks/__index__.tsx
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Generate Next.js types
+        working-directory: apps/v1
+        run: pnpm exec next typegen
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Build
+        run: pnpm build
