@@ -434,6 +434,121 @@ export const ExamplesIndex: Record<
     filePath: "examples/checkbox-with-description.tsx",
     component: () => import("./checkbox-with-description"),
   },
+  "code-block-actions": {
+    name: "code-block-actions",
+    filePath: "examples/code-block-actions.tsx",
+    component: () => import("./code-block-actions"),
+  },
+  "code-block-ansi": {
+    name: "code-block-ansi",
+    filePath: "examples/code-block-ansi.tsx",
+    component: () => import("./code-block-ansi"),
+  },
+  "code-block-basic": {
+    name: "code-block-basic",
+    filePath: "examples/code-block-basic.tsx",
+    component: () => import("./code-block-basic"),
+  },
+  "code-block-demo": {
+    name: "code-block-demo",
+    filePath: "examples/code-block-demo.tsx",
+    component: () => import("./code-block-demo"),
+  },
+  "code-block-destructive": {
+    name: "code-block-destructive",
+    filePath: "examples/code-block-destructive.tsx",
+    component: () => import("./code-block-destructive"),
+  },
+  "code-block-dialog": {
+    name: "code-block-dialog",
+    filePath: "examples/code-block-dialog.tsx",
+    component: () => import("./code-block-dialog"),
+  },
+  "code-block-diff": {
+    name: "code-block-diff",
+    filePath: "examples/code-block-diff.tsx",
+    component: () => import("./code-block-diff"),
+  },
+  "code-block-floating-actions": {
+    name: "code-block-floating-actions",
+    filePath: "examples/code-block-floating-actions.tsx",
+    component: () => import("./code-block-floating-actions"),
+  },
+  "code-block-header": {
+    name: "code-block-header",
+    filePath: "examples/code-block-header.tsx",
+    component: () => import("./code-block-header"),
+  },
+  "code-block-height": {
+    name: "code-block-height",
+    filePath: "examples/code-block-height.tsx",
+    component: () => import("./code-block-height"),
+  },
+  "code-block-highlighted-lines": {
+    name: "code-block-highlighted-lines",
+    filePath: "examples/code-block-highlighted-lines.tsx",
+    component: () => import("./code-block-highlighted-lines"),
+  },
+  "code-block-highlighting": {
+    name: "code-block-highlighting",
+    filePath: "examples/code-block-highlighting.tsx",
+    component: () => import("./code-block-highlighting"),
+  },
+  "code-block-languages": {
+    name: "code-block-languages",
+    filePath: "examples/code-block-languages.tsx",
+    component: () => import("./code-block-languages"),
+  },
+  "code-block-line-numbers": {
+    name: "code-block-line-numbers",
+    filePath: "examples/code-block-line-numbers.tsx",
+    component: () => import("./code-block-line-numbers"),
+  },
+  "code-block-message": {
+    name: "code-block-message",
+    filePath: "examples/code-block-message.tsx",
+    component: () => import("./code-block-message"),
+  },
+  "code-block-show-more-scroll": {
+    name: "code-block-show-more-scroll",
+    filePath: "examples/code-block-show-more-scroll.tsx",
+    component: () => import("./code-block-show-more-scroll"),
+  },
+  "code-block-show-more": {
+    name: "code-block-show-more",
+    filePath: "examples/code-block-show-more.tsx",
+    component: () => import("./code-block-show-more"),
+  },
+  "code-block-size": {
+    name: "code-block-size",
+    filePath: "examples/code-block-size.tsx",
+    component: () => import("./code-block-size"),
+  },
+  "code-block-start-line": {
+    name: "code-block-start-line",
+    filePath: "examples/code-block-start-line.tsx",
+    component: () => import("./code-block-start-line"),
+  },
+  "code-block-streaming": {
+    name: "code-block-streaming",
+    filePath: "examples/code-block-streaming.tsx",
+    component: () => import("./code-block-streaming"),
+  },
+  "code-block-tabs": {
+    name: "code-block-tabs",
+    filePath: "examples/code-block-tabs.tsx",
+    component: () => import("./code-block-tabs"),
+  },
+  "code-block-trace": {
+    name: "code-block-trace",
+    filePath: "examples/code-block-trace.tsx",
+    component: () => import("./code-block-trace"),
+  },
+  "code-block-wrap": {
+    name: "code-block-wrap",
+    filePath: "examples/code-block-wrap.tsx",
+    component: () => import("./code-block-wrap"),
+  },
   "collapsible-demo": {
     name: "collapsible-demo",
     filePath: "examples/collapsible-demo.tsx",
@@ -1413,5 +1528,80 @@ export const ExamplesIndex: Record<
     name: "tooltip-with-shortcut",
     filePath: "examples/tooltip-with-shortcut.tsx",
     component: () => import("./tooltip-with-shortcut"),
+  },
+  "trace-collapsible": {
+    name: "trace-collapsible",
+    filePath: "examples/trace-collapsible.tsx",
+    component: () => import("./trace-collapsible"),
+  },
+  "trace-commit": {
+    name: "trace-commit",
+    filePath: "examples/trace-commit.tsx",
+    component: () => import("./trace-commit"),
+  },
+  "trace-demo": {
+    name: "trace-demo",
+    filePath: "examples/trace-demo.tsx",
+    component: () => import("./trace-demo"),
+  },
+  "trace-description": {
+    name: "trace-description",
+    filePath: "examples/trace-description.tsx",
+    component: () => import("./trace-description"),
+  },
+  "trace-dialog": {
+    name: "trace-dialog",
+    filePath: "examples/trace-dialog.tsx",
+    component: () => import("./trace-dialog"),
+  },
+  "trace-group": {
+    name: "trace-group",
+    filePath: "examples/trace-group.tsx",
+    component: () => import("./trace-group"),
+  },
+  "trace-link": {
+    name: "trace-link",
+    filePath: "examples/trace-link.tsx",
+    component: () => import("./trace-link"),
+  },
+  "trace-open": {
+    name: "trace-open",
+    filePath: "examples/trace-open.tsx",
+    component: () => import("./trace-open"),
+  },
+  "trace-reasoning": {
+    name: "trace-reasoning",
+    filePath: "examples/trace-reasoning.tsx",
+    component: () => import("./trace-reasoning"),
+  },
+  "trace-sheet": {
+    name: "trace-sheet",
+    filePath: "examples/trace-sheet.tsx",
+    component: () => import("./trace-sheet"),
+  },
+  "trace-sources": {
+    name: "trace-sources",
+    filePath: "examples/trace-sources.tsx",
+    component: () => import("./trace-sources"),
+  },
+  "trace-static": {
+    name: "trace-static",
+    filePath: "examples/trace-static.tsx",
+    component: () => import("./trace-static"),
+  },
+  "trace-status": {
+    name: "trace-status",
+    filePath: "examples/trace-status.tsx",
+    component: () => import("./trace-status"),
+  },
+  "trace-steps": {
+    name: "trace-steps",
+    filePath: "examples/trace-steps.tsx",
+    component: () => import("./trace-steps"),
+  },
+  "trace-turn": {
+    name: "trace-turn",
+    filePath: "examples/trace-turn.tsx",
+    component: () => import("./trace-turn"),
   },
 }

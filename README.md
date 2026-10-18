@@ -21,9 +21,9 @@ Components only use the standard shadcn variables (`--primary`, `--secondary`, `
 
 ## Components
 
-Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://ui.shadcn.com/r/styles/base-nova/registry.json). Tick a box when the component is in `registry/ui/`, in `registry.json` and has a docs page.
+Every `registry:ui` item in shadcn's base-nova registry (65 total, from https://ui.shadcn.com/r/styles/base-nova/registry.json). Tick a box when the component is in `registry/ui/`, in `registry.json` and has a docs page.
 
-**Progress: 63 / 63**
+**Progress: 65 / 65**
 
 - [x] Accordion (`accordion`)
 - [x] Alert (`alert`)
@@ -41,6 +41,7 @@ Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://
 - [x] Carousel (`carousel`)
 - [x] Chart (`chart`)
 - [x] Checkbox (`checkbox`)
+- [x] Code Block (`code-block`, with the `use-highlighted-code` hook)
 - [x] Collapsible (`collapsible`)
 - [x] Combobox (`combobox`)
 - [x] Command (`command`)
@@ -88,6 +89,7 @@ Every `registry:ui` item in shadcn's base-nova registry (63 total, from https://
 - [x] Toggle (`toggle`)
 - [x] Toggle Group (`toggle-group`)
 - [x] Tooltip (`tooltip`)
+- [x] Trace (`trace`)
 
 Guides built from those components (shadcn ships them as docs pages, not registry items):
 

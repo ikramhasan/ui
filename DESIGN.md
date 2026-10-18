@@ -670,6 +670,27 @@ shadcn `Marker` (`variant` `default` · `border` · `separator`, `render`; `Mark
 - `separator`: the engraved Separator line on both sides (hairline + 1px highlight; dark black/40), 12px from the label. `border`: the same engraved line under the row, 8px below the text.
 - As links or buttons the text goes to `foreground` on hover; focus is the 2px `ring` with a 2px offset. Streaming text takes the `shimmer` utility; status markers take a `Spinner`.
 
+### Code Block
+
+shadcn `CodeBlock` (`variant` `default` · `destructive`, `size` `default` · `sm`; `CodeBlockHeader`, `CodeBlockTitle`, `CodeBlockActions`, `CodeBlockCopyButton`, `CodeBlockContent` with `wrap` / `lineNumbers` / `startLine`, `CodeBlockLine` `variant` `default` · `added` · `removed` · `highlighted`, `CodeBlockFooter`) and the `useHighlightedCode` hook.
+
+- A well sunk into the page, the Kbd's recess at panel scale: 1px `border`, `rounded-xl` (`sm`: `rounded-lg`), a soft shadow under the top lip (`inset 0 1px 2px` black 4%) and a 1px white catch-light under the bottom edge (90%). Light fill stays `background` so highlighted tokens keep 4.5:1; dark fills `background` + 18% black with a black/40 border, inner shadow 40% and catch-light 5%.
+- Code: mono 13/20 (`sm`: 12/18), 12px padding (`sm`: 10px). Title `body-medium` (`sm`: 12/16) with a 14px `muted-foreground` icon centered on the text line (measured 0px).
+- Highlighting uses Shiki's `github-light-default` / `github-dark-default`: every token ≥ 4.5:1 on the well (lowest: comments 4.55:1 light, 5.5:1 dark). Upstream's `github-light` orange is 3.5:1. Comments on an `added` / `highlighted` line drop to about 4.2:1.
+- Lines: `added` and `highlighted` take a 5% `foreground` wash, `removed` the `destructive/10` tint (dark /15) with a text-on-tints red "−". Line numbers in `muted-foreground`.
+- Focus on the content: the Input's ring (border `ring` + 3px `ring/30`, dark /40).
+- Floating actions (no header): 24px keys with an `input` hairline, `background` fill and `shadow-xs`, concentric with the corner: 14 − 1 − 8 = 5px radius (`sm`: 10 − 1 − 7 = 2px, which also centers the key on a one-line block). They fade in on hover or focus (150ms) and always show on touch.
+- `destructive`: `destructive/30` border on `destructive` 4% (dark /40 on 8%), text per **Text on tints**.
+- `CodeBlockCopyButton`: the icons cross-fade with scale 0.5 and a 2px blur, 200ms; reduced motion keeps the fade.
+
+### Trace
+
+shadcn `Trace` (`TraceLine` with `status` `running` · `error` · `pending`, `TraceIcon`, `TraceTitle`, `TraceDescription`, `TraceCollapsible`, `TraceCollapsibleTrigger`, `TraceCollapsibleContent`). Rows of an agent's work.
+
+- Rows: `body` in `muted-foreground`, 20px line, 16px icon 8px before the title; links and triggers go to `foreground` on hover (150ms). Focus: the 2px `ring` with a 2px offset (`rounded-sm`).
+- `running` shimmers the title (off with reduced motion), `error` is `destructive`, `pending` 60%. `TraceDescription` stays full `muted-foreground` (upstream's 70% is below 4.5:1), tabular.
+- The trigger's chevron turns 90° in 200ms, ease `cubic-bezier(0.23, 1, 0.32, 1)`; the detail opens on Collapsible's height transition and hangs off the engraved Separator line (dark black/40, with its 1px highlight), centered under the 16px icon, text 16px in.
+
 ### Message Scroller
 
 shadcn `MessageScroller` on `@shadcn/react` (`MessageScrollerProvider`, `MessageScrollerViewport`, `MessageScrollerContent`, `MessageScrollerItem`, `MessageScrollerButton`, the three hooks). Behavior is upstream's; only the frame is styled.

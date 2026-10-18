@@ -1189,6 +1189,65 @@
       ]
     },
     {
+      "name": "use-highlighted-code",
+      "type": "registry:hook",
+      "title": "Use Highlighted Code",
+      "description": "Highlights code with Shiki, one React node per line, incrementally while it streams.",
+      "dependencies": [
+        "shiki"
+      ],
+      "files": [
+        {
+          "path": "registry/hooks/use-highlighted-code.ts",
+          "type": "registry:hook"
+        },
+        {
+          "path": "registry/lib/highlighter.tsx",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "code-block",
+      "type": "registry:ui",
+      "title": "Code Block",
+      "description": "Displays a block of code with an optional header, actions, line numbers, diff lines, and footer.",
+      "dependencies": [
+        "class-variance-authority",
+        "cn",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/r/button.json",
+        "http://localhost:3000/r/use-highlighted-code.json"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/code-block.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "trace",
+      "type": "registry:ui",
+      "title": "Trace",
+      "description": "Displays the steps of an agent's work: reasoning, tool calls, and sources, as rows that can expand.",
+      "dependencies": [
+        "cn",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/r/collapsible.json"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/trace.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "dashboard-01",
       "type": "registry:block",
       "title": "Dashboard 01",
