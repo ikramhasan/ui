@@ -9,7 +9,7 @@ description: Displays code, terminal output and diffs with an optional header, l
 
 Syntax highlighting is optional and lives in a separate hook, so a block that only shows plain output stays small.
 
-The block is a well sunk into the page, the [Kbd](/docs/components/kbd)'s recess at panel scale: a fill one step below the background, a soft shadow under the top lip and a 1px catch-light under the bottom edge. Focusing the code draws the [Input](/docs/components/input)'s ring.
+The block is a well sunk into the page, the [Kbd](/docs/components/kbd)'s recess at panel scale: a soft shadow under the top lip and a 1px catch-light under the bottom edge, on a fill one step below the background in dark mode (light keeps `background`, so every highlighted token stays at 4.5:1 or above). Focusing the code draws the [Input](/docs/components/input)'s ring.
 
 ## Installation
 
@@ -271,7 +271,7 @@ Put a `CodeBlock` between paragraphs inside a [Message](/docs/components/message
 
 ## Dialog
 
-A `CodeBlock` in a [Dialog](/docs/components/dialog) sits inside the card's padding, its well a step below the card.
+A `CodeBlock` in a [Dialog](/docs/components/dialog) sits inside the card's padding, recessed into the card by its top shadow and hairline.
 
 <ComponentPreview name="code-block-dialog" />
 
