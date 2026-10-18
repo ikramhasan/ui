@@ -17,6 +17,7 @@
     "carousel",
     "chart",
     "checkbox",
+    "code-block",
     "collapsible",
     "combobox",
     "command",
@@ -64,6 +65,7 @@
     "toast",
     "toggle",
     "toggle-group",
-    "tooltip"
+    "tooltip",
+    "trace"
   ]
 }

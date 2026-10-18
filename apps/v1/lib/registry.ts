@@ -46,6 +46,7 @@ export function fixImports(code: string) {
   return code
     .replaceAll("@/registry/ui/", "@/components/ui/")
     .replaceAll("@/registry/hooks/", "@/hooks/")
+    .replaceAll("@/registry/lib/", "@/lib/")
 }
 
 export async function getExampleSource(name: string) {
