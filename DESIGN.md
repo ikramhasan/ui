@@ -510,7 +510,7 @@ shadcn `InputGroup` (`InputGroupAddon`, `InputGroupButton`, `InputGroupText`, `I
 - Inline addons line up with plain input text: an icon or text sits 11px from the outer edge (1px border + 10px), 8px from the control's text. Inline-end mirrors it.
 - Buttons inside: `xs` / `icon-xs` (24px) are inset 3px top, bottom and side with a 6px radius (10 − 1 − 3); `sm` / `icon-sm` (28px) are inset 1px with an 8px radius.
 - Block addons (above or below a textarea): text at the same 11px; buttons at the edges inset 8px from the side and bottom.
-- Disabled: the whole group at 50%, once.
+- Disabled: the whole group at 50%, once, when its control (`InputGroupInput` / `InputGroupTextarea`) is disabled. A disabled button inside (a Send button waiting for text) only fades itself; base-nova's `has-disabled` would dim the field the person is typing into.
 - The sidebar's **Quick actions** field is an `InputGroup` with a command icon addon and a trailing `Kbd` ("K", 12px Medium).
 
 ### Resizable
