@@ -339,6 +339,20 @@ While the code streams, the hook tokenizes only the new lines, starting where th
 
 <ComponentPreview name="code-block-streaming" />
 
+### Markdown
+
+Render the message with [Streamdown](https://streamdown.ai) and route fenced code to a `CodeBlock` with `components.code`. Streamdown sets `data-block` on fenced code only, so inline code stays inline.
+
+<ComponentPreview name="code-block-markdown" previewClassName="h-auto" />
+
+`useIsCodeFenceIncomplete` returns `true` until the closing fence arrives. Use it to disable the copy button while the code is incomplete. It only works when Streamdown gets `isAnimating`, so pass `isAnimating` while the message streams.
+
+```tsx showLineNumbers
+<Streamdown components={{ code: MarkdownCode }} isAnimating={isStreaming}>
+  {text}
+</Streamdown>
+```
+
 ## Accessibility
 
 - `CodeBlockContent` is a `pre` with a `code` element and always sets `dir="ltr"`, so code reads left to right on an RTL page.

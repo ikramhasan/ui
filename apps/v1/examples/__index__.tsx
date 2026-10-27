@@ -519,6 +519,11 @@ export const ExamplesIndex: Record<
     filePath: "examples/code-block-line-numbers.tsx",
     component: () => import("./code-block-line-numbers"),
   },
+  "code-block-markdown": {
+    name: "code-block-markdown",
+    filePath: "examples/code-block-markdown.tsx",
+    component: () => import("./code-block-markdown"),
+  },
   "code-block-message": {
     name: "code-block-message",
     filePath: "examples/code-block-message.tsx",
@@ -568,6 +573,11 @@ export const ExamplesIndex: Record<
     name: "collapsible-demo",
     filePath: "examples/collapsible-demo.tsx",
     component: () => import("./collapsible-demo"),
+  },
+  "collapsible-file-tree": {
+    name: "collapsible-file-tree",
+    filePath: "examples/collapsible-file-tree.tsx",
+    component: () => import("./collapsible-file-tree"),
   },
   "combobox-auto-highlight": {
     name: "combobox-auto-highlight",
