@@ -38,9 +38,9 @@ export default function IndexPage() {
       <PageHeader className="border-b-0">
         <Badge
           variant="secondary"
-          render={<Link href="/docs/components/code-block" />}
+          render={<Link href="/docs/ai-elements" />}
         >
-          New Code Block and Trace
+          New AI Elements
           <ArrowRightIcon data-icon="inline-end" />
         </Badge>
         <PageHeaderHeading className="max-w-3xl md:text-5xl md:leading-tight">

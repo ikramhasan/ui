@@ -10,6 +10,7 @@ import { ComponentPreview } from "@/components/component-preview"
 import { ComponentSource } from "@/components/component-source"
 import { ComponentsList } from "@/components/components-list"
 import { CopyButton } from "@/components/copy-button"
+import { LinkedCard } from "@/components/linked-card"
 import { Kbd } from "@/registry/ui/kbd"
 import { TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -298,4 +299,5 @@ export const mdxComponents = {
   ComponentPreview,
   ComponentSource,
   ComponentsList,
+  LinkedCard,
 }

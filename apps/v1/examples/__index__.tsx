@@ -369,6 +369,11 @@ export const ExamplesIndex: Record<
     filePath: "examples/carousel-spacing.tsx",
     component: () => import("./carousel-spacing"),
   },
+  "chain-of-thought-demo": {
+    name: "chain-of-thought-demo",
+    filePath: "examples/chain-of-thought-demo.tsx",
+    component: () => import("./chain-of-thought-demo"),
+  },
   "chart-area": {
     name: "chart-area",
     filePath: "examples/chart-area.tsx",
@@ -419,6 +424,11 @@ export const ExamplesIndex: Record<
     filePath: "examples/chart-tooltip.tsx",
     component: () => import("./chart-tooltip"),
   },
+  "chat-demo": {
+    name: "chat-demo",
+    filePath: "examples/chat-demo.tsx",
+    component: () => import("./chat-demo"),
+  },
   "checkbox-choice-card": {
     name: "checkbox-choice-card",
     filePath: "examples/checkbox-choice-card.tsx",
@@ -433,6 +443,11 @@ export const ExamplesIndex: Record<
     name: "checkbox-with-description",
     filePath: "examples/checkbox-with-description.tsx",
     component: () => import("./checkbox-with-description"),
+  },
+  "checkpoint-demo": {
+    name: "checkpoint-demo",
+    filePath: "examples/checkpoint-demo.tsx",
+    component: () => import("./checkpoint-demo"),
   },
   "code-block-actions": {
     name: "code-block-actions",
@@ -504,6 +519,11 @@ export const ExamplesIndex: Record<
     filePath: "examples/code-block-line-numbers.tsx",
     component: () => import("./code-block-line-numbers"),
   },
+  "code-block-markdown": {
+    name: "code-block-markdown",
+    filePath: "examples/code-block-markdown.tsx",
+    component: () => import("./code-block-markdown"),
+  },
   "code-block-message": {
     name: "code-block-message",
     filePath: "examples/code-block-message.tsx",
@@ -553,6 +573,11 @@ export const ExamplesIndex: Record<
     name: "collapsible-demo",
     filePath: "examples/collapsible-demo.tsx",
     component: () => import("./collapsible-demo"),
+  },
+  "collapsible-file-tree": {
+    name: "collapsible-file-tree",
+    filePath: "examples/collapsible-file-tree.tsx",
+    component: () => import("./collapsible-file-tree"),
   },
   "combobox-auto-highlight": {
     name: "combobox-auto-highlight",
@@ -648,6 +673,16 @@ export const ExamplesIndex: Record<
     name: "command-many-items",
     filePath: "examples/command-many-items.tsx",
     component: () => import("./command-many-items"),
+  },
+  "confirmation-demo": {
+    name: "confirmation-demo",
+    filePath: "examples/confirmation-demo.tsx",
+    component: () => import("./confirmation-demo"),
+  },
+  "context-demo": {
+    name: "context-demo",
+    filePath: "examples/context-demo.tsx",
+    component: () => import("./context-demo"),
   },
   "context-menu-demo": {
     name: "context-menu-demo",
@@ -769,6 +804,11 @@ export const ExamplesIndex: Record<
     filePath: "examples/field-separator.tsx",
     component: () => import("./field-separator"),
   },
+  "file-tree-demo": {
+    name: "file-tree-demo",
+    filePath: "examples/file-tree-demo.tsx",
+    component: () => import("./file-tree-demo"),
+  },
   "form-controls": {
     name: "form-controls",
     filePath: "examples/form-controls.tsx",
@@ -788,6 +828,11 @@ export const ExamplesIndex: Record<
     name: "hover-card-sides",
     filePath: "examples/hover-card-sides.tsx",
     component: () => import("./hover-card-sides"),
+  },
+  "inline-citation-demo": {
+    name: "inline-citation-demo",
+    filePath: "examples/inline-citation-demo.tsx",
+    component: () => import("./inline-citation-demo"),
   },
   "input-demo": {
     name: "input-demo",
@@ -1004,6 +1049,11 @@ export const ExamplesIndex: Record<
     filePath: "examples/message-header-footer.tsx",
     component: () => import("./message-header-footer"),
   },
+  "message-pattern": {
+    name: "message-pattern",
+    filePath: "examples/message-pattern.tsx",
+    component: () => import("./message-pattern"),
+  },
   "message-scroller-commands": {
     name: "message-scroller-commands",
     filePath: "examples/message-scroller-commands.tsx",
@@ -1023,6 +1073,11 @@ export const ExamplesIndex: Record<
     name: "message-scroller-scrollable",
     filePath: "examples/message-scroller-scrollable.tsx",
     component: () => import("./message-scroller-scrollable"),
+  },
+  "model-selector-demo": {
+    name: "model-selector-demo",
+    filePath: "examples/model-selector-demo.tsx",
+    component: () => import("./model-selector-demo"),
   },
   "native-select-demo": {
     name: "native-select-demo",
@@ -1074,6 +1129,16 @@ export const ExamplesIndex: Record<
     filePath: "examples/pagination-icons-only.tsx",
     component: () => import("./pagination-icons-only"),
   },
+  "plan-demo": {
+    name: "plan-demo",
+    filePath: "examples/plan-demo.tsx",
+    component: () => import("./plan-demo"),
+  },
+  "plan-description": {
+    name: "plan-description",
+    filePath: "examples/plan-description.tsx",
+    component: () => import("./plan-description"),
+  },
   "popover-align": {
     name: "popover-align",
     filePath: "examples/popover-align.tsx",
@@ -1108,6 +1173,11 @@ export const ExamplesIndex: Record<
     name: "progress-with-label-and-value",
     filePath: "examples/progress-with-label-and-value.tsx",
     component: () => import("./progress-with-label-and-value"),
+  },
+  "prompt-input-demo": {
+    name: "prompt-input-demo",
+    filePath: "examples/prompt-input-demo.tsx",
+    component: () => import("./prompt-input-demo"),
   },
   "questionnaire-animated": {
     name: "questionnaire-animated",
@@ -1179,6 +1249,16 @@ export const ExamplesIndex: Record<
     filePath: "examples/questionnaire-validation.tsx",
     component: () => import("./questionnaire-validation"),
   },
+  "queue-demo": {
+    name: "queue-demo",
+    filePath: "examples/queue-demo.tsx",
+    component: () => import("./queue-demo"),
+  },
+  "queue-descriptions": {
+    name: "queue-descriptions",
+    filePath: "examples/queue-descriptions.tsx",
+    component: () => import("./queue-descriptions"),
+  },
   "radio-group-choice-cards": {
     name: "radio-group-choice-cards",
     filePath: "examples/radio-group-choice-cards.tsx",
@@ -1188,6 +1268,16 @@ export const ExamplesIndex: Record<
     name: "radio-group-demo",
     filePath: "examples/radio-group-demo.tsx",
     component: () => import("./radio-group-demo"),
+  },
+  "reasoning-demo": {
+    name: "reasoning-demo",
+    filePath: "examples/reasoning-demo.tsx",
+    component: () => import("./reasoning-demo"),
+  },
+  "reasoning-duration": {
+    name: "reasoning-duration",
+    filePath: "examples/reasoning-duration.tsx",
+    component: () => import("./reasoning-duration"),
   },
   "resizable-demo": {
     name: "resizable-demo",
@@ -1344,6 +1434,11 @@ export const ExamplesIndex: Record<
     filePath: "examples/sonner-types.tsx",
     component: () => import("./sonner-types"),
   },
+  "sources-demo": {
+    name: "sources-demo",
+    filePath: "examples/sources-demo.tsx",
+    component: () => import("./sources-demo"),
+  },
   "spinner-badge": {
     name: "spinner-badge",
     filePath: "examples/spinner-badge.tsx",
@@ -1373,6 +1468,36 @@ export const ExamplesIndex: Record<
     name: "spinner-sizes",
     filePath: "examples/spinner-sizes.tsx",
     component: () => import("./spinner-sizes"),
+  },
+  "stack-trace-demo": {
+    name: "stack-trace-demo",
+    filePath: "examples/stack-trace-demo.tsx",
+    component: () => import("./stack-trace-demo"),
+  },
+  "stack-trace-frames": {
+    name: "stack-trace-frames",
+    filePath: "examples/stack-trace-frames.tsx",
+    component: () => import("./stack-trace-frames"),
+  },
+  "subagent-demo": {
+    name: "subagent-demo",
+    filePath: "examples/subagent-demo.tsx",
+    component: () => import("./subagent-demo"),
+  },
+  "subagent-details": {
+    name: "subagent-details",
+    filePath: "examples/subagent-details.tsx",
+    component: () => import("./subagent-details"),
+  },
+  "subagent-running": {
+    name: "subagent-running",
+    filePath: "examples/subagent-running.tsx",
+    component: () => import("./subagent-running"),
+  },
+  "suggestion-demo": {
+    name: "suggestion-demo",
+    filePath: "examples/suggestion-demo.tsx",
+    component: () => import("./suggestion-demo"),
   },
   "switch-demo": {
     name: "switch-demo",
@@ -1423,6 +1548,31 @@ export const ExamplesIndex: Record<
     name: "tabs-vertical",
     filePath: "examples/tabs-vertical.tsx",
     component: () => import("./tabs-vertical"),
+  },
+  "task-demo": {
+    name: "task-demo",
+    filePath: "examples/task-demo.tsx",
+    component: () => import("./task-demo"),
+  },
+  "terminal-demo": {
+    name: "terminal-demo",
+    filePath: "examples/terminal-demo.tsx",
+    component: () => import("./terminal-demo"),
+  },
+  "terminal-error": {
+    name: "terminal-error",
+    filePath: "examples/terminal-error.tsx",
+    component: () => import("./terminal-error"),
+  },
+  "test-results-demo": {
+    name: "test-results-demo",
+    filePath: "examples/test-results-demo.tsx",
+    component: () => import("./test-results-demo"),
+  },
+  "test-results-suites": {
+    name: "test-results-suites",
+    filePath: "examples/test-results-suites.tsx",
+    component: () => import("./test-results-suites"),
   },
   "textarea-demo": {
     name: "textarea-demo",
@@ -1503,6 +1653,26 @@ export const ExamplesIndex: Record<
     name: "toggle-sizes",
     filePath: "examples/toggle-sizes.tsx",
     component: () => import("./toggle-sizes"),
+  },
+  "tool-approval": {
+    name: "tool-approval",
+    filePath: "examples/tool-approval.tsx",
+    component: () => import("./tool-approval"),
+  },
+  "tool-demo": {
+    name: "tool-demo",
+    filePath: "examples/tool-demo.tsx",
+    component: () => import("./tool-demo"),
+  },
+  "tool-sheet": {
+    name: "tool-sheet",
+    filePath: "examples/tool-sheet.tsx",
+    component: () => import("./tool-sheet"),
+  },
+  "tool-states": {
+    name: "tool-states",
+    filePath: "examples/tool-states.tsx",
+    component: () => import("./tool-states"),
   },
   "tooltip-demo": {
     name: "tooltip-demo",
